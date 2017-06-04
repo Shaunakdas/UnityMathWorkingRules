@@ -1,24 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HtmlAgilityPack;
 
 public class TextLine : Line {
-	public Type TextType{get; set;}
+	public LineType TextType{get; set;}
 
 	public string DisplayText {get; set;}
 
 	//Contructor
-	public TextLine(string displayText, string type){	
+	public TextLine(string displayText, string type){
+		RowList = new List<Row>();	
 		DisplayText = displayText;
-		switch (type) {
+		getLineType (type);
+	}
+	/// <summary>
+	/// Initializes a new instance of the TextLine class with HTMLNode attribute
+	/// </summary>
+	/// <param name="para">Para.</param>
+	public TextLine(HtmlNode line_node){
+		RowList = new List<Row>();
+		Debug.Log ("Found Line node of type "+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		DisplayText = line_node.InnerText;
+		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+
+		Debug.Log ("Found Line node of content"+ DisplayText);
+	}
+	public void getLineType(string type_text){
+		switch (type_text) {
 		case "text": 
-			TextType = Type.Text;
+			TextType = LineType.Text;
 			break;
 		case "post_submit_text": 
-			TextType = Type.PostSubmitText;
+			TextType = LineType.PostSubmitText;
 			break;
 		case "incorrect_submit_text": 
-			TextType = Type.IncorrectSubmitText;
+			TextType = LineType.IncorrectSubmitText;
 			break;
 		}
 	}

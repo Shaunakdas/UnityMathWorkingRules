@@ -1,25 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HtmlAgilityPack;
 
 public class CombinationLine  : Line {
-	public Type CombinationType;
+	public LineType CombinationType;
 	public bool OutputVisible{ get; set; }
 	public int CorrectAnswer{get; set;}
 //	public List<Row> RowList {get; set;}
 	//Constructor
-	public CombinationLine(string outputVisible, string correctAnswer, string type){	
+	public CombinationLine(string outputVisible, string correctAnswer, string type){
+		RowList = new List<Row>();	
 		OutputVisible = (outputVisible=="1")?true : false;
 		CorrectAnswer = int.Parse (correctAnswer);
-		switch (type) {
+		getLineType (type);
+	}
+	/// <summary>
+	/// Initializes a new instance of the CombinationLine class with HTMLNode attribute
+	/// </summary>
+	/// <param name="para">Para.</param>
+	public CombinationLine(HtmlNode line_node){
+		RowList = new List<Row>();
+		Debug.Log ("Found Line node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		CorrectAnswer = int.Parse(line_node.Attributes [HTMLParser.ATTR_ANSWER].Value);
+		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		OutputVisible = (line_node.Attributes [HTMLParser.ATTR_OUTPUT_VISIBLE].Value=="1")?true : false;
+	}
+	public void getLineType(string type_text){
+		switch (type_text) {
 		case "combination_product": 
-			CombinationType = Type.CombinationProduct;
+			CombinationType = LineType.CombinationProduct;
 			break;
 		case "combination_product_sum": 
-			CombinationType = Type.CombinationProductSum;
+			CombinationType = LineType.CombinationProductSum;
 			break;
 		case "combination_sum": 
-			CombinationType = Type.CombinationSum;
+			CombinationType = LineType.CombinationSum;
 			break;
 		}
 	}

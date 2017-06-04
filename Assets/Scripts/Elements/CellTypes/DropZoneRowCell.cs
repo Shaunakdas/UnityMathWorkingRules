@@ -51,7 +51,7 @@ public class DropZoneRowCell : Cell {
 		if (targetText == "") {
 			Dropable = false;
 		} else {
-			TargetTextList = targetText.Split (';').ToList ();
+//			TargetTextList = targetText.Split (';').ToList ();
 		}
 	}
 	public void generateTargetIdList(string targetId){
@@ -61,7 +61,7 @@ public class DropZoneRowCell : Cell {
 		if (targetId == "") {
 			Dropable = false;
 		} else {
-			TargetIdList = targetId.Split (';').ToList ();
+//			TargetIdList = targetId.Split (';').ToList ();
 		}
 	}
 

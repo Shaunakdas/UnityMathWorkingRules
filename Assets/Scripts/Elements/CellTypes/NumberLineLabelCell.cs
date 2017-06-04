@@ -10,6 +10,6 @@ public class NumberLineLabelCell : Cell {
 	public NumberLineLabelCell(string type, string labelIndex){
 		if(type == "number_line_label") NumberLineLabelType = CellType.NumberLineLabel;
 		if(type == "number_line_label_answer") NumberLineLabelType = CellType.NumberLineLabelAnswer;
-		LabelIndex = labelIndex;
+		LabelIndex = int.Parse(labelIndex);
 	}
 }

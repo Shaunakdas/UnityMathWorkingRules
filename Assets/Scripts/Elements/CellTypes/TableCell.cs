@@ -35,7 +35,7 @@ public class TableCell : Cell {
 	public TableCell(HtmlNode cell_node){
 		RowList = new List<Row> ();
 		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
-		Debug.Log ("Found Cell node of type "+type_text);
+		Debug.Log ("Initializing TableCell node of type "+type_text);
 		getCellType (type_text);
 		parseTableCell (cell_node);
 	}

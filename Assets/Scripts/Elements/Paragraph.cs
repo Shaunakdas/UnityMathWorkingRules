@@ -33,7 +33,7 @@ public class Paragraph {
 	/// <param name="para">Para.</param>
 	public Paragraph(HtmlNode para_node){
 		LineList = new List<Line> ();
-		Debug.Log ("Found paragraph node of type "+para_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		Debug.Log ("Initializing paragraph node of type "+para_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		switch (para_node.Attributes [HTMLParser.ATTR_TYPE].Value) {
 		case "single_correct": 
 			ParagraphStep = StepType.Comprehension;

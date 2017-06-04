@@ -32,7 +32,7 @@ public class NumberLineLabelCell : Cell {
 	public NumberLineLabelCell(HtmlNode cell_node){
 		//		CellList = new List<Cell> ();
 		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
-		Debug.Log ("Found Line node of type "+type_text);
+		Debug.Log ("Initializing NumberLineLabelCell node of type "+type_text);
 		getCellType (type_text);
 		LabelIndex = int.Parse(cell_node.Attributes [HTMLParser.ATTR_LABEL_INDEX].Value);
 	}

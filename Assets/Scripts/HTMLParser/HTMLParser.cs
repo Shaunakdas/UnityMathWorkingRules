@@ -18,7 +18,7 @@ public class HTMLParser  {
 	//Combination Line 
 	public const string ATTR_OUTPUT_VISIBLE="outputVisible";
 	//DragSourceLine Row 
-	public const string ATTR_START="start",ATTR_END="end";
+	public const string ATTR_START="start",ATTR_END="end",ATTR_SOURCE_TYPE="sourceType";
 	//DropZone Row
 	public const string ATTR_SIZE="size";
 	//DragSource and DropZoneRow Cell 

@@ -41,7 +41,7 @@ public class NumberLineDropLine  : Line {
 	public NumberLineDropLine(HtmlNode line_node){
 		RowList = new List<Row>();
 		string type = line_node.Attributes [HTMLParser.ATTR_TYPE].Value;
-		Debug.Log ("Found Line node of type text"+ type);
+		Debug.Log ("Initializing NumberLineDropLine node of type text"+ type);
 		LabelCount = int.Parse(line_node.Attributes [HTMLParser.ATTR_LABEL_COUNT].Value);
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 

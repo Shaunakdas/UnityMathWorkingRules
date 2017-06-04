@@ -5,6 +5,8 @@ using HtmlAgilityPack;
 
 public class DragSourceCell : Cell {
 	public CellType DragSourceType;
+	public enum SeriesType{Integer,Prime};
+	public SeriesType SourceType;
 	public string CellId { get; set; }
 	public string CellTag { get; set; }
 	public string DisplayText {get; set;}
@@ -32,10 +34,19 @@ public class DragSourceCell : Cell {
 	public DragSourceCell(HtmlNode cell_node){
 		//		CellList = new List<Cell> ();
 		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
-		Debug.Log ("Found Line node of type "+type_text);
+		Debug.Log ("Initializing DragSourceCell node of type "+type_text);
 		getCellType (type_text);
 		CellId = cell_node.Attributes [HTMLParser.ATTR_ID].Value;
 		DisplayText = cell_node.InnerText;
 	}
-
+	public void getSourceType(string source_type){
+		switch (source_type) {
+		case "integer": 
+			SourceType = SeriesType.Integer;
+			break;
+		case "prime": 
+			SourceType = SeriesType.Prime;
+			break;
+		}
+	}
 }

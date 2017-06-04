@@ -21,7 +21,7 @@ public class TableLine  : Line {
 	/// <param name="para">Para.</param>
 	public TableLine(HtmlNode line_node){
 		RowList = new List<Row>();
-		Debug.Log ("Found Line node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		Debug.Log ("Initializing TableLine node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 	}
 	public void getLineType(string type_text){

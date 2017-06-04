@@ -20,11 +20,11 @@ public class TextLine : Line {
 	/// <param name="para">Para.</param>
 	public TextLine(HtmlNode line_node){
 		RowList = new List<Row>();
-		Debug.Log ("Found Line node of type "+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		Debug.Log ("Initializing TextLine node of type "+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		DisplayText = line_node.InnerText;
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 
-		Debug.Log ("Found Line node of content"+ DisplayText);
+//		Debug.Log ("Found Line node of content"+ DisplayText);
 	}
 	public void getLineType(string type_text){
 		switch (type_text) {

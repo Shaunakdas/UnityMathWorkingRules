@@ -20,7 +20,7 @@ public class Cell  {
 	public Cell(HtmlNode cell_node){
 //		CellList = new List<Cell> ();
 		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
-		Debug.Log ("Found Line node of type "+type_text);
+//		Debug.Log ("Initializing Cell node of type "+type_text);
 		getCellType (type_text);
 	}
 }

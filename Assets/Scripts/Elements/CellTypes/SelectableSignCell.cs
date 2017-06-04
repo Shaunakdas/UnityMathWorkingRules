@@ -26,7 +26,7 @@ public class SelectableSignCell : Cell {
 	public SelectableSignCell(HtmlNode cell_node){
 		//		CellList = new List<Cell> ();
 		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
-		Debug.Log ("Found Line node of type "+type_text);
+		Debug.Log ("Initializing SelectableSignCell node of type "+type_text);
 		getCellType (type_text);
 		TargetSign = (cell_node.Attributes [HTMLParser.ATTR_ANSWER].Value)=="1"? Sign.Positive:Sign.Negative;
 	}

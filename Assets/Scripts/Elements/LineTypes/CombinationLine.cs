@@ -21,7 +21,7 @@ public class CombinationLine  : Line {
 	/// <param name="para">Para.</param>
 	public CombinationLine(HtmlNode line_node){
 		RowList = new List<Row>();
-		Debug.Log ("Found Line node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		Debug.Log ("Initializing CombinationLine node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		CorrectAnswer = int.Parse(line_node.Attributes [HTMLParser.ATTR_ANSWER].Value);
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		OutputVisible = (line_node.Attributes [HTMLParser.ATTR_OUTPUT_VISIBLE].Value=="1")?true : false;

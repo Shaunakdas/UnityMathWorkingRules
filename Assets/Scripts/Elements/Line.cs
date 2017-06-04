@@ -24,7 +24,7 @@ public class Line {
 	public Line(HtmlNode line_node){
 		RowList = new List<Row>();
 		string type_text = line_node.Attributes [HTMLParser.ATTR_TYPE].Value;
-//		Debug.Log ("Found Line node of type "+type_text);
+//		Debug.Log ("Initializing Line node of type "+type_text);
 		getLineType (type_text);
 	}
 	/// <summary>

@@ -50,7 +50,7 @@ public class DropZoneRowCell : Cell {
 	public DropZoneRowCell(HtmlNode cell_node){
 		TargetIdList = new List<string> ();TargetTextList = new List<string> ();
 		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
-		Debug.Log ("Found Line node of type "+type_text);
+		Debug.Log ("Initializing DropZoneRowCell node of type "+type_text);
 		getCellType (type_text);
 		DisplayText = cell_node.InnerText;
 		//By default user should not be able to touch the drop zone, if id or answer tage is present then only user can drop anything into the drop zone

@@ -18,7 +18,7 @@ public class PrimeDivisionLine : Line {
 	/// <param name="para">Para.</param>
 	public PrimeDivisionLine(HtmlNode line_node){
 		RowList = new List<Row>();
-		Debug.Log ("Found Line node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		Debug.Log ("Initializing PrimeDivisionLine node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		TargetInt = int.Parse(line_node.Attributes [HTMLParser.ATTR_TARGET].Value);
 	}

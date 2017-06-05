@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb281b282af82a74a8232270ec331b74, type: 3}
+  m_Name: TEXDrawConfiguration
+  m_EditorClassIdentifier: 
+  SpaceWidth: 0.35
+  LineHeight: 0.7
+  GlueRatio: 0.06
+  ExtentPadding: 0.048
+  AxisHeight: 0.32
+  ScriptFactor: 0.55
+  NestedScriptFactor: 0.35
+  DelimiterRecursiveOffset: 0.1
+  LineThickness: 0.045
+  NegateMargin: 0.3
+  DoubleNegateMargin: 0.08
+  UnderLineOffset: -0.05
+  OverLineOffset: 0.05
+  MiddleLineOffset: -0.1
+  MatrixMargin: 0.4
+  LinkMargin: 0.4
+  AccentMargin: 0.1
+  FractionMargin: 0.09
+  RootMargin: 0.1
+  BackdropMargin: 0.14
+  NumeratorShift: 0.19
+  DenominatorShift: 0.57
+  FractionGap: 0.09
+  FractionGapNoLine: 0.28
+  FractionNarrowFactor: 0.9
+  SupDrop: 0.32
+  SubDrop: 0.25
+  SupMin: 0.2
+  SupMinNarrow: 0.24
+  SubMinNoSup: 0.1
+  SubMinOnSup: 0.18
+  BigOpMargin: 0.11
+  BigOpUpShift: 0.2
+  BigOpUpperGap: 0.2
+  BigOpLowShift: 0.1
+  BigOpLowerGap: 0.16
+  Typeface_Number: 2
+  Typeface_Capitals: 1
+  Typeface_Small: 1
+  Typeface_Commands: 2
+  Typeface_Text: 2
+  Typeface_Unicode: 14
+  Debug_HighlightBoxes: 0

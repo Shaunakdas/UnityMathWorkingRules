@@ -1,0 +1,3240 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3323630c18e2a9e4babea8cdc09f40f6, type: 3}
+  m_Name: cmmi
+  m_EditorClassIdentifier: 
+  type: 0
+  id: 636d6d69
+  index: 1
+  importCatalog: 7843302d7843462c7842302c7844312d7844362c7842372c7844382d7844432c7842352d7842362c7844462c7845462c7832312d7837452c784646
+  assetPath: 4173736574732f544558447261772f466f6e74732f4d6174682f636d6d692e747466
+  parsedCatalogs: []
+  Font_Asset: {fileID: 12800000, guid: 1fde6bb96f6738c42aed9e1bcbaaa36e, type: 3}
+  font_lineHeight: 1
+  Sprite_Asset: {fileID: 0}
+  sprite_xLength: 8
+  sprite_yLength: 17
+  sprite_detectAlpha: 0
+  sprite_scale: 1
+  sprite_lineOffset: 0
+  sprite_alphaOnly: 1
+  chars:
+  - supported: 1
+    index: 0
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.75
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.36865234
+      width: 0.13232422
+      height: 0.064941406
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 47616d6d61
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 1
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0
+    bearing: 0
+    italic: 0.8
+    width: 0.85
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.31640625
+      y: 0.14099121
+      width: 0.13989258
+      height: 0.067993164
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 44656c7461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 2
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.05
+    bearing: 0
+    italic: 0.8
+    width: 0.75
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.1484375
+      y: 0.2803955
+      width: 0.13500977
+      height: 0.07116699
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 5468657461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 3
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0
+    bearing: 0
+    italic: 0.7
+    width: 0.7
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.81640625
+      y: 0.45544434
+      width: 0.123046875
+      height: 0.067993164
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 4c616d626461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 4
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: -0.05
+    italic: 0.8
+    width: 0.75
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.296875
+      y: 0.21264648
+      width: 0.13745117
+      height: 0.064697266
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 5869
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 5
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.9
+    width: 0.85
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.73046875
+      y: 0.03857422
+      width: 0.16113281
+      height: 0.064941406
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 5069
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 6
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: -0.05
+    italic: 0.85
+    width: 0.8
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.16796875
+      y: 0.1418457
+      width: 0.14135742
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 5369676d61
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 7
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0
+    bearing: 0
+    italic: 0.75
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.55078125
+      y: 0.39367676
+      width: 0.12890625
+      height: 0.06726074
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 557073696c6f6e
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 8
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.7
+    width: 0.65
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.68359375
+      y: 0.49731445
+      width: 0.122558594
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 506869
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 9
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.7
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.68359375
+      y: 0.42895508
+      width: 0.12866211
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 507369
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 10
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0
+    bearing: -0.05
+    italic: 0.85
+    width: 0.75
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.55078125
+      y: 0.18701172
+      width: 0.13867188
+      height: 0.06689453
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 4f6d656761
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 11
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.65
+    width: 0.65
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.49499512
+      width: 0.114990234
+      height: 0.047973633
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 616c706861
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 12
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.2
+    bearing: 0.05
+    italic: 0.6
+    width: 0.55
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.4296875
+      y: 0.31689453
+      width: 0.114746094
+      height: 0.083496094
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 62657461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 13
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.25
+    bearing: 0
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.68359375
+      y: 0.5656738
+      width: 0.10620117
+      height: 0.06323242
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 67616d6d61
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 14
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.32421875
+      y: 0.75549316
+      width: 0.087646484
+      height: 0.07067871
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 64656c7461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 15
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.4
+    width: 0.4
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.7109375
+      y: 0.9016113
+      width: 0.076171875
+      height: 0.045654297
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 657073696c6f6e
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 16
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.25
+    bearing: 0
+    italic: 0.5
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.58984375
+      y: 0.6242676
+      width: 0.087402344
+      height: 0.0847168
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7a657461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 17
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.25
+    bearing: 0
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.11328125
+      y: 0.7062988
+      width: 0.100097656
+      height: 0.06323242
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 657461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 18
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.21484375
+      y: 0.7891846
+      width: 0.08935547
+      height: 0.068237305
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7468657461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 19
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.35
+    width: 0.35
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.79296875
+      y: 0.95007324
+      width: 0.064697266
+      height: 0.046020508
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 696f7461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 20
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.6
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.3515625
+      y: 0.654541
+      width: 0.1027832
+      height: 0.04663086
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 6b61707061
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 21
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.6
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.6977539
+      width: 0.104003906
+      height: 0.067871094
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 6c616d626461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 22
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.25
+    bearing: 0
+    italic: 0.6
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.5460205
+      width: 0.111328125
+      height: 0.06335449
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 6d75
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 23
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.21875
+      y: 0.741333
+      width: 0.099365234
+      height: 0.045776367
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 6e75
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 24
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.25
+    bearing: 0
+    italic: 0.45
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.76171875
+      y: 0.7640381
+      width: 0.0871582
+      height: 0.08557129
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7869
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 25
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.6
+    width: 0.55
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.12109375
+      y: 0.56030273
+      width: 0.1105957
+      height: 0.045166016
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7069
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 26
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.25
+    bearing: 0
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.76867676
+      width: 0.09887695
+      height: 0.06335449
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 72686f
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 27
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.6
+    width: 0.55
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.23828125
+      y: 0.6224365
+      width: 0.10913086
+      height: 0.045532227
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7369676d61
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 28
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.109375
+      y: 0.7733154
+      width: 0.10131836
+      height: 0.045043945
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 746175
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 29
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
+    width: 0.55
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.796875
+      y: 0.61206055
+      width: 0.10131836
+      height: 0.046142578
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 757073696c6f6e
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 30
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.25
+    bearing: 0
+    italic: 0.6
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.61206055
+      width: 0.107910156
+      height: 0.08325195
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 706869
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 31
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.25
+    bearing: 0
+    italic: 0.65
+    width: 0.65
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.12890625
+      y: 0.49401855
+      width: 0.114746094
+      height: 0.06262207
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 636869
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 32
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.25
+    bearing: 0
+    italic: 0.65
+    width: 0.65
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.8125
+      y: 0.52612305
+      width: 0.12060547
+      height: 0.08325195
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 707369
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 33
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.65
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.390625
+      y: 0.47473145
+      width: 0.11743164
+      height: 0.04675293
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 6f6d656761
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 34
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.45
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.40234375
+      y: 0.87683105
+      width: 0.08520508
+      height: 0.048950195
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 766172657073696c6f6e
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 35
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.05
+    bearing: 0
+    italic: 0.6
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.50390625
+      y: 0.53308105
+      width: 0.107666016
+      height: 0.068481445
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7661727468657461
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 36
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.85
+    width: 0.85
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.55078125
+      y: 0.13842773
+      width: 0.15307617
+      height: 0.045166016
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7661727069
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 37
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.2
+    bearing: -0.05
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.90234375
+      y: 0.6123047
+      width: 0.09301758
+      height: 0.061523438
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 76617272686f
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 38
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.15
+    bearing: 0
+    italic: 0.45
+    width: 0.35
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.62890625
+      y: 0.92211914
+      width: 0.07788086
+      height: 0.05444336
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7661727369676d61
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 39
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.65
+    width: 0.65
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.38671875
+      y: 0.524292
+      width: 0.111572266
+      height: 0.06359863
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 766172706869
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 40
+    fontIndex: 1
+    type: 4
+    height: 0.55
+    depth: -0.2
+    bearing: -0.05
+    italic: 0.95
+    width: 1
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.072021484
+      width: 0.16479492
+      height: 0.03149414
+    nextLargerHash: -1
+    extensionExist: 1
+    extensionHorizontal: 1
+    extentTopHash: 296
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: 768
+    symbolName: 6c656674686172706f6f6e7570
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 41
+    fontIndex: 1
+    type: 4
+    height: 0.3
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.95
+    width: 1
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.38671875
+      y: 0.0036621094
+      width: 0.16479492
+      height: 0.03149414
+    nextLargerHash: -1
+    extensionExist: 1
+    extensionHorizontal: 1
+    extentTopHash: 297
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: 768
+    symbolName: 6c656674686172706f6f6e646f776e
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 42
+    fontIndex: 1
+    type: 4
+    height: 0.55
+    depth: -0.2
+    bearing: -0.05
+    italic: 0.95
+    width: 1
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.55859375
+      y: 0.0034179688
+      width: 0.16455078
+      height: 0.03173828
+    nextLargerHash: -1
+    extensionExist: 1
+    extensionHorizontal: 1
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: 298
+    extentRepeatHash: 768
+    symbolName: 7269676874686172706f6f6e7570
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 43
+    fontIndex: 1
+    type: 4
+    height: 0.3
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.95
+    width: 1
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.73046875
+      y: 0.0036621094
+      width: 0.16455078
+      height: 0.03149414
+    nextLargerHash: -1
+    extensionExist: 1
+    extensionHorizontal: 1
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: 299
+    extentRepeatHash: 768
+    symbolName: 7269676874686172706f6f6e646f776e
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 44
+    fontIndex: 1
+    type: 4
+    height: 0.5
+    depth: -0.2
+    bearing: 0
+    italic: 0.25
+    width: 0.3
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.50390625
+      y: 0.07397461
+      width: 0.046142578
+      height: 0.02758789
+    nextLargerHash: -1
+    extensionExist: 1
+    extensionHorizontal: 1
+    extentTopHash: 300
+    extentMiddleHash: -1
+    extentBottomHash: 801
+    extentRepeatHash: 768
+    symbolName: 686f6f6b7269676874
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 45
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: -0.2
+    bearing: 0
+    italic: 0.25
+    width: 0.3
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.50390625
+      y: 0.10498047
+      width: 0.045898438
+      height: 0.027832031
+    nextLargerHash: -1
+    extensionExist: 1
+    extensionHorizontal: 1
+    extentTopHash: 301
+    extentMiddleHash: -1
+    extentBottomHash: 800
+    extentRepeatHash: 768
+    symbolName: 686f6f6b6c656674
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 46
+    fontIndex: 1
+    type: 3
+    height: 0.55
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.8828125
+      y: 0.7402344
+      width: 0.09082031
+      height: 0.05078125
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 747269616e676c657269676874
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 47
+    fontIndex: 1
+    type: 3
+    height: 0.55
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.78515625
+      y: 0.7102051
+      width: 0.09082031
+      height: 0.051513672
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 747269616e676c656c656674
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 48
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.62890625
+      y: 0.7741699
+      width: 0.087402344
+      height: 0.048095703
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 49
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0
+    bearing: -0.05
+    italic: 0.45
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.7109375
+      y: 0.9501953
+      width: 0.07446289
+      height: 0.045898438
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 50
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.85546875
+      y: 0.7939453
+      width: 0.084472656
+      height: 0.045898438
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 51
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0.25
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.51171875
+      y: 0.8282471
+      width: 0.08569336
+      height: 0.064331055
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 52
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0.2
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.41796875
+      y: 0.8100586
+      width: 0.08984375
+      height: 0.06298828
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 53
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.30859375
+      y: 0.9173584
+      width: 0.08300781
+      height: 0.06506348
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 54
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.109375
+      y: 0.8208008
+      width: 0.08618164
+      height: 0.06591797
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 55
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.835083
+      width: 0.087890625
+      height: 0.06530762
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 56
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.53515625
+      y: 0.76049805
+      width: 0.087402344
+      height: 0.06567383
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 57
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0.25
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.30859375
+      y: 0.82836914
+      width: 0.08691406
+      height: 0.064208984
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 58
+    fontIndex: 1
+    type: 0
+    height: 0.15
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.25
+    width: 0.3
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.9453125
+      y: 0.45690918
+      width: 0.03955078
+      height: 0.01965332
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 6c646f74
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 59
+    fontIndex: 1
+    type: 0
+    height: 0.15
+    depth: 0.2
+    bearing: -0.05
+    italic: 0.25
+    width: 0.3
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.50390625
+      y: 0.13623047
+      width: 0.039794922
+      height: 0.03564453
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 60
+    fontIndex: 1
+    type: 3
+    height: 0.55
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.7
+    width: 0.8
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.43554688
+      width: 0.119384766
+      height: 0.056640625
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 6c657373
+    symbolAlt: 6c
+    characterMap: 10
+  - supported: 1
+    index: 61
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.3
+    bearing: -0.05
+    italic: 0.45
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.9038086
+      width: 0.080566406
+      height: 0.092285156
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 666f7277617264736c617368
+    symbolAlt: 
+    characterMap: 4
+  - supported: 1
+    index: 62
+    fontIndex: 1
+    type: 3
+    height: 0.55
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.7
+    width: 0.8
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.265625
+      y: 0.42382812
+      width: 0.1184082
+      height: 0.056640625
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 677472
+    symbolAlt: 67
+    characterMap: 11
+  - supported: 1
+    index: 63
+    fontIndex: 1
+    type: 1
+    height: 0.5
+    depth: 0
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.4609375
+      y: 0.67492676
+      width: 0.09887695
+      height: 0.047729492
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 73746172
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 64
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.05
+    bearing: 0
+    italic: 0.6
+    width: 0.55
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.44140625
+      y: 0.2446289
+      width: 0.10546875
+      height: 0.06982422
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7061727469616c
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 65
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0
+    bearing: 0
+    italic: 0.75
+    width: 0.75
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.86328125
+      y: 0.22888184
+      width: 0.13208008
+      height: 0.067993164
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 66
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.8
+    width: 0.75
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.15551758
+      width: 0.14086914
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 67
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.05
+    bearing: 0
+    italic: 0.8
+    width: 0.7
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.2890625
+      y: 0.28051758
+      width: 0.13574219
+      height: 0.0690918
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 68
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.85
+    width: 0.85
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.7109375
+      y: 0.17504883
+      width: 0.14624023
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 69
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.8
+    width: 0.75
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.6953125
+      y: 0.24365234
+      width: 0.13964844
+      height: 0.064941406
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 70
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.75
+    width: 0.65
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.55078125
+      y: 0.25732422
+      width: 0.13696289
+      height: 0.064941406
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 71
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.05
+    bearing: 0
+    italic: 0.8
+    width: 0.8
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.2890625
+      y: 0.3527832
+      width: 0.13574219
+      height: 0.0690918
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 72
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.9
+    width: 0.85
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.55859375
+      y: 0.06958008
+      width: 0.16137695
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 73
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.55
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.8984375
+      y: 0.07348633
+      width: 0.09765625
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 74
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.65
+    width: 0.55
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.4296875
+      y: 0.40405273
+      width: 0.11401367
+      height: 0.068603516
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 75
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.9
+    width: 0.85
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.7265625
+      y: 0.10668945
+      width: 0.16064453
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 76
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.65
+    width: 0.7
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.140625
+      y: 0.42504883
+      width: 0.12036133
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 77
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 1.1
+    width: 0.95
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.0031738281
+      width: 0.18798828
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 78
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.9
+    width: 0.8
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.17578125
+      y: 0.07348633
+      width: 0.16137695
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 79
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.05
+    bearing: 0
+    italic: 0.8
+    width: 0.75
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.29406738
+      width: 0.13500977
+      height: 0.07116699
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 80
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.8
+    width: 0.65
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.83984375
+      y: 0.30004883
+      width: 0.13769531
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 81
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.25
+    bearing: 0
+    italic: 0.8
+    width: 0.8
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.83984375
+      y: 0.3687744
+      width: 0.13500977
+      height: 0.084350586
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 82
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.8
+    width: 0.75
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.15234375
+      y: 0.21044922
+      width: 0.13867188
+      height: 0.06689453
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 83
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.65
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.265625
+      y: 0.48339844
+      width: 0.115234375
+      height: 0.06933594
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 84
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.75
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.55078125
+      y: 0.32592773
+      width: 0.13110352
+      height: 0.064697266
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 85
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.8
+    width: 0.7
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.22375488
+      width: 0.13696289
+      height: 0.06726074
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 86
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.8
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.14453125
+      y: 0.3548584
+      width: 0.13647461
+      height: 0.0670166
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 87
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 1.05
+    width: 0.95
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.19921875
+      y: 0.0032958984
+      width: 0.18359375
+      height: 0.0670166
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 88
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.9
+    width: 0.85
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.34375
+      y: 0.07348633
+      width: 0.15429688
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 89
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: 0
+    italic: 0.8
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.6953125
+      y: 0.31176758
+      width: 0.1394043
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 90
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0
+    bearing: -0.05
+    italic: 0.75
+    width: 0.7
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.55078125
+      y: 0.46411133
+      width: 0.12792969
+      height: 0.06518555
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 91
+    fontIndex: 1
+    type: 1
+    height: 0.75
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.35
+    width: 0.4
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.15625
+      y: 0.92541504
+      width: 0.06225586
+      height: 0.072631836
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 666c6174
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 92
+    fontIndex: 1
+    type: 1
+    height: 0.75
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.35
+    width: 0.4
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.6171875
+      y: 0.5321045
+      width: 0.06225586
+      height: 0.08898926
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 6e61747572616c
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 93
+    fontIndex: 1
+    type: 1
+    height: 0.75
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.35
+    width: 0.4
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.08984375
+      y: 0.90405273
+      width: 0.0625
+      height: 0.088134766
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7368617270
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 94
+    fontIndex: 1
+    type: 1
+    height: 0.4
+    depth: -0.1
+    bearing: 0
+    italic: 1
+    width: 1
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.55859375
+      y: 0.037231445
+      width: 0.16699219
+      height: 0.029174805
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 736d696c65
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 95
+    fontIndex: 1
+    type: 1
+    height: 0.4
+    depth: -0.1
+    bearing: -0.05
+    italic: 0.95
+    width: 1
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.38671875
+      y: 0.03894043
+      width: 0.1652832
+      height: 0.03137207
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 66726f776e
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 96
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.05
+    bearing: 0
+    italic: 0.4
+    width: 0.4
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.22265625
+      y: 0.9248047
+      width: 0.08154297
+      height: 0.06933594
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 656c6c
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 97
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
+    width: 0.55
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.3359375
+      y: 0.704834
+      width: 0.09790039
+      height: 0.04711914
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 98
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.45
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.4609375
+      y: 0.1743164
+      width: 0.08300781
+      height: 0.067871094
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 99
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.45
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.85546875
+      y: 0.84277344
+      width: 0.0859375
+      height: 0.045898438
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 100
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.23046875
+      y: 0.67004395
+      width: 0.100097656
+      height: 0.068237305
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 101
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.45
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.6015625
+      y: 0.87402344
+      width: 0.08203125
+      height: 0.045898438
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 102
+    fontIndex: 1
+    type: 0
+    height: 0.75
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.89453125
+      y: 0.14208984
+      width: 0.09838867
+      height: 0.084472656
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 103
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.25
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.89453125
+      y: 0.67578125
+      width: 0.09667969
+      height: 0.0625
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 104
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.6
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.48046875
+      y: 0.6047363
+      width: 0.10229492
+      height: 0.06713867
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 105
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.35
+    width: 0.35
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.3984375
+      y: 0.9277344
+      width: 0.064941406
+      height: 0.064453125
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 106
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.25
+    bearing: 0.05
+    italic: 0.45
+    width: 0.4
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.44140625
+      y: 0.72595215
+      width: 0.08666992
+      height: 0.08068848
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 107
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.90234375
+      y: 0.0031738281
+      width: 0.09326172
+      height: 0.06713867
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 108
+    fontIndex: 1
+    type: 0
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.3
+    width: 0.3
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.9375
+      y: 0.52685547
+      width: 0.056152344
+      height: 0.06689453
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 109
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.9
+    width: 0.9
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.00390625
+      y: 0.10571289
+      width: 0.15771484
+      height: 0.04663086
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 110
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.6
+    width: 0.6
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.12109375
+      y: 0.6081543
+      width: 0.111328125
+      height: 0.046142578
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 111
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.68359375
+      y: 0.6314697
+      width: 0.09814453
+      height: 0.04626465
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 112
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.2
+    bearing: 0.05
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.3671875
+      y: 0.5909424
+      width: 0.10839844
+      height: 0.061401367
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 113
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.2
+    bearing: 0
+    italic: 0.5
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.203125
+      y: 0.8605957
+      width: 0.08984375
+      height: 0.061279297
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 114
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.45
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.72265625
+      y: 0.85253906
+      width: 0.08569336
+      height: 0.045898438
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 115
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.45
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.79296875
+      y: 0.901001
+      width: 0.07763672
+      height: 0.04626465
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 116
+    fontIndex: 1
+    type: 0
+    height: 0.65
+    depth: 0.05
+    bearing: 0
+    italic: 0.35
+    width: 0.35
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.5546875
+      y: 0.92285156
+      width: 0.068603516
+      height: 0.061523438
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 117
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.6
+    width: 0.55
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.1171875
+      y: 0.6569824
+      width: 0.107177734
+      height: 0.046142578
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 118
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.56640625
+      y: 0.71118164
+      width: 0.091308594
+      height: 0.04663086
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 119
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.7
+    width: 0.7
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.6875
+      y: 0.37976074
+      width: 0.12939453
+      height: 0.046020508
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 120
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
+    width: 0.55
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.7890625
+      y: 0.6602783
+      width: 0.09887695
+      height: 0.04675293
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 121
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.25
+    bearing: 0
+    italic: 0.55
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.68359375
+      y: 0.6813965
+      width: 0.09741211
+      height: 0.06274414
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 122
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
+    width: 0.45
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.62890625
+      y: 0.8251953
+      width: 0.08984375
+      height: 0.045898438
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 123
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.05
+    bearing: 0
+    italic: 0.35
+    width: 0.3
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.86328125
+      y: 0.9503174
+      width: 0.064941406
+      height: 0.045776367
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 696d617468
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 124
+    fontIndex: 1
+    type: 0
+    height: 0.45
+    depth: 0.25
+    bearing: 0.05
+    italic: 0.4
+    width: 0.4
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.46875
+      y: 0.92785645
+      width: 0.08081055
+      height: 0.06237793
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 6a6d617468
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 125
+    fontIndex: 1
+    type: 0
+    height: 0.5
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.65
+    width: 0.65
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.25
+      y: 0.5550537
+      width: 0.111572266
+      height: 0.064086914
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 7770
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 126
+    fontIndex: 1
+    type: 9
+    height: 0.75
+    depth: -0.5
+    bearing: -0.15
+    italic: 0.65
+    width: 0.5
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.6640625
+      y: 0.7463379
+      width: 0.09106445
+      height: 0.025146484
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 766563
+    symbolAlt: 
+    characterMap: 0
+  - supported: 1
+    index: 127
+    fontIndex: 1
+    type: 9
+    height: 0.7
+    depth: -0.5
+    bearing: -0.25
+    italic: 0.7
+    width: 0.3
+    font_reqGlyphSize: 20
+    sprite_uv:
+      x: 0.296875
+      y: 0.8956299
+      width: 0.08544922
+      height: 0.018432617
+    nextLargerHash: -1
+    extensionExist: 0
+    extensionHorizontal: 0
+    extentTopHash: -1
+    extentMiddleHash: -1
+    extentBottomHash: -1
+    extentRepeatHash: -1
+    symbolName: 666c6f617462616e64
+    symbolAlt: 
+    characterMap: 0
+  charCatalogs:
+    warnOnSetIfExist: 0
+    _Buckets: 05000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000ffffffff110000001200000013000000140000001500000016000000ffffffff18000000190000001a0000001b0000001c000000ffffffffffffffff1f000000ffffffffffffffffffffffffffffffffffffffffffffffff2100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000007f0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff10000000ffffffffffffffffffffffffffffffff1d0000001e00000017000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000001000000020000000300000004000000
+    _HashCodes: c0000000c1000000c2000000c3000000c4000000c5000000c6000000c7000000c8000000c9000000ca000000cb000000cc000000cd000000ce000000cf000000b0000000d1000000d2000000d3000000d4000000d5000000d6000000b7000000d8000000d9000000da000000db000000dc000000b5000000b6000000df000000ef0000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e000000ff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff20000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff3a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    _Count: 128
+    _Version: 128
+    _FreeList: -1
+    _FreeCount: 0
+    _Keys: []
+    _Values: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f000000400000004100000042000000430000004400000045000000460000004700000048000000490000004a0000004b0000004c0000004d0000004e0000004f000000500000005100000052000000530000005400000055000000560000005700000058000000590000005a0000005b0000005c0000005d0000005e0000005f000000600000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a0000007b0000007c0000007d0000007e0000007f000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

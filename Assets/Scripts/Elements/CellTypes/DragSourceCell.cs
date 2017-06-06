@@ -4,7 +4,6 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class DragSourceCell : Cell {
-	public CellType DragSourceType;
 	public enum SeriesType{Integer,Prime};
 	public SeriesType SourceType;
 	public string CellId { get; set; }
@@ -25,7 +24,7 @@ public class DragSourceCell : Cell {
 	/// Set Cell  Type
 	/// </summary>
 	public void getCellType(string type_text){
-		if(type_text == "drag_source") DragSourceType = CellType.DragSource;
+		if(type_text == "drag_source") Type = CellType.DragSource;
 	}
 	/// <summary>
 	/// Initializes a new instance of the DragSourceCell class with HTMLNode attribute

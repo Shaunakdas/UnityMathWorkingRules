@@ -5,7 +5,6 @@ using System.Linq;
 using HtmlAgilityPack;
 
 public class DropZoneRowCell : Cell {
-	public CellType DropZoneRowType;
 
 	public string CellId{ get; set; } 
 	public string CellTag{ get; set; }
@@ -36,10 +35,10 @@ public class DropZoneRowCell : Cell {
 	public void getCellType(string type_text){
 		switch (type_text) {
 		case "drop_zone_row": 
-			DropZoneRowType = CellType.DropZoneRow;
+			Type = CellType.DropZoneRow;
 			break;
 		case "drop_zone": 
-			DropZoneRowType = CellType.DropZone;
+			Type = CellType.DropZone;
 			break;
 		}
 	}

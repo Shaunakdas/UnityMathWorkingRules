@@ -25,6 +25,8 @@ public class HTMLParser  {
 	public const string ATTR_ID="id",ATTR_TAG="tag";
 	//PrimeDisivion Line
 	public const string ATTR_TARGET="target";
+	//Line Location
+	public const string ATTR_LOCATION_TYPE="locationType";
 
 
 	public List<Paragraph> ParagraphList{ get; set; }

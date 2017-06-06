@@ -5,7 +5,6 @@ using HtmlAgilityPack;
 
 public class SelectableButtonCell : Cell {
 	public bool correctFlag;
-	public CellType SelectableButtonType;
 
 	//Constructor
 	public SelectableButtonCell(string type, string answer){
@@ -16,7 +15,7 @@ public class SelectableButtonCell : Cell {
 	/// Set SelectableButtonCell  Type
 	/// </summary>
 	public void getCellType(string type_text){
-		if(type_text == "selectable_button") SelectableButtonType = CellType.SelectableButton;
+		if(type_text == "selectable_button") Type = CellType.SelectableButton;
 	}
 	/// <summary>
 	/// Initializes a new instance of the SelectableButtonCell class with HTMLNode attribute

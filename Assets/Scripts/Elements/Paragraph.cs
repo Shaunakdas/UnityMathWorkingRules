@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
-public class Paragraph {
+public class Paragraph : BaseElement{
 	public enum StepType {Comprehension,QuestionStep};
 	public StepType ParagraphStep;
 
@@ -90,6 +90,8 @@ public class Paragraph {
 				}
 				//Populate Child Row nodes inside Line Node
 				newLine.parseLine (line_node);
+
+				newLine.Parent = this;
 				//Add Line node into LineList
 				LineList.Add (newLine);
 

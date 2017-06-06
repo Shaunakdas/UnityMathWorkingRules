@@ -4,7 +4,6 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class NumberLineDropLine  : Line {
-	public LineType NumberLineType{ get; set; }
 	public int LabelCount{ get; set; }
 
 	//For NumberLineDropJump
@@ -44,6 +43,7 @@ public class NumberLineDropLine  : Line {
 		Debug.Log ("Initializing NumberLineDropLine node of type text"+ type);
 		LabelCount = int.Parse(line_node.Attributes [HTMLParser.ATTR_LABEL_COUNT].Value);
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
 
 		if (type == "number_line_drop_jump") {
 			//Only for NumberLine Drop Jump
@@ -55,13 +55,13 @@ public class NumberLineDropLine  : Line {
 	public void getLineType(string type_text){
 		switch (type_text) {
 		case "number_line_drop": 
-			NumberLineType = LineType.NumberLineDrop;
+			Type = LineType.NumberLineDrop;
 			break;
 		case "number_line_select": 
-			NumberLineType = LineType.NumberLineSelect;
+			Type = LineType.NumberLineSelect;
 			break;
 		case "number_line_drop_jump": 
-			NumberLineType = LineType.NumberLineDropJump;
+			Type = LineType.NumberLineDropJump;
 			break;
 		}
 	}

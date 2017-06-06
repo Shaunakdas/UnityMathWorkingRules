@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
 
-public class Row  {
-	public enum RowType {Default,DragSourceCell};
-	public RowType RowElementType{ get; set; }
+public class Row : BaseElement {
+	public enum RowType {Default,DragSource};
+	public RowType Type{ get; set; }
 
 	public List<Cell> CellList{get; set;}
 
@@ -17,15 +17,15 @@ public class Row  {
 	/// Set Row  Type
 	/// </summary>
 	public void getRowType(string type_text){
-		RowElementType = RowType.Default;
-		if(type_text == "drag_source_line") RowElementType = RowType.DragSourceCell;
+		Type = RowType.Default;
+		if(type_text == "drag_source_line") Type = RowType.DragSource;
 	}
 	/// <summary>
 	/// Initializes a new instance of the Row class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
 	public Row(HtmlNode row_node){
-		RowElementType = RowType.Default;
+		Type = RowType.Default;
 		CellList = new List<Cell> ();
 		HtmlAttribute attr_tag = row_node.Attributes [HTMLParser.ATTR_TYPE];
 		if (attr_tag != null) {
@@ -86,6 +86,7 @@ public class Row  {
 				//Populate Child Row nodes inside Cell Node
 //				newCell.parseCell (cell_node);
 				//Add Cell node into CellList
+				newCell.Parent = this;
 				CellList.Add (newCell);
 
 			}

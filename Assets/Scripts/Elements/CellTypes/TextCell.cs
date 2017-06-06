@@ -4,7 +4,6 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class TextCell : Cell {
-	public CellType TextType{get; set;}
 
 	public string DisplayText {get; set;}
 
@@ -27,7 +26,7 @@ public class TextCell : Cell {
 	public void getCellType(string type_text){
 		switch (type_text) {
 		case "text": 
-			TextType = CellType.Text;
+			Type = CellType.Text;
 			break;
 		}
 	}

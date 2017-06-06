@@ -4,7 +4,6 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class PrimeDivisionLine : Line {
-	public LineType PrimeDivisionType{get; set;}
 	public int TargetInt{get; set;}
 	//Constructor
 	public PrimeDivisionLine(string integer, string type){
@@ -20,12 +19,13 @@ public class PrimeDivisionLine : Line {
 		RowList = new List<Row>();
 		Debug.Log ("Initializing PrimeDivisionLine node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
 		TargetInt = int.Parse(line_node.Attributes [HTMLParser.ATTR_TARGET].Value);
 	}
 	public void getLineType(string type_text){
 		switch (type_text) {
 		case "text": 
-			PrimeDivisionType = LineType.PrimeDivision;
+			Type = LineType.PrimeDivision;
 			break;
 		}
 	}

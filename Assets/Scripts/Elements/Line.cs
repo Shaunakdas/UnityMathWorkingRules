@@ -3,11 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
 
-public class Line {
-	public enum LineType {Text,PostSubmitText,IncorrectSubmitText,Table,NumberLineDrop,NumberLineDropJump,NumberLineSelect,PrimeDivision,CombinationProduct,CombinationSum,CombinationProductSum};
+public class Line : BaseElement{
+	//Line Prefabs
+	public GameObject CombinationLinePF,NumLineDropLinePF,PrimeDivLinePF,TextLinePF,LatexTextLinePF,TableLinePF;
 
+	public enum LineType 
+	{
+		Text,PostSubmitText,IncorrectSubmitText,Table,NumberLineDrop,
+		NumberLineDropJump,NumberLineSelect,PrimeDivision,CombinationProduct,CombinationSum,CombinationProductSum
+	};
+	public enum LocationType
+	{
+		Default,Top,Center,Bottom
+	}
 
+	//Handling Attributes
+	public LineType Type{ get; set; }
+	public LocationType LineLocation { get; set; }
+
+	//List of child rows
 	public List<Row> RowList {get; set;}
+
 
 	//Constructor
 	public Line(){
@@ -18,29 +34,74 @@ public class Line {
 	public void getLineType(string type_text){
 	}
 	/// <summary>
+	/// Set Location Type
+	/// </summary>
+	public void getLocationType(string type_text){
+		switch (type_text) {
+		case "top": 
+			LineLocation = LocationType.Top;
+			break;
+		case "bottom": 
+			LineLocation = LocationType.Bottom;
+			break;
+		case "center": 
+			LineLocation = LocationType.Center;
+			break;
+		default:
+			LineLocation = LocationType.Default;
+			break;
+		}
+	}
+	/// <summary>
 	/// Initializes a new instance of the Line class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
 	public Line(HtmlNode line_node){
 		RowList = new List<Row>();
 		string type_text = line_node.Attributes [HTMLParser.ATTR_TYPE].Value;
-//		Debug.Log ("Initializing Line node of type "+type_text);
 		getLineType (type_text);
 	}
 	/// <summary>
 	/// Parses the Line Node to generate Row nodes
 	/// </summary>
 	public void parseLine(HtmlNode line_node){
-//		HtmlNodeCollection node_list = line_node.SelectNodes ("//" + HTMLParser.ROW_TAG);
 		IEnumerable<HtmlNode> node_list = line_node.Elements(HTMLParser.ROW_TAG) ;
 		if (node_list!=null) {
-//			Debug.Log ("There are " + node_list.Count);
-
 			foreach (HtmlNode row_node in node_list) {
 				Debug.Log ("Content of row_node : " + row_node.InnerHtml);
 				Row row = new Row (row_node);
+				row.Parent = this;
 				RowList.Add(row);
 			}
+		}
+	}
+	public GameObject getPF(){
+		GameObject prefab =null;
+		switch (Type) {
+		case LineType.CombinationProduct:
+			return CombinationLinePF;
+		case LineType.CombinationProductSum:
+			return prefab;
+		case LineType.CombinationSum:
+			return null;
+		case LineType.NumberLineDrop:
+			return NumLineDropLinePF;
+		case LineType.NumberLineDropJump:
+			return prefab;
+		case LineType.NumberLineSelect:
+			return prefab;
+		case LineType.PrimeDivision:
+			return PrimeDivLinePF;
+		case LineType.IncorrectSubmitText:
+			return prefab;
+		case LineType.PostSubmitText:
+			return prefab;
+		case LineType.Text:
+			return LatexTextLinePF;
+		case LineType.Table:
+			return TableLinePF;
+		default:
+			return prefab;
 		}
 	}
 

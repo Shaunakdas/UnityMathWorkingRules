@@ -6,7 +6,6 @@ using HtmlAgilityPack;
 public class SelectableSignCell : Cell {
 	public enum Sign{Positive,Negative};
 	public Sign TargetSign{ get; set; }
-	public CellType SelectableSignType;
 
 	//Constructor
 	public SelectableSignCell(string type, string answer){
@@ -17,7 +16,7 @@ public class SelectableSignCell : Cell {
 	/// Set SelectableSignCell  Type
 	/// </summary>
 	public void getCellType(string type_text){
-		if(type_text == "selectable_sign") SelectableSignType = CellType.SelectableSign;
+		if(type_text == "selectable_sign") Type = CellType.SelectableSign;
 	}
 	/// <summary>
 	/// Initializes a new instance of the SelectableSignCell class with HTMLNode attribute

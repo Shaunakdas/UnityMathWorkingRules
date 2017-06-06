@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
-public class BasicGameObjectOperation: MonoBehaviour{	
+public class BasicGOOperation : MonoBehaviour{	
 	//Base methods
 	/// <summary>
 	/// Get Child GameObject of given name
@@ -19,7 +19,7 @@ public class BasicGameObjectOperation: MonoBehaviour{
 	/// </summary>
 	/// <param name="parent">Parent Transform</param>
 	/// <param name="prefab">Prefab for child GameObject</param>
-	static public GameObject InstantiateNGUIGO(GameObject prefab, Transform parent) {
+	public static GameObject InstantiateNGUIGO(GameObject prefab, Transform parent) {
 		return NGUITools.AddChild(parent.gameObject,prefab);
 		//		return (GameObject)Instantiate(prefab,parent);
 	}
@@ -28,7 +28,7 @@ public class BasicGameObjectOperation: MonoBehaviour{
 	/// </summary>
 	/// <param name="parent">Parent Transform</param>
 	/// <param name="prefab">Prefab for child GameObject</param>
-	static public GameObject InstantiateNGUIGO(GameObject prefab, Transform parent, string name) {
+	public static GameObject InstantiateNGUIGO(GameObject prefab, Transform parent, string name) {
 		GameObject child = InstantiateNGUIGO (prefab, parent);
 		child.name = name;
 		return child;

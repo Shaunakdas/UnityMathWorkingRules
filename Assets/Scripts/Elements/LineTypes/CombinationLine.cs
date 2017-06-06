@@ -4,7 +4,6 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class CombinationLine  : Line {
-	public LineType CombinationType;
 	public bool OutputVisible{ get; set; }
 	public int CorrectAnswer{get; set;}
 //	public List<Row> RowList {get; set;}
@@ -25,17 +24,18 @@ public class CombinationLine  : Line {
 		CorrectAnswer = int.Parse(line_node.Attributes [HTMLParser.ATTR_ANSWER].Value);
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		OutputVisible = (line_node.Attributes [HTMLParser.ATTR_OUTPUT_VISIBLE].Value=="1")?true : false;
+		getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
 	}
 	public void getLineType(string type_text){
 		switch (type_text) {
 		case "combination_product": 
-			CombinationType = LineType.CombinationProduct;
+			Type = LineType.CombinationProduct;
 			break;
 		case "combination_product_sum": 
-			CombinationType = LineType.CombinationProductSum;
+			Type = LineType.CombinationProductSum;
 			break;
 		case "combination_sum": 
-			CombinationType = LineType.CombinationSum;
+			Type = LineType.CombinationSum;
 			break;
 		}
 	}

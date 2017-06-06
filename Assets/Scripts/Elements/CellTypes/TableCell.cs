@@ -4,7 +4,6 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class TableCell : Cell {
-	public CellType TableType;
 	//For Table type
 	public List<Row> RowList {get; set;}
 	public int ColumnCount {get; set;}
@@ -12,8 +11,8 @@ public class TableCell : Cell {
 
 	//Constructor
 	public TableCell(string type){
-		if(type == "fraction_table") TableType = CellType.FractionTable;
-		if(type == "exponent_table") TableType = CellType.ExponentTable;
+		if(type == "fraction_table") Type = CellType.FractionTable;
+		if(type == "exponent_table") Type = CellType.ExponentTable;
 	}
 	/// <summary>
 	/// Set Cell Type
@@ -21,10 +20,10 @@ public class TableCell : Cell {
 	public void getCellType(string type_text){
 		switch (type_text) {
 		case "fraction_table": 
-			TableType = CellType.FractionTable;
+			Type = CellType.FractionTable;
 			break;
 		case "exponent_table": 
-			TableType = CellType.ExponentTable;
+			Type = CellType.ExponentTable;
 			break;
 		}
 	}

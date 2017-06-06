@@ -4,7 +4,6 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class TextLine : Line {
-	public LineType TextType{get; set;}
 
 	public string DisplayText {get; set;}
 
@@ -23,19 +22,19 @@ public class TextLine : Line {
 		Debug.Log ("Initializing TextLine node of type "+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		DisplayText = line_node.InnerText;
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
-
+		getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
 //		Debug.Log ("Found Line node of content"+ DisplayText);
 	}
 	public void getLineType(string type_text){
 		switch (type_text) {
 		case "text": 
-			TextType = LineType.Text;
+			Type = LineType.Text;
 			break;
 		case "post_submit_text": 
-			TextType = LineType.PostSubmitText;
+			Type = LineType.PostSubmitText;
 			break;
 		case "incorrect_submit_text": 
-			TextType = LineType.IncorrectSubmitText;
+			Type = LineType.IncorrectSubmitText;
 			break;
 		}
 	}

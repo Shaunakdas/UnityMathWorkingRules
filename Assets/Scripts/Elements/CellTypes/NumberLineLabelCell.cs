@@ -5,7 +5,6 @@ using HtmlAgilityPack;
 
 public class NumberLineLabelCell : Cell {
 	public int LabelIndex{ get; set; }
-	public CellType NumberLineLabelType;
 
 	//Constructor
 	public NumberLineLabelCell(string type, string labelIndex){
@@ -18,10 +17,10 @@ public class NumberLineLabelCell : Cell {
 	public void getCellType(string type_text){
 		switch (type_text) {
 		case "number_line_label": 
-			NumberLineLabelType = CellType.NumberLineLabel;
+			Type = CellType.NumberLineLabel;
 			break;
 		case "number_line_label_answer": 
-			NumberLineLabelType = CellType.NumberLineLabelAnswer;
+			Type = CellType.NumberLineLabelAnswer;
 			break;
 		}
 	}

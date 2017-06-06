@@ -28,9 +28,12 @@ public class HTMLParserTest : MonoBehaviour {
 		html.LoadHtml (@text);
 		parser.getParagraphList (html);
 		ParagraphList = parser.ParagraphList;
+		generateParaUI ();
+		BasicGOOperation.RepositionChildTables (gameObject);
 	}
 	public void generateParaUI(){
 		Paragraph para = ParagraphList [0];
+		Debug.Log ((para.ParagraphStep == Paragraph.StepType.QuestionStep));
 		if (para.ParagraphStep == Paragraph.StepType.QuestionStep) {
 			//Paragraph is of type QuestionStep
 
@@ -42,57 +45,76 @@ public class HTMLParserTest : MonoBehaviour {
 			List<Line> LineList = para.LineList;
 
 			//Checking for CenterContentScrollView
-			GameObject CenterContentGO = ParaContentTableGO;
+			GameObject LineTableGO = ParaContentTableGO;
 			foreach (Line line in LineList) if (line.LineLocation == Line.LocationType.Default)
 			{
-				CenterContentGO = BasicGOOperation.InstantiateNGUIGO(CenterContentScrollViewPF,ParaContentTableGO.transform);
+				GameObject CenterContentGO = BasicGOOperation.InstantiateNGUIGO(CenterContentScrollViewPF,ParaContentTableGO.transform);
+				LineTableGO = BasicGOOperation.getChildGameObject (CenterContentGO, "LineTablePF");
 					break;
 			}
 
 			foreach (Line line in LineList) {
-				generateLineUI (line,ParaContentTableGO,CenterContentGO );
+				generateLineUI (line,ParaContentTableGO,LineTableGO );
 			}
 		}
 	}
 	public void generateLineUI(Line line, GameObject ContentTableGO, GameObject CenterContentGO){
-		GameObject parentGO = ContentTableGO;
+		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_LINE_TYPE + line.prefabName)as GameObject;
+
+		GameObject lineGO;
 		//Based on line index and line type add line to the top/center/bottom of ContentTableGO
 		switch (line.LineLocation) {
 		case Line.LocationType.Top:
 			//Adding lineGO to the ContentTableGO at the top
-			parentGO = ContentTableGO;
+			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, ContentTableGO.transform);
+			lineGO.transform.SetAsFirstSibling ();
 			break;
 		case Line.LocationType.Default:
 			//Adding QuestionStepParaPF to the root GameObject
-			parentGO = CenterContentGO;
+			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, CenterContentGO.transform);
 			break;
 		case Line.LocationType.Bottom:
-			parentGO = ContentTableGO;
+			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, ContentTableGO.transform);
+			lineGO.transform.SetAsLastSibling ();
+			break;
+		default:
+			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, CenterContentGO.transform);
 			break;
 		}
-		GameObject lineGO = BasicGOOperation.InstantiateNGUIGO(line.getPF(),parentGO.transform);
 
+		line.updateGOProp (lineGO);
 		foreach (Row row in line.RowList) {
 			generateRowUI (row,lineGO );
 		}
 	}
 
 	public void generateRowUI(Row row, GameObject lineGO){
-		GameObject parentGO = lineGO;
+		GameObject parentGO;
 		//Based on row index and row type add row to the top/center/bottom of ContentTableGO
 		switch (row.Type) {
 		case Row.RowType.Default:
 			//keeping lineGO as parent
 			parentGO = lineGO;
 			//Updating Column count of Parent Table based on cell
-			if (row.Parent.GetType () == typeof(Line)) {
+			if (row.Parent.GetType () == typeof(TableLine)) {
+				Debug.Log ("Number of columns " + row.CellList.Count);
 				lineGO.GetComponent<UITable> ().columns = row.CellList.Count;
 			}
 			break;
 		case Row.RowType.DragSource:
+			GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_ROW_TYPE + row.prefabName)as GameObject;
+			GameObject rowGO = BasicGOOperation.InstantiateNGUIGO (prefab, lineGO.transform);
 			//making Grid child of ScrollView as parent
-			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (lineGO, "ScrollView");
+			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (rowGO, "ScrollView");
 			parentGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Grid");
+			break;
+		default:
+			parentGO = lineGO;
+			//Updating Column count of Parent Table based on cell
+			if (row.Parent.GetType () == typeof(TableLine)) {
+				Debug.Log ("Number of columns " + row.CellList.Count);
+				lineGO.GetComponent<UITable> ().columns = row.CellList.Count;
+			}
 			break;
 		}
 
@@ -101,8 +123,11 @@ public class HTMLParserTest : MonoBehaviour {
 		}
 	}
 	public void generateCellUI(Cell cell, GameObject parentGO){
-		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO(cell.getPF(),parentGO.transform);
-		if (cell.GetType () = typeof(TableCell)) {
+
+		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + cell.prefabName)as GameObject;
+		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+		cell.updateGOProp (cellGO);
+		if (cell.GetType()  == typeof(TableCell)) {
 			//Handle TableCell here
 		}
 	}
@@ -110,4 +135,5 @@ public class HTMLParserTest : MonoBehaviour {
 	void Update () {
 		
 	}
+
 }

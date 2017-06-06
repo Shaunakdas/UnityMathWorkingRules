@@ -53,4 +53,7 @@ public class Cell : BaseElement {
 			return prefab;
 		}
 	}
+	virtual public void updateGOProp(GameObject ElementGO){
+//		Debug.Log ("Updating Text of Cell");
+	}
 }

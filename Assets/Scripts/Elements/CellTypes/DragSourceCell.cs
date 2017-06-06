@@ -16,9 +16,16 @@ public class DragSourceCell : Cell {
 
 	//Constructor
 	public DragSourceCell(string type, string id, string displayText){
-		
+		getCellType (type);
 		CellId =  (id);
 		DisplayText = displayText;
+		prefabName = LocationManager.NAME_DRAG_SOURCE_CELL;
+	}
+	//Constructor
+	public DragSourceCell(string type, string displayText){
+		getCellType (type);
+		DisplayText = displayText;
+		prefabName = LocationManager.NAME_DRAG_SOURCE_CELL;
 	}
 	/// <summary>
 	/// Set Cell  Type
@@ -35,8 +42,12 @@ public class DragSourceCell : Cell {
 		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
 		Debug.Log ("Initializing DragSourceCell node of type "+type_text);
 		getCellType (type_text);
-		CellId = cell_node.Attributes [HTMLParser.ATTR_ID].Value;
+		HtmlAttribute attr_tag = cell_node.Attributes [HTMLParser.ATTR_ID];
+		if (attr_tag != null) {
+			CellId = cell_node.Attributes [HTMLParser.ATTR_ID].Value;
+		}
 		DisplayText = cell_node.InnerText;
+		prefabName = LocationManager.NAME_DRAG_SOURCE_CELL;
 	}
 	public void getSourceType(string source_type){
 		switch (source_type) {
@@ -47,5 +58,16 @@ public class DragSourceCell : Cell {
 			SourceType = SeriesType.Prime;
 			break;
 		}
+	}
+
+	override public void updateGOProp(GameObject ElementGO){
+//		Debug.Log ("Updating Text of Cell" + DisplayText);
+		GameObject labelGO = BasicGOOperation.getChildGameObject (ElementGO, "Label");
+		labelGO.GetComponent<UILabel> ().text = DisplayText;
+		ElementGO.name = ElementGO.name + "_"+ DisplayText;
+		//Increasing size based on text
+//		float width = BasicGOOperation.getTextSize(DisplayText);
+//		float elementWidth = ElementGO.GetComponent<UISprite> ().localSize.y;
+//		elementWidth = (width > 30f) ? (width + 30f) : 60f;
 	}
 }

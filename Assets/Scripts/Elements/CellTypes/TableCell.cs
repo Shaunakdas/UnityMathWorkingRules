@@ -37,6 +37,7 @@ public class TableCell : Cell {
 		Debug.Log ("Initializing TableCell node of type "+type_text);
 		getCellType (type_text);
 		parseTableCell (cell_node);
+		prefabName = LocationManager.NAME_TABLE_CELL;
 	}
 	/// <summary>
 	/// Parses the parseTableCell Node to generate Row nodes

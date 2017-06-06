@@ -27,6 +27,7 @@ public class SelectableButtonCell : Cell {
 		Debug.Log ("Initializing SelectableButtonCell node of type "+type_text);
 		getCellType (type_text);
 		correctFlag = (cell_node.Attributes [HTMLParser.ATTR_ANSWER].Value)=="1"? true:false;
+		prefabName = LocationManager.NAME_SELECT_BTN_CELL;
 	}
 
 }

@@ -34,17 +34,20 @@ public class Paragraph : BaseElement{
 	public Paragraph(HtmlNode para_node){
 		LineList = new List<Line> ();
 		Debug.Log ("Initializing paragraph node of type "+para_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+
 		switch (para_node.Attributes [HTMLParser.ATTR_TYPE].Value) {
-		case "single_correct": 
+		case "comprehension": 
 			ParagraphStep = StepType.Comprehension;
+			prefabName = LocationManager.NAME_COMPREHENSION_PARA;
 			break;
-		case "multiple_correct": 
+		case "question_step": 
 			ParagraphStep = StepType.QuestionStep;
+			prefabName = LocationManager.NAME_QUESTION_STEP_PARA;
 			switch (para_node.Attributes [HTMLParser.ATTR_CORRECT_TYPE].Value) {
-			case "comprehension": 
+			case "single_correct": 
 				ParagraphCorrect = CorrectType.SingleCorrect;
 				break;
-			case "question_step": 
+			case "multiple_correct": 
 				ParagraphCorrect = CorrectType.MultipleCorrect;
 				break;
 			}

@@ -51,6 +51,8 @@ public class NumberLineDropLine  : Line {
 			DropCount = int.Parse (line_node.Attributes [HTMLParser.ATTR_DROP_COUNT].Value);
 			JumpSize = int.Parse (line_node.Attributes [HTMLParser.ATTR_JUMP_SIZE].Value);
 		}
+
+		prefabName = LocationManager.NAME_NUM_LINE_DROP_LINE;
 	}
 	public void getLineType(string type_text){
 		switch (type_text) {

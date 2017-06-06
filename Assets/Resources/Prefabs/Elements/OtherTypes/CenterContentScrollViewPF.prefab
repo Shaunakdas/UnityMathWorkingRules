@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114733087361922780}
   - component: {fileID: 114781633850803950}
   m_Layer: 8
-  m_Name: CenterContentScrollView
+  m_Name: CenterContentScrollViewPF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

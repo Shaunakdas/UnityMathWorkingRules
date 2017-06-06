@@ -28,5 +28,6 @@ public class SelectableSignCell : Cell {
 		Debug.Log ("Initializing SelectableSignCell node of type "+type_text);
 		getCellType (type_text);
 		TargetSign = (cell_node.Attributes [HTMLParser.ATTR_ANSWER].Value)=="1"? Sign.Positive:Sign.Negative;
+		prefabName = LocationManager.NAME_SELECT_SIGN_CELL;
 	}
 }

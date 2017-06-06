@@ -54,6 +54,7 @@ public class DropZoneRowCell : Cell {
 		DisplayText = cell_node.InnerText;
 		//By default user should not be able to touch the drop zone, if id or answer tage is present then only user can drop anything into the drop zone
 		Touchable = false; Dropable = false;
+		prefabName = LocationManager.NAME_DROP_ZONE_CELL;
 	}
 	//Constructor
 	public DropZoneRowCell(string type, string displayText){
@@ -115,5 +116,4 @@ public class DropZoneRowCell : Cell {
 			TargetTextList = targetText.Split (';').ToList ();
 		}
 	}
-
 }

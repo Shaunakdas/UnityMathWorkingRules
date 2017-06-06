@@ -92,7 +92,28 @@ public class BasicGOOperation : MonoBehaviour{
 		int num = rand.Next(0, chars.Length -1);
 		return chars[num];
 	}
-
+	/// <summary>
+	/// Repositions all the table and grid in children GameObjects
+	/// </summary>
+	public static void RepositionChildTables(GameObject GO){
+		foreach (UITable table in GO.GetComponentsInChildren<UITable>()){
+			table.Reposition ();
+		}
+		foreach (UIGrid grid in GO.GetComponentsInChildren<UIGrid>()){
+			grid.Reposition ();
+		}
+	}
+	/// <summary>
+	/// Repositions all the table and grid in all parents GameObjects
+	/// </summary>
+	public static void RepositionParentTables(GameObject GO){
+		foreach (UITable table in GO.GetComponentsInParent<UITable>()){
+			table.Reposition ();
+		}
+		foreach (UIGrid grid in GO.GetComponentsInParent<UIGrid>()){
+			grid.Reposition ();
+		}
+	}
 
 
 }

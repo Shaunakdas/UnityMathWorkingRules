@@ -4,7 +4,7 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class TextLine : Line {
-
+	
 	public string DisplayText {get; set;}
 
 	//Contructor
@@ -18,12 +18,16 @@ public class TextLine : Line {
 	/// </summary>
 	/// <param name="para">Para.</param>
 	public TextLine(HtmlNode line_node){
-		RowList = new List<Row>();
-		Debug.Log ("Initializing TextLine node of type "+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		RowList = new List<Row> ();
+		Debug.Log ("Initializing TextLine node of type " + line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		DisplayText = line_node.InnerText;
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
-		getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
-//		Debug.Log ("Found Line node of content"+ DisplayText);
+		if (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE] != null) {
+			getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
+		} else {
+			getLocationType ("");
+		}
+		prefabName = LocationManager.NAME_TEXT_LINE;
 	}
 	public void getLineType(string type_text){
 		switch (type_text) {
@@ -37,5 +41,10 @@ public class TextLine : Line {
 			Type = LineType.IncorrectSubmitText;
 			break;
 		}
+	}
+
+	override public void updateGOProp(GameObject ElementGO){
+//		Debug.Log ("Updating Text of Cell" + DisplayText);
+		ElementGO.GetComponent<UILabel> ().text = DisplayText;
 	}
 }

@@ -11,6 +11,7 @@ public class TextCell : Cell {
 	public TextCell(string displayText, string type){
 		DisplayText = displayText;
 		getCellType (type);
+		prefabName = LocationManager.NAME_TEXT_CELL;
 	}
 	/// <summary>
 	/// Initializes a new instance of the TextCell class with HTMLNode attribute
@@ -20,6 +21,7 @@ public class TextCell : Cell {
 		Debug.Log ("Initializing TextCell node of type "+ cell_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		DisplayText = cell_node.InnerText;
 		getCellType (cell_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		prefabName = LocationManager.NAME_TEXT_CELL;
 
 //		Debug.Log ("Found TextCell node of content"+ DisplayText);
 	}
@@ -29,5 +31,9 @@ public class TextCell : Cell {
 			Type = CellType.Text;
 			break;
 		}
+	}
+	override public void updateGOProp(GameObject ElementGO){
+//		Debug.Log ("Updating Text of Cell" + DisplayText);
+		ElementGO.GetComponent<UILabel> ().text = DisplayText;
 	}
 }

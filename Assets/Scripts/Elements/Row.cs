@@ -18,7 +18,11 @@ public class Row : BaseElement {
 	/// </summary>
 	public void getRowType(string type_text){
 		Type = RowType.Default;
-		if(type_text == "drag_source_line") Type = RowType.DragSource;
+		if (type_text == "drag_source_line") {
+			Type = RowType.DragSource;
+			prefabName = LocationManager.NAME_DRAG_SOURCE_LINE_ROW;
+
+		}
 	}
 	/// <summary>
 	/// Initializes a new instance of the Row class with HTMLNode attribute
@@ -32,6 +36,7 @@ public class Row : BaseElement {
 			string type_text = row_node.Attributes [HTMLParser.ATTR_TYPE].Value;
 			Debug.Log ("Initializing Row node of type " + type_text);
 			getRowType (type_text);
+			initDragSourceCellList (row_node);
 		} else {
 			Debug.Log ("Initializing Row node");
 		}
@@ -53,7 +58,11 @@ public class Row : BaseElement {
 				string cell_type = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
 				switch (cell_type) {
 				case "text": 
-					newCell = new TextCell (cell_node);
+					if (Type == RowType.Default) {
+						newCell = new TextCell (cell_node);
+					} else {
+						newCell = new DragSourceCell (cell_node);
+					}
 					break;
 				case "drag_source": 
 					newCell = new DragSourceCell (cell_node);
@@ -91,5 +100,48 @@ public class Row : BaseElement {
 
 			}
 		}
+	}
+	public void initDragSourceCellList(HtmlNode row_node){
+		HtmlAttribute attr_tag = row_node.Attributes [HTMLParser.ATTR_START];
+		if (attr_tag != null) {
+			int startInt = int.Parse (row_node.Attributes [HTMLParser.ATTR_START].Value);
+			int endInt = int.Parse (row_node.Attributes [HTMLParser.ATTR_END].Value);
+			string sourceType = row_node.Attributes [HTMLParser.ATTR_SOURCE_TYPE].Value;
+			//Initiate Creation of Cell List 
+			switch (sourceType) {
+			case "integer":
+				for (int a = startInt; a < endInt+1; a = a + 1)
+				{
+					Cell newCell = new DragSourceCell ("text",a.ToString());
+					CellList.Add (newCell);
+				}
+				break;
+			case "prime":
+				for (int a = startInt; a < endInt+1; a = a + 1)
+				{
+					if (isPrime (a)) {
+						Cell newCell = new DragSourceCell ("text",a.ToString());
+						CellList.Add (newCell);
+					}
+				}
+				break;
+			default:
+				for (int a = startInt; a < endInt+1; a = a + 1)
+				{
+					Cell newCell = new DragSourceCell ("text",a.ToString());
+					CellList.Add (newCell);
+				}
+				break;
+			}
+		}
+	}
+	bool isPrime(int number)
+	{
+		if (number == 1) return false;
+		if (number == 2) return true;
+		for (int i = 2; i <= Mathf.Ceil(Mathf.Sqrt(number)); ++i)  {
+			if (number % i == 0)  return false;
+		}
+		return true;
 	}
 }

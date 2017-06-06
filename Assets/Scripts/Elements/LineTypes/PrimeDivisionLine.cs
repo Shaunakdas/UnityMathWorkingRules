@@ -21,6 +21,8 @@ public class PrimeDivisionLine : Line {
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
 		TargetInt = int.Parse(line_node.Attributes [HTMLParser.ATTR_TARGET].Value);
+
+		prefabName = LocationManager.NAME_PRIME_DIV_LINE;
 	}
 	public void getLineType(string type_text){
 		switch (type_text) {

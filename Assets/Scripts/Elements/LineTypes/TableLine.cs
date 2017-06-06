@@ -22,7 +22,12 @@ public class TableLine  : Line {
 		RowList = new List<Row>();
 		Debug.Log ("Initializing TableLine node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
-		getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
+		if (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE] != null) {
+			getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
+		} else {
+			getLocationType ("");
+		}
+		prefabName = LocationManager.NAME_TABLE_LINE;
 	}
 	public void getLineType(string type_text){
 		switch (type_text) {
@@ -31,4 +36,5 @@ public class TableLine  : Line {
 			break;
 		}
 	}
+
 }

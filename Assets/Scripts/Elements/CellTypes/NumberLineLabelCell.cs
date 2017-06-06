@@ -34,5 +34,6 @@ public class NumberLineLabelCell : Cell {
 		Debug.Log ("Initializing NumberLineLabelCell node of type "+type_text);
 		getCellType (type_text);
 		LabelIndex = int.Parse(cell_node.Attributes [HTMLParser.ATTR_LABEL_INDEX].Value);
+		prefabName = LocationManager.NAME_NUM_LINE_LABEL_CELL;
 	}
 }

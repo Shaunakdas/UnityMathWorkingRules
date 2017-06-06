@@ -5,7 +5,7 @@ using HtmlAgilityPack;
 
 public class Line : BaseElement{
 	//Line Prefabs
-	public GameObject CombinationLinePF,NumLineDropLinePF,PrimeDivLinePF,TextLinePF,LatexTextLinePF,TableLinePF;
+//	public GameObject CombinationLinePF,NumLineDropLinePF,PrimeDivLinePF,TextLinePF,LatexTextLinePF,TableLinePF;
 
 	public enum LineType 
 	{
@@ -75,34 +75,8 @@ public class Line : BaseElement{
 			}
 		}
 	}
-	public GameObject getPF(){
-		GameObject prefab =null;
-		switch (Type) {
-		case LineType.CombinationProduct:
-			return CombinationLinePF;
-		case LineType.CombinationProductSum:
-			return prefab;
-		case LineType.CombinationSum:
-			return null;
-		case LineType.NumberLineDrop:
-			return NumLineDropLinePF;
-		case LineType.NumberLineDropJump:
-			return prefab;
-		case LineType.NumberLineSelect:
-			return prefab;
-		case LineType.PrimeDivision:
-			return PrimeDivLinePF;
-		case LineType.IncorrectSubmitText:
-			return prefab;
-		case LineType.PostSubmitText:
-			return prefab;
-		case LineType.Text:
-			return LatexTextLinePF;
-		case LineType.Table:
-			return TableLinePF;
-		default:
-			return prefab;
-		}
-	}
 
+	virtual public void updateGOProp(GameObject ElementGO){
+//		Debug.Log ("Updating Text of Line");
+	}
 }

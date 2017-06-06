@@ -114,18 +114,18 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0.001081317, b: 0.001081317, a: 1}
   mPivot: 4
-  mWidth: 50
+  mWidth: 26
   mHeight: 50
   mDepth: 4
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1
+  aspectRatio: 0.28
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
-  mText: 0
+  mText: 1
   mFontSize: 50
   mFontStyle: 0
   mAlignment: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
+  mOverflow: 2
   mApplyGradient: 0
   mGradientTop: {r: 0, g: 0.001081317, b: 0.001081317, a: 1}
   mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
@@ -164,21 +164,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
-    target: {fileID: 0}
+    target: {fileID: 4326869860136138}
     relative: 0
-    absolute: 0
+    absolute: -17
   rightAnchor:
-    target: {fileID: 0}
+    target: {fileID: 4326869860136138}
     relative: 1
-    absolute: 0
+    absolute: 17
   bottomAnchor:
-    target: {fileID: 0}
+    target: {fileID: 4326869860136138}
     relative: 0
-    absolute: 0
+    absolute: -5
   topAnchor:
-    target: {fileID: 0}
+    target: {fileID: 4326869860136138}
     relative: 1
-    absolute: 0
+    absolute: 5
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4

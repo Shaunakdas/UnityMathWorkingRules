@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: iconic
   m_EditorClassIdentifier: 
   type: 1
-  id: 69636f6e6963
+  id: iconic
   index: 16
-  importCatalog: 7843302d7843462c7842302c7844312d7844362c7842372c7844382d7844432c7842352d7842362c7844462c7845462c7832312d7837452c784646
-  assetPath: 4173736574732f544558447261772f466f6e74732f537072697465732f49636f6e69632e706e67
-  parsedCatalogs: []
+  importCatalog: xC0-xCF,xB0,xD1-xD6,xB7,xD8-xDC,xB5-xB6,xDF,xEF,x21-x7E,xFF
+  assetPath: Assets/TEXDraw/Fonts/Sprites/Iconic.png
+  parsedCatalogs: c000c100c200c300c400c500c600c700c800c900ca00cb00cc00cd00ce00cf00b000d100d200d300d400d500d600b700d800d900da00db00dc00b500b600df00ef002100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b003c003d003e003f0040004100420043004400450046004700480049004a004b004c004d004e004f0050005100520053005400550056005700580059005a005b005c005d005e005f0060006100620063006400650066006700680069006a006b006c006d006e006f0070007100720073007400750076007700780079007a007b007c007d007e00ff00
   Font_Asset: {fileID: 0}
   font_lineHeight: 1
   Sprite_Asset: {fileID: 2800000, guid: 70cc3e8406f29d34ab8e7b5bb2cfae2e, type: 3}
@@ -24,20 +24,22 @@ MonoBehaviour:
   sprite_yLength: 4
   sprite_detectAlpha: 0
   sprite_scale: 1
-  sprite_lineOffset: -0.2
-  sprite_alphaOnly: 1
+  sprite_lineOffset: 0
+  sprite_alphaOnly: 0
   chars:
   - supported: 1
     index: 0
+    characterIndex: 192
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0
       y: 0.75
       width: 0.125
@@ -49,20 +51,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 706c6179
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 1
+    characterIndex: 193
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.125
       y: 0.75
       width: 0.125
@@ -74,20 +78,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 7061757365
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 2
+    characterIndex: 194
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.25
       y: 0.75
       width: 0.125
@@ -99,20 +105,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 73746f70
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 3
+    characterIndex: 195
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.375
       y: 0.75
       width: 0.125
@@ -124,20 +132,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 73746570
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 4
+    characterIndex: 196
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.5
       y: 0.75
       width: 0.125
@@ -149,20 +159,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 656c656374726963
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 5
+    characterIndex: 197
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.625
       y: 0.75
       width: 0.125
@@ -174,20 +186,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 73756e7368696e65
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 6
+    characterIndex: 198
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.75
       y: 0.75
       width: 0.125
@@ -199,20 +213,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 6d6f6f6e
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 7
+    characterIndex: 199
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.875
       y: 0.75
       width: 0.125
@@ -224,20 +240,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 636c6f7564
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 8
+    characterIndex: 200
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0
       y: 0.5
       width: 0.125
@@ -249,20 +267,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 6c6f636b
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 9
+    characterIndex: 201
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.125
       y: 0.5
       width: 0.125
@@ -274,20 +294,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 66696e676572
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 10
+    characterIndex: 202
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.25
       y: 0.5
       width: 0.125
@@ -299,20 +321,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 636f6e76657873746172
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 11
+    characterIndex: 203
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.375
       y: 0.5
       width: 0.125
@@ -324,20 +348,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 74696d65
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 12
+    characterIndex: 204
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.5
       y: 0.5
       width: 0.125
@@ -349,20 +375,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 726f636b6574
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 13
+    characterIndex: 205
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.625
       y: 0.5
       width: 0.125
@@ -374,20 +402,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 666c69676874
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 14
+    characterIndex: 206
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.75
       y: 0.5
       width: 0.125
@@ -399,20 +429,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 706c6163656d61726b
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 15
+    characterIndex: 207
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.875
       y: 0.5
       width: 0.125
@@ -424,20 +456,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 7370656564
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 16
+    characterIndex: 176
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0
       y: 0.25
       width: 0.125
@@ -449,20 +483,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 7265736574
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 17
+    characterIndex: 209
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.125
       y: 0.25
       width: 0.125
@@ -474,20 +510,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 7772656e6368
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 18
+    characterIndex: 210
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.25
       y: 0.25
       width: 0.125
@@ -499,20 +537,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 64756d7062696e
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 19
+    characterIndex: 211
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.375
       y: 0.25
       width: 0.125
@@ -524,20 +564,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 737461636b
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 20
+    characterIndex: 212
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.5
       y: 0.25
       width: 0.125
@@ -549,20 +591,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 63616c6c
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 21
+    characterIndex: 213
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.625
       y: 0.25
       width: 0.125
@@ -574,20 +618,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 6865617274
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 22
+    characterIndex: 214
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.75
       y: 0.25
       width: 0.125
@@ -599,20 +645,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 77726f6e676d61726b
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 23
+    characterIndex: 183
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.875
       y: 0.25
       width: 0.125
@@ -624,20 +672,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 636865636b6d61726b
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 24
+    characterIndex: 216
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0
       y: 0
       width: 0.125
@@ -649,20 +699,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 63726f7373
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 25
+    characterIndex: 217
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.125
       y: 0
       width: 0.125
@@ -674,20 +726,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 73706565647570
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 26
+    characterIndex: 218
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.25
       y: 0
       width: 0.125
@@ -699,20 +753,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 6c6576656c7570
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 27
+    characterIndex: 219
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.375
       y: 0
       width: 0.125
@@ -724,20 +780,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 63686174
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 28
+    characterIndex: 220
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.5
       y: 0
       width: 0.125
@@ -749,20 +807,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 69646561
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 29
+    characterIndex: 181
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.625
       y: 0
       width: 0.125
@@ -774,20 +834,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 6c6f6f6b7570
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 30
+    characterIndex: 182
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.75
       y: 0
       width: 0.125
@@ -799,20 +861,22 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 6b6579
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   - supported: 1
     index: 31
+    characterIndex: 223
     fontIndex: 16
     type: 0
-    height: 0.8
-    depth: 0.2
+    height: 1
+    depth: -0
     bearing: 0
     italic: 1
     width: 1
     font_reqGlyphSize: 0
     sprite_uv:
+      serializedVersion: 2
       x: 0.875
       y: 0
       width: 0.125
@@ -824,7 +888,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 67696674
+    symbolName: 
     symbolAlt: 
     characterMap: 0
   charCatalogs:
@@ -836,5 +900,5 @@ MonoBehaviour:
     _Version: 32
     _FreeList: -1
     _FreeCount: 0
-    _Keys: []
+    _Keys: c000c100c200c300c400c500c600c700c800c900ca00cb00cc00cd00ce00cf00b000d100d200d300d400d500d600b700d800d900da00db00dc00b500b600df0000000000000000000000
     _Values: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f0000000000000000000000000000000000000000000000

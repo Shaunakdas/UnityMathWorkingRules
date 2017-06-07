@@ -6,7 +6,7 @@ using HtmlAgilityPack;
 
 public class DropZoneRowCell : Cell {
 
-
+	public bool idPresent{ get; set; }
 	//Dropable
 	public bool Dropable{get; set;}
 	public bool Touchable{get; set;}
@@ -51,6 +51,7 @@ public class DropZoneRowCell : Cell {
 		DisplayText = cell_node.InnerText;
 		HtmlAttribute id_attr = cell_node.Attributes [HTMLParser.ATTR_ID];
 		if (id_attr != null) {
+			idPresent = true;
 			Debug.Log ("Initializing id of DropZoneRowCell"+id_attr.Value);
 			TargetId = id_attr.Value; CellId = id_attr.Value;
 		}
@@ -61,7 +62,7 @@ public class DropZoneRowCell : Cell {
 
 		//By default user should not be able to touch the drop zone, if id or answer tage is present then only user can drop anything into the drop zone
 		Touchable = false; Dropable = false;
-		prefabName = LocationManager.NAME_DROP_ZONE_CELL;
+		prefabName = LocationManager.NAME_DROP_ZONE_HOLDER_CELL;
 	}
 	//Constructor
 	public DropZoneRowCell(string type, string displayText){
@@ -131,5 +132,35 @@ public class DropZoneRowCell : Cell {
 			Debug.Log ("Updating Target Text of Drop Zone Cell" + TargetText + Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText) + 40f).ToString());
 			ElementGO.GetComponent<UISprite>().width =  (int)Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText)	);
 		}
+	}
+	override public GameObject generateElementGO(GameObject parentGO){
+		GameObject dropZoneHolderPrefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + prefabName)as GameObject;
+		GameObject dropZoneTableprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_CELL)as GameObject;
+		GameObject dropZoneTableItemprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_ITEM_CELL)as GameObject;
+
+		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPrefab, parentGO.transform);
+		foreach (string targetText in TargetTextList){
+			GameObject backgroundGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableprefab, holderGO.transform);
+			int tableWidth = 0;
+			GameObject tableGO = BasicGOOperation.getChildGameObject (backgroundGO, "Table");
+			if (idPresent) {
+				//id attribute is present. So there is no need to divide drop zone into individual item
+				GameObject tableItemGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableItemprefab, tableGO.transform);
+				int contentWidth = targetText.ToCharArray ().Length * 30;
+				tableItemGO.GetComponent<UISprite> ().width = contentWidth;
+				tableWidth = contentWidth+10;
+			} else {
+				foreach (char targetChar in targetText.ToCharArray().ToList()) {
+					tableWidth += 50 + 5;
+					GameObject tableItemGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableItemprefab, tableGO.transform);
+				}
+			}
+			backgroundGO.GetComponent<UISprite>().width = tableWidth;
+//			updateGOProp (backgroundGO);
+			BasicGOOperation.CheckAndRepositionTable (tableGO);
+		}
+		BasicGOOperation.CheckAndRepositionTable (holderGO);
+
+		return null;
 	}
 }

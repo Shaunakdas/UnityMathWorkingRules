@@ -4,7 +4,7 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class Row : BaseElement {
-	public enum RowType {Default,DragSource};
+	public enum RowType {Default,DragSource,HorizontalScroll};
 	public RowType Type{ get; set; }
 
 	public List<Cell> CellList{get; set;}
@@ -18,11 +18,19 @@ public class Row : BaseElement {
 	/// </summary>
 	public void getRowType(string type_text){
 		maxGridCellWidth = 0;
-		Type = RowType.Default;
-		if (type_text == "drag_source_line") {
+		switch (type_text) {
+		case "drag_source_line":
 			Type = RowType.DragSource;
 			prefabName = LocationManager.NAME_DRAG_SOURCE_LINE_ROW;
-
+			break;
+		case "horizontal_scroll":
+			Type = RowType.HorizontalScroll;
+			prefabName = LocationManager.NAME_HORIZONTAL_SCROLL_ROW;
+			break;
+		default:
+			Type = RowType.Default;
+			prefabName = LocationManager.NAME_HORIZONTAL_SCROLL_ROW;
+			break;
 		}
 	}
 	/// <summary>
@@ -63,7 +71,9 @@ public class Row : BaseElement {
 				case "text": 
 					if (Type == RowType.Default) {
 						newCell = new TextCell (cell_node);
-					} else {
+					} else if (Type == RowType.HorizontalScroll) {
+						newCell = new TextCell (cell_node);
+					}else {
 						newCell = new DragSourceCell (cell_node);
 						//Checking For Grid Cell Max Width
 						Debug.Log("max size based on "+BasicGOOperation.getNGUITextSize("1056")+cell_node.InnerText);
@@ -164,7 +174,7 @@ public class Row : BaseElement {
 	/// </summary>
 	/// <param name="parentGO">Parent GameObject.</param>
 	virtual public GameObject generateElementGO(GameObject parentGO){
-		GameObject lineGO;
+		GameObject lineGO;GameObject rowGO;GameObject HorizontalScrollView;
 		//Based on row index and row type add row to the top/center/bottom of ContentTableGO
 		switch (Type) {
 		case RowType.Default:
@@ -180,12 +190,21 @@ public class Row : BaseElement {
 			break;
 		case RowType.DragSource:
 			GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_ROW_TYPE + prefabName)as GameObject;
-			GameObject rowGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+			rowGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
 			//making Grid child of ScrollView as parent
-			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (rowGO, "ScrollView");
+			HorizontalScrollView = BasicGOOperation.getChildGameObject (rowGO, "ScrollView");
 			parentGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Grid");
 			updateGOProp (rowGO);
 			break;
+		case RowType.HorizontalScroll:
+			GameObject horizontalScrollPrefab = Resources.Load (LocationManager.COMPLETE_LOC_ROW_TYPE + prefabName)as GameObject;
+			rowGO = BasicGOOperation.InstantiateNGUIGO (horizontalScrollPrefab, parentGO.transform);
+			//making Grid child of ScrollView as parent
+			HorizontalScrollView = BasicGOOperation.getChildGameObject (rowGO, "ScrollView");
+			parentGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Table");
+			updateGOProp (rowGO);
+			break;
+
 		default:
 			//Updating Column count of Parent Table based on cell
 			if (Parent.GetType () == typeof(TableLine)) {
@@ -208,7 +227,7 @@ public class Row : BaseElement {
 			//making Grid child of ScrollView as parent
 			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (ElementGO, "ScrollView");
 			GameObject gridGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Grid");
-			gridGO.GetComponent<UIGrid> ().cellWidth = Mathf.Max(80f,maxGridCellWidth+50f);
+			gridGO.GetComponent<UIGrid> ().cellWidth = Mathf.Max(80f,maxGridCellWidth+30f);
 		}
 	}
 }

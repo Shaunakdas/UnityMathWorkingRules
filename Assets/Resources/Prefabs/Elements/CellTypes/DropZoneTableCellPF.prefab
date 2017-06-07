@@ -142,4 +142,4 @@ MonoBehaviour:
   cellAlignment: 4
   hideInactive: 1
   keepWithinPanel: 0
-  padding: {x: 5, y: 0}
+  padding: {x: 2, y: 0}

@@ -86,7 +86,7 @@ public class BasicGOOperation : MonoBehaviour{
 	/// </summary>
 	/// <param name="text">text</param>
 	public static float getNGUITextSize(string text){
-		float width =text.ToCharArray().Length*25f;
+		float width =text.ToCharArray().Length*20f;
 		Debug.Log("Preferred width based on size of " +text +" :"+ width);
 		return width;
 	}

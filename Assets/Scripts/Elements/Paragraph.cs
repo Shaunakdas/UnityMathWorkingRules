@@ -163,10 +163,12 @@ public class Paragraph : BaseElement{
 				}
 			}
 		}
-		foreach (var dragCell in dragSourceCellList) {
+		foreach (DragSourceCell dragCell in dragSourceCellList) {
 			DropZoneRowCell dropZone = dropZoneCellList.Find (x => x.CellId == dragCell.CellId);
 			Debug.Log ("Changing Target Text of id" + dragCell.DisplayText);
-			dropZone.TargetText = dragCell.DisplayText;
+			if (dropZone != null) {
+				dropZone.TargetText = dragCell.DisplayText;
+			}
 		}
 	}
 }

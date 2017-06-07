@@ -114,14 +114,14 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0.34775463, g: 0.0062175663, b: 0.8455882, a: 1}
   mPivot: 4
-  mWidth: 50
+  mWidth: 45
   mHeight: 70
   mDepth: 5
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.71428573
+  aspectRatio: 0.64285713
   mType: 1
   mFillDirection: 4
   mFillAmount: 1

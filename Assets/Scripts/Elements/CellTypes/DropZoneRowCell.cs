@@ -6,9 +6,6 @@ using HtmlAgilityPack;
 
 public class DropZoneRowCell : Cell {
 
-	public string CellId{ get; set; } 
-	public string CellTag{ get; set; }
-	public string DisplayText{ get; set; }
 
 	//Dropable
 	public bool Dropable{get; set;}
@@ -32,7 +29,7 @@ public class DropZoneRowCell : Cell {
 	/// <summary>
 	/// Set Cell  Type
 	/// </summary>
-	public void getCellType(string type_text){
+	new public void getCellType(string type_text){
 		switch (type_text) {
 		case "drop_zone_row": 
 			Type = CellType.DropZoneRow;
@@ -52,6 +49,16 @@ public class DropZoneRowCell : Cell {
 		Debug.Log ("Initializing DropZoneRowCell node of type "+type_text);
 		getCellType (type_text);
 		DisplayText = cell_node.InnerText;
+		HtmlAttribute id_attr = cell_node.Attributes [HTMLParser.ATTR_ID];
+		if (id_attr != null) {
+			Debug.Log ("Initializing id of DropZoneRowCell"+id_attr.Value);
+			TargetId = id_attr.Value; CellId = id_attr.Value;
+		}
+		HtmlAttribute ans_attr = cell_node.Attributes [HTMLParser.ATTR_ANSWER];
+		if (ans_attr != null) {
+			TargetText = ans_attr.Value;
+		}
+
 		//By default user should not be able to touch the drop zone, if id or answer tage is present then only user can drop anything into the drop zone
 		Touchable = false; Dropable = false;
 		prefabName = LocationManager.NAME_DROP_ZONE_CELL;
@@ -114,6 +121,17 @@ public class DropZoneRowCell : Cell {
 			Dropable = false;
 		} else {
 			TargetTextList = targetText.Split (';').ToList ();
+		}
+	}
+	override public void updateGOProp(GameObject ElementGO){
+		Debug.Log ("Updating Properties of Drop Zone Cell");
+		float cellWidth = ElementGO.GetComponent<UISprite> ().localSize.x;
+		if (TargetText != null) { 
+			Debug.Log ("Updating Target Text of Drop Zone Cell" + TargetText + Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText) + 40f).ToString());
+//			cellWidth = Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText) + 40f);
+//			float cellHeight =  ElementGO.GetComponent<UISprite> ().localSize.y;
+			ElementGO.GetComponent<UISprite>().width =  (int)Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText)	);
+//			Debug.Log ("After updating"+ElementGO.GetComponent<UISprite> ().localSize.x.ToString());
 		}
 	}
 }

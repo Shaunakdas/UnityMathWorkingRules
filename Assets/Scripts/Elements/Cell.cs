@@ -8,6 +8,9 @@ public class Cell : BaseElement {
 	//Cell Prefabs
 	public GameObject DragSourceCellPF,DropZoneCellPF,LatexTextCellPF,TextCellPF,TableCellPF,SelectBtnCellPF,SelectSignCellPF,NumLineLabelCellPF;
 
+	public string CellId{ get; set; } 
+	public string CellTag{ get; set; }
+	public string DisplayText{ get; set; }
 	public CellType Type{get; set;}
 	public Cell(){
 	}

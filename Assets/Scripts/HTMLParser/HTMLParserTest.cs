@@ -28,9 +28,20 @@ public class HTMLParserTest : MonoBehaviour {
 		html.LoadHtml (@text);
 		parser.getParagraphList (html);
 		ParagraphList = parser.ParagraphList;
+		ParagraphList.ForEach( x=> populateCellTargetText(x));
 		generateParaUI ();
+		StartCoroutine (WaitForEnd());
+	}
+
+	//Waiting for the end and reposition all the child tables and grids
+	public IEnumerator WaitForEnd(){
+		yield return new WaitForEndOfFrame();
+		Debug.Log ("Waited enough");
+		BasicGOOperation.RepositionChildTables (gameObject);
 		BasicGOOperation.RepositionChildTables (gameObject);
 	}
+
+	//Generate all Paragraph UIs
 	public void generateParaUI(){
 		Paragraph para = ParagraphList [0];
 		Debug.Log ((para.ParagraphStep == Paragraph.StepType.QuestionStep));
@@ -56,8 +67,49 @@ public class HTMLParserTest : MonoBehaviour {
 			foreach (Line line in LineList) {
 				generateLineUI (line,ParaContentTableGO,LineTableGO );
 			}
+			BasicGOOperation.CheckAndRepositionTable (ParaContentTableGO);BasicGOOperation.CheckAndRepositionTable (LineTableGO);
 		}
 	}
+	//Populating Target Text based on DragSource Reference
+	public void populateCellTargetText(Paragraph para){
+		Debug.Log ("Populating Target Text of each drop zone cell");
+		//Tracking all DropZone Cell TargetText
+		List<DropZoneRowCell> dropZoneCellList = new List<DropZoneRowCell>();
+		List<DragSourceCell> dragSourceCellList = new List<DragSourceCell>();
+		//Parse through whole line list and its contents to get DragZoneRow Cell with valid id
+		foreach (Line line in para.LineList){
+			foreach (Row row in line.RowList) {
+				foreach (var cell in row.CellList) {
+					Debug.Log ("Traversing through cell List current type" + cell.GetType ().ToString () + cell.CellId);
+					if((cell.GetType() == typeof(DropZoneRowCell))){
+						Debug.Log ("Found one Drop zone Cell");
+						DropZoneRowCell dropCell = (DropZoneRowCell)cell;
+						if (cell.CellId != null) {
+							Debug.Log ("Found one Drop zone Cell" + dropCell.CellId);
+							dropZoneCellList.Add (dropCell);
+						}
+					}
+				}
+			}
+		}
+		foreach (Line line in para.LineList){
+			foreach (Row row in line.RowList) {
+				foreach (var cell in row.CellList) {
+					if((cell.GetType() == typeof(DragSourceCell)) && (cell.CellId !=null)){
+						Debug.Log ("Found one Drag source Cell");
+						DragSourceCell dropCell = (DragSourceCell)cell;
+						dragSourceCellList.Add (dropCell);
+					}
+				}
+			}
+		}
+		foreach (var dragCell in dragSourceCellList) {
+			DropZoneRowCell dropZone = dropZoneCellList.Find (x => x.CellId == dragCell.CellId);
+			Debug.Log ("Changing Target Text of id" + dragCell.DisplayText);
+			dropZone.TargetText = dragCell.DisplayText;
+		}
+	}
+	//Generate all Line UIs
 	public void generateLineUI(Line line, GameObject ContentTableGO, GameObject CenterContentGO){
 		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_LINE_TYPE + line.prefabName)as GameObject;
 
@@ -85,9 +137,12 @@ public class HTMLParserTest : MonoBehaviour {
 		line.updateGOProp (lineGO);
 		foreach (Row row in line.RowList) {
 			generateRowUI (row,lineGO );
+			BasicGOOperation.CheckAndRepositionTable (lineGO);
 		}
+
 	}
 
+	//Generate all Row UIs
 	public void generateRowUI(Row row, GameObject lineGO){
 		GameObject parentGO;
 		//Based on row index and row type add row to the top/center/bottom of ContentTableGO
@@ -123,11 +178,14 @@ public class HTMLParserTest : MonoBehaviour {
 			generateCellUI (cell,parentGO );
 		}
 	}
+
+	//Generate all Cell UIs
 	public void generateCellUI(Cell cell, GameObject parentGO){
-		Debug.Log (LocationManager.COMPLETE_LOC_CELL_TYPE + cell.prefabName);
+//		Debug.Log (LocationManager.COMPLETE_LOC_CELL_TYPE + cell.prefabName);
 		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + cell.prefabName)as GameObject;
 		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
 		cell.updateGOProp (cellGO);
+		BasicGOOperation.CheckAndRepositionTable (cellGO);
 		if (cell.GetType()  == typeof(TableCell)) {
 			//Handle TableCell here
 		}

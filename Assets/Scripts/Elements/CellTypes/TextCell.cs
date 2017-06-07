@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
-
+using System.Net;
 public class TextCell : Cell {
 
 	public string DisplayText {get; set;}
 
 	//Contructor
 	public TextCell(string displayText, string type){
-		DisplayText = displayText;
+		DisplayText = StringWrapper.HtmlToPlainText(displayText);
 		getCellType (type);
 		prefabName = LocationManager.NAME_LATEX_TEXT_CELL;
 	}
@@ -19,7 +19,7 @@ public class TextCell : Cell {
 	/// <param name="para">Para.</param>
 	public TextCell(HtmlNode cell_node){
 		Debug.Log ("Initializing TextCell node of type "+ cell_node.Attributes [HTMLParser.ATTR_TYPE].Value);
-		DisplayText = cell_node.InnerText;
+		DisplayText = StringWrapper.HtmlToPlainText(cell_node.InnerText);
 		getCellType (cell_node.Attributes [HTMLParser.ATTR_TYPE].Value);
 		prefabName = LocationManager.NAME_LATEX_TEXT_CELL;
 
@@ -35,10 +35,11 @@ public class TextCell : Cell {
 	override public void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 		if (ElementGO.GetComponent<UILabel> () != null) {
-			ElementGO.GetComponent<UILabel> ().text = DisplayText;
+			
+			ElementGO.GetComponent<UILabel> ().text =(DisplayText) ;
 		}
 		if (ElementGO.GetComponent<TEXDrawNGUI> () != null) {
-			ElementGO.GetComponent<TEXDrawNGUI> ().text = DisplayText;
+			ElementGO.GetComponent<TEXDrawNGUI> ().text =(DisplayText) ;
 		}
 	}
 }

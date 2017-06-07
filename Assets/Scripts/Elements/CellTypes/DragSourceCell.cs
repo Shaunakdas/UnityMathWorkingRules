@@ -6,9 +6,6 @@ using HtmlAgilityPack;
 public class DragSourceCell : Cell {
 	public enum SeriesType{Integer,Prime};
 	public SeriesType SourceType;
-	public string CellId { get; set; }
-	public string CellTag { get; set; }
-	public string DisplayText {get; set;}
 	//For Table type
 	//	public List<Row> RowList {get; set;}
 	public int ColumnCount {get; set;}

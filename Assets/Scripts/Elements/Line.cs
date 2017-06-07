@@ -79,4 +79,46 @@ public class Line : BaseElement{
 	virtual public void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Line");
 	}
+	/// <summary>
+	/// Generates the Element GameObjects.
+	/// </summary>
+	/// <param name="parentGO">Parent G.</param>
+	virtual public GameObject generateElementGO(GameObject parentGO){
+		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_LINE_TYPE + prefabName)as GameObject;
+
+		//Instantiate Scroll View to hold center content gameobjects
+//		GameObject scrollViewPrefab  = Resources.Load (LocationManager.COMPLETE_LOC_OTHER_TYPE + LocationManager.NAME_CENTER_CONTENT_SCROLL_VIEW)as GameObject;
+		GameObject CenterContentScrollGO = BasicGOOperation.getChildGameObject (parentGO, LocationManager.NAME_CENTER_CONTENT_SCROLL_VIEW);
+		GameObject CenterContentGO = BasicGOOperation.getChildGameObject (CenterContentScrollGO, "LineTablePF");
+
+		GameObject lineGO;
+		//Based on line index and line type add line to the top/center/bottom of ContentTableGO
+		switch (LineLocation) {
+		case LocationType.Top:
+			//Adding lineGO to the ContentTableGO at the top
+			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+			lineGO.transform.SetAsFirstSibling ();
+			break;
+		case LocationType.Default:
+			//Adding QuestionStepParaPF to the root GameObject
+			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, CenterContentGO.transform);
+			break;
+		case LocationType.Bottom:
+			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+			lineGO.transform.SetAsLastSibling ();
+			break;
+		default:
+			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, CenterContentGO.transform);
+			break;
+		}
+
+
+		foreach (Row row in RowList) {
+			row.generateElementGO (lineGO);
+		}
+		updateGOProp (lineGO);
+		BasicGOOperation.CheckAndRepositionTable (CenterContentGO);
+		BasicGOOperation.CheckAndRepositionTable (lineGO);
+		return lineGO;
+	}
 }

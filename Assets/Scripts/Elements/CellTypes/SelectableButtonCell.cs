@@ -38,8 +38,7 @@ public class SelectableButtonCell : Cell {
 		//Setting text
 		labelGO.GetComponent<UILabel> ().text = DisplayText;
 		//Setting width based on text width
-		float width = ElementGO.GetComponent<UISprite>().localSize.x;
-		width = Mathf.Max(55f,BasicGOOperation.getNGUITextSize(DisplayText)+26f);
+		ElementGO.GetComponent<UISprite>().width =(int) Mathf.Max(55f,BasicGOOperation.getNGUITextSize(DisplayText)+26f);
 		GameObject checkBoxGO = BasicGOOperation.getChildGameObject (TableGO, "CheckBox");
 
 		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { updateCheckBox(checkBoxGO); });

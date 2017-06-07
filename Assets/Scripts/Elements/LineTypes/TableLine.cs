@@ -27,6 +27,12 @@ public class TableLine  : Line {
 		} else {
 			getLocationType ("");
 		}
+		if (line_node.Attributes [HTMLParser.ATTR_COL_COUNT] != null) {
+			Debug.Log ("Column Attribute is present");
+			ColumnCount = int.Parse (line_node.Attributes [HTMLParser.ATTR_COL_COUNT].Value);
+		} else {
+			ColumnCount = -1;
+		}
 		prefabName = LocationManager.NAME_TABLE_LINE;
 	}
 	public void getLineType(string type_text){
@@ -36,5 +42,7 @@ public class TableLine  : Line {
 			break;
 		}
 	}
-
+	override public void updateGOProp(GameObject ElementGO){
+		ElementGO.GetComponent<UITable> ().columns = ColumnCount;
+	}
 }

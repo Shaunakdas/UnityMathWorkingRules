@@ -159,6 +159,49 @@ public class Row : BaseElement {
 		}
 		return true;
 	}
+	/// <summary>
+	/// Generates the Element GameObjects.
+	/// </summary>
+	/// <param name="parentGO">Parent GameObject.</param>
+	virtual public GameObject generateElementGO(GameObject parentGO){
+		GameObject lineGO;
+		//Based on row index and row type add row to the top/center/bottom of ContentTableGO
+		switch (Type) {
+		case RowType.Default:
+			//Updating Column count of Parent Table based on cell
+			if (Parent.GetType () == typeof(TableLine)) {
+				TableLine tableLine = Parent as TableLine;
+				Debug.Log ("Number of columns " + CellList.Count+ tableLine.ColumnCount);
+				if (tableLine.ColumnCount == -1) {
+					parentGO.GetComponent<UITable> ().columns = CellList.Count;
+					tableLine.ColumnCount = CellList.Count;
+				} 
+			}
+			break;
+		case RowType.DragSource:
+			GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_ROW_TYPE + prefabName)as GameObject;
+			GameObject rowGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+			//making Grid child of ScrollView as parent
+			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (rowGO, "ScrollView");
+			parentGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Grid");
+			updateGOProp (rowGO);
+			break;
+		default:
+			//Updating Column count of Parent Table based on cell
+			if (Parent.GetType () == typeof(TableLine)) {
+				TableLine tableLine = Parent as TableLine;
+				Debug.Log ("Number of columns " + CellList.Count);
+				if (tableLine.ColumnCount == null) {
+					parentGO.GetComponent<UITable> ().columns = CellList.Count;
+				}
+			}
+			break;
+		}
+		foreach (Cell cell in CellList) {
+			cell.generateElementGO (parentGO);
+		}
+		return parentGO;
+	}
 	override public void updateGOProp(GameObject ElementGO){
 		Debug.Log ("Updating Grid cell width");
 		if (Type == RowType.DragSource) {

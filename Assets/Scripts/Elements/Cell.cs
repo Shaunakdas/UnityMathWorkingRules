@@ -56,7 +56,18 @@ public class Cell : BaseElement {
 			return prefab;
 		}
 	}
+	/// <summary>
+	/// Generates the Element GameObjects.
+	/// </summary>
+	/// <param name="parentGO">Parent G.</param>
+	virtual public GameObject generateElementGO(GameObject parentGO){
+		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + prefabName)as GameObject;
+		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+		updateGOProp (cellGO);
+		BasicGOOperation.CheckAndRepositionTable (cellGO);
+		return cellGO;
+	}
 	virtual public void updateGOProp(GameObject ElementGO){
-//		Debug.Log ("Updating Text of Cell");
+		//		Debug.Log ("Updating Text of Cell");
 	}
 }

@@ -9,6 +9,7 @@ public class HTMLParser  {
 	public const string BODY_TAG = "body";
 	public const string P_TAG = "p",LINE_TAG = "line",ROW_TAG="trow",CELL_TAG = "tcell";
 	public const string ATTR_ANSWER = "answer",ATTR_TYPE="type";
+	public const string ATTR_COL_COUNT = "col";
 	//QuestionStep Paragraph
 	public const string ATTR_CORRECT_TYPE = "correctType";
 	//NumberLineDrop Line

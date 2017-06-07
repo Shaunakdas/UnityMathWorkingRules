@@ -7,5 +7,7 @@ public class BaseElement : MonoBehaviour {
 	public BaseElement Parent{get; set;}
 	virtual public void updateGOProp(GameObject ElementGO){
 	}
-
+	virtual public GameObject generateElementGO(GameObject GO){
+		return GO;
+	}
 }

@@ -41,6 +41,8 @@ public class LocationManager {
 	//Cell Prefab Names
 	public const string NAME_DRAG_SOURCE_CELL = "DragSourceCellPF";
 	public const string NAME_DROP_ZONE_CELL = "DropZoneCellPF";
+	public const string NAME_DROP_ZONE_TABLE_CELL = "DropZoneTableCellPF";
+	public const string NAME_DROP_ZONE_TABLE_ITEM_CELL = "DropZoneCellTableItemCellPF";
 	public const string NAME_LATEX_TEXT_CELL = "LatexTextCellPF";
 	public const string NAME_TEXT_CELL = "TextCellPF";
 	public const string NAME_TABLE_CELL = "TableCellPF";

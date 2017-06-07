@@ -114,6 +114,7 @@ public class DropZoneRowCell : Cell {
 		}
 	}
 	public void generateTargetTextList(string targetText){
+		Debug.Log ("generateTargetTextList");
 		//If answer tag is present. user should be able to drop an element.
 		Touchable = true;Dropable = true;
 		//If answer=''. user should be able to drop an element but the element will jump back.
@@ -128,10 +129,7 @@ public class DropZoneRowCell : Cell {
 		float cellWidth = ElementGO.GetComponent<UISprite> ().localSize.x;
 		if (TargetText != null) { 
 			Debug.Log ("Updating Target Text of Drop Zone Cell" + TargetText + Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText) + 40f).ToString());
-//			cellWidth = Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText) + 40f);
-//			float cellHeight =  ElementGO.GetComponent<UISprite> ().localSize.y;
 			ElementGO.GetComponent<UISprite>().width =  (int)Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText)	);
-//			Debug.Log ("After updating"+ElementGO.GetComponent<UISprite> ().localSize.x.ToString());
 		}
 	}
 }

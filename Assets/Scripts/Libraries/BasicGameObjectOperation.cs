@@ -82,6 +82,15 @@ public class BasicGOOperation : MonoBehaviour{
 		return width;
 	}
 	/// <summary>
+	/// Get size of text based on its length of text.
+	/// </summary>
+	/// <param name="text">text</param>
+	public static float getNGUITextSize(string text){
+		float width =text.ToCharArray().Length*25f;
+		Debug.Log("Preferred width based on size of " +text +" :"+ width);
+		return width;
+	}
+	/// <summary>
 	/// Get random text generated from a list of all small cap letters.
 	/// </summary>
 	public static char GetRandomLetter()

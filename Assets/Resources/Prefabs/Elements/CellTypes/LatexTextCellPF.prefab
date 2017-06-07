@@ -84,7 +84,7 @@ MonoBehaviour:
   m_AutoFit: 2
   m_AutoWrap: 0
   m_AutoFill: 0
-  m_Size: 45
+  m_Size: 35
   m_Material: {fileID: 0}
   m_SpaceSize: 0.2
   m_Align: {x: 0.5, y: 0.5}

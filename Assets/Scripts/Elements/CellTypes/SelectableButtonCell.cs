@@ -5,11 +5,12 @@ using HtmlAgilityPack;
 
 public class SelectableButtonCell : Cell {
 	public bool correctFlag;
-
+	public string DisplayText;
 	//Constructor
-	public SelectableButtonCell(string type, string answer){
+	public SelectableButtonCell(string type, string answer, string displayText){
 		getCellType (type);
 		correctFlag = answer=="1"? true:false;
+		DisplayText = displayText;
 	}
 	/// <summary>
 	/// Set SelectableButtonCell  Type
@@ -28,6 +29,25 @@ public class SelectableButtonCell : Cell {
 		getCellType (type_text);
 		correctFlag = (cell_node.Attributes [HTMLParser.ATTR_ANSWER].Value)=="1"? true:false;
 		prefabName = LocationManager.NAME_SELECT_BTN_CELL;
+		DisplayText = cell_node.InnerText;
 	}
+	override public void updateGOProp(GameObject ElementGO){
+		//		Debug.Log ("Updating Text of Cell" + DisplayText);
+		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
+		GameObject labelGO = BasicGOOperation.getChildGameObject (TableGO, "Label");
+		//Setting text
+		labelGO.GetComponent<UILabel> ().text = DisplayText;
+		//Setting width based on text width
+		float width = ElementGO.GetComponent<UISprite>().localSize.x;
+		width = Mathf.Max(55f,BasicGOOperation.getNGUITextSize(DisplayText)+26f);
+		GameObject checkBoxGO = BasicGOOperation.getChildGameObject (TableGO, "CheckBox");
+
+		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { updateCheckBox(checkBoxGO); });
+	}
+	public void updateCheckBox(GameObject checkBoxGO){
+//		checkBoxGO.GetComponent<UIToggle> ().value = !checkBoxGO.GetComponent<UIToggle> ().value;
+		checkBoxGO.GetComponent<UIToggle> ().Set(!checkBoxGO.GetComponent<UIToggle> ().value,true);
+	}
+		
 
 }

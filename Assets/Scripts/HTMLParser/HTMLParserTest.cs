@@ -107,6 +107,7 @@ public class HTMLParserTest : MonoBehaviour {
 			//making Grid child of ScrollView as parent
 			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (rowGO, "ScrollView");
 			parentGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Grid");
+			row.updateGOProp (rowGO);
 			break;
 		default:
 			parentGO = lineGO;
@@ -123,7 +124,7 @@ public class HTMLParserTest : MonoBehaviour {
 		}
 	}
 	public void generateCellUI(Cell cell, GameObject parentGO){
-
+		Debug.Log (LocationManager.COMPLETE_LOC_CELL_TYPE + cell.prefabName);
 		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + cell.prefabName)as GameObject;
 		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
 		cell.updateGOProp (cellGO);

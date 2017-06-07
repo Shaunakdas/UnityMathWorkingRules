@@ -8,7 +8,7 @@ public class Row : BaseElement {
 	public RowType Type{ get; set; }
 
 	public List<Cell> CellList{get; set;}
-
+	public float maxGridCellWidth{get; set;}
 	//Constructor
 	public Row(){
 
@@ -17,6 +17,7 @@ public class Row : BaseElement {
 	/// Set Row  Type
 	/// </summary>
 	public void getRowType(string type_text){
+		maxGridCellWidth = 0;
 		Type = RowType.Default;
 		if (type_text == "drag_source_line") {
 			Type = RowType.DragSource;
@@ -29,6 +30,7 @@ public class Row : BaseElement {
 	/// </summary>
 	/// <param name="para">Para.</param>
 	public Row(HtmlNode row_node){
+		maxGridCellWidth = 0;
 		Type = RowType.Default;
 		CellList = new List<Cell> ();
 		HtmlAttribute attr_tag = row_node.Attributes [HTMLParser.ATTR_TYPE];
@@ -56,16 +58,23 @@ public class Row : BaseElement {
 			foreach (HtmlNode cell_node in node_list) {
 				Cell newCell = new Cell (cell_node);
 				string cell_type = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
+				Debug.Log ("cell_type" + cell_type);
 				switch (cell_type) {
 				case "text": 
 					if (Type == RowType.Default) {
 						newCell = new TextCell (cell_node);
 					} else {
 						newCell = new DragSourceCell (cell_node);
+						//Checking For Grid Cell Max Width
+						Debug.Log("max size based on "+BasicGOOperation.getNGUITextSize("1056")+cell_node.InnerText);
+						maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(cell_node.InnerText));
 					}
 					break;
 				case "drag_source": 
 					newCell = new DragSourceCell (cell_node);
+					//Checking For Grid Cell Max Width
+					Debug.Log("max size based on "+BasicGOOperation.getNGUITextSize(cell_node.InnerText)+cell_node.InnerText);
+					maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(cell_node.InnerText));
 					break;
 				case "drop_zone_row": 
 					newCell = new DropZoneRowCell (cell_node);
@@ -83,7 +92,7 @@ public class Row : BaseElement {
 					newCell = new SelectableSignCell (cell_node);
 					break;
 				case "selectable_button": 
-					newCell = new SelectableSignCell (cell_node);
+					newCell = new SelectableButtonCell (cell_node);
 					break;
 				case "fraction_table": 
 					newCell = new TableCell (cell_node);
@@ -113,6 +122,8 @@ public class Row : BaseElement {
 				for (int a = startInt; a < endInt+1; a = a + 1)
 				{
 					Cell newCell = new DragSourceCell ("text",a.ToString());
+					//Checking For Grid Cell Max Width
+					maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(a.ToString()));
 					CellList.Add (newCell);
 				}
 				break;
@@ -121,6 +132,8 @@ public class Row : BaseElement {
 				{
 					if (isPrime (a)) {
 						Cell newCell = new DragSourceCell ("text",a.ToString());
+						//Checking For Grid Cell Max Width
+						maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(a.ToString()));
 						CellList.Add (newCell);
 					}
 				}
@@ -129,6 +142,8 @@ public class Row : BaseElement {
 				for (int a = startInt; a < endInt+1; a = a + 1)
 				{
 					Cell newCell = new DragSourceCell ("text",a.ToString());
+					//Checking For Grid Cell Max Width
+					maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(a.ToString()));
 					CellList.Add (newCell);
 				}
 				break;
@@ -143,5 +158,14 @@ public class Row : BaseElement {
 			if (number % i == 0)  return false;
 		}
 		return true;
+	}
+	override public void updateGOProp(GameObject ElementGO){
+		Debug.Log ("Updating Grid cell width");
+		if (Type == RowType.DragSource) {
+			//making Grid child of ScrollView as parent
+			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (ElementGO, "ScrollView");
+			GameObject gridGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Grid");
+			gridGO.GetComponent<UIGrid> ().cellWidth = Mathf.Max(80f,maxGridCellWidth+50f);
+		}
 	}
 }

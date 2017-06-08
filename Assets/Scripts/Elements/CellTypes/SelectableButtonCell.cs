@@ -33,17 +33,20 @@ public class SelectableButtonCell : Cell {
 	}
 	override public void updateGOProp(GameObject ElementGO){
 		//		Debug.Log ("Updating Text of Cell" + DisplayText);
+		updateSelectBtnGO(ElementGO, DisplayText);
+	}
+	//Static method which can be used by any class initiating SelectButton
+	public static void updateSelectBtnGO(GameObject ElementGO, string text){
 		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
 		GameObject labelGO = BasicGOOperation.getChildGameObject (TableGO, "Label");
 		//Setting text
-		labelGO.GetComponent<UILabel> ().text = DisplayText;
+		labelGO.GetComponent<UILabel> ().text = text;
 		//Setting width based on text width
-		ElementGO.GetComponent<UISprite>().width =(int) Mathf.Max(55f,BasicGOOperation.getNGUITextSize(DisplayText)+26f);
+		ElementGO.GetComponent<UISprite>().width =(int) Mathf.Max(55f,BasicGOOperation.getNGUITextSize(text)+26f);
 		GameObject checkBoxGO = BasicGOOperation.getChildGameObject (TableGO, "CheckBox");
-
 		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { updateCheckBox(checkBoxGO); });
 	}
-	public void updateCheckBox(GameObject checkBoxGO){
+	public static void updateCheckBox(GameObject checkBoxGO){
 //		checkBoxGO.GetComponent<UIToggle> ().value = !checkBoxGO.GetComponent<UIToggle> ().value;
 		checkBoxGO.GetComponent<UIToggle> ().Set(!checkBoxGO.GetComponent<UIToggle> ().value,true);
 	}

@@ -123,7 +123,7 @@ public class Paragraph : BaseElement{
 			}
 
 			foreach (Line line in LineList) {
-				line.generateElementGO (ParaContentTableGO);
+				ParaContentTableGO = line.generateElementGO (ParaContentTableGO);
 			}
 			BasicGOOperation.CheckAndRepositionTable (ParaContentTableGO);
 

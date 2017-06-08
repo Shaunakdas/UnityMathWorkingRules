@@ -6,6 +6,12 @@ public class BaseElement : MonoBehaviour {
 	//Parent BaseElement
 	public BaseElement Parent{get; set;}
 	/// <summary>
+	/// Initiates the GameObject properties based on its corresponding class attribute
+	/// </summary>
+	/// <param name="ElementGO">Element GameObject</param>
+	virtual public void initGOProp(GameObject ElementGO){
+	}
+	/// <summary>
 	/// Updates the GameObject properties based on its corresponding class attribute
 	/// </summary>
 	/// <param name="ElementGO">Element GameObject</param>
@@ -19,4 +25,8 @@ public class BaseElement : MonoBehaviour {
 	virtual public GameObject generateElementGO(GameObject ElementGameObject){
 		return ElementGameObject;
 	}
+	/// <summary>
+	/// The element game object.
+	/// </summary>
+	public GameObject ElementGO;
 }

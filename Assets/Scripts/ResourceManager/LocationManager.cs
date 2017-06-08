@@ -21,7 +21,7 @@ public class LocationManager {
 	public const string COMPLETE_LOC_LINE_TYPE = LOC_PREFAB_TYPE+LOC_ELEMENT_TYPE+LOC_LINE_TYPE;
 	//Line Prefabs
 	public const string NAME_COMBINATION_LINE = "CombinationLinePF";
-	public const string NAME_NUM_LINE_DROP_LINE = "NumLineDropLinePF";
+	public const string NAME_NUM_LINE_DROP_LINE = "NumberLineDropLinePF";
 	public const string NAME_PRIME_DIV_LINE = "PrimeDivLinePF";
 	public const string NAME_TEXT_LINE = "TextLinePF";
 	public const string NAME_LATEX_TEXT_LINE = "LatexTextLinePF";
@@ -51,6 +51,8 @@ public class LocationManager {
 	public const string NAME_SELECT_BTN_CELL = "SelectBtnCellPF";
 	public const string NAME_SELECT_SIGN_CELL = "SelectSignCellPF";
 	public const string NAME_NUM_LINE_LABEL_CELL = "NumLineLabelCellPF";
+	public const string NAME_NUM_LINE_MARK_BIG_CELL =  "NumLineMarkBigCellPF";
+	public const string NAME_NUM_LINE_MARK_SMALL_CELL =  "NumLineMarkSMALLCellPF";
 	//	public GameObject DragSourceCellPF,DropZoneCellPF,LatexTextCellPF,TextCellPF,TableCellPF,SelectBtnCellPF,SelectSignCellPF,NumLineLabelCellPF;
 
 	//Other Types Location

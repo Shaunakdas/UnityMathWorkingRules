@@ -14,7 +14,7 @@ public class Line : BaseElement{
 	};
 	public enum LocationType
 	{
-		Default,Top,Center,Bottom
+		Default,Top,Center,Bottom,Left
 	}
 
 	//Handling Attributes
@@ -46,6 +46,9 @@ public class Line : BaseElement{
 			break;
 		case "center": 
 			LineLocation = LocationType.Center;
+			break;
+		case "left": 
+			LineLocation = LocationType.Left;
 			break;
 		default:
 			LineLocation = LocationType.Default;
@@ -84,13 +87,12 @@ public class Line : BaseElement{
 	/// </summary>
 	/// <param name="parentGO">Parent G.</param>
 	virtual public GameObject generateElementGO(GameObject parentGO){
+		GameObject returnParentGO = parentGO;
 		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_LINE_TYPE + prefabName)as GameObject;
 
 		//Instantiate Scroll View to hold center content gameobjects
 //		GameObject scrollViewPrefab  = Resources.Load (LocationManager.COMPLETE_LOC_OTHER_TYPE + LocationManager.NAME_CENTER_CONTENT_SCROLL_VIEW)as GameObject;
-		GameObject CenterContentScrollGO = BasicGOOperation.getChildGameObject (parentGO, LocationManager.NAME_CENTER_CONTENT_SCROLL_VIEW);
-		GameObject CenterContentGO = BasicGOOperation.getChildGameObject (CenterContentScrollGO, "LineTablePF");
-
+		GameObject CenterContentScrollGO = parentGO ; GameObject CenterContentGO = parentGO;
 		GameObject lineGO;
 		//Based on line index and line type add line to the top/center/bottom of ContentTableGO
 		switch (LineLocation) {
@@ -100,6 +102,8 @@ public class Line : BaseElement{
 			lineGO.transform.SetAsFirstSibling ();
 			break;
 		case LocationType.Default:
+			CenterContentScrollGO = BasicGOOperation.getChildGameObject (parentGO, LocationManager.NAME_CENTER_CONTENT_SCROLL_VIEW);
+			CenterContentGO = BasicGOOperation.getChildGameObject (CenterContentScrollGO, "LineTablePF");
 			//Adding QuestionStepParaPF to the root GameObject
 			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, CenterContentGO.transform);
 			break;
@@ -107,18 +111,28 @@ public class Line : BaseElement{
 			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
 			lineGO.transform.SetAsLastSibling ();
 			break;
+		case LocationType.Left:
+			//Making Non-reference copy of ParaContentTable
+			GameObject paraContentTableGOCopy = Instantiate (parentGO);
+			parentGO.GetComponent<UITable> ().columns = 2;
+			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+			Debug.Log ("name of parentGO" + parentGO.name);
+			returnParentGO = BasicGOOperation.InstantiateNGUIGO (paraContentTableGOCopy, parentGO.transform);
+			break;
 		default:
+			CenterContentScrollGO = BasicGOOperation.getChildGameObject (parentGO, LocationManager.NAME_CENTER_CONTENT_SCROLL_VIEW);
+			CenterContentGO = BasicGOOperation.getChildGameObject (CenterContentScrollGO, "LineTablePF");
 			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, CenterContentGO.transform);
 			break;
 		}
 
-
+		initGOProp (lineGO);
 		foreach (Row row in RowList) {
 			row.generateElementGO (lineGO);
 		}
 		updateGOProp (lineGO);
 		BasicGOOperation.CheckAndRepositionTable (CenterContentGO);
 		BasicGOOperation.CheckAndRepositionTable (lineGO);
-		return lineGO;
+		return returnParentGO;
 	}
 }

@@ -32,7 +32,8 @@ public class LocationManager {
 	public const string LOC_ROW_TYPE = "RowTypes/";
 	public const string COMPLETE_LOC_ROW_TYPE = LOC_PREFAB_TYPE+LOC_ELEMENT_TYPE+LOC_ROW_TYPE;
 	//Row Prefabs
-	public const string NAME_DRAG_SOURCE_LINE_ROW = "DragSourceLineRowPF";
+	public const string NAME_HORI_DRAG_SOURCE_LINE_ROW = "HoriDragSourceLineRowPF";
+	public const string NAME_VERTI_DRAG_SOURCE_LINE_ROW = "VertiDragSourceLineRowPF";
 	public const string NAME_HORIZONTAL_SCROLL_ROW = "HorizontalScrollRowPF";
 //	public GameObject DragSourceLineRowPF;
 
@@ -52,7 +53,7 @@ public class LocationManager {
 	public const string NAME_SELECT_SIGN_CELL = "SelectSignCellPF";
 	public const string NAME_NUM_LINE_LABEL_CELL = "NumLineLabelCellPF";
 	public const string NAME_NUM_LINE_MARK_BIG_CELL =  "NumLineMarkBigCellPF";
-	public const string NAME_NUM_LINE_MARK_SMALL_CELL =  "NumLineMarkSMALLCellPF";
+	public const string NAME_NUM_LINE_MARK_SMALL_CELL =  "NumLineMarkSmallCellPF";
 	//	public GameObject DragSourceCellPF,DropZoneCellPF,LatexTextCellPF,TextCellPF,TableCellPF,SelectBtnCellPF,SelectSignCellPF,NumLineLabelCellPF;
 
 	//Other Types Location

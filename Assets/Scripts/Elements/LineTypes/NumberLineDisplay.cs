@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NumberLineDisplay : MonoBehaviour {
+public class NumberLineDisplay  {
 
 	//Prefabs
 	public GameObject smallMarkerPF,numberMarkerPF;
@@ -30,7 +30,9 @@ public class NumberLineDisplay : MonoBehaviour {
 	public float userSelectorYPosition{get; set;}
 	public float correctSelectorYPosition{get; set;}
 
-
+	//Constructor
+	public NumberLineDisplay(){
+	}
 	public void defaultValues(){
 		screenDimensionHeight=936f; screenDimensionWidth=520f;
 		IntegerCount=10; numberBreak=5; correctAnswer = 5f;

@@ -18,9 +18,9 @@ public class TextCell : Cell {
 	/// </summary>
 	/// <param name="para">Para.</param>
 	public TextCell(HtmlNode cell_node){
-		Debug.Log ("Initializing TextCell node of type "+ cell_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		Debug.Log ("Initializing TextCell node of type "+ cell_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 		DisplayText = StringWrapper.HtmlToPlainText(cell_node.InnerText);
-		getCellType (cell_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		getCellType (cell_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 		prefabName = LocationManager.NAME_LATEX_TEXT_CELL;
 
 //		Debug.Log ("Found TextCell node of content"+ DisplayText);

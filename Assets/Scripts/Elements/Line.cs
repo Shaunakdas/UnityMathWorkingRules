@@ -14,7 +14,7 @@ public class Line : BaseElement{
 	};
 	public enum LocationType
 	{
-		Default,Top,Center,Bottom,Left
+		Default,Top,Center,Bottom,Left,Right
 	}
 
 	//Handling Attributes
@@ -32,6 +32,7 @@ public class Line : BaseElement{
 	/// Set Line Type
 	/// </summary>
 	public void getLineType(string type_text){
+		
 	}
 	/// <summary>
 	/// Set Location Type
@@ -50,6 +51,9 @@ public class Line : BaseElement{
 		case "left": 
 			LineLocation = LocationType.Left;
 			break;
+		case "right": 
+			LineLocation = LocationType.Right;
+			break;
 		default:
 			LineLocation = LocationType.Default;
 			break;
@@ -61,14 +65,14 @@ public class Line : BaseElement{
 	/// <param name="para">Para.</param>
 	public Line(HtmlNode line_node){
 		RowList = new List<Row>();
-		string type_text = line_node.Attributes [HTMLParser.ATTR_TYPE].Value;
+		string type_text = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		getLineType (type_text);
 	}
 	/// <summary>
 	/// Parses the Line Node to generate Row nodes
 	/// </summary>
 	public void parseLine(HtmlNode line_node){
-		IEnumerable<HtmlNode> node_list = line_node.Elements(HTMLParser.ROW_TAG) ;
+		IEnumerable<HtmlNode> node_list = line_node.Elements(AttributeManager.TAG_ROW) ;
 		if (node_list!=null) {
 			foreach (HtmlNode row_node in node_list) {
 				Debug.Log ("Content of row_node : " + row_node.InnerHtml);
@@ -87,7 +91,6 @@ public class Line : BaseElement{
 	/// </summary>
 	/// <param name="parentGO">Parent G.</param>
 	virtual public GameObject generateElementGO(GameObject parentGO){
-		GameObject returnParentGO = parentGO;
 		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_LINE_TYPE + prefabName)as GameObject;
 
 		//Instantiate Scroll View to hold center content gameobjects
@@ -113,11 +116,13 @@ public class Line : BaseElement{
 			break;
 		case LocationType.Left:
 			//Making Non-reference copy of ParaContentTable
-			GameObject paraContentTableGOCopy = Instantiate (parentGO);
-			parentGO.GetComponent<UITable> ().columns = 2;
 			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
-			Debug.Log ("name of parentGO" + parentGO.name);
-			returnParentGO = BasicGOOperation.InstantiateNGUIGO (paraContentTableGOCopy, parentGO.transform);
+			lineGO.transform.SetAsFirstSibling ();
+			break;
+		case LocationType.Right:
+			//Making Non-reference copy of ParaContentTable
+			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+			lineGO.transform.SetAsLastSibling ();
 			break;
 		default:
 			CenterContentScrollGO = BasicGOOperation.getChildGameObject (parentGO, LocationManager.NAME_CENTER_CONTENT_SCROLL_VIEW);
@@ -133,6 +138,6 @@ public class Line : BaseElement{
 		updateGOProp (lineGO);
 		BasicGOOperation.CheckAndRepositionTable (CenterContentGO);
 		BasicGOOperation.CheckAndRepositionTable (lineGO);
-		return returnParentGO;
+		return lineGO;
 	}
 }

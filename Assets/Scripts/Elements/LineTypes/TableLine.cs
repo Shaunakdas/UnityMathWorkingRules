@@ -20,16 +20,16 @@ public class TableLine  : Line {
 	/// <param name="para">Para.</param>
 	public TableLine(HtmlNode line_node){
 		RowList = new List<Row>();
-		Debug.Log ("Initializing TableLine node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
-		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
-		if (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE] != null) {
-			getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
+		Debug.Log ("Initializing TableLine node of type text"+ line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
+		getLineType (line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
+		if (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE] != null) {
+			getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
 		} else {
 			getLocationType ("");
 		}
-		if (line_node.Attributes [HTMLParser.ATTR_COL_COUNT] != null) {
+		if (line_node.Attributes [AttributeManager.ATTR_COL_COUNT] != null) {
 			Debug.Log ("Column Attribute is present");
-			ColumnCount = int.Parse (line_node.Attributes [HTMLParser.ATTR_COL_COUNT].Value);
+			ColumnCount = int.Parse (line_node.Attributes [AttributeManager.ATTR_COL_COUNT].Value);
 		} else {
 			ColumnCount = -1;
 		}

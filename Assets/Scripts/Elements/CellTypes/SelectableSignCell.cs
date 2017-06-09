@@ -24,10 +24,10 @@ public class SelectableSignCell : Cell {
 	/// <param name="para">Para.</param>
 	public SelectableSignCell(HtmlNode cell_node){
 		//		CellList = new List<Cell> ();
-		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
+		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing SelectableSignCell node of type "+type_text);
 		getCellType (type_text);
-		TargetSign = (cell_node.Attributes [HTMLParser.ATTR_ANSWER].Value)=="1"? Sign.Positive:Sign.Negative;
+		TargetSign = (cell_node.Attributes [AttributeManager.ATTR_ANSWER].Value)=="1"? Sign.Positive:Sign.Negative;
 		prefabName = LocationManager.NAME_SELECT_SIGN_CELL;
 	}
 }

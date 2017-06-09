@@ -45,17 +45,17 @@ public class DropZoneRowCell : Cell {
 	/// <param name="para">Para.</param>
 	public DropZoneRowCell(HtmlNode cell_node){
 		TargetIdList = new List<string> ();TargetTextList = new List<string> ();
-		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
+		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing DropZoneRowCell node of type "+type_text);
 		getCellType (type_text);
 		DisplayText = cell_node.InnerText;
-		HtmlAttribute id_attr = cell_node.Attributes [HTMLParser.ATTR_ID];
+		HtmlAttribute id_attr = cell_node.Attributes [AttributeManager.ATTR_ID];
 		if (id_attr != null) {
 			idPresent = true;
 			Debug.Log ("Initializing id of DropZoneRowCell"+id_attr.Value);
 			TargetId = id_attr.Value; CellId = id_attr.Value;
 		}
-		HtmlAttribute ans_attr = cell_node.Attributes [HTMLParser.ATTR_ANSWER];
+		HtmlAttribute ans_attr = cell_node.Attributes [AttributeManager.ATTR_ANSWER];
 		if (ans_attr != null) {
 			TargetText = ans_attr.Value;
 		}
@@ -77,7 +77,7 @@ public class DropZoneRowCell : Cell {
 	/// </summary>
 	/// <param name="cell_node">Cell node.</param>
 	public void checkForTargetTag(HtmlNode cell_node){
-		HtmlAttribute attr_tag = cell_node.Attributes [HTMLParser.ATTR_TAG];
+		HtmlAttribute attr_tag = cell_node.Attributes [AttributeManager.ATTR_TAG];
 		if (attr_tag != null) {
 			CellTag =  (attr_tag.Value);
 		}
@@ -88,7 +88,7 @@ public class DropZoneRowCell : Cell {
 	/// </summary>
 	/// <param name="cell_node">Cell node.</param>
 	public void checkForTargetId(HtmlNode cell_node){
-		HtmlAttribute attr_id = cell_node.Attributes [HTMLParser.ATTR_ID];
+		HtmlAttribute attr_id = cell_node.Attributes [AttributeManager.ATTR_ID];
 		if (attr_id != null) {
 			generateTargetIdList (attr_id.Value);
 		}
@@ -109,7 +109,7 @@ public class DropZoneRowCell : Cell {
 	/// </summary>
 	/// <param name="cell_node">Cell node.</param>
 	public void checkForTargetText(HtmlNode cell_node){
-		HtmlAttribute attr_answer = cell_node.Attributes [HTMLParser.ATTR_ANSWER];
+		HtmlAttribute attr_answer = cell_node.Attributes [AttributeManager.ATTR_ANSWER];
 		if (attr_answer != null) {
 			generateTargetTextList (attr_answer.Value);
 		}
@@ -139,8 +139,12 @@ public class DropZoneRowCell : Cell {
 		GameObject dropZoneTableItemprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_ITEM_CELL)as GameObject;
 
 		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPrefab, parentGO.transform);
+
+		Debug.Log ("TargetText list"+TargetTextList.Count);
 		foreach (string targetText in TargetTextList){
+			Debug.Log ("TargetText"+targetText.ToString());
 			GameObject backgroundGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableprefab, holderGO.transform);
+			Debug.Log ("backgroundGO "+backgroundGO.name.ToString());
 			int tableWidth = 0;
 			GameObject tableGO = BasicGOOperation.getChildGameObject (backgroundGO, "Table");
 			if (idPresent) {

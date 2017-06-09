@@ -27,6 +27,7 @@ public class NumberLineDropLine  : Line {
 	/// Constructor for NumberLineDropLine
 	/// </summary>
 	public NumberLineDropLine(string labelCount,string dropStartIndex,string dropCount,string jumpSize, string type){
+		NumberMarkerList = new List<GameObject> ();
 		RowList = new List<Row>();	
 		LabelCount = int.Parse(labelCount);
 		getLineType (type);
@@ -42,24 +43,25 @@ public class NumberLineDropLine  : Line {
 	/// </summary>
 	/// <param name="para">Para.</param>
 	public NumberLineDropLine(HtmlNode line_node){
-		RowList = new List<Row>();NumberMarkerList = new List<GameObject> ();
-		string type = line_node.Attributes [HTMLParser.ATTR_TYPE].Value;
+		RowList = new List<Row>();NumberMarkerList = new List<GameObject> ();displayCtrl = new NumberLineDisplay ();
+		string type = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing NumberLineDropLine node of type text"+ type);
-		LabelCount = int.Parse(line_node.Attributes [HTMLParser.ATTR_LABEL_COUNT].Value);
-		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
-		getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
+		LabelCount = int.Parse(line_node.Attributes [AttributeManager.ATTR_LABEL_COUNT].Value);
+		getLineType (line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
+		getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
 
 		if (type == "number_line_drop_jump") {
 			//Only for NumberLine Drop Jump
-			DropStartIndex = int.Parse (line_node.Attributes [HTMLParser.ATTR_DROP_START_INDEX].Value);
-			DropCount = int.Parse (line_node.Attributes [HTMLParser.ATTR_DROP_COUNT].Value);
-			JumpSize = int.Parse (line_node.Attributes [HTMLParser.ATTR_JUMP_SIZE].Value);
+			DropStartIndex = int.Parse (line_node.Attributes [AttributeManager.ATTR_DROP_START_INDEX].Value);
+			DropCount = int.Parse (line_node.Attributes [AttributeManager.ATTR_DROP_COUNT].Value);
+			JumpSize = int.Parse (line_node.Attributes [AttributeManager.ATTR_JUMP_SIZE].Value);
 		}
 
 		prefabName = LocationManager.NAME_NUM_LINE_DROP_LINE;
 	}
 	public GameObject addChildGOToParentGO(BaseElement element){
 		if (element.GetType () == typeof(NumberLineLabelCell)) {
+			Debug.Log ("NumberMarkerList List length " + NumberMarkerList.Count);
 			NumberLineLabelCell numberLineLabelCell = (NumberLineLabelCell)element;
 			GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_TEXT_CELL)as GameObject;
 
@@ -97,7 +99,7 @@ public class NumberLineDropLine  : Line {
 			break;
 		}
 	}
-	public void  initGOPRop(GameObject elementGO){
+	override public void initGOProp(GameObject elementGO){
 		ElementGO = elementGO;
 		GameObject numberLineGrid = BasicGOOperation.getChildGameObject (ElementGO, "NumberLineGrid");
 		initNumberLineGameObject (numberLineGrid);
@@ -105,23 +107,25 @@ public class NumberLineDropLine  : Line {
 	override public void updateGOProp(GameObject elementGO){
 	}
 	public void initNumberLineGameObject(GameObject numberLineGrid){
+		Debug.Log ("adding initNumberLineGameObject ");
 		//Initialising Default Values
 		displayCtrl.defaultValues ();
 		//Changing values based on curent values
 		displayCtrl.IntegerCount = LabelCount;
+		Debug.Log (displayCtrl.IntegerCount);
 		//Calculatig dimensions
 		displayCtrl.initNumberLineCalculations();
 
 		numberLineGrid.GetComponent<UIGrid> ().cellHeight = displayCtrl.cellHeight;
 		numberLineGrid.GetComponent<UIGrid> ().cellWidth = displayCtrl.cellWidth;
 		numberLineGrid.GetComponent<UIGrid> ().Reposition ();
+		GameObject smallMarkPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_NUM_LINE_MARK_SMALL_CELL)as GameObject;
+		GameObject bigMarkPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_NUM_LINE_MARK_BIG_CELL)as GameObject;
 
-		GameObject smallMarkPF = Resources.Load (LocationManager.LOC_CELL_TYPE + LocationManager.NAME_NUM_LINE_MARK_SMALL_CELL)as GameObject;
-		GameObject bigMarkPF = Resources.Load (LocationManager.LOC_CELL_TYPE + LocationManager.NAME_NUM_LINE_MARK_BIG_CELL)as GameObject;
 		initNumberLineMarkers (numberLineGrid, smallMarkPF, bigMarkPF);
 	}
 	public void initNumberLineMarkers(GameObject numberLineGrid, GameObject smallMarkerPF, GameObject numberMarkerPF){
-
+//		Debug.Log ("Names of gameObjects" + numberMarkerPF.name);
 		//First Number Marker
 		GameObject firstNumberMarkerGO = (GameObject) BasicGOOperation.InstantiateNGUIGO (numberMarkerPF,numberLineGrid.transform,"StartNumberMarker");
 		addItemToBigMarker (firstNumberMarkerGO, LabelCount);
@@ -138,8 +142,8 @@ public class NumberLineDropLine  : Line {
 		}
 	}
 	public void addItemToBigMarker(GameObject numberMarkerGO, int number){
-		GameObject dropZonePF = Resources.Load (LocationManager.LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_CELL)as GameObject;
-		GameObject selectBtnPF = Resources.Load (LocationManager.LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
+		GameObject dropZonePF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_CELL)as GameObject;
+		GameObject selectBtnPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
 		GameObject itemGO;
 		if (displayNumber) numberMarkerGO.GetComponentInChildren<TEXDrawNGUI> ().text = ( number).ToString() ;
 		switch (Type) {

@@ -24,10 +24,10 @@ public class SelectableButtonCell : Cell {
 	/// <param name="para">Para.</param>
 	public SelectableButtonCell(HtmlNode cell_node){
 		//		CellList = new List<Cell> ();
-		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
+		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing SelectableButtonCell node of type "+type_text);
 		getCellType (type_text);
-		correctFlag = (cell_node.Attributes [HTMLParser.ATTR_ANSWER].Value)=="1"? true:false;
+		correctFlag = (cell_node.Attributes [AttributeManager.ATTR_ANSWER].Value)=="1"? true:false;
 		prefabName = LocationManager.NAME_SELECT_BTN_CELL;
 		DisplayText = cell_node.InnerText;
 	}

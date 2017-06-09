@@ -4,6 +4,8 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class Row : BaseElement {
+	public Paragraph.AlignType RowAlign;
+
 	public enum RowType {Default,DragSource,HorizontalScroll};
 	public RowType Type{ get; set; }
 
@@ -11,6 +13,12 @@ public class Row : BaseElement {
 	public float maxGridCellWidth{get; set;}
 	//Constructor
 	public Row(){
+
+	}
+	public void getAlignType(){
+		Paragraph paraObj = (Paragraph)this.Parent.Parent;
+		RowAlign = paraObj.ParagraphAlign;
+		prefabName = (RowAlign == Paragraph.AlignType.Horizontal)?LocationManager.NAME_VERTI_DRAG_SOURCE_LINE_ROW:LocationManager.NAME_HORI_DRAG_SOURCE_LINE_ROW;
 
 	}
 	/// <summary>
@@ -21,7 +29,7 @@ public class Row : BaseElement {
 		switch (type_text) {
 		case "drag_source_line":
 			Type = RowType.DragSource;
-			prefabName = LocationManager.NAME_DRAG_SOURCE_LINE_ROW;
+			prefabName = LocationManager.NAME_HORI_DRAG_SOURCE_LINE_ROW;
 			break;
 		case "horizontal_scroll":
 			Type = RowType.HorizontalScroll;
@@ -41,9 +49,9 @@ public class Row : BaseElement {
 		maxGridCellWidth = 0;
 		Type = RowType.Default;
 		CellList = new List<Cell> ();
-		HtmlAttribute attr_tag = row_node.Attributes [HTMLParser.ATTR_TYPE];
+		HtmlAttribute attr_tag = row_node.Attributes [AttributeManager.ATTR_TYPE];
 		if (attr_tag != null) {
-			string type_text = row_node.Attributes [HTMLParser.ATTR_TYPE].Value;
+			string type_text = row_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 			Debug.Log ("Initializing Row node of type " + type_text);
 			getRowType (type_text);
 			initDragSourceCellList (row_node);
@@ -58,14 +66,14 @@ public class Row : BaseElement {
 	/// </summary>
 	public void parseRow(HtmlNode para_node){
 		//		HtmlNodeCollection node_list = para_node.SelectNodes ("//" + HTMLParser.LINE_TAG);
-		IEnumerable<HtmlNode> node_list = para_node.Elements(HTMLParser.CELL_TAG) ;
+		IEnumerable<HtmlNode> node_list = para_node.Elements(AttributeManager.TAG_CELL) ;
 
 		if (node_list != null) {
 			//			Debug.Log ("There are " + node_list.Count + " nodes of type: " + HTMLParser.LINE_TAG);
 
 			foreach (HtmlNode cell_node in node_list) {
 				Cell newCell = new Cell (cell_node);
-				string cell_type = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
+				string cell_type = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 				Debug.Log ("cell_type" + cell_type);
 				switch (cell_type) {
 				case "text": 
@@ -121,17 +129,18 @@ public class Row : BaseElement {
 		}
 	}
 	public void initDragSourceCellList(HtmlNode row_node){
-		HtmlAttribute attr_tag = row_node.Attributes [HTMLParser.ATTR_START];
+		HtmlAttribute attr_tag = row_node.Attributes [AttributeManager.ATTR_START];
 		if (attr_tag != null) {
-			int startInt = int.Parse (row_node.Attributes [HTMLParser.ATTR_START].Value);
-			int endInt = int.Parse (row_node.Attributes [HTMLParser.ATTR_END].Value);
-			string sourceType = row_node.Attributes [HTMLParser.ATTR_SOURCE_TYPE].Value;
+			int startInt = int.Parse (row_node.Attributes [AttributeManager.ATTR_START].Value);
+			int endInt = int.Parse (row_node.Attributes [AttributeManager.ATTR_END].Value);
+			string sourceType = row_node.Attributes [AttributeManager.ATTR_SOURCE_TYPE].Value;
 			//Initiate Creation of Cell List 
 			switch (sourceType) {
 			case "integer":
 				for (int a = startInt; a < endInt+1; a = a + 1)
 				{
 					Cell newCell = new DragSourceCell ("text",a.ToString());
+					newCell.Parent = this;
 					//Checking For Grid Cell Max Width
 					maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(a.ToString()));
 					CellList.Add (newCell);
@@ -142,6 +151,7 @@ public class Row : BaseElement {
 				{
 					if (isPrime (a)) {
 						Cell newCell = new DragSourceCell ("text",a.ToString());
+						newCell.Parent = this;
 						//Checking For Grid Cell Max Width
 						maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(a.ToString()));
 						CellList.Add (newCell);
@@ -152,6 +162,7 @@ public class Row : BaseElement {
 				for (int a = startInt; a < endInt+1; a = a + 1)
 				{
 					Cell newCell = new DragSourceCell ("text",a.ToString());
+					newCell.Parent = this;
 					//Checking For Grid Cell Max Width
 					maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(a.ToString()));
 					CellList.Add (newCell);
@@ -174,6 +185,7 @@ public class Row : BaseElement {
 	/// </summary>
 	/// <param name="parentGO">Parent GameObject.</param>
 	virtual public GameObject generateElementGO(GameObject parentGO){
+		getAlignType ();
 		GameObject lineGO;GameObject rowGO;GameObject HorizontalScrollView;
 		//Based on row index and row type add row to the top/center/bottom of ContentTableGO
 		switch (Type) {

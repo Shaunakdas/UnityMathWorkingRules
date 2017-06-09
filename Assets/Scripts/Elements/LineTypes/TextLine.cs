@@ -19,11 +19,11 @@ public class TextLine : Line {
 	/// <param name="para">Para.</param>
 	public TextLine(HtmlNode line_node){
 		RowList = new List<Row> ();
-		Debug.Log ("Initializing TextLine node of type " + line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
+		Debug.Log ("Initializing TextLine node of type " + line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 		DisplayText = line_node.InnerText;
-		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
-		if (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE] != null) {
-			getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
+		getLineType (line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
+		if (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE] != null) {
+			getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
 		} else {
 			getLocationType ("");
 		}

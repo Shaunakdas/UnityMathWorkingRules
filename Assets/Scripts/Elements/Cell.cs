@@ -4,6 +4,8 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class Cell : BaseElement {
+	public Paragraph.AlignType DragAlign;
+
 	public enum CellType {Text,DropZone,DropZoneRow,SelectableButton,SelectableSign,DragSource,FractionTable,ExponentTable,NumberLineLabel,NumberLineLabelAnswer};
 	//Cell Prefabs
 	public GameObject DragSourceCellPF,DropZoneCellPF,LatexTextCellPF,TextCellPF,TableCellPF,SelectBtnCellPF,SelectSignCellPF,NumLineLabelCellPF;
@@ -25,7 +27,7 @@ public class Cell : BaseElement {
 	/// <param name="para">Para.</param>
 	public Cell(HtmlNode cell_node){
 //		CellList = new List<Cell> ();
-		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
+		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 //		Debug.Log ("Initializing Cell node of type "+type_text);
 		getCellType (type_text);
 	}
@@ -56,11 +58,17 @@ public class Cell : BaseElement {
 			return prefab;
 		}
 	}
+
+	virtual public void  getAlignType(){
+		Paragraph paraObj = (Paragraph)this.Parent.Parent.Parent;
+		DragAlign = paraObj.ParagraphAlign;
+	}
 	/// <summary>
 	/// Generates the Element GameObjects.
 	/// </summary>
 	/// <param name="parentGO">Parent G.</param>
 	virtual public GameObject generateElementGO(GameObject parentGO){
+		getAlignType ();
 		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + prefabName)as GameObject;
 		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
 		updateGOProp (cellGO);

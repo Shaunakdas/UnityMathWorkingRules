@@ -20,11 +20,11 @@ public class CombinationLine  : Line {
 	/// <param name="para">Para.</param>
 	public CombinationLine(HtmlNode line_node){
 		RowList = new List<Row>();
-		Debug.Log ("Initializing CombinationLine node of type text"+ line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
-		CorrectAnswer = int.Parse(line_node.Attributes [HTMLParser.ATTR_ANSWER].Value);
-		getLineType (line_node.Attributes [HTMLParser.ATTR_TYPE].Value);
-		OutputVisible = (line_node.Attributes [HTMLParser.ATTR_OUTPUT_VISIBLE].Value=="1")?true : false;
-		getLocationType (line_node.Attributes [HTMLParser.ATTR_LOCATION_TYPE].Value);
+		Debug.Log ("Initializing CombinationLine node of type text"+ line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
+		CorrectAnswer = int.Parse(line_node.Attributes [AttributeManager.ATTR_ANSWER].Value);
+		getLineType (line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
+		OutputVisible = (line_node.Attributes [AttributeManager.ATTR_OUTPUT_VISIBLE].Value=="1")?true : false;
+		getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
 		prefabName = LocationManager.NAME_COMBINATION_LINE;
 	}
 	public void getLineType(string type_text){

@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4487325265599242}
   - component: {fileID: 114076890259109884}
   m_Layer: 8
-  m_Name: DragSourceLineRowPF
+  m_Name: HoriDragSourceLineRowPF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

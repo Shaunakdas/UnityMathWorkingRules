@@ -33,7 +33,7 @@ public class TableCell : Cell {
 	/// <param name="para">Para.</param>
 	public TableCell(HtmlNode cell_node){
 		RowList = new List<Row> ();
-		string type_text = cell_node.Attributes [HTMLParser.ATTR_TYPE].Value;
+		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing TableCell node of type "+type_text);
 		getCellType (type_text);
 		parseTableCell (cell_node);
@@ -44,7 +44,7 @@ public class TableCell : Cell {
 	/// </summary>
 	public void parseTableCell(HtmlNode cell_node){
 //		HtmlNodeCollection node_list = cell_node.SelectNodes ("//" + HTMLParser.ROW_TAG);
-		IEnumerable<HtmlNode> node_list = cell_node.Elements(HTMLParser.ROW_TAG) ;
+		IEnumerable<HtmlNode> node_list = cell_node.Elements(AttributeManager.TAG_ROW) ;
 		if (node_list!=null) {
 //			Debug.Log ("There are " + node_list.Count + " nodes of type: " + HTMLParser.ROW_TAG);
 

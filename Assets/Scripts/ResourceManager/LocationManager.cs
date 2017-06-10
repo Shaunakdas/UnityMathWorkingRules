@@ -22,7 +22,7 @@ public class LocationManager {
 	//Line Prefabs
 	public const string NAME_COMBINATION_LINE = "CombinationLinePF";
 	public const string NAME_NUM_LINE_DROP_LINE = "NumberLineDropLinePF";
-	public const string NAME_PRIME_DIV_LINE = "PrimeDivLinePF";
+	public const string NAME_PRIME_DIV_LINE = "PrimeDivisionLinePF";
 	public const string NAME_TEXT_LINE = "TextLinePF";
 	public const string NAME_LATEX_TEXT_LINE = "LatexTextLinePF";
 	public const string NAME_TABLE_LINE = "TableLinePF";
@@ -54,6 +54,7 @@ public class LocationManager {
 	public const string NAME_NUM_LINE_LABEL_CELL = "NumLineLabelCellPF";
 	public const string NAME_NUM_LINE_MARK_BIG_CELL =  "NumLineMarkBigCellPF";
 	public const string NAME_NUM_LINE_MARK_SMALL_CELL =  "NumLineMarkSmallCellPF";
+	public const string NAME_PRIME_DIV_LEVEL_CELL = "PrimeDivLevelCellPF";
 	//	public GameObject DragSourceCellPF,DropZoneCellPF,LatexTextCellPF,TextCellPF,TableCellPF,SelectBtnCellPF,SelectSignCellPF,NumLineLabelCellPF;
 
 	//Other Types Location

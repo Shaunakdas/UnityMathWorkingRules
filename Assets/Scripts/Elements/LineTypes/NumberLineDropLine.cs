@@ -59,31 +59,6 @@ public class NumberLineDropLine  : Line {
 
 		prefabName = LocationManager.NAME_NUM_LINE_DROP_LINE;
 	}
-	public GameObject addChildGOToParentGO(BaseElement element){
-		if (element.GetType () == typeof(NumberLineLabelCell)) {
-			Debug.Log ("NumberMarkerList List length " + NumberMarkerList.Count);
-			NumberLineLabelCell numberLineLabelCell = (NumberLineLabelCell)element;
-			GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_TEXT_CELL)as GameObject;
-
-			if (Type == LineType.NumberLineDrop) {
-				if (numberLineLabelCell.Type == Cell.CellType.NumberLineLabel) {
-					prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_TEXT_CELL)as GameObject;
-				} else if (numberLineLabelCell.Type == Cell.CellType.NumberLineLabelAnswer) {
-					prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_CELL)as GameObject;
-				}
-			} else if (Type == LineType.NumberLineSelect) {
-				if (numberLineLabelCell.Type == Cell.CellType.NumberLineLabel) {
-					prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
-				} else if (numberLineLabelCell.Type == Cell.CellType.NumberLineLabelAnswer) {
-					prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
-				}
-			}
-			GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, NumberMarkerList [numberLineLabelCell.LabelIndex].transform);
-			return cellGO;	
-		} else {
-			return null;
-		}
-	}
 
 
 	public void getLineType(string type_text){

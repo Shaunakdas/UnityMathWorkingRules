@@ -13,6 +13,13 @@ public class NumberLineLabelCell : Cell {
 		getCellType (type);
 		LabelIndex = int.Parse(labelIndex);
 	}
+
+	public Vector3 labelDefaultLocation{ get; set; }
+	public Vector2 labelDefaultSize{ get; set; }
+	public void setDefaultProp(){
+		labelDefaultLocation = new Vector3 (-60f, 0f, 0f);
+		labelDefaultSize = new Vector2 (100f, 60f);
+	}
 	/// <summary>
 	/// Set NumberLineLabelCell  Type
 	/// </summary>
@@ -24,9 +31,10 @@ public class NumberLineLabelCell : Cell {
 			break;
 		case "number_line_label_answer": 
 			Type = CellType.NumberLineLabelAnswer;
-			LineLabel = LabelType.Label;
+			LineLabel = LabelType.LabelAnswer;
 			break;
 		}
+
 	}
 	/// <summary>
 	/// Initializes a new instance of the NumberLineLabelCell class with HTMLNode attribute
@@ -36,7 +44,7 @@ public class NumberLineLabelCell : Cell {
 		//		CellList = new List<Cell> ();
 		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing NumberLineLabelCell node of type "+type_text);
-		getCellType (type_text);
+		getCellType (type_text);setDefaultProp ();
 		LabelIndex = int.Parse(cell_node.Attributes [AttributeManager.ATTR_LABEL_INDEX].Value);
 		prefabName = LocationManager.NAME_NUM_LINE_LABEL_CELL;
 		DisplayText = cell_node.InnerText;
@@ -46,11 +54,9 @@ public class NumberLineLabelCell : Cell {
 	/// </summary>
 	/// <param name="parentGO">Parent G.</param>
 	override public GameObject generateElementGO(GameObject parentGO){
-		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + prefabName)as GameObject;
 
-		NumberLineDropLine numberLineDropLine = (NumberLineDropLine)Parent.Parent;
-		GameObject cellGO = numberLineDropLine.addChildGOToParentGO (this);
-//		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+		NumberLineDropLine numberLine = (NumberLineDropLine)this.Parent.Parent;
+		GameObject cellGO = numberLine.addItemToBigMarker (LabelIndex,DisplayText,LineLabel );
 		updateGOProp (cellGO);
 		BasicGOOperation.CheckAndRepositionTable (cellGO);
 		return cellGO;

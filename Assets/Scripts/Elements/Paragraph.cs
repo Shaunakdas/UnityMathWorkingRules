@@ -127,7 +127,7 @@ public class Paragraph : BaseElement{
 
 			//Adding QuestionStepParaPF to the root GameObject
 			GameObject QuestionStepParaGO = BasicGOOperation.InstantiateNGUIGO(QuestionStepParaPF,parentGO.transform);
-
+			ElementGO = QuestionStepParaGO;
 			ParaContentTableGO = BasicGOOperation.getChildGameObject (QuestionStepParaGO, "ParaContentTable");
 			ParaContentTableGO.GetComponent<UITable> ().columns = tableCol;
 			//Checking for Center Content Scroll View
@@ -152,26 +152,44 @@ public class Paragraph : BaseElement{
 		return ParaContentTableGO;
 	}
 	public void resizeCenterContent(GameObject CenterContentGO,GameObject ParaContentTableGO){
-		Vector2 remainingSize = ParaContentTableGO.transform.parent.gameObject.GetComponent<UISprite> ().localSize;
+		Vector3 scale = BasicGOOperation.scale;
+		Vector3 remainingSize = ParaContentTableGO.transform.parent.gameObject.GetComponent<UISprite> ().CalculateBounds().size;
+//		Debug.Log ("Bound of Parent GameObject "+ParaContentTableGO.transform.parent.gameObject.name+remainingSize.size.x+" - "+remainingSize.size.y);
 		//Calculate remaining width after subtracting from Parent height/width of PAraContentTableGO 
 		foreach (Transform childTransform in ParaContentTableGO.transform) {
 			if (childTransform.gameObject != CenterContentGO) {
 				//Check for size of other GameObjects other than Default Types
-				Bounds childBounds = NGUIMath.CalculateAbsoluteWidgetBounds(childTransform);
-				remainingSize = remainingSize - new Vector2(childBounds.size.x,childBounds.size.y);
+				Vector3 childSize = NGUIMath.CalculateAbsoluteWidgetBounds(childTransform).size;
+				childSize.x = childSize.x / scale.x; childSize.y = childSize.y / scale.y;
+				Debug.Log ("Bound of GameObject "+childTransform.gameObject.name+(childSize.x)+" - "+(childSize.y));
+				remainingSize = remainingSize - childSize;
+				Debug.Log ("Remaining Bound" + remainingSize.x +" - "+ remainingSize.y);
 			}
 		}
-		UIPanel centerPanel = CenterContentGO.GetComponent<UIPanel> ();
-		if (ParagraphAlign == AlignType.Horizontal) {
-			//Change CenterContentGO.width
-//			centerPanel.
-//			centerPanel.width = remainingSize.x;
+		resizeCenterContentChild (CenterContentGO, ParagraphAlign, remainingSize);
 
+
+	}
+	public void resizeCenterContentChild(GameObject CenterContentGO, AlignType align, Vector3 newSize){
+		if (align == AlignType.Horizontal) {
+			//Change CenterContentGO.width
+			GameObject ContainerGO = BasicGOOperation.getChildGameObject(CenterContentGO,"Container");
+			ContainerGO.GetComponent<UIWidget> ().width = (int)newSize.x;
+
+			GameObject LineTable = BasicGOOperation.getChildGameObject(CenterContentGO,"LineTablePF");
+			foreach (Transform childTransform in LineTable.transform) {
+				if (childTransform.gameObject.GetComponent<TEXDrawNGUI>() != null) {
+					childTransform.gameObject.GetComponent<TEXDrawNGUI> ().width = (int)newSize.x;
+				}else if (childTransform.gameObject.GetComponent<UILabel>() != null) {
+					childTransform.gameObject.GetComponent<UILabel> ().width = (int)newSize.x;
+				}
+			}
 		} else {
 			//Change CenterContentGO.height
-//			centerPanel.height = remainingSize.y;
-		}
+			GameObject ContainerGO = BasicGOOperation.getChildGameObject(CenterContentGO,"Container");
+			ContainerGO.GetComponent<UIWidget> ().height = (int)newSize.y;
 
+		}
 
 	}
 	//Populating Target Text based on DragSource Reference

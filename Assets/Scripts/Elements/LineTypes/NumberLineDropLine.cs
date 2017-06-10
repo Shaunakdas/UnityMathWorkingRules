@@ -113,6 +113,9 @@ public class NumberLineDropLine  : Line {
 		//Changing values based on curent values
 		displayCtrl.IntegerCount = LabelCount;
 		Debug.Log (displayCtrl.IntegerCount);
+		displayCtrl.screenDimensionHeight =this.Parent.ElementGO.GetComponent<UISprite>().height;
+
+		Debug.Log("screendimension height"+displayCtrl.screenDimensionHeight);
 		//Calculatig dimensions
 		displayCtrl.initNumberLineCalculations();
 
@@ -127,37 +130,52 @@ public class NumberLineDropLine  : Line {
 	public void initNumberLineMarkers(GameObject numberLineGrid, GameObject smallMarkerPF, GameObject numberMarkerPF){
 //		Debug.Log ("Names of gameObjects" + numberMarkerPF.name);
 		//First Number Marker
-		GameObject firstNumberMarkerGO = (GameObject) BasicGOOperation.InstantiateNGUIGO (numberMarkerPF,numberLineGrid.transform,"StartNumberMarker");
-		addItemToBigMarker (firstNumberMarkerGO, LabelCount);
+		GameObject firstNumberMarkerGO = (GameObject) BasicGOOperation.InstantiateNGUIGO (numberMarkerPF,numberLineGrid.transform,"NumberMarker_"+0);
 		NumberMarkerList.Add (firstNumberMarkerGO);
-		for (int i = (displayCtrl.IntegerCount-1); i > -1; i--) {
+		for (int i = 1; i < displayCtrl.IntegerCount; i++) {
 			//First fill small markers
-			for (int j = 0; j < displayCtrl.numberBreak-1; j++) {
-				GameObject smallMarkerGO = (GameObject) BasicGOOperation.InstantiateNGUIGO (smallMarkerPF,numberLineGrid.transform,"SmallMarker_"+i+"_"+j);
+			for (int j = 1; j < displayCtrl.numberBreak; j++) {
+				GameObject smallMarkerGO = (GameObject) BasicGOOperation.InstantiateNGUIGO (smallMarkerPF,numberLineGrid.transform,"NumberMarker_"+i+"SmallMarker_"+i+"_"+j);
 			}
 			//Fill Number Marker
-			GameObject numberMarkerGO = (GameObject) BasicGOOperation.InstantiateNGUIGO (numberMarkerPF,numberLineGrid.transform,"NumberMarker"+i);
-			addItemToBigMarker (numberMarkerGO, i);
+			GameObject numberMarkerGO = (GameObject) BasicGOOperation.InstantiateNGUIGO (numberMarkerPF,numberLineGrid.transform,"NumberMarker_"+i);
 			NumberMarkerList.Add (numberMarkerGO);
 		}
+		addDefaultItemsToBigMarker ();
 	}
-	public void addItemToBigMarker(GameObject numberMarkerGO, int number){
+	public void addDefaultItemsToBigMarker(){
 		GameObject dropZonePF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_CELL)as GameObject;
 		GameObject selectBtnPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
-		GameObject itemGO;
-		if (displayNumber) numberMarkerGO.GetComponentInChildren<TEXDrawNGUI> ().text = ( number).ToString() ;
-		switch (Type) {
-		case LineType.NumberLineDrop:
-			itemGO = BasicGOOperation.InstantiateNGUIGO (dropZonePF, numberMarkerGO.transform); 
-			//Set target text
-			break;
-		case LineType.NumberLineSelect:
-			itemGO = BasicGOOperation.InstantiateNGUIGO (selectBtnPF, numberMarkerGO.transform); 
-			SelectableButtonCell.updateSelectBtnGO (itemGO, number.ToString ());
-			break;
-		case LineType.NumberLineDropJump:
-			itemGO = BasicGOOperation.InstantiateNGUIGO (dropZonePF, numberMarkerGO.transform); 
-			break;
+		GameObject itemGO=null;int index=0;
+		foreach (GameObject numberMarkerItem in NumberMarkerList){
+			if (displayNumber) numberMarkerItem.GetComponentInChildren<TEXDrawNGUI> ().text = ( index).ToString() ;
+			switch (Type) {
+			case LineType.NumberLineDrop:
+				itemGO = BasicGOOperation.InstantiateNGUIGO (dropZonePF, numberMarkerItem.transform); 
+				//Set target text
+				break;
+			case LineType.NumberLineSelect:
+				itemGO = BasicGOOperation.InstantiateNGUIGO (selectBtnPF, numberMarkerItem.transform); 
+				SelectableButtonCell.updateSelectBtnGO (itemGO, "");
+				break;
+			case LineType.NumberLineDropJump:
+				itemGO = BasicGOOperation.InstantiateNGUIGO (dropZonePF, numberMarkerItem.transform); 
+				break;
+			}
+			itemGO.transform.localPosition = new Vector3 (-60f, 0f,0f);
+			index++;
 		}
+		 
+	}
+	public GameObject addItemToBigMarker(int index, string text, NumberLineLabelCell.LabelType cellLabel){
+		int displayIndex = displayCtrl.IntegerCount - index - 1;
+		GameObject itemGO=null;
+		if (cellLabel == NumberLineLabelCell.LabelType.Label) {
+			NumberMarkerList [displayIndex].GetComponentInChildren<TEXDrawNGUI> ().text = text;
+			itemGO = NumberMarkerList [displayIndex].transform.GetChild (0).gameObject;
+		} else if (cellLabel == NumberLineLabelCell.LabelType.LabelAnswer) {
+			itemGO = NumberMarkerList [displayIndex].transform.GetChild (0).gameObject;
+		}
+		return itemGO;
 	}
 }

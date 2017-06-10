@@ -21,6 +21,7 @@ public class HTMLParserTest : MonoBehaviour {
 	// Use this for initialization
 	public GameObject CenterContentScrollViewPF;
 	void Start () {
+		BasicGOOperation.scale =  NGUITools.GetRoot (gameObject).transform.localScale;
 		HTMLParser parser = new HTMLParser ();
 
 		string text = System.IO.File.ReadAllText (@"Assets/Data/Question_Data.html");

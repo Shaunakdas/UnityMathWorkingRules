@@ -85,7 +85,7 @@ MonoBehaviour:
     index: 2
     characterIndex: 194
     fontIndex: 3
-    type: 0
+    type: 2
     height: 0.55
     depth: 0.05
     bearing: -0.05

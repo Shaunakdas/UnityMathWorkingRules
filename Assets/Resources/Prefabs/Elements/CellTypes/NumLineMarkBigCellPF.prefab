@@ -166,7 +166,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 1.6666666
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
-  m_Text: 0
+  m_Text: 
   m_FontIndex: -1
   m_AutoFit: 1
   m_AutoWrap: 0

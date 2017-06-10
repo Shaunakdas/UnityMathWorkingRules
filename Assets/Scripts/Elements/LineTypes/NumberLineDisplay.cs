@@ -12,6 +12,7 @@ public class NumberLineDisplay  {
 	public float screenDimensionWidth{get; set;}
 	public float screenPadding{get; set;}
 	public float startYPosition{get; set;}
+	public Vector2 edgePadding{ get; set; }
 
 	//Question Values
 	public int IntegerCount{get;set;}
@@ -36,13 +37,13 @@ public class NumberLineDisplay  {
 	public void defaultValues(){
 		screenDimensionHeight=936f; screenDimensionWidth=520f;
 		IntegerCount=10; numberBreak=5; correctAnswer = 5f;
-		screenPadding=30f; startYPosition = -420f;
-		errorTolerance = 25f;
+		screenPadding=0f; startYPosition = -screenDimensionHeight/2;
+		errorTolerance = 25f;edgePadding= new Vector2(70f,111f);
 	}
 	public void initNumberLineCalculations(){
 		//To be calculated
 		cellWidth = 40f;
-		allocatedHeight = (screenDimensionHeight / 2) - screenPadding + Mathf.Abs(startYPosition);
+		allocatedHeight = (screenDimensionHeight / 2) - screenPadding + Mathf.Abs(startYPosition)-edgePadding.x;
 		totalBreakerCount = 1+(numberBreak*(IntegerCount-1));
 		cellHeight = allocatedHeight/totalBreakerCount;
 	}

@@ -3,6 +3,17 @@ using UnityEngine;
 using System.Collections.Generic;
 public class BasicGOOperation : MonoBehaviour{	
 	//Base methods
+	static private Vector3 _scale;
+	static public Vector3 scale{
+		get { 
+			if (_scale != null) {
+				return _scale;
+			} else {
+				return new Vector3 (0.002136752f, 0.002136752f, 0.002136752f);
+			}
+		}
+		set { _scale = value; }
+	}
 	/// <summary>
 	/// Get Child GameObject of given name
 	/// </summary>
@@ -185,7 +196,6 @@ public class BasicGOOperation : MonoBehaviour{
 		}
 		return elementSize;
 	}
-
 }
 
 

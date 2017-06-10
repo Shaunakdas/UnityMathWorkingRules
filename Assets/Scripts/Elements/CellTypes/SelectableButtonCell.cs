@@ -38,17 +38,39 @@ public class SelectableButtonCell : Cell {
 	//Static method which can be used by any class initiating SelectButton
 	public static void updateSelectBtnGO(GameObject ElementGO, string text){
 		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
-		GameObject labelGO = BasicGOOperation.getChildGameObject (TableGO, "Label");
-		//Setting text
-		labelGO.GetComponent<UILabel> ().text = text;
+		updateText (ElementGO, text);
 		//Setting width based on text width
-		ElementGO.GetComponent<UISprite>().width =(int) Mathf.Max(55f,BasicGOOperation.getNGUITextSize(text)+26f);
+		resizeToFit(ElementGO);
 		GameObject checkBoxGO = BasicGOOperation.getChildGameObject (TableGO, "CheckBox");
 		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { updateCheckBox(checkBoxGO); });
 	}
 	public static void updateCheckBox(GameObject checkBoxGO){
 //		checkBoxGO.GetComponent<UIToggle> ().value = !checkBoxGO.GetComponent<UIToggle> ().value;
 		checkBoxGO.GetComponent<UIToggle> ().Set(!checkBoxGO.GetComponent<UIToggle> ().value,true);
+	}
+	public static void updateTableCol(GameObject ElementGO, int col){
+		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
+		TableGO.GetComponent<UITable> ().columns = col;
+	}
+	public static void updateText(GameObject ElementGO, string text){
+		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
+		GameObject labelGO = BasicGOOperation.getChildGameObject (TableGO, "Label");
+		//Setting text
+		labelGO.GetComponent<UILabel> ().text = text;
+	}
+	public static void updateTextSize(GameObject ElementGO, int size){
+		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
+		GameObject labelGO = BasicGOOperation.getChildGameObject (TableGO, "Label");
+		//Setting text
+		labelGO.GetComponent<UILabel> ().fontSize = size;
+	}
+	public static void resizeToFit(GameObject ElementGO){
+		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
+		Debug.Log ("Name of ElemtnGO" + ElementGO.name + "NAme of targetGO" + TableGO.GetComponentInChildren<UILabel>().text);
+		TableGO.GetComponent<UITable> ().Reposition ();
+		BasicGOOperation.ResizeToFitTargetGO (ElementGO, TableGO);
+		ElementGO.GetComponent<UIWidget> ().width = (int)(ElementGO.GetComponent<UIWidget> ().width + 25f);
+		ElementGO.GetComponent<UIWidget> ().height = (int)(ElementGO.GetComponent<UIWidget> ().height + 10f);
 	}
 		
 

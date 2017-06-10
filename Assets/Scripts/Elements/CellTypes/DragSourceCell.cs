@@ -65,11 +65,22 @@ public class DragSourceCell : Cell {
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 		GameObject labelGO = BasicGOOperation.getChildGameObject (ElementGO, "Label");
 		labelGO.GetComponent<UILabel> ().text = DisplayText;
-		ElementGO.name = ElementGO.name + "_"+ DisplayText;
+		ElementGO.name = ElementGO.name + "_"+ generateStandardName(DisplayText);
 		ElementGO.GetComponent<UIDragDropItem> ().restriction = (DragAlign == Paragraph.AlignType.Horizontal)? UIDragDropItem.Restriction.Horizontal:UIDragDropItem.Restriction.Vertical ;
 		//Increasing size based on text
 //		float width = BasicGOOperation.getTextSize(DisplayText);
 //		float elementWidth = ElementGO.GetComponent<UISprite> ().localSize.y;
 //		elementWidth = (width > 30f) ? (width + 30f) : 60f;
+	}
+	public string generateStandardName(string text){
+		int number; string newText = text;
+		if (int.TryParse (text, out number)) {
+			number = number + 100;
+			newText = number.ToString (); int rem = 3 - newText.Length; 
+			for (int i = 0; i < rem; i++) {
+				newText = "0" + newText;
+			}
+		}
+		return newText;
 	}
 }

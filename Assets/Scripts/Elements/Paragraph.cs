@@ -102,6 +102,9 @@ public class Paragraph : BaseElement{
 				case "number_line_drop": 
 					newLine = new NumberLineDropLine (line_node);
 					break;
+				case "number_line_select": 
+					newLine = new NumberLineDropLine (line_node);
+					break;
 				case "combination": 
 					newLine = new CombinationLine (line_node);
 					break;

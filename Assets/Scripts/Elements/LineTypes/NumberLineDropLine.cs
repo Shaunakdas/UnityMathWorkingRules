@@ -130,8 +130,11 @@ public class NumberLineDropLine  : Line {
 				//Set target text
 				break;
 			case LineType.NumberLineSelect:
-				itemGO = BasicGOOperation.InstantiateNGUIGO (selectBtnPF, numberMarkerItem.transform); 
-				SelectableButtonCell.updateSelectBtnGO (itemGO, "");
+				itemGO = BasicGOOperation.InstantiateNGUIGO (selectBtnPF, numberMarkerItem.transform);
+				SelectableButtonCell.updateTableCol (itemGO, 0);
+				SelectableButtonCell.updateSelectBtnGO (itemGO, "  ");
+				SelectableButtonCell.updateTextSize (itemGO, 40);
+				SelectableButtonCell.resizeToFit (itemGO);
 				break;
 			case LineType.NumberLineDropJump:
 				itemGO = BasicGOOperation.InstantiateNGUIGO (dropZonePF, numberMarkerItem.transform); 
@@ -146,8 +149,22 @@ public class NumberLineDropLine  : Line {
 		int displayIndex = displayCtrl.IntegerCount - index - 1;
 		GameObject itemGO=null;
 		if (cellLabel == NumberLineLabelCell.LabelType.Label) {
-			NumberMarkerList [displayIndex].GetComponentInChildren<TEXDrawNGUI> ().text = text;
-			itemGO = NumberMarkerList [displayIndex].transform.GetChild (0).gameObject;
+			itemGO = NumberMarkerList [index];
+			switch (Type) {
+			case LineType.NumberLineDrop:
+				itemGO.GetComponentInChildren<TEXDrawNGUI>().text = text; 
+				//Set target text
+				break;
+			case LineType.NumberLineSelect:
+				GameObject selBtnGO = BasicGOOperation.getChildGameObject (itemGO ,LocationManager.NAME_SELECT_BTN_CELL);
+				SelectableButtonCell.updateText (selBtnGO, text);
+				SelectableButtonCell.updateTextSize (selBtnGO, 40);
+				SelectableButtonCell.resizeToFit (selBtnGO);
+				break;
+			case LineType.NumberLineDropJump:
+				itemGO.GetComponentInChildren<TEXDrawNGUI>().text = text; 
+				break;
+			}
 		} else if (cellLabel == NumberLineLabelCell.LabelType.LabelAnswer) {
 			itemGO = NumberMarkerList [displayIndex].transform.GetChild (0).gameObject;
 		}

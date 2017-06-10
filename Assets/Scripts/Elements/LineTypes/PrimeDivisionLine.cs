@@ -38,8 +38,7 @@ public class PrimeDivisionLine : Line {
 		ElementGO = elementGO;
 		GameObject primeDivisionGrid = BasicGOOperation.getChildGameObject (ElementGO, "PrimeDivisionGrid");
 		initPrimeDivLineGameObject (primeDivisionGrid);
-		Vector3 finalSize = NGUIMath.CalculateAbsoluteWidgetBounds (elementGO.transform).size;
-		elementGO.GetComponent<UISprite> ().width = (int)finalSize.x; elementGO.GetComponent<UISprite> ().height = (int)finalSize.y;
+		BasicGOOperation.ResizeToFitChildGO (elementGO);
 	}
 	public void initPrimeDivLineGameObject(GameObject primeDivisionGrid){
 		int levelCount = primeDivision.PrimeFactorList.Count;

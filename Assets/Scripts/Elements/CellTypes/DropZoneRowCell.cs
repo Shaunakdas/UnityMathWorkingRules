@@ -15,7 +15,7 @@ public class DropZoneRowCell : Cell {
 	string _targetText;
 	public string TargetText{ 
 		get { return _targetText; }
-		set { _targetText = value; generateTargetTextList (value); }
+		set { _targetText = value; TargetTextList = generateTargetTextList (value); }
 	}
 	public List<string> TargetTextList{ get; set; }
 
@@ -114,16 +114,21 @@ public class DropZoneRowCell : Cell {
 			generateTargetTextList (attr_answer.Value);
 		}
 	}
-	public void generateTargetTextList(string targetText){
+	public List<string> generateTargetTextList(string targetText){
 		Debug.Log ("generateTargetTextList");
+		List<string> _targetTextList = new List<string> ();
 		//If answer tag is present. user should be able to drop an element.
 		Touchable = true;Dropable = true;
 		//If answer=''. user should be able to drop an element but the element will jump back.
 		if (targetText == "") {
 			Dropable = false;
 		} else {
-			TargetTextList = targetText.Split (';').ToList ();
+			_targetTextList = splitTargetText(targetText);
 		}
+		return _targetTextList;
+	}
+	static public List<string> splitTargetText(string targetText){
+		return targetText.Split (';').ToList ();
 	}
 	override public void updateGOProp(GameObject ElementGO){
 		Debug.Log ("Updating Properties of Drop Zone Cell");
@@ -134,14 +139,17 @@ public class DropZoneRowCell : Cell {
 		}
 	}
 	override public GameObject generateElementGO(GameObject parentGO){
-		GameObject dropZoneHolderPrefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + prefabName)as GameObject;
+		return  generateDropZoneHolderGO (parentGO, TargetTextList, idPresent);
+	}
+	static public GameObject generateDropZoneHolderGO(GameObject parentGO, List<string> _targetTextList, bool idPresent){
+		GameObject dropZoneHolderPrefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_HOLDER_CELL)as GameObject;
 		GameObject dropZoneTableprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_CELL)as GameObject;
 		GameObject dropZoneTableItemprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_ITEM_CELL)as GameObject;
 
 		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPrefab, parentGO.transform);
 
-		Debug.Log ("TargetText list"+TargetTextList.Count);
-		foreach (string targetText in TargetTextList){
+		Debug.Log ("TargetText list"+_targetTextList.Count);
+		foreach (string targetText in _targetTextList){
 			Debug.Log ("TargetText"+targetText.ToString());
 			GameObject backgroundGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableprefab, holderGO.transform);
 			Debug.Log ("backgroundGO "+backgroundGO.name.ToString());
@@ -160,11 +168,12 @@ public class DropZoneRowCell : Cell {
 				}
 			}
 			backgroundGO.GetComponent<UISprite>().width = tableWidth;
-//			updateGOProp (backgroundGO);
+			//			updateGOProp (backgroundGO);
 			BasicGOOperation.CheckAndRepositionTable (tableGO);
 		}
 		BasicGOOperation.CheckAndRepositionTable (holderGO);
 
-		return null;
+		return holderGO;
+
 	}
 }

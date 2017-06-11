@@ -119,25 +119,25 @@ public class NumberLineDropLine  : Line {
 		addDefaultItemsToBigMarker ();
 	}
 	public void addDefaultItemsToBigMarker(){
-		GameObject dropZonePF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_CELL)as GameObject;
-		GameObject selectBtnPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
+//		GameObject selectBtnPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
 		GameObject itemGO=null;int index=0;
 		foreach (GameObject numberMarkerItem in NumberMarkerList){
 			if (displayNumber) numberMarkerItem.GetComponentInChildren<TEXDrawNGUI> ().text = ( index).ToString() ;
 			switch (Type) {
 			case LineType.NumberLineDrop:
-				itemGO = BasicGOOperation.InstantiateNGUIGO (dropZonePF, numberMarkerItem.transform); 
+				List<string> _targetTextList = DropZoneRowCell.splitTargetText ("");
+				itemGO = DropZoneRowCell.generateDropZoneHolderGO (numberMarkerItem, _targetTextList, false);
 				//Set target text
 				break;
 			case LineType.NumberLineSelect:
-				itemGO = BasicGOOperation.InstantiateNGUIGO (selectBtnPF, numberMarkerItem.transform);
+//				itemGO = BasicGOOperation.InstantiateNGUIGO (selectBtnPF, numberMarkerItem.transform);
+				itemGO = SelectableButtonCell.generateSelBtnCellGO(numberMarkerItem,"  ");
 				SelectableButtonCell.updateTableCol (itemGO, 0);
-				SelectableButtonCell.updateSelectBtnGO (itemGO, "  ");
 				SelectableButtonCell.updateTextSize (itemGO, 40);
 				SelectableButtonCell.resizeToFit (itemGO);
 				break;
 			case LineType.NumberLineDropJump:
-				itemGO = BasicGOOperation.InstantiateNGUIGO (dropZonePF, numberMarkerItem.transform); 
+				itemGO = DropZoneRowCell.generateDropZoneHolderGO (numberMarkerItem, DropZoneRowCell.splitTargetText (""), false);
 				break;
 			}
 			itemGO.transform.localPosition = new Vector3 (-60f, 0f,0f);
@@ -156,8 +156,9 @@ public class NumberLineDropLine  : Line {
 				//Set target text
 				break;
 			case LineType.NumberLineSelect:
-				GameObject selBtnGO = BasicGOOperation.getChildGameObject (itemGO ,LocationManager.NAME_SELECT_BTN_CELL);
-				SelectableButtonCell.updateText (selBtnGO, text);
+//				GameObject selBtnGO = BasicGOOperation.getChildGameObject (itemGO ,LocationManager.NAME_SELECT_BTN_CELL);
+//				SelectableButtonCell.updateText (selBtnGO, text);
+				GameObject selBtnGO = SelectableButtonCell.generateSelBtnCellGO(itemGO,text);
 				SelectableButtonCell.updateTextSize (selBtnGO, 40);
 				SelectableButtonCell.resizeToFit (selBtnGO);
 				break;

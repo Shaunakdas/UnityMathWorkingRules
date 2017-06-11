@@ -31,6 +31,17 @@ public class SelectableButtonCell : Cell {
 		prefabName = LocationManager.NAME_SELECT_BTN_CELL;
 		DisplayText = cell_node.InnerText;
 	}
+	override public GameObject generateElementGO(GameObject parentGO){
+		getAlignType ();
+		return generateSelBtnCellGO (parentGO, DisplayText);
+	}
+	static public GameObject generateSelBtnCellGO(GameObject parentGO, string text){
+		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
+		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+		updateSelectBtnGO(cellGO, text);
+		BasicGOOperation.CheckAndRepositionTable (cellGO);
+		return cellGO;
+	}
 	override public void updateGOProp(GameObject ElementGO){
 		//		Debug.Log ("Updating Text of Cell" + DisplayText);
 		updateSelectBtnGO(ElementGO, DisplayText);

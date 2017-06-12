@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CustomDragDropItem : UIDragDropItem {
+	public GameObject DragScrollView;
 	public override void StartDragging ()
 	{
 
@@ -55,7 +56,35 @@ public class CustomDragDropItem : UIDragDropItem {
 		}
 	}
 
+	protected override void OnDragStart ()
+	{
+		if (!interactable) return;
+		if (!enabled || mTouch != UICamera.currentTouch) return;
 
+		// If we have a restriction, check to see if its condition has been met first
+		if (restriction != Restriction.None)
+		{
+			if (restriction == Restriction.Horizontal)
+			{
+				Vector2 delta = mTouch.totalDelta;
+				if (Mathf.Abs(delta.x) < Mathf.Abs(delta.y)) return;
+			}
+			else if (restriction == Restriction.Vertical)
+			{
+				Vector2 delta = mTouch.totalDelta;
+				if (Mathf.Abs (delta.x) > Mathf.Abs (delta.y)) {
+					DragScrollView.GetComponent<CustomDragScrollView> ().childDrag (delta);
+					return;
+				}
+			}
+			else if (restriction == Restriction.PressAndHold)
+			{
+				// Checked in Update instead
+				return;
+			}
+		}
+		StartDragging();
+	}
 
 	protected override void OnDragDropRelease (GameObject surface)
 	{
@@ -111,6 +140,7 @@ public class CustomDragDropItem : UIDragDropItem {
 		else NGUITools.Destroy(gameObject);
 		if (notifySurface (surface)) {
 			Debug.Log ("Correct Answer");
+			surface.GetComponent<UIDragDropContainer> ().enabled = false;
 		} else {
 			Debug.Log ("Incorrect Answer");
 		}

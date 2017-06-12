@@ -233,11 +233,12 @@ public class Row : BaseElement {
 		}
 		return parentGO;
 	}
-	override public void updateGOProp(GameObject ElementGO){
+	override public void updateGOProp(GameObject _elementGO){
 		Debug.Log ("Updating Grid cell width");
+		ElementGO = _elementGO;
 		if (Type == RowType.DragSource) {
 			//making Grid child of ScrollView as parent
-			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (ElementGO, "ScrollView");
+			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (_elementGO, "ScrollView");
 			GameObject gridGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Grid");
 			gridGO.GetComponent<UIGrid> ().cellWidth = Mathf.Max(80f,maxGridCellWidth+30f);
 		}

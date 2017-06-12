@@ -66,7 +66,9 @@ public class DragSourceCell : Cell {
 		GameObject labelGO = BasicGOOperation.getChildGameObject (ElementGO, "Label");
 		labelGO.GetComponent<UILabel> ().text = DisplayText;
 		ElementGO.name = ElementGO.name + "_"+ generateStandardName(DisplayText);
-		ElementGO.GetComponent<UIDragDropItem> ().restriction = (DragAlign == Paragraph.AlignType.Horizontal)? UIDragDropItem.Restriction.Horizontal:UIDragDropItem.Restriction.Vertical ;
+		ElementGO.GetComponent<CustomDragDropItem> ().restriction = (DragAlign == Paragraph.AlignType.Horizontal)? UIDragDropItem.Restriction.Horizontal:UIDragDropItem.Restriction.Vertical ;
+		GameObject containerGO = BasicGOOperation.getChildGameObject (BasicGOOperation.getChildGameObject (this.Parent.ElementGO, "ScrollView"), "Container");
+		ElementGO.GetComponent<CustomDragDropItem> ().DragScrollView = containerGO;
 		//Increasing size based on text
 //		float width = BasicGOOperation.getTextSize(DisplayText);
 //		float elementWidth = ElementGO.GetComponent<UISprite> ().localSize.y;

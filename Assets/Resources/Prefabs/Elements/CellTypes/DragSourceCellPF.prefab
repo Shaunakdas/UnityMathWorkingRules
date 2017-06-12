@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114931369097963928}
   - component: {fileID: 114420551662202692}
   - component: {fileID: 114168395883153248}
+  - component: {fileID: 114484525530708630}
   - component: {fileID: 65838436545926426}
   - component: {fileID: 114963940192074356}
   m_Layer: 8
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1433585338945372}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d9ee9adcf574fc42857acfaad9fb89e, type: 3}
   m_Name: 
@@ -253,6 +254,22 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 1
   onClick: []
+--- !u!114 &114484525530708630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433585338945372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58eb4cb6e37fb40fd8f754dc2f913dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restriction: 2
+  cloneOnDrag: 1
+  pressAndHoldDelay: 1
+  interactable: 1
+  DragScrollView: {fileID: 0}
 --- !u!114 &114551910887238518
 MonoBehaviour:
   m_ObjectHideFlags: 1

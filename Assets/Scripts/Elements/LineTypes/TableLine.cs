@@ -8,7 +8,7 @@ public class TableLine  : Line {
 //	public List<Row> RowList {get; set;}
 	public int ColumnCount {get; set;}
 	public int RowCount {get; set;}
-
+	public bool SelBtnFlag{ get; set; }
 	//Constructor
 	public TableLine(string type){
 		RowList = new List<Row>();
@@ -44,5 +44,21 @@ public class TableLine  : Line {
 	}
 	override public void updateGOProp(GameObject ElementGO){
 		ElementGO.GetComponent<UITable> ().columns = ColumnCount;
+		if (SelBtnFlag) {
+			if (ElementGO.GetComponent<SelBtnHolder> ().correctCount > 0) {
+				GameObject submitBtn = addSubmitBtnGO ();
+			}
+		}
+	}
+	//For Selectable Button Cell
+	public void updateSelBtnHolder(GameObject _selBtnGO,bool _selBtnBool){
+		SelBtnFlag = true;
+		ElementGO.AddComponent<SelBtnHolder> (); SelBtnHolder holderScript = ElementGO.GetComponent<SelBtnHolder> ();
+		holderScript.addSelectBtn (_selBtnGO, _selBtnBool);
+		//Changing Paragraph's correctType
+		holderScript.setParentCorrectCount(Parent as Paragraph,this);
+	}
+	public GameObject addSubmitBtnGO(){
+		return null;
 	}
 }

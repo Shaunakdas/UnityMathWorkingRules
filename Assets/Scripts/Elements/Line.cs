@@ -140,4 +140,7 @@ public class Line : BaseElement{
 		BasicGOOperation.CheckAndRepositionTable (lineGO);
 		return lineGO;
 	}
+	public void addSubmitBtn(){
+
+	}
 }

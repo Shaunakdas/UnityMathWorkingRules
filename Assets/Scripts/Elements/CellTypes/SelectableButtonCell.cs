@@ -45,6 +45,7 @@ public class SelectableButtonCell : Cell {
 	override public void updateGOProp(GameObject ElementGO){
 		//		Debug.Log ("Updating Text of Cell" + DisplayText);
 		updateSelectBtnGO(ElementGO, DisplayText);
+		SelBtnItemChecker itemChecker = updateItemChecker (ElementGO, correctFlag, Parent.Parent as Line);
 	}
 	//Static method which can be used by any class initiating SelectButton
 	public static void updateSelectBtnGO(GameObject ElementGO, string text){
@@ -53,7 +54,8 @@ public class SelectableButtonCell : Cell {
 		//Setting width based on text width
 		resizeToFit(ElementGO);
 		GameObject checkBoxGO = BasicGOOperation.getChildGameObject (TableGO, "CheckBox");
-		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { updateCheckBox(checkBoxGO); });
+		SelBtnItemChecker itemChecker = ElementGO.GetComponent<SelBtnItemChecker> ();
+		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { updateCheckBox(checkBoxGO);itemChecker.changeInputFlag(); });
 	}
 	public static void updateCheckBox(GameObject checkBoxGO){
 //		checkBoxGO.GetComponent<UIToggle> ().value = !checkBoxGO.GetComponent<UIToggle> ().value;
@@ -83,6 +85,13 @@ public class SelectableButtonCell : Cell {
 		ElementGO.GetComponent<UIWidget> ().width = (int)(ElementGO.GetComponent<UIWidget> ().width + 25f);
 		ElementGO.GetComponent<UIWidget> ().height = (int)(ElementGO.GetComponent<UIWidget> ().height + 10f);
 	}
-		
+	public static SelBtnItemChecker updateItemChecker(GameObject _elementGO, bool _correctBool, Line line){
+		SelBtnItemChecker itemChecker= _elementGO.GetComponent<SelBtnItemChecker> ();
+		itemChecker.correctFlag = _correctBool;
+		//Adding SelBtrnGolder script to parent TableLine
+		line.ElementGO.AddComponent<SelBtnHolder>();
+//		line.GetComponent<SelBtnHolder>().
+		return itemChecker;
+	}
 
 }

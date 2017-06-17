@@ -10,6 +10,7 @@ public class DropZoneItemChecker : MonoBehaviour {
 	void Start () {
 		idCheck = false;
 	}
+	//Checker function called after the item is dropped in drop zone.
 	public bool checkDropZoneItem(string text){
 		Debug.Log ("checkDropZoneItem for checking "+text);
 		if (idCheck) {

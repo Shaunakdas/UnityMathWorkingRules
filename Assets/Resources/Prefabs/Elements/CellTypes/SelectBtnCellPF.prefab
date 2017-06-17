@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 114769410826815648}
   - component: {fileID: 65307892075453434}
   - component: {fileID: 114748568571942742}
+  - component: {fileID: 114602178616299204}
   m_Layer: 8
   m_Name: SelectBtnCellPF
   m_TagString: Untagged
@@ -561,6 +562,20 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 62adb30369acbf943a67cee0f69267a3, type: 2}
   mSpriteName: Button
   mFillCenter: 1
+--- !u!114 &114602178616299204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992285895780536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b1aae174d04aa9b13e1d4d97d36ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctFlag: 0
+  userInputFlag: 0
+  SelBtnHolderGO: {fileID: 0}
 --- !u!114 &114663758417109490
 MonoBehaviour:
   m_ObjectHideFlags: 1

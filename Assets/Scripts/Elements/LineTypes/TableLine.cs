@@ -44,10 +44,9 @@ public class TableLine  : Line {
 	}
 	override public void updateGOProp(GameObject ElementGO){
 		ElementGO.GetComponent<UITable> ().columns = ColumnCount;
-		if (SelBtnFlag) {
-			if (ElementGO.GetComponent<SelBtnHolder> ().correctCount > 0) {
-				GameObject submitBtn = addSubmitBtnGO ();
-			}
+		SelBtnHolder selBtnHolder = ElementGO.GetComponent<SelBtnHolder> ();
+		if (selBtnHolder != null) {
+			selBtnHolder.setParentCorrectCount (Parent as Paragraph, this);
 		}
 	}
 	//For Selectable Button Cell

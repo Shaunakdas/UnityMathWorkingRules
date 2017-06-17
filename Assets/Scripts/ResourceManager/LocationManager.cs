@@ -26,6 +26,7 @@ public class LocationManager {
 	public const string NAME_TEXT_LINE = "TextLinePF";
 	public const string NAME_LATEX_TEXT_LINE = "LatexTextLinePF";
 	public const string NAME_TABLE_LINE = "TableLinePF";
+	public const string NAME_SUBMIT_LINE = "SubmitLinePF";
 	//	public GameObject CombinationLinePF,NumLineDropLinePF,PrimeDivLinePF,TextLinePF,LatexTextLinePF,TableLinePF;
 
 	//Row Types Location

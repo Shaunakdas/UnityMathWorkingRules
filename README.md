@@ -22,3 +22,23 @@
 	Left|Default|Right
 * Vertical LAyout
 	Top|Default|Bottom
+
+## Adding Monoscript in runtime. 
+
+```
+gameObject.AddComponent<Monoscript>();
+```
+Remember to use Awake() method to initialize instead of Start() in Monoscript.
+
+## .NET Version 
+
+For Unity 5.6, .NET verision is 3.5
+
+## Testing in Unity
+[Unity Test Runner][https://docs.unity3d.com/Manual/testing-editortestsrunner.html]
+[Unity Tests Runner Wiki][https://bitbucket.org/Unity-Technologies/unitytesttools/wiki/]
+[Unity Test Runner Test command Line][https://bitbucket.org/Unity-Technologies/unitytesttools/wiki/UnitTestsRunner]
+[Unity Comand Line Arguments][https://docs.unity3d.com/Manual/CommandLineArguments.html]
+[Unity Command Line Issue][https://forum.unity3d.com/threads/editor-test-runner-does-nothing-from-the-command-line.381750/]
+[Unity Log files][https://docs.unity3d.com/Manual/LogFiles.html]
+[Unity Test Tools SOF][https://stackoverflow.com/questions/34659654/how-to-set-up-unity-test-tools-on-unity-5]

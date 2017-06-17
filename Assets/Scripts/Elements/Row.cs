@@ -229,7 +229,8 @@ public class Row : BaseElement {
 			break;
 		}
 		foreach (Cell cell in CellList) {
-			cell.generateElementGO (parentGO);
+			GameObject elementGO = cell.generateElementGO (parentGO);
+//			Debug.Log (elementGO.GetComponent<SelBtnItemChecker> ().correctFlag);
 		}
 		return parentGO;
 	}

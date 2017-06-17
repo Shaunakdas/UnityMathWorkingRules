@@ -33,7 +33,11 @@ public class SelectableButtonCell : Cell {
 	}
 	override public GameObject generateElementGO(GameObject parentGO){
 		getAlignType ();
-		return generateSelBtnCellGO (parentGO, DisplayText);
+		ElementGO =  generateSelBtnCellGO (parentGO, DisplayText);
+		Debug.Log (Parent.Parent.GetType ().ToString ());
+		SelBtnItemChecker itemChecker = updateItemChecker (ElementGO, correctFlag, Parent.Parent as Line);
+		Debug.Log(itemChecker.correctFlag);
+		return ElementGO;
 	}
 	static public GameObject generateSelBtnCellGO(GameObject parentGO, string text){
 		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
@@ -45,6 +49,7 @@ public class SelectableButtonCell : Cell {
 	override public void updateGOProp(GameObject ElementGO){
 		//		Debug.Log ("Updating Text of Cell" + DisplayText);
 		updateSelectBtnGO(ElementGO, DisplayText);
+		//Init Select Item Checker
 		SelBtnItemChecker itemChecker = updateItemChecker (ElementGO, correctFlag, Parent.Parent as Line);
 	}
 	//Static method which can be used by any class initiating SelectButton
@@ -87,10 +92,13 @@ public class SelectableButtonCell : Cell {
 	}
 	public static SelBtnItemChecker updateItemChecker(GameObject _elementGO, bool _correctBool, Line line){
 		SelBtnItemChecker itemChecker= _elementGO.GetComponent<SelBtnItemChecker> ();
-		itemChecker.correctFlag = _correctBool;
+		Debug.Log (_correctBool);
+		itemChecker.correctFlag = _correctBool;itemChecker.SelBtnHolderGO = line.ElementGO;
+
 		//Adding SelBtrnGolder script to parent TableLine
-		line.ElementGO.AddComponent<SelBtnHolder>();
-//		line.GetComponent<SelBtnHolder>().
+		if (line.ElementGO.GetComponent<SelBtnHolder>() == null)
+			line.ElementGO.AddComponent<SelBtnHolder>();
+		line.ElementGO.GetComponent<SelBtnHolder>().addSelectBtn (_elementGO, _correctBool);
 		return itemChecker;
 	}
 

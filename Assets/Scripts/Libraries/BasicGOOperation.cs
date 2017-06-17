@@ -155,46 +155,11 @@ public class BasicGOOperation : MonoBehaviour{
 	/// </summary>
 	/// <param name="ElementGO">Element GameObject</param>
 	public static Vector2 ElementSize(GameObject GO){
-		Vector2 elementSize = new Vector2(0,0);
-		if (GO.GetComponent<TEXDrawNGUI> () != null) {
-			//Element is a TexDraw
-			elementSize = GO.GetComponent<TEXDrawNGUI> ().localSize;
-		
-		} else if (GO.GetComponent<UILabel> () != null) {
-			//Element is a UILabel
-			elementSize = GO.GetComponent<UILabel> ().localSize;
-		
-		} else if (GO.GetComponent<UISprite> () != null) {
-			//Element is a UISprite
-			elementSize = GO.GetComponent<UISprite> ().localSize;
-		
-		} else if (GO.GetComponent<UI2DSprite> () != null) {
-			//Element is a UI2DSprite
-			elementSize = GO.GetComponent<UI2DSprite> ().localSize;
-		} else if (GO.transform.childCount != 0) {
-			//GO itself doesn't has any dimensions. Checking for child's dimensions
-
-			if (GO.GetComponent<UITable> () != null) {
-				//Element is a UITable
-				foreach (Transform childtransform in GO.transform) {
-					elementSize = elementSize + ElementSize (childtransform.gameObject) + GO.GetComponent<UITable>().padding;
-				}
-
-			} else if (GO.GetComponent<UIGrid> () != null) {
-				//Element is a UIGrid
-				elementSize.x = (GO.transform.childCount)*GO.GetComponent<UIGrid>().cellWidth;
-				elementSize.y = (GO.transform.childCount)*GO.GetComponent<UIGrid>().cellHeight;
-			
-			} else if (GO.transform.childCount == 0) {
-				//GO itself doesn't has any dimensions
-				elementSize = elementSize + ElementSize (GO.transform.GetChild(0).gameObject);
-			
-			}
-		
-		} else {
-			//GO itself doesn't has any dimensions and GO doesn't has any children
-		}
-		return elementSize;
+		ResizeToFitChildGO (GO);
+		Vector3 finalSize = NGUIMath.CalculateAbsoluteWidgetBounds (GO.transform).size;
+		finalSize.x = finalSize.x / scale.x; finalSize.y = finalSize.y / scale.y;
+		Debug.Log ("ElementSize" + finalSize.x + " and " + finalSize.y);
+		return finalSize;
 	}
 
 	/// <summary>

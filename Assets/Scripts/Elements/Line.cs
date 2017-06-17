@@ -130,7 +130,7 @@ public class Line : BaseElement{
 			lineGO = BasicGOOperation.InstantiateNGUIGO (prefab, CenterContentGO.transform);
 			break;
 		}
-
+		ElementGO = lineGO;
 		initGOProp (lineGO);
 		foreach (Row row in RowList) {
 			row.generateElementGO (lineGO);

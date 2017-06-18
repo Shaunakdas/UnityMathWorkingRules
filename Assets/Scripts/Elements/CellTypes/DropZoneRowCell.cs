@@ -159,14 +159,14 @@ public class DropZoneRowCell : Cell {
 			GameObject tableGO = BasicGOOperation.getChildGameObject (backgroundGO, "Table");
 			if (idPresent) {
 				//id attribute is present. So there is no need to divide drop zone into individual item
-				GameObject tableItemGO =  initDropZoneTableItem(tableGO,_targetTextList,idPresent);
+				GameObject tableItemGO =  initDropZoneTableItem(tableGO,idPresent);
 				int contentWidth = targetText.ToCharArray ().Length * 30;
 				tableItemGO.GetComponent<UISprite> ().width = contentWidth;
 				tableWidth = contentWidth+10;
 			} else {
 				foreach (char targetChar in targetText.ToCharArray().ToList()) {
 					tableWidth += 50 + 5;
-					GameObject tableItemGO =  initDropZoneTableItem(tableGO,_targetTextList,idPresent);
+					GameObject tableItemGO =  initDropZoneTableItem(tableGO,idPresent);
 				}
 			}
 //			BasicGOOperation.ResizeToFitChildGO (backgroundGO);
@@ -179,11 +179,16 @@ public class DropZoneRowCell : Cell {
 		return holderGO;
 
 	}
-	static public GameObject initDropZoneTableItem(GameObject parentGO, List<string> _targetTextList, bool idPresent){
+	static public GameObject initDropZoneTableItem(GameObject parentGO, bool idPresent){
 		GameObject dropZoneTableItemprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_ITEM_CELL)as GameObject;
 		GameObject tableItemGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableItemprefab, parentGO.transform);
 		tableItemGO.GetComponent<DropZoneItemChecker> ().idCheck = (idPresent!=null)?idPresent:false;
 		tableItemGO.GetComponent<DropZoneItemChecker> ().DropZoneHolderGO = parentGO.transform.parent.parent.gameObject;
 		return tableItemGO;
+	}
+	static public void addDropZoneHolder(GameObject parentGO,GameObject dropZoneHolderGO){
+		dropZoneHolderGO.GetComponent<DropZoneHolder> ().holderListParentGO = parentGO;
+		parentGO.AddComponent<DropZoneHolderParent> ();
+		parentGO.GetComponent<DropZoneHolderParent> ().addDropZoneHolder (dropZoneHolderGO);
 	}
 }

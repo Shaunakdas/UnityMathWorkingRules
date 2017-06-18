@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class DropZoneHolder : MonoBehaviour {
 	public bool idCheck{ get; set; }
+	public bool multipleHolderCheck;
+	public GameObject holderListParentGO;
 	public List<string> TargetTextList{get; set;}
+	void Awake(){
+		multipleHolderCheck = false;
+	}
 	// Use this for initialization
 	void Start () {
 //		TargetTextList = new List<string> ();
 	}
 	public bool checkDropZoneItem(string inputText){
 		Debug.Log ("Holder: checkDropZoneItem for checking "+inputText);
+		bool inputCorrect = false;
 		if (idCheck) {
 			if (TargetTextList.IndexOf(inputText)!= -1) {
-				return true;
+				inputCorrect = true;
 			}
 		} else {
 			if (checkCompositeText(inputText)) {
-				return true;
+				inputCorrect = true;
 			}
 		}
-		return false;
+		if (multipleHolderCheck) {
+			holderListParentGO.GetComponent<DropZoneHolderParent> ().dropEvent(inputCorrect);
+		}
+		return inputCorrect;
 	}
 	public bool checkCompositeText(string inputText){
 		

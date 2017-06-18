@@ -91,15 +91,19 @@ public class SelectableButtonCell : Cell {
 		ElementGO.GetComponent<UIWidget> ().height = (int)(ElementGO.GetComponent<UIWidget> ().height + 10f);
 	}
 	public static SelBtnItemChecker updateItemChecker(GameObject _elementGO, bool _correctBool, Line line){
+		return updateItemChecker (_elementGO, _correctBool, line.ElementGO);
+	}
+	public static SelBtnItemChecker updateItemChecker(GameObject _elementGO, bool _correctBool, GameObject _lineElementGO){
 		SelBtnItemChecker itemChecker= _elementGO.GetComponent<SelBtnItemChecker> ();
 		Debug.Log (_correctBool);
-		itemChecker.correctFlag = _correctBool;itemChecker.SelBtnHolderGO = line.ElementGO;
+		itemChecker.correctFlag = _correctBool;itemChecker.SelBtnHolderGO = _lineElementGO;
 
 		//Adding SelBtrnGolder script to parent TableLine
-		if (line.ElementGO.GetComponent<SelBtnHolder>() == null)
-			line.ElementGO.AddComponent<SelBtnHolder>();
-		line.ElementGO.GetComponent<SelBtnHolder>().addSelectBtn (_elementGO, _correctBool);
+		if (_lineElementGO.GetComponent<SelBtnHolder>() == null)
+			_lineElementGO.AddComponent<SelBtnHolder>();
+		_lineElementGO.GetComponent<SelBtnHolder>().addSelectBtn (_elementGO, _correctBool);
 		return itemChecker;
 	}
+
 
 }

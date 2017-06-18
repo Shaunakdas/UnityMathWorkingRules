@@ -125,8 +125,11 @@ public class NumberLineDropLine  : Line {
 			if (displayNumber) numberMarkerItem.GetComponentInChildren<TEXDrawNGUI> ().text = ( index).ToString() ;
 			switch (Type) {
 			case LineType.NumberLineDrop:
-				List<string> _targetTextList = DropZoneRowCell.splitTargetText ("");
+				List<string> _targetTextList = DropZoneRowCell.splitTargetText (" ");
 				itemGO = DropZoneRowCell.generateDropZoneHolderGO (numberMarkerItem, _targetTextList, false);
+				itemGO.GetComponent<UITable> ().pivot = UIWidget.Pivot.Center;
+				itemGO.GetComponentInChildren<UISprite> ().height = itemGO.GetComponentInChildren<UISprite> ().height - 20;
+				DropZoneRowCell.addDropZoneHolder (ElementGO, itemGO);
 				//Set target text
 				break;
 			case LineType.NumberLineSelect:
@@ -167,7 +170,22 @@ public class NumberLineDropLine  : Line {
 				break;
 			}
 		} else if (cellLabel == NumberLineLabelCell.LabelType.LabelAnswer) {
-			itemGO = NumberMarkerList [displayIndex].transform.GetChild (0).gameObject;
+			itemGO = NumberMarkerList [displayIndex];
+			switch (Type) {
+			case LineType.NumberLineDrop:
+				itemGO.GetComponentInChildren<DropZoneHolder>().TargetTextList = DropZoneRowCell.splitTargetText(text); 
+				//Set target text
+				break;
+			case LineType.NumberLineSelect:
+				//				GameObject selBtnGO = BasicGOOperation.getChildGameObject (itemGO ,LocationManager.NAME_SELECT_BTN_CELL);
+				//				SelectableButtonCell.updateText (selBtnGO, text);
+				SelBtnItemChecker itemChecker = itemGO.GetComponentInChildren<SelBtnItemChecker> ();
+				SelectableButtonCell.updateItemChecker (itemChecker.gameObject, true, ElementGO);
+				break;
+			case LineType.NumberLineDropJump:
+				itemGO.GetComponentInChildren<TEXDrawNGUI>().text = text; 
+				break;
+			}
 		}
 		return itemGO;
 	}

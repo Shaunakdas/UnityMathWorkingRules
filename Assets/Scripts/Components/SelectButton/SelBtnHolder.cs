@@ -11,7 +11,8 @@ public class SelBtnHolder : MonoBehaviour {
 			correctCount++;
 		depth = selBtnGO.GetComponent<UIWidget> ().depth;
 		Debug.Log (selBtnGO.GetComponent<SelBtnItemChecker>().correctFlag);
-		SelBtnGOList.Add (selBtnGO);
+		if(SelBtnGOList.IndexOf(selBtnGO)== -1)
+			SelBtnGOList.Add (selBtnGO);
 	}
 	public void setParentCorrectCount(Paragraph para, Line line){
 		if (correctCount > 1) {

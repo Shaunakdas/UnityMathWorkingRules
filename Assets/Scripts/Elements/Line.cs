@@ -68,6 +68,11 @@ public class Line : BaseElement{
 		string type_text = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		getLineType (type_text);
 		parseChildNode (line_node);
+		if (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE] != null) {
+			getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
+		} else {
+			getLocationType ("");
+		}
 	}
 	/// <summary>
 	/// Parses the Line Node to generate Row nodes

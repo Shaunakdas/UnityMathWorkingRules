@@ -17,18 +17,9 @@ public class TextLine : Line {
 	/// Initializes a new instance of the TextLine class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public TextLine(HtmlNode line_node){
-		RowList = new List<Row> ();
-		Debug.Log ("Initializing TextLine node of type " + line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
+	public TextLine(HtmlNode line_node):base(line_node){
 		DisplayText = line_node.InnerText;
-		getLineType (line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
-		if (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE] != null) {
-			getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
-		} else {
-			getLocationType ("");
-		}
 		prefabName = LocationManager.NAME_TEXT_LINE;
-		parseChildNode (line_node);
 	}
 	override public void getLineType(string type_text){
 		switch (type_text) {

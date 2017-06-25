@@ -10,6 +10,9 @@ public class TableLine  : Line {
 	public int RowCount {get; set;}
 	public bool SelBtnFlag{ get; set; }
 	//Constructor
+	public TableLine(){
+	}
+	//Constructor
 	public TableLine(string type){
 		RowList = new List<Row>();
 		getLineType (type);
@@ -18,23 +21,8 @@ public class TableLine  : Line {
 	/// Initializes a new instance of the TableLine class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public TableLine(HtmlNode line_node){
-		RowList = new List<Row>();
-		Debug.Log ("Initializing TableLine node of type text"+ line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
-		getLineType (line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
-		if (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE] != null) {
-			getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
-		} else {
-			getLocationType ("");
-		}
-		if (line_node.Attributes [AttributeManager.ATTR_COL_COUNT] != null) {
-			Debug.Log ("Column Attribute is present");
-			ColumnCount = int.Parse (line_node.Attributes [AttributeManager.ATTR_COL_COUNT].Value);
-		} else {
-			ColumnCount = -1;
-		}
+	public TableLine(HtmlNode line_node):base(line_node){
 		prefabName = LocationManager.NAME_TABLE_LINE;
-		parseChildNode (line_node);
 	}
 	override public void getLineType(string type_text){
 		switch (type_text) {

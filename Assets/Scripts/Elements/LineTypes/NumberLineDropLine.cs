@@ -42,12 +42,11 @@ public class NumberLineDropLine  : Line {
 	/// Initializes a new instance of the NumberLineDropLine class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public NumberLineDropLine(HtmlNode line_node){
-		RowList = new List<Row>();NumberMarkerList = new List<GameObject> ();displayCtrl = new NumberLineDisplay ();
+	public NumberLineDropLine(HtmlNode line_node):base(line_node){
+		NumberMarkerList = new List<GameObject> ();displayCtrl = new NumberLineDisplay ();
 		string type = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing NumberLineDropLine node of type text"+ type);
 		LabelCount = int.Parse(line_node.Attributes [AttributeManager.ATTR_LABEL_COUNT].Value);
-		getLineType (line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 		getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
 
 		if (type == "number_line_drop_jump") {
@@ -58,7 +57,6 @@ public class NumberLineDropLine  : Line {
 		}
 
 		prefabName = LocationManager.NAME_NUM_LINE_DROP_LINE;
-		parseChildNode (line_node);
 	}
 
 

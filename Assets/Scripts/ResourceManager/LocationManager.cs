@@ -49,7 +49,7 @@ public class LocationManager {
 	public const string NAME_DROP_ZONE_HOLDER_CELL = "DropZoneHolderPF";
 	public const string NAME_LATEX_TEXT_CELL = "LatexTextCellPF";
 	public const string NAME_TEXT_CELL = "TextCellPF";
-	public const string NAME_TABLE_CELL = "TableCellPF";
+	public const string NAME_TABLE_CELL = "TableLinePF";
 	public const string NAME_SELECT_BTN_CELL = "SelectBtnCellPF";
 	public const string NAME_SELECT_SIGN_CELL = "SelectSignCellPF";
 	public const string NAME_NUM_LINE_LABEL_CELL = "NumLineLabelCellPF";

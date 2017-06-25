@@ -41,8 +41,29 @@ public class TableCell : Cell {
 //			Debug.Log ("There are " + node_list.Count + " nodes of type: " + HTMLParser.ROW_TAG);
 
 			foreach (HtmlNode row_node in node_list) {
-				RowList.Add (new Row (row_node));
+				Row row = new Row (row_node);
+				row.Parent = this;
+				RowList.Add(row);
 			}
+
 		}
+	}
+	/// <summary>
+	/// Generates the Element GameObjects.
+	/// </summary>
+	/// <param name="parentGO">Parent G.</param>
+	override public GameObject generateElementGO(GameObject parentGO){
+		Debug.Log ("TableCell generateElementGO");
+		getAlignType ();
+		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_LINE_TYPE + prefabName)as GameObject;
+		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+		ElementGO = cellGO;
+		initGOProp (cellGO);
+		foreach (Row row in RowList) {
+			row.generateElementGO (cellGO);
+		}
+		updateGOProp (cellGO);
+		BasicGOOperation.CheckAndRepositionTable (cellGO);
+		return cellGO;
 	}
 }	

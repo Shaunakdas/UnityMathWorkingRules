@@ -4,6 +4,7 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class Row : BaseElement {
+	public Paragraph ParaRef;
 	public Paragraph.AlignType RowAlign;
 
 	public enum RowType {Default,DragSource,HorizontalScroll};
@@ -16,8 +17,7 @@ public class Row : BaseElement {
 
 	}
 	public void getAlignType(){
-		Paragraph paraObj = (Paragraph)this.Parent.Parent;
-		RowAlign = paraObj.ParagraphAlign;
+		RowAlign = Paragraph.ParagraphAlign;
 		prefabName = (RowAlign == Paragraph.AlignType.Horizontal)?LocationManager.NAME_VERTI_DRAG_SOURCE_LINE_ROW:LocationManager.NAME_HORI_DRAG_SOURCE_LINE_ROW;
 
 	}
@@ -58,6 +58,7 @@ public class Row : BaseElement {
 		} else {
 			Debug.Log ("Initializing Row node");
 		}
+
 		parseChildNode (row_node);
 	}
 
@@ -191,14 +192,7 @@ public class Row : BaseElement {
 		switch (Type) {
 		case RowType.Default:
 			//Updating Column count of Parent Table based on cell
-			if (Parent.GetType () == typeof(TableLine)) {
-				TableLine tableLine = Parent as TableLine;
-				Debug.Log ("Number of columns " + CellList.Count+ tableLine.ColumnCount);
-				if (tableLine.ColumnCount == -1) {
-					parentGO.GetComponent<UITable> ().columns = CellList.Count;
-					tableLine.ColumnCount = CellList.Count;
-				} 
-			}
+			updateTableColumn(parentGO);
 			break;
 		case RowType.DragSource:
 			GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_ROW_TYPE + prefabName)as GameObject;
@@ -220,10 +214,11 @@ public class Row : BaseElement {
 		default:
 			//Updating Column count of Parent Table based on cell
 			if (Parent.GetType () == typeof(TableLine)) {
-				TableLine tableLine = Parent as TableLine;
+				TableLine tableElement = Parent as TableLine;
 				Debug.Log ("Number of columns " + CellList.Count);
-				if (tableLine.ColumnCount == null) {
+				if (tableElement.ColumnCount == null) {
 					parentGO.GetComponent<UITable> ().columns = CellList.Count;
+					tableElement.ColumnCount = CellList.Count;
 				}
 			}
 			break;
@@ -233,6 +228,24 @@ public class Row : BaseElement {
 //			Debug.Log (elementGO.GetComponent<SelBtnItemChecker> ().correctFlag);
 		}
 		return parentGO;
+	}
+	public void updateTableColumn (GameObject parentGO){
+		Debug.Log (Parent.GetType ());
+		if (Parent.GetType () == typeof(TableLine)) {
+			TableLine tableElement = Parent as TableLine;
+			Debug.Log ("Number of columns " + CellList.Count + tableElement.ColumnCount);
+			if (tableElement.ColumnCount == 0) {
+				parentGO.GetComponent<UITable> ().columns = CellList.Count;
+				tableElement.ColumnCount = CellList.Count;
+			} 
+		} else if(Parent.GetType () == typeof(TableCell)) {
+			TableCell tableElement = Parent as TableCell;
+			Debug.Log ("Number of columns " + CellList.Count + tableElement.ColumnCount);
+			if (tableElement.ColumnCount == 0) {
+				parentGO.GetComponent<UITable> ().columns = CellList.Count;
+				tableElement.ColumnCount = CellList.Count;
+			} 
+		}
 	}
 	override public void updateGOProp(GameObject _elementGO){
 		Debug.Log ("Updating Grid cell width");

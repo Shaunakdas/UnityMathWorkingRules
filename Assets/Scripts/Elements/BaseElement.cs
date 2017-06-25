@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
 public class BaseElement : MonoBehaviour {
+	public Paragraph ParagraphRef;
 	public string prefabName{get; set;}
 	//Parent BaseElement
 	public BaseElement Parent{get; set;}

@@ -35,7 +35,7 @@ public class SelBtnHolder : MonoBehaviour {
 		BasicGOOperation.CheckAndRepositionTable (line.ElementGO.transform.parent.gameObject);
 		EventDelegate.Set(submitBtnGO.GetComponent<UIButton>().onClick, delegate() { checkChildCorrect(submitBtnGO); });
 
-		if((line.Parent as Paragraph).ParagraphAlign == Paragraph.AlignType.Horizontal){
+		if(Paragraph.ParagraphAlign == Paragraph.AlignType.Horizontal){
 		}else{
 			submitBtnGO.GetComponent<UIWidget> ().width = (int)lineSize.x;
 		}

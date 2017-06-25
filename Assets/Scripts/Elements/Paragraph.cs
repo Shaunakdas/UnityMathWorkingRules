@@ -7,7 +7,7 @@ public class Paragraph : BaseElement{
 	public StepType ParagraphStep;
 
 	public enum AlignType {Vertical,Horizontal};
-	public AlignType ParagraphAlign;
+	static public AlignType ParagraphAlign;
 
 	public int tableCol;
 	//For all types

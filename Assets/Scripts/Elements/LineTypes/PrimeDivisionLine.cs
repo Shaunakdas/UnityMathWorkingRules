@@ -16,17 +16,11 @@ public class PrimeDivisionLine : Line {
 	/// Initializes a new instance of the TableLine class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public PrimeDivisionLine(HtmlNode line_node){
-		
-		RowList = new List<Row>();
-		Debug.Log ("Initializing PrimeDivisionLine node of type text"+ line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
-		getLineType (line_node.Attributes [AttributeManager.ATTR_TYPE].Value);
-		getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
+	public PrimeDivisionLine(HtmlNode line_node):base(line_node){
 		TargetInt = int.Parse(line_node.Attributes [AttributeManager.ATTR_TARGET].Value);
 		primeDivision = new PrimeDivision (TargetInt);
 
 		prefabName = LocationManager.NAME_PRIME_DIV_LINE;
-		parseChildNode (line_node);
 	}
 	override public void getLineType(string type_text){
 		switch (type_text) {

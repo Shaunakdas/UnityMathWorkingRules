@@ -8,25 +8,21 @@ public class SelectableSignCell : Cell {
 	public Sign TargetSign{ get; set; }
 
 	//Constructor
-	public SelectableSignCell(string type, string answer){
-		getCellType (type);
+	public SelectableSignCell(string type, string answer):base(type){
 		TargetSign = answer=="1"? Sign.Positive:Sign.Negative;
 	}
 	/// <summary>
 	/// Set SelectableSignCell  Type
 	/// </summary>
-	public void getCellType(string type_text){
+	override public void getCellType(string type_text){
 		if(type_text == "selectable_sign") Type = CellType.SelectableSign;
 	}
 	/// <summary>
 	/// Initializes a new instance of the SelectableSignCell class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public SelectableSignCell(HtmlNode cell_node){
+	public SelectableSignCell(HtmlNode cell_node):base(cell_node){
 		//		CellList = new List<Cell> ();
-		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-		Debug.Log ("Initializing SelectableSignCell node of type "+type_text);
-		getCellType (type_text);
 		TargetSign = (cell_node.Attributes [AttributeManager.ATTR_ANSWER].Value)=="1"? Sign.Positive:Sign.Negative;
 		prefabName = LocationManager.NAME_SELECT_SIGN_CELL;
 	}

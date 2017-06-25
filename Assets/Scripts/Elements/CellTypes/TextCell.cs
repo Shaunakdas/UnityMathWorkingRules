@@ -5,12 +5,10 @@ using HtmlAgilityPack;
 using System.Net;
 public class TextCell : Cell {
 
-	public string DisplayText {get; set;}
 
 	//Contructor
-	public TextCell(string displayText, string type){
+	public TextCell(string displayText, string type):base(type){
 		DisplayText = StringWrapper.HtmlToPlainText(displayText);
-		getCellType (type);
 		prefabName = LocationManager.NAME_LATEX_TEXT_CELL;
 	}
 	/// <summary>
@@ -22,10 +20,11 @@ public class TextCell : Cell {
 		DisplayText = StringWrapper.HtmlToPlainText(cell_node.InnerText);
 		getCellType (cell_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 		prefabName = LocationManager.NAME_LATEX_TEXT_CELL;
+		parseChildNode (cell_node);
 
 //		Debug.Log ("Found TextCell node of content"+ DisplayText);
 	}
-	public void getCellType(string type_text){
+	override public void getCellType(string type_text){
 		switch (type_text) {
 		case "text": 
 			Type = CellType.Text;
@@ -35,7 +34,6 @@ public class TextCell : Cell {
 	override public void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 		if (ElementGO.GetComponent<UILabel> () != null) {
-			
 			ElementGO.GetComponent<UILabel> ().text =(DisplayText) ;
 		}
 		if (ElementGO.GetComponent<TEXDrawNGUI> () != null) {

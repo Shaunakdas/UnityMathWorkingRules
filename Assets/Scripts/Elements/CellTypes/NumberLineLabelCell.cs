@@ -7,10 +7,8 @@ public class NumberLineLabelCell : Cell {
 	public enum LabelType{Label,LabelAnswer}
 	public LabelType LineLabel{ get; set; }
 	public int LabelIndex{ get; set; }
-	public string DisplayText{ get; set; }
 	//Constructor
-	public NumberLineLabelCell(string type, string labelIndex){
-		getCellType (type);
+	public NumberLineLabelCell(string type, string labelIndex):base(type){
 		LabelIndex = int.Parse(labelIndex);
 	}
 
@@ -23,7 +21,7 @@ public class NumberLineLabelCell : Cell {
 	/// <summary>
 	/// Set NumberLineLabelCell  Type
 	/// </summary>
-	public void getCellType(string type_text){
+	override public void getCellType(string type_text){
 		switch (type_text) {
 		case "number_line_label": 
 			Type = CellType.NumberLineLabel;
@@ -40,11 +38,9 @@ public class NumberLineLabelCell : Cell {
 	/// Initializes a new instance of the NumberLineLabelCell class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public NumberLineLabelCell(HtmlNode cell_node){
+	public NumberLineLabelCell(HtmlNode cell_node):base(cell_node){
 		//		CellList = new List<Cell> ();
-		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-		Debug.Log ("Initializing NumberLineLabelCell node of type "+type_text);
-		getCellType (type_text);setDefaultProp ();
+		setDefaultProp ();
 		LabelIndex = int.Parse(cell_node.Attributes [AttributeManager.ATTR_LABEL_INDEX].Value);
 		prefabName = LocationManager.NAME_NUM_LINE_LABEL_CELL;
 		DisplayText = cell_node.InnerText;

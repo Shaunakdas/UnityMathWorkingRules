@@ -26,8 +26,9 @@ public class CombinationLine  : Line {
 		OutputVisible = (line_node.Attributes [AttributeManager.ATTR_OUTPUT_VISIBLE].Value=="1")?true : false;
 		getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
 		prefabName = LocationManager.NAME_COMBINATION_LINE;
+		parseChildNode (line_node);
 	}
-	public void getLineType(string type_text){
+	override public void getLineType(string type_text){
 		switch (type_text) {
 		case "combination_product": 
 			Type = LineType.CombinationProduct;

@@ -13,15 +13,13 @@ public class DragSourceCell : Cell {
 	public int RowCount {get; set;}
 
 	//Constructor
-	public DragSourceCell(string type, string id, string displayText){
-		getCellType (type);
+	public DragSourceCell(string type, string id, string displayText):base(type){
 		CellId =  (id);
 		DisplayText = displayText;
 		prefabName = LocationManager.NAME_DRAG_SOURCE_CELL;
 	}
 	//Constructor
-	public DragSourceCell(string type, string displayText){
-		getCellType (type);
+	public DragSourceCell(string type, string displayText):base(type){
 		DisplayText = displayText;
 		prefabName = LocationManager.NAME_DRAG_SOURCE_CELL;
 	}
@@ -29,11 +27,8 @@ public class DragSourceCell : Cell {
 	/// Initializes a new instance of the DragSourceCell class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public DragSourceCell(HtmlNode cell_node){
+	public DragSourceCell(HtmlNode cell_node):base(cell_node){
 		//		CellList = new List<Cell> ();
-		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-		Debug.Log ("Initializing DragSourceCell node of type "+type_text);
-		getCellType (type_text);
 		HtmlAttribute attr_tag = cell_node.Attributes [AttributeManager.ATTR_ID];
 		if (attr_tag != null) {
 			CellId = cell_node.Attributes [AttributeManager.ATTR_ID].Value;
@@ -46,7 +41,7 @@ public class DragSourceCell : Cell {
 	/// <summary>
 	/// Set Cell  Type
 	/// </summary>
-	public void getCellType(string type_text){
+	override public void getCellType(string type_text){
 		if(type_text == "drag_source") Type = CellType.DragSource;
 	}
 	public void getSourceType(string source_type){

@@ -28,8 +28,9 @@ public class TextLine : Line {
 			getLocationType ("");
 		}
 		prefabName = LocationManager.NAME_TEXT_LINE;
+		parseChildNode (line_node);
 	}
-	public void getLineType(string type_text){
+	override public void getLineType(string type_text){
 		switch (type_text) {
 		case "text": 
 			Type = LineType.Text;

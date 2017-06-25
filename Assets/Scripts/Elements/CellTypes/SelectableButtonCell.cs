@@ -5,28 +5,23 @@ using HtmlAgilityPack;
 
 public class SelectableButtonCell : Cell {
 	public bool correctFlag;
-	public string DisplayText;
 	//Constructor
-	public SelectableButtonCell(string type, string answer, string displayText){
-		getCellType (type);
+	public SelectableButtonCell(string type, string answer, string displayText):base(type){
 		correctFlag = answer=="1"? true:false;
 		DisplayText = displayText;
 	}
 	/// <summary>
 	/// Set SelectableButtonCell  Type
 	/// </summary>
-	public void getCellType(string type_text){
+	override public void getCellType(string type_text){
 		if(type_text == "selectable_button") Type = CellType.SelectableButton;
 	}
 	/// <summary>
 	/// Initializes a new instance of the SelectableButtonCell class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public SelectableButtonCell(HtmlNode cell_node){
+	public SelectableButtonCell(HtmlNode cell_node):base(cell_node){
 		//		CellList = new List<Cell> ();
-		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-		Debug.Log ("Initializing SelectableButtonCell node of type "+type_text);
-		getCellType (type_text);
 		correctFlag = (cell_node.Attributes [AttributeManager.ATTR_ANSWER].Value)=="1"? true:false;
 		prefabName = LocationManager.NAME_SELECT_BTN_CELL;
 		DisplayText = cell_node.InnerText;

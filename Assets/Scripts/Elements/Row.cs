@@ -58,15 +58,15 @@ public class Row : BaseElement {
 		} else {
 			Debug.Log ("Initializing Row node");
 		}
-		parseRow (row_node);
+		parseChildNode (row_node);
 	}
 
 	/// <summary>
 	/// Parses the Row Node to generate Cell nodes
 	/// </summary>
-	public void parseRow(HtmlNode para_node){
+	override public void parseChildNode(HtmlNode row_node){
 		//		HtmlNodeCollection node_list = para_node.SelectNodes ("//" + HTMLParser.LINE_TAG);
-		IEnumerable<HtmlNode> node_list = para_node.Elements(AttributeManager.TAG_CELL) ;
+		IEnumerable<HtmlNode> node_list = row_node.Elements(AttributeManager.TAG_CELL) ;
 
 		if (node_list != null) {
 			//			Debug.Log ("There are " + node_list.Count + " nodes of type: " + HTMLParser.LINE_TAG);
@@ -184,7 +184,7 @@ public class Row : BaseElement {
 	/// Generates the Element GameObjects.
 	/// </summary>
 	/// <param name="parentGO">Parent GameObject.</param>
-	virtual public GameObject generateElementGO(GameObject parentGO){
+	override public GameObject generateElementGO(GameObject parentGO){
 		getAlignType ();
 		GameObject lineGO;GameObject rowGO;GameObject HorizontalScrollView;
 		//Based on row index and row type add row to the top/center/bottom of ContentTableGO

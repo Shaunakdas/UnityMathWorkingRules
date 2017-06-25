@@ -31,8 +31,8 @@ public class Line : BaseElement{
 	/// <summary>
 	/// Set Line Type
 	/// </summary>
-	public void getLineType(string type_text){
-		
+	virtual public void getLineType(string type_text){
+		RowList = new List<Row>();
 	}
 	/// <summary>
 	/// Set Location Type
@@ -67,11 +67,12 @@ public class Line : BaseElement{
 		RowList = new List<Row>();
 		string type_text = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		getLineType (type_text);
+		parseChildNode (line_node);
 	}
 	/// <summary>
 	/// Parses the Line Node to generate Row nodes
 	/// </summary>
-	public void parseLine(HtmlNode line_node){
+	override public void parseChildNode(HtmlNode line_node){
 		IEnumerable<HtmlNode> node_list = line_node.Elements(AttributeManager.TAG_ROW) ;
 		if (node_list!=null) {
 			foreach (HtmlNode row_node in node_list) {
@@ -83,14 +84,14 @@ public class Line : BaseElement{
 		}
 	}
 
-	virtual public void updateGOProp(GameObject ElementGO){
+	override public void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Line");
 	}
 	/// <summary>
 	/// Generates the Element GameObjects.
 	/// </summary>
 	/// <param name="parentGO">Parent G.</param>
-	virtual public GameObject generateElementGO(GameObject parentGO){
+	override public GameObject generateElementGO(GameObject parentGO){
 		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_LINE_TYPE + prefabName)as GameObject;
 
 		//Instantiate Scroll View to hold center content gameobjects

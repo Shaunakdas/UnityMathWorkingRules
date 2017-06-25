@@ -26,8 +26,9 @@ public class PrimeDivisionLine : Line {
 		primeDivision = new PrimeDivision (TargetInt);
 
 		prefabName = LocationManager.NAME_PRIME_DIV_LINE;
+		parseChildNode (line_node);
 	}
-	public void getLineType(string type_text){
+	override public void getLineType(string type_text){
 		switch (type_text) {
 		case "text": 
 			Type = LineType.PrimeDivision;

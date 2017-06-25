@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HtmlAgilityPack;
 public class BaseElement : MonoBehaviour {
 	public string prefabName{get; set;}
 	//Parent BaseElement
@@ -29,4 +30,10 @@ public class BaseElement : MonoBehaviour {
 	/// The element game object.
 	/// </summary>
 	public GameObject ElementGO;
+	/// <summary>
+	/// Parses the children nodes to create child elements
+	/// </summary>
+	/// <param name="elementNode">Element HTML node.</param>
+	virtual public void parseChildNode(HtmlNode elementNode){
+	}
 }

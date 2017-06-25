@@ -29,7 +29,7 @@ public class DropZoneRowCell : Cell {
 	/// <summary>
 	/// Set Cell  Type
 	/// </summary>
-	new public void getCellType(string type_text){
+	override public void getCellType(string type_text){
 		switch (type_text) {
 		case "drop_zone_row": 
 			Type = CellType.DropZoneRow;
@@ -43,11 +43,8 @@ public class DropZoneRowCell : Cell {
 	/// Initializes a new instance of the DropZoneRowCell class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public DropZoneRowCell(HtmlNode cell_node){
+	public DropZoneRowCell(HtmlNode cell_node):base(cell_node){
 		TargetIdList = new List<string> ();TargetTextList = new List<string> ();
-		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-		Debug.Log ("Initializing DropZoneRowCell node of type "+type_text);
-		getCellType (type_text);
 		DisplayText = cell_node.InnerText;
 		HtmlAttribute id_attr = cell_node.Attributes [AttributeManager.ATTR_ID];
 		if (id_attr != null) {
@@ -65,10 +62,9 @@ public class DropZoneRowCell : Cell {
 		prefabName = LocationManager.NAME_DROP_ZONE_HOLDER_CELL;
 	}
 	//Constructor
-	public DropZoneRowCell(string type, string displayText){
+	public DropZoneRowCell(string type, string displayText):base(type){
 		TargetIdList = new List<string> ();TargetTextList = new List<string> ();
 		DisplayText = displayText;
-		getCellType (type);
 		//By default user should not be able to touch the drop zone, if id or answer tage is present then only user can drop anything into the drop zone
 		Touchable = false; Dropable = false;
 	}

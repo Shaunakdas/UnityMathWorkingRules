@@ -68,12 +68,12 @@ public class Paragraph : BaseElement{
 			}
 			break;
 		}
-
+		parseChildNode (para_node);
 	}
 	/// <summary>
 	/// Parses the Paragraph Node to generate Line nodes
 	/// </summary>
-	public void parseParagraph(HtmlNode para_node){
+	override public void parseChildNode(HtmlNode para_node){
 //		HtmlNodeCollection node_list = para_node.SelectNodes ("//" + HTMLParser.LINE_TAG);
 		IEnumerable<HtmlNode> node_list = para_node.Elements(AttributeManager.TAG_LINE) ;
 
@@ -110,7 +110,7 @@ public class Paragraph : BaseElement{
 					break;
 				}
 				//Populate Child Row nodes inside Line Node
-				newLine.parseLine (line_node);
+//				newLine.parseChildNode (line_node);
 
 				newLine.Parent = this;
 				//Add Line node into LineList

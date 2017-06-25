@@ -20,7 +20,7 @@ public class HTMLParser  {
 
 		foreach (HtmlNode para_node in question_list) {
 			Paragraph para = new Paragraph (para_node);
-			para.parseParagraph (para_node);
+//			para.parseChildNode (para_node);
 			ParagraphList.Add (para);
 		}
 

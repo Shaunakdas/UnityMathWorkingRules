@@ -58,10 +58,11 @@ public class NumberLineDropLine  : Line {
 		}
 
 		prefabName = LocationManager.NAME_NUM_LINE_DROP_LINE;
+		parseChildNode (line_node);
 	}
 
 
-	public void getLineType(string type_text){
+	override public void getLineType(string type_text){
 		switch (type_text) {
 		case "number_line_drop": 
 			Type = LineType.NumberLineDrop;

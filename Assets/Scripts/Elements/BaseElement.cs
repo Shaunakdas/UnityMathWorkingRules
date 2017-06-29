@@ -9,7 +9,13 @@ public class BaseElement : MonoBehaviour {
 	//Parent BaseElement
 	public BaseElement Parent{get; set;}
 
-
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
+	/// <summary>
+	/// Parses the children nodes to create child elements
+	/// </summary>
+	/// <param name="elementNode">Element HTML node.</param>
+	virtual public void parseChildNode(HtmlNode elementNode){
+	}
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
 	/// The element game object.
@@ -34,12 +40,8 @@ public class BaseElement : MonoBehaviour {
 	/// </summary>
 	virtual public void updateGOProp(GameObject ElementGO){
 	}
-	/// <summary>
-	/// Parses the children nodes to create child elements
-	/// </summary>
-	/// <param name="elementNode">Element HTML node.</param>
-	virtual public void parseChildNode(HtmlNode elementNode){
-	}
+
+
 
 	
 }

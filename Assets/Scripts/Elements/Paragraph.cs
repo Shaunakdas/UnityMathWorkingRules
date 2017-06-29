@@ -23,8 +23,8 @@ public class Paragraph : BaseElement{
 	//List of child Line elements
 	public List<Line> LineList{get; set;}
 
-
-
+	//List of target BaseElements
+	static public List<TargetItemChecker> targetItemCheckerList{get; set;}
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Contructor
@@ -179,6 +179,8 @@ public class Paragraph : BaseElement{
 	/// <returns>The element Gameobject</returns>
 	/// <param name="ElementGameObject">Element GameObject</param>
 	override public GameObject generateElementGO(GameObject parentGO){
+
+		targetItemCheckerList = new List<TargetItemChecker> ();
 		//Setting targetText of child drop zone cell;
 		populateCellTargetText ();
 		GameObject QuestionStepParaPF = Resources.Load (LocationManager.COMPLETE_LOC_PARAGRAPH_TYPE + prefabName)as GameObject;
@@ -208,7 +210,7 @@ public class Paragraph : BaseElement{
 			if (isCenterContentPresent)
 				resizeCenterContent (CenterContentGO, ParaContentTableGO);
 			BasicGOOperation.CheckAndRepositionTable (ParaContentTableGO);
-
+			setUpChildActiveAnim (targetItemCheckerList);
 		}
 		return ParaContentTableGO;
 	}
@@ -258,6 +260,20 @@ public class Paragraph : BaseElement{
 			//Change CenterContentGO.height
 			GameObject ContainerGO = BasicGOOperation.getChildGameObject(CenterContentGO,"Container");
 			ContainerGO.GetComponent<UIWidget> ().height = (int)newSize.y;
+		}
+	}
+	//----------------------Animations ----------------------------
+
+	public void setUpChildActiveAnim(List<TargetItemChecker> _targetItemCheckerList){
+		Debug.Log ("setUpChildActiveAnim"+_targetItemCheckerList.Count.ToString());
+		if (_targetItemCheckerList.Count > -1) _targetItemCheckerList[0].activateAnim ();
+	}
+	static public void nextTargetTrigger(TargetItemChecker itemChecker){
+		int currentCounter = targetItemCheckerList.IndexOf (itemChecker);
+		if (currentCounter < targetItemCheckerList.Count) {
+			targetItemCheckerList [currentCounter + 1].activateAnim ();
+		} else {
+			Debug.Log ("QuestionStep finished");
 		}
 	}
 }

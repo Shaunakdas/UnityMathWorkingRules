@@ -132,7 +132,10 @@ public class DropZoneRowCell : Cell {
 	//-------------Based on Element Attributes, creating GameObject -------------------
 
 	override public GameObject generateElementGO(GameObject parentGO){
-		return  generateDropZoneHolderGO (parentGO, TargetTextList, idPresent);
+		GameObject _elementGO =   generateDropZoneHolderGO (parentGO, TargetTextList, idPresent);
+		ElementGO = _elementGO;
+		//_elementGO add to list of aniamtion
+		return _elementGO;
 	}
 	static public GameObject generateDropZoneHolderGO(GameObject parentGO, List<string> _targetTextList, bool idPresent){
 		GameObject dropZoneHolderPrefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_HOLDER_CELL)as GameObject;
@@ -140,8 +143,11 @@ public class DropZoneRowCell : Cell {
 
 		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPrefab, parentGO.transform);
 
-		holderGO.GetComponent<DropZoneHolder> ().TargetTextList = _targetTextList;
-		holderGO.GetComponent<DropZoneHolder> ().idCheck = idPresent;
+		DropZoneHolder dropZoneHolder = holderGO.GetComponent<DropZoneHolder> ();
+		dropZoneHolder.TargetTextList = _targetTextList;
+		dropZoneHolder.idCheck = idPresent;
+		dropZoneHolder.addToTargetList ();
+
 		Debug.Log ("TargetText list"+_targetTextList.Count+idPresent);
 		foreach (string targetText in _targetTextList){
 			Debug.Log ("TargetText"+targetText.ToString());
@@ -153,6 +159,7 @@ public class DropZoneRowCell : Cell {
 			if (idPresent) {
 				//id attribute is present. So there is no need to divide drop zone into individual item
 				GameObject tableItemGO =  initDropZoneTableItem(tableGO,idPresent);
+//				tableItemGO.GetComponent<DropZoneItemChecker>().element = this;
 				int contentWidth = targetText.ToCharArray ().Length * 30;
 				tableItemGO.GetComponent<UISprite> ().width = contentWidth;
 				tableWidth = contentWidth+10;
@@ -163,6 +170,7 @@ public class DropZoneRowCell : Cell {
 						GameObject signBtnGO = SelectableButtonCell.generateSelBtnCellGO (tableGO, "-");
 					} else {
 						GameObject tableItemGO = initDropZoneTableItem (tableGO, idPresent);
+//						tableItemGO.GetComponent<DropZoneItemChecker>().element = this;
 					}
 				}
 			}
@@ -174,12 +182,12 @@ public class DropZoneRowCell : Cell {
 		BasicGOOperation.CheckAndRepositionTable (holderGO);
 		return holderGO;
 	}
-	override public void updateGOProp(GameObject ElementGO){
+	override public void updateGOProp(GameObject _elementGO){
 		Debug.Log ("Updating Properties of Drop Zone Cell");
-		float cellWidth = ElementGO.GetComponent<UISprite> ().localSize.x;
+		float cellWidth = _elementGO.GetComponent<UISprite> ().localSize.x;
 		if (TargetText != null) { 
 			Debug.Log ("Updating Target Text of Drop Zone Cell" + TargetText + Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText) + 40f).ToString());
-			ElementGO.GetComponent<UISprite>().width =  (int)Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText)	);
+			_elementGO.GetComponent<UISprite>().width =  (int)Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText)	);
 		}
 	}
 
@@ -196,6 +204,25 @@ public class DropZoneRowCell : Cell {
 		dropZoneHolderGO.GetComponent<DropZoneHolder> ().holderListParentGO = parentGO;
 		parentGO.AddComponent<DropZoneHolderParent> ();
 		parentGO.GetComponent<DropZoneHolderParent> ().addDropZoneHolder (dropZoneHolderGO);
+		parentGO.GetComponent<DropZoneHolderParent> ().addToTargetList ();
 	}
 
+	//-------------Animations-------------------
+
+	/// <summary>
+	/// Correct animation.
+	/// </summary>
+	/// <param name="_elementGO">Element G.</param>
+	public void correctAnim(GameObject _elementGO){
+		Debug.Log ("DropZoneRowCell CorrectAnim");
+//		Paragraph.nextTargetTrigger (this);
+	}
+	/// <summary>
+	/// Incorrect animation.
+	/// </summary>
+	/// <param name="_elementGO">Element G.</param>
+	public void incorrectAnim(GameObject _elementGO){
+		Debug.Log ("DropZoneRowCell incorrectAnim");
+//		Paragraph.nextTargetTrigger (this);
+	}
 }

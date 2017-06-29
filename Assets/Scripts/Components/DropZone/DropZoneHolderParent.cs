@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropZoneHolderParent : MonoBehaviour {
+public class DropZoneHolderParent : TargetItemChecker {
+	public BaseElement Element;
 	List<GameObject> dropZoneHolderList;
 	public void addDropZoneHolder(GameObject dropZoneHolderGO){
 		dropZoneHolderList.Add (dropZoneHolderGO);
@@ -10,9 +11,12 @@ public class DropZoneHolderParent : MonoBehaviour {
 	public void dropEvent(bool inputCorrect){
 		if (inputCorrect) {
 			Debug.Log ("Drag Item was correctly dropped");
+			correctAnim ();
 		} else {
 			Debug.Log ("Drag Item was incorrecly dropped.");
+
 			searchCorrectHolder ();
+			incorrectAnim ();
 		}
 
 	}
@@ -34,5 +38,45 @@ public class DropZoneHolderParent : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+	override public void addToTargetList(){
+		Paragraph.targetItemCheckerList.Add (this);
+	}
+	//----------------------Animations ----------------------------
+	/// <summary>
+	/// Getting active animation.
+	/// </summary>
+	/// <param name="_elementGO">Element G.</param>
+	override public void activateAnim(){
+		Debug.Log ("getActiveAnim of DropZoneRowCell");
+		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
+			itemColor.enabled = true;
+		}
+	}
+	/// <summary>
+	/// Getting active animation.
+	/// </summary>
+	/// <param name="_elementGO">Element G.</param>
+	override public void deactivateAnim(){
+		Debug.Log ("getActiveAnim of DropZoneRowCell");
+		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
+			itemColor.enabled = false;
+		}
+	}
+	/// <summary>
+	/// Correct animation.
+	/// </summary>
+	override public void correctAnim(){
+		Debug.Log ("DropZoneRowCell CorrectAnim");
+		deactivateAnim ();
+		Paragraph.nextTargetTrigger (this);
+	}
+	/// <summary>
+	/// Incorrect animation.
+	/// </summary>
+	override public void incorrectAnim(){
+		Debug.Log ("DropZoneRowCell InCorrectAnim");
+		deactivateAnim ();
+		Paragraph.nextTargetTrigger (this);
 	}
 }

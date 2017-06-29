@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropZoneHolder : MonoBehaviour {
+public class DropZoneHolder : TargetItemChecker {
 	public bool idCheck{ get; set; }
 	public bool multipleHolderCheck;
 	public GameObject holderListParentGO;
@@ -13,6 +13,9 @@ public class DropZoneHolder : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		TargetTextList = new List<string> ();
+	}
+	override public void addToTargetList(){
+		Paragraph.targetItemCheckerList.Add (this);
 	}
 	public bool checkDropZoneItem(string inputText){
 		Debug.Log ("Holder: checkDropZoneItem for checking "+inputText);
@@ -28,6 +31,11 @@ public class DropZoneHolder : MonoBehaviour {
 		}
 		if (multipleHolderCheck) {
 			holderListParentGO.GetComponent<DropZoneHolderParent> ().dropEvent(inputCorrect);
+		}
+		if (inputCorrect) {
+			correctAnim ();
+		} else {
+			incorrectAnim ();
 		}
 		return inputCorrect;
 	}
@@ -63,5 +71,42 @@ public class DropZoneHolder : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+	//----------------------Animations ----------------------------
+	/// <summary>
+	/// Getting active animation.
+	/// </summary>
+	/// <param name="_elementGO">Element G.</param>
+	override public void activateAnim(){
+		Debug.Log ("getActiveAnim of DropZoneRowCell");
+		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
+			itemColor.enabled = true;
+		}
+	}
+	/// <summary>
+	/// Getting active animation.
+	/// </summary>
+	/// <param name="_elementGO">Element G.</param>
+	override public void deactivateAnim(){
+		Debug.Log ("getActiveAnim of DropZoneRowCell");
+		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
+			itemColor.enabled = false;
+		}
+	}
+	/// <summary>
+	/// Correct animation.
+	/// </summary>
+	override public void correctAnim(){
+		Debug.Log ("DropZoneRowCell CorrectAnim");
+		deactivateAnim ();
+		Paragraph.nextTargetTrigger (this);
+	}
+	/// <summary>
+	/// Incorrect animation.
+	/// </summary>
+	override public void incorrectAnim(){
+		Debug.Log ("DropZoneRowCell InCorrectAnim");
+		deactivateAnim ();
+		Paragraph.nextTargetTrigger (this);
 	}
 }

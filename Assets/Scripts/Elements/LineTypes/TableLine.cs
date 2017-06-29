@@ -55,6 +55,7 @@ public class TableLine  : Line {
 	public void updateSelBtnHolder(GameObject _selBtnGO,bool _selBtnBool){
 		SelBtnFlag = true;
 		ElementGO.AddComponent<SelBtnHolder> (); SelBtnHolder holderScript = ElementGO.GetComponent<SelBtnHolder> ();
+		holderScript.addToTargetList ();
 		holderScript.addSelectBtn (_selBtnGO, _selBtnBool);
 		//Changing Paragraph's correctType
 		holderScript.setParentCorrectCount(Parent as Paragraph,this);

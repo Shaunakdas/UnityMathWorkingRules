@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelBtnHolder : MonoBehaviour {
+public class SelBtnHolder : TargetItemChecker {
 	public List<GameObject> SelBtnGOList;
 	public int correctCount;
 	public int depth;
@@ -80,5 +80,45 @@ public class SelBtnHolder : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+	override public void addToTargetList(){
+		if(Paragraph.targetItemCheckerList.IndexOf(this) < 0) Paragraph.targetItemCheckerList.Add (this);
+	}
+	//----------------------Animations ----------------------------
+	/// <summary>
+	/// Getting active animation.
+	/// </summary>
+	/// <param name="_elementGO">Element G.</param>
+	override public void activateAnim(){
+		Debug.Log ("getActiveAnim of DropZoneRowCell");
+		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
+			itemColor.enabled = true;
+		}
+	}
+	/// <summary>
+	/// Getting active animation.
+	/// </summary>
+	/// <param name="_elementGO">Element G.</param>
+	override public void deactivateAnim(){
+		Debug.Log ("getActiveAnim of DropZoneRowCell");
+		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
+			itemColor.enabled = false;
+		}
+	}
+	/// <summary>
+	/// Correct animation.
+	/// </summary>
+	override public void correctAnim(){
+		Debug.Log ("DropZoneRowCell CorrectAnim");
+		deactivateAnim ();
+		Paragraph.nextTargetTrigger (this);
+	}
+	/// <summary>
+	/// Incorrect animation.
+	/// </summary>
+	override public void incorrectAnim(){
+		Debug.Log ("DropZoneRowCell InCorrectAnim");
+		deactivateAnim ();
+		Paragraph.nextTargetTrigger (this);
 	}
 }

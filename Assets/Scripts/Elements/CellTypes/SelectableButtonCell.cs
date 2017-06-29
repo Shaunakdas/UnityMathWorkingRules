@@ -110,6 +110,7 @@ public class SelectableButtonCell : Cell {
 		if (_lineElementGO.GetComponent<SelBtnHolder>() == null)
 			_lineElementGO.AddComponent<SelBtnHolder>();
 		_lineElementGO.GetComponent<SelBtnHolder>().addSelectBtn (_elementGO, _correctBool);
+		_lineElementGO.GetComponent<SelBtnHolder>().addToTargetList ();
 		return itemChecker;
 	}
 

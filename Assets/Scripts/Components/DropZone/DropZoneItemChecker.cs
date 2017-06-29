@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropZoneItemChecker : MonoBehaviour {
+public class DropZoneItemChecker : TargetItemChecker {
+	public BaseElement element;
 	public bool idCheck{ get; set; }
 	public GameObject DropZoneHolderGO;
 	public string filledText{ get; set; }
@@ -43,4 +44,6 @@ public class DropZoneItemChecker : MonoBehaviour {
 	void Update () {
 		
 	}
+
+
 }

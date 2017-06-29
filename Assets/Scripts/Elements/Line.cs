@@ -4,29 +4,51 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class Line : BaseElement{
-	//Line Prefabs
-//	public GameObject CombinationLinePF,NumLineDropLinePF,PrimeDivLinePF,TextLinePF,LatexTextLinePF,TableLinePF;
 
-	public enum LineType 
-	{
+	//-------------Common Attributes -------------------
+	//What is the broad classification of line types?
+	public enum LineType {
 		Text,PostSubmitText,IncorrectSubmitText,Table,NumberLineDrop,
 		NumberLineDropJump,NumberLineSelect,PrimeDivision,CombinationProduct,CombinationSum,CombinationProductSum
-	};
-	public enum LocationType
-	{
+	}
+	public LineType Type{ get; set; }
+
+	//What is the location of line wrt paragraph content?
+	public enum LocationType{
 		Default,Top,Center,Bottom,Left,Right
 	}
-
-	//Handling Attributes
-	public LineType Type{ get; set; }
 	public LocationType LineLocation { get; set; }
 
 	//List of child rows
 	public List<Row> RowList {get; set;}
 
 
-	//Constructor
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
+	//Empty Constructor
 	public Line(){
+	}
+	/// <summary>
+	/// Initializes a new instance of the Line class with HTMLNode attribute. Will be overriden by LineType Classes.
+	/// </summary>
+	/// <param name="para">Para.</param>
+	public Line(HtmlNode line_node){
+		RowList = new List<Row>();
+		string type_text = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
+		getLineType (type_text);
+	}
+	/// <summary>
+	/// Parses the Line Node to generate Row nodes
+	/// </summary>
+	public void parseLine(HtmlNode line_node){
+		IEnumerable<HtmlNode> node_list = line_node.Elements(AttributeManager.TAG_ROW) ;
+		if (node_list!=null) {
+			foreach (HtmlNode row_node in node_list) {
+				Debug.Log ("Content of row_node : " + row_node.InnerHtml);
+				Row row = new Row (row_node);
+				row.Parent = this;
+				RowList.Add(row);
+			}
+		}
 	}
 	/// <summary>
 	/// Set Line Type
@@ -93,6 +115,9 @@ public class Line : BaseElement{
 		Debug.Log ("Updating table of"+_elementGO.name);
 		BasicGOOperation.CheckAndRepositionTable (_elementGO);
 	}
+
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
 	/// Generates the Element GameObjects.
 	/// </summary>
@@ -147,7 +172,7 @@ public class Line : BaseElement{
 		BasicGOOperation.CheckAndRepositionTable (CenterContentGO);
 		return lineGO;
 	}
-	public void addSubmitBtn(){
-
+	virtual public void updateGOProp(GameObject ElementGO){
+		//		Debug.Log ("Updating Text of Line");
 	}
 }

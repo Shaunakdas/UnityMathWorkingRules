@@ -4,8 +4,10 @@ using UnityEngine;
 using HtmlAgilityPack;
 using System.Net;
 public class TextCell : Cell {
+	//-------------Common Attributes -------------------
 
 
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Contructor
 	public TextCell(string displayText, string type):base(type){
 		DisplayText = StringWrapper.HtmlToPlainText(displayText);
@@ -31,6 +33,8 @@ public class TextCell : Cell {
 			break;
 		}
 	}
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 		if (ElementGO.GetComponent<UILabel> () != null) {

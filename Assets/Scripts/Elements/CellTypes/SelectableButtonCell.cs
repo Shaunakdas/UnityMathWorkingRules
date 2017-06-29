@@ -4,19 +4,17 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class SelectableButtonCell : Cell {
+
+	//-------------Common Attributes -------------------
 	public bool correctFlag;
+
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
 	public SelectableButtonCell(string type, string answer, string displayText):base(type){
 		correctFlag = answer=="1"? true:false;
 		DisplayText = displayText;
 	}
-	/// <summary>
-	/// Set SelectableButtonCell  Type
-	/// </summary>
-	override public void getCellType(string type_text){
-		if(type_text == "selectable_button") Type = CellType.SelectableButton;
-	}
-	/// <summary>
 	/// Initializes a new instance of the SelectableButtonCell class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
@@ -26,6 +24,14 @@ public class SelectableButtonCell : Cell {
 		prefabName = LocationManager.NAME_SELECT_BTN_CELL;
 		DisplayText = cell_node.InnerText;
 	}
+	/// <summary>
+	/// Set SelectableButtonCell  Type
+	/// </summary>
+	override public void getCellType(string type_text){
+		if(type_text == "selectable_button") Type = CellType.SelectableButton;
+	}
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public GameObject generateElementGO(GameObject parentGO){
 		getAlignType ();
 		ElementGO =  generateSelBtnCellGO (parentGO, DisplayText);
@@ -41,12 +47,17 @@ public class SelectableButtonCell : Cell {
 		BasicGOOperation.CheckAndRepositionTable (cellGO);
 		return cellGO;
 	}
+
 	override public void updateGOProp(GameObject ElementGO){
 		//		Debug.Log ("Updating Text of Cell" + DisplayText);
 		updateSelectBtnGO(ElementGO, DisplayText);
 		//Init Select Item Checker
 		SelBtnItemChecker itemChecker = updateItemChecker (ElementGO, correctFlag, Parent.Parent as Line);
 	}
+
+
+
+	//-------------Static methods to create/update Selectable GameObject attributes -------------------
 	//Static method which can be used by any class initiating SelectButton
 	public static void updateSelectBtnGO(GameObject ElementGO, string text){
 		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
@@ -85,6 +96,8 @@ public class SelectableButtonCell : Cell {
 		ElementGO.GetComponent<UIWidget> ().width = (int)(ElementGO.GetComponent<UIWidget> ().width + 25f);
 		ElementGO.GetComponent<UIWidget> ().height = (int)(ElementGO.GetComponent<UIWidget> ().height + 10f);
 	}
+
+	//-------------Static methods to create/update GameObject components for Correct/Incorrect Check-------------------
 	public static SelBtnItemChecker updateItemChecker(GameObject _elementGO, bool _correctBool, Line line){
 		return updateItemChecker (_elementGO, _correctBool, line.ElementGO);
 	}

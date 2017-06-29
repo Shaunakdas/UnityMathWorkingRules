@@ -4,12 +4,26 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class TableCell : Cell {
+	//-------------Common Attributes -------------------
 	//For Table type
 	public int ColumnCount {get; set;}
 	public int RowCount {get; set;}
 
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
 	public TableCell(string type):base(type){
+	}
+	/// <summary>
+	/// Initializes a new instance of the Cell class with HTMLNode attribute
+	/// </summary>
+	/// <param name="para">Para.</param>
+	public TableCell(HtmlNode cell_node):base(cell_node){
+		RowList = new List<Row> ();
+		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
+		Debug.Log ("Initializing TableCell node of type "+type_text);
+		getCellType (type_text);
+		parseChildNode (cell_node);
+		prefabName = LocationManager.NAME_TABLE_CELL;
 	}
 	/// <summary>
 	/// Set Cell Type
@@ -23,13 +37,6 @@ public class TableCell : Cell {
 			Type = CellType.ExponentTable;
 			break;
 		}
-	}
-	/// <summary>
-	/// Initializes a new instance of the Cell class with HTMLNode attribute
-	/// </summary>
-	/// <param name="para">Para.</param>
-	public TableCell(HtmlNode cell_node) :base(cell_node){
-		prefabName = LocationManager.NAME_TABLE_CELL;
 	}
 	/// <summary>
 	/// Parses the parseTableCell Node to generate Row nodes

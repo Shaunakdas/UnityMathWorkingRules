@@ -4,9 +4,12 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class TextLine : Line {
-	
+
+	//-------------Common Attributes -------------------
 	public string DisplayText {get; set;}
 
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Contructor
 	public TextLine(string displayText, string type){
 		RowList = new List<Row>();	
@@ -35,6 +38,8 @@ public class TextLine : Line {
 		}
 	}
 
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 		ElementGO.GetComponent<UILabel> ().text = DisplayText;

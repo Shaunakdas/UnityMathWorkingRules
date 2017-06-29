@@ -98,4 +98,7 @@ public static class StringWrapper {
 
 		return text;
 	}
+	static public List<string> splitTargetText(string targetText){
+		return targetText.Split (';').ToList ();
+	}
 }

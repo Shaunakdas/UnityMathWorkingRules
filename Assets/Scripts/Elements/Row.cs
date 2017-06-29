@@ -7,14 +7,44 @@ public class Row : BaseElement {
 	public Paragraph ParaRef;
 	public Paragraph.AlignType RowAlign;
 
+	//-------------Common Attributes -------------------
 	public enum RowType {Default,DragSource,HorizontalScroll};
 	public RowType Type{ get; set; }
 
+	public Paragraph.AlignType RowAlign;
+
+	//List of child cells
 	public List<Cell> CellList{get; set;}
+	/// <summary>
+	/// Gets or sets the max width of the grid cell if DragSourceLine
+	/// </summary>
+	/// <value>The width of the max grid cell.</value>
 	public float maxGridCellWidth{get; set;}
+
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
 	public Row(){
 
+	}
+	/// <summary>
+	/// Initializes a new instance of the Row class with HTMLNode attribute
+	/// </summary>
+	/// <param name="para">Para.</param>
+	public Row(HtmlNode row_node){
+		maxGridCellWidth = 0;
+		Type = RowType.Default;
+		CellList = new List<Cell> ();
+		HtmlAttribute attr_tag = row_node.Attributes [AttributeManager.ATTR_TYPE];
+		if (attr_tag != null) {
+			string type_text = row_node.Attributes [AttributeManager.ATTR_TYPE].Value;
+			Debug.Log ("Initializing Row node of type " + type_text);
+			getRowType (type_text);
+			initDragSourceCellList (row_node);
+		} else {
+			Debug.Log ("Initializing Row node");
+		}
+		parseRow (row_node);
 	}
 	public void getAlignType(){
 		RowAlign = Paragraph.ParagraphAlign;
@@ -181,6 +211,9 @@ public class Row : BaseElement {
 		}
 		return true;
 	}
+
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
 	/// Generates the Element GameObjects.
 	/// </summary>

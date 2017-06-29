@@ -6,6 +6,7 @@ using HtmlAgilityPack;
 
 public class DropZoneRowCell : Cell {
 
+	//-------------Common Attributes -------------------
 	public bool idPresent{ get; set; }
 	//Dropable
 	public bool Dropable{get; set;}
@@ -39,6 +40,10 @@ public class DropZoneRowCell : Cell {
 			break;
 		}
 	}
+
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
+
 	/// <summary>
 	/// Initializes a new instance of the DropZoneRowCell class with HTMLNode attribute
 	/// </summary>
@@ -67,6 +72,19 @@ public class DropZoneRowCell : Cell {
 		DisplayText = displayText;
 		//By default user should not be able to touch the drop zone, if id or answer tage is present then only user can drop anything into the drop zone
 		Touchable = false; Dropable = false;
+	}
+	/// <summary>
+	/// Set Cell  Type
+	/// </summary>
+	new public void getCellType(string type_text){
+		switch (type_text) {
+		case "drop_zone_row": 
+			Type = CellType.DropZoneRow;
+			break;
+		case "drop_zone": 
+			Type = CellType.DropZone;
+			break;
+		}
 	}
 	/// <summary>
 	/// Checking for "Tag" tag and populating CellTag with its value if present
@@ -119,21 +137,13 @@ public class DropZoneRowCell : Cell {
 		if (targetText == "") {
 			Dropable = false;
 		} else {
-			_targetTextList = splitTargetText(targetText);
+			_targetTextList = StringWrapper.splitTargetText(targetText);
 		}
 		return _targetTextList;
 	}
-	static public List<string> splitTargetText(string targetText){
-		return targetText.Split (';').ToList ();
-	}
-	override public void updateGOProp(GameObject ElementGO){
-		Debug.Log ("Updating Properties of Drop Zone Cell");
-		float cellWidth = ElementGO.GetComponent<UISprite> ().localSize.x;
-		if (TargetText != null) { 
-			Debug.Log ("Updating Target Text of Drop Zone Cell" + TargetText + Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText) + 40f).ToString());
-			ElementGO.GetComponent<UISprite>().width =  (int)Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText)	);
-		}
-	}
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
+
 	override public GameObject generateElementGO(GameObject parentGO){
 		return  generateDropZoneHolderGO (parentGO, TargetTextList, idPresent);
 	}
@@ -175,10 +185,19 @@ public class DropZoneRowCell : Cell {
 			BasicGOOperation.CheckAndRepositionTable (tableGO);
 		}
 		BasicGOOperation.CheckAndRepositionTable (holderGO);
-
 		return holderGO;
-
 	}
+	override public void updateGOProp(GameObject ElementGO){
+		Debug.Log ("Updating Properties of Drop Zone Cell");
+		float cellWidth = ElementGO.GetComponent<UISprite> ().localSize.x;
+		if (TargetText != null) { 
+			Debug.Log ("Updating Target Text of Drop Zone Cell" + TargetText + Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText) + 40f).ToString());
+			ElementGO.GetComponent<UISprite>().width =  (int)Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText)	);
+		}
+	}
+
+
+	//-------------Static methods to create/update GameObject components for Correct/Incorrect Check-------------------
 	static public GameObject initDropZoneTableItem(GameObject parentGO, bool idPresent){
 		GameObject dropZoneTableItemprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_ITEM_CELL)as GameObject;
 		GameObject tableItemGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableItemprefab, parentGO.transform);
@@ -191,4 +210,5 @@ public class DropZoneRowCell : Cell {
 		parentGO.AddComponent<DropZoneHolderParent> ();
 		parentGO.GetComponent<DropZoneHolderParent> ().addDropZoneHolder (dropZoneHolderGO);
 	}
+
 }

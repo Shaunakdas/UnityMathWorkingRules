@@ -4,6 +4,8 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class NumberLineDropLine  : Line {
+
+	//-------------Common Attributes -------------------
 	public int LabelCount{ get; set; }
 	NumberLineDisplay displayCtrl;
 
@@ -15,6 +17,8 @@ public class NumberLineDropLine  : Line {
 	public int DropCount{ get; set; }
 	public int JumpSize{ get; set; }
 
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	///<summary>
 	/// Constructor for NumberLine and NumberLineDrop
 	/// </summary>
@@ -24,7 +28,7 @@ public class NumberLineDropLine  : Line {
 	}
 
 	///<summary>
-	/// Constructor for NumberLineDropLine
+	/// Constructor for NumberLineDropLine based on individual vaues
 	/// </summary>
 	public NumberLineDropLine(string labelCount,string dropStartIndex,string dropCount,string jumpSize, string type){
 		NumberMarkerList = new List<GameObject> ();
@@ -41,7 +45,7 @@ public class NumberLineDropLine  : Line {
 	/// <summary>
 	/// Initializes a new instance of the NumberLineDropLine class with HTMLNode attribute
 	/// </summary>
-	/// <param name="para">Para.</param>
+	/// <param name="line_node">HTMLNode line node</param>
 	public NumberLineDropLine(HtmlNode line_node){
 		RowList = new List<Row>();NumberMarkerList = new List<GameObject> ();displayCtrl = new NumberLineDisplay ();
 		string type = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
@@ -59,8 +63,6 @@ public class NumberLineDropLine  : Line {
 
 		prefabName = LocationManager.NAME_NUM_LINE_DROP_LINE;
 	}
-
-
 	public void getLineType(string type_text){
 		switch (type_text) {
 		case "number_line_drop": 
@@ -74,14 +76,22 @@ public class NumberLineDropLine  : Line {
 			break;
 		}
 	}
+
+
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public void initGOProp(GameObject elementGO){
 		ElementGO = elementGO;
 		GameObject numberLineGrid = BasicGOOperation.getChildGameObject (ElementGO, "NumberLineGrid");
-		initNumberLineGameObject (numberLineGrid);
+		initNumberLineGO (numberLineGrid);
 	}
 	override public void updateGOProp(GameObject elementGO){
 	}
-	public void initNumberLineGameObject(GameObject numberLineGrid){
+	/// <summary>
+	/// Sets dimensions of numberLineGrid based on calculation of NumberLine Class
+	/// </summary>
+	/// <param name="numberLineGrid">Number line grid.</param>
+	public void initNumberLineGO(GameObject numberLineGrid){
 		Debug.Log ("adding initNumberLineGameObject ");
 		//Initialising Default Values
 		displayCtrl.defaultValues ();
@@ -102,6 +112,12 @@ public class NumberLineDropLine  : Line {
 
 		initNumberLineMarkers (numberLineGrid, smallMarkPF, bigMarkPF);
 	}
+	/// <summary>
+	/// Adds all small and big number markers.
+	/// </summary>
+	/// <param name="numberLineGrid">Number line grid GameObject</param>
+	/// <param name="smallMarkerPF">Small marker Prefab</param>
+	/// <param name="numberMarkerPF">Number marker Prefab</param>
 	public void initNumberLineMarkers(GameObject numberLineGrid, GameObject smallMarkerPF, GameObject numberMarkerPF){
 //		Debug.Log ("Names of gameObjects" + numberMarkerPF.name);
 		//First Number Marker
@@ -118,6 +134,9 @@ public class NumberLineDropLine  : Line {
 		}
 		addDefaultItemsToBigMarker ();
 	}
+	/// <summary>
+	/// Adds the default items to every big marker in number line 
+	/// </summary>
 	public void addDefaultItemsToBigMarker(){
 //		GameObject selectBtnPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
 		GameObject itemGO=null;int index=0;
@@ -125,7 +144,7 @@ public class NumberLineDropLine  : Line {
 			if (displayNumber) numberMarkerItem.GetComponentInChildren<TEXDrawNGUI> ().text = ( index).ToString() ;
 			switch (Type) {
 			case LineType.NumberLineDrop:
-				List<string> _targetTextList = DropZoneRowCell.splitTargetText (" ");
+				List<string> _targetTextList = StringWrapper.splitTargetText (" ");
 				itemGO = DropZoneRowCell.generateDropZoneHolderGO (numberMarkerItem, _targetTextList, false);
 				itemGO.GetComponent<UITable> ().pivot = UIWidget.Pivot.Center;
 				itemGO.GetComponentInChildren<UISprite> ().height = itemGO.GetComponentInChildren<UISprite> ().height - 20;
@@ -140,7 +159,7 @@ public class NumberLineDropLine  : Line {
 				SelectableButtonCell.resizeToFit (itemGO);
 				break;
 			case LineType.NumberLineDropJump:
-				itemGO = DropZoneRowCell.generateDropZoneHolderGO (numberMarkerItem, DropZoneRowCell.splitTargetText (""), false);
+				itemGO = DropZoneRowCell.generateDropZoneHolderGO (numberMarkerItem,StringWrapper.splitTargetText (""), false);
 				break;
 			}
 			itemGO.transform.localPosition = new Vector3 (-60f, 0f,0f);
@@ -148,6 +167,13 @@ public class NumberLineDropLine  : Line {
 		}
 		 
 	}
+	/// <summary>
+	/// Based on NumberLabelCell values, add items to Each big marker.
+	/// </summary>
+	/// <returns>GameObject at the required index</returns>
+	/// <param name="index">Index.</param>
+	/// <param name="text">Text.</param>
+	/// <param name="cellLabel">Cell label type</param>
 	public GameObject addItemToBigMarker(int index, string text, NumberLineLabelCell.LabelType cellLabel){
 		int displayIndex = displayCtrl.IntegerCount - index - 1;
 		GameObject itemGO=null;
@@ -173,7 +199,7 @@ public class NumberLineDropLine  : Line {
 			itemGO = NumberMarkerList [displayIndex];
 			switch (Type) {
 			case LineType.NumberLineDrop:
-				itemGO.GetComponentInChildren<DropZoneHolder>().TargetTextList = DropZoneRowCell.splitTargetText(text); 
+				itemGO.GetComponentInChildren<DropZoneHolder>().TargetTextList = StringWrapper.splitTargetText(text); 
 				//Set target text
 				break;
 			case LineType.NumberLineSelect:

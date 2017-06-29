@@ -4,15 +4,29 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class TableCell : Cell {
+	//-------------Common Attributes -------------------
 	//For Table type
 	public List<Row> RowList {get; set;}
 	public int ColumnCount {get; set;}
 	public int RowCount {get; set;}
 
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
 	public TableCell(string type){
 		if(type == "fraction_table") Type = CellType.FractionTable;
 		if(type == "exponent_table") Type = CellType.ExponentTable;
+	}
+	/// <summary>
+	/// Initializes a new instance of the Cell class with HTMLNode attribute
+	/// </summary>
+	/// <param name="para">Para.</param>
+	public TableCell(HtmlNode cell_node){
+		RowList = new List<Row> ();
+		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
+		Debug.Log ("Initializing TableCell node of type "+type_text);
+		getCellType (type_text);
+		parseTableCell (cell_node);
+		prefabName = LocationManager.NAME_TABLE_CELL;
 	}
 	/// <summary>
 	/// Set Cell Type
@@ -27,18 +41,7 @@ public class TableCell : Cell {
 			break;
 		}
 	}
-	/// <summary>
-	/// Initializes a new instance of the Cell class with HTMLNode attribute
-	/// </summary>
-	/// <param name="para">Para.</param>
-	public TableCell(HtmlNode cell_node){
-		RowList = new List<Row> ();
-		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-		Debug.Log ("Initializing TableCell node of type "+type_text);
-		getCellType (type_text);
-		parseTableCell (cell_node);
-		prefabName = LocationManager.NAME_TABLE_CELL;
-	}
+
 	/// <summary>
 	/// Parses the parseTableCell Node to generate Row nodes
 	/// </summary>

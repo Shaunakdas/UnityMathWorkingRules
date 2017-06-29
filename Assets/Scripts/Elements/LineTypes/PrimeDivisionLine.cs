@@ -4,8 +4,13 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class PrimeDivisionLine : Line {
+
+	//-------------Common Attributes -------------------
 	public int TargetInt{get; set;}
 	PrimeDivision primeDivision;
+
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
 	public PrimeDivisionLine(string integer, string type){
 		RowList = new List<Row>();
@@ -34,12 +39,18 @@ public class PrimeDivisionLine : Line {
 			break;
 		}
 	}
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public void initGOProp(GameObject elementGO){
 		ElementGO = elementGO;
 		GameObject primeDivisionGrid = BasicGOOperation.getChildGameObject (ElementGO, "PrimeDivisionGrid");
 		initPrimeDivLineGameObject (primeDivisionGrid);
 		BasicGOOperation.ResizeToFitChildGO (elementGO);
 	}
+	/// <summary>
+	/// Initializes PrimeDivision List GameObject
+	/// </summary>
+	/// <param name="primeDivisionGrid">Prime division grid.</param>
 	public void initPrimeDivLineGameObject(GameObject primeDivisionGrid){
 		int levelCount = primeDivision.PrimeFactorList.Count;
 		GameObject primeDivisionLevelPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_PRIME_DIV_LEVEL_CELL)as GameObject;
@@ -49,6 +60,11 @@ public class PrimeDivisionLine : Line {
 			populatePrimeDivLevel (primeDivisionLevel,i);
 		}
 	}
+	/// <summary>
+	/// Populates each prime div level.
+	/// </summary>
+	/// <param name="primeDivisionLevel">Prime division level GameObject</param>
+	/// <param name="index">Index.</param>
 	public void populatePrimeDivLevel(GameObject primeDivisionLevel, int index){
 		//Adding Dividend
 		int dividend = primeDivision.PrimeDividendList[index];
@@ -63,7 +79,7 @@ public class PrimeDivisionLine : Line {
 		int factor = primeDivision.PrimeFactorList[index];
 //		GameObject factorDropCellPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_CELL)as GameObject;
 //		GameObject factorDropCell = BasicGOOperation.InstantiateNGUIGO (factorDropCellPF, primeDivisionLevel.transform);
-		GameObject factorDropCell = DropZoneRowCell.generateDropZoneHolderGO(primeDivisionLevel,DropZoneRowCell.splitTargetText(factor.ToString()),false);
+		GameObject factorDropCell = DropZoneRowCell.generateDropZoneHolderGO(primeDivisionLevel,StringWrapper.splitTargetText(factor.ToString()),false);
 		Vector3 factorLocation = factorDropCell.transform.localPosition; factorLocation.x = -50;factorDropCell.transform.localPosition = factorLocation;
 	}
 

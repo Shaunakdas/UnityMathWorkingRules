@@ -4,11 +4,18 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class TableLine  : Line {
-	//For Table type
-//	public List<Row> RowList {get; set;}
+
+	//-------------Common Attributes -------------------
 	public int ColumnCount {get; set;}
 	public int RowCount {get; set;}
+	/// <summary>
+	/// Gets or sets Flag indicating whether this <see cref="TableLine"/> has selectable cell and hence contain SelBtnHolder Component.
+	/// </summary>
+	/// <value><c>true</c> if table contains any Selectable Cell; otherwise, <c>false</c>.</value>
 	public bool SelBtnFlag{ get; set; }
+
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
 	public TableLine(string type){
 		RowList = new List<Row>();
@@ -42,6 +49,9 @@ public class TableLine  : Line {
 			break;
 		}
 	}
+
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public void updateGOProp(GameObject ElementGO){
 		ElementGO.GetComponent<UITable> ().columns = ColumnCount;
 		SelBtnHolder selBtnHolder = ElementGO.GetComponent<SelBtnHolder> ();
@@ -49,7 +59,9 @@ public class TableLine  : Line {
 			selBtnHolder.setParentCorrectCount (Parent as Paragraph, this);
 		}
 	}
-	//For Selectable Button Cell
+
+	//-------------Static methods to create/update GameObject components for Correct/Incorrect Check-------------------
+	//For Selectable Button Holder
 	public void updateSelBtnHolder(GameObject _selBtnGO,bool _selBtnBool){
 		SelBtnFlag = true;
 		ElementGO.AddComponent<SelBtnHolder> (); SelBtnHolder holderScript = ElementGO.GetComponent<SelBtnHolder> ();

@@ -162,7 +162,11 @@ public class DropZoneRowCell : Cell {
 			} else {
 				foreach (char targetChar in targetText.ToCharArray().ToList()) {
 					tableWidth += 50 + 5;
-					GameObject tableItemGO =  initDropZoneTableItem(tableGO,idPresent);
+					if (targetChar == '+' || targetChar == '-') {
+						GameObject signBtnGO = SelectableButtonCell.generateSelBtnCellGO (tableGO, "-");
+					} else {
+						GameObject tableItemGO = initDropZoneTableItem (tableGO, idPresent);
+					}
 				}
 			}
 //			BasicGOOperation.ResizeToFitChildGO (backgroundGO);

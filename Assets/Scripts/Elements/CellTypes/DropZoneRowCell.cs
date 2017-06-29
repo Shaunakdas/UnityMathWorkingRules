@@ -27,19 +27,6 @@ public class DropZoneRowCell : Cell {
 		set { _targetId = value; generateTargetIdList (value); }
 	}
 	public List<string> TargetIdList{ get; set; }
-	/// <summary>
-	/// Set Cell  Type
-	/// </summary>
-	override public void getCellType(string type_text){
-		switch (type_text) {
-		case "drop_zone_row": 
-			Type = CellType.DropZoneRow;
-			break;
-		case "drop_zone": 
-			Type = CellType.DropZone;
-			break;
-		}
-	}
 
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------

@@ -44,11 +44,6 @@ public class Cell : TableLine {
 	virtual public void  getAlignType(){
 		DragAlign = Paragraph.ParagraphAlign;
 	}
-	/// <summary>
-	/// Set Cell  Type
-	/// </summary>
-	virtual public void getCellType(string type_text){
-	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>

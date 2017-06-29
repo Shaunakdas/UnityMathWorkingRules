@@ -25,19 +25,6 @@ public class NumberLineLabelCell : Cell {
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	/// <summary>
-	/// Initializes a new instance of the NumberLineLabelCell class with HTMLNode attribute
-	/// </summary>
-	/// <param name="para">Para.</param>
-	public NumberLineLabelCell(HtmlNode cell_node){
-		//		CellList = new List<Cell> ();
-		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-		Debug.Log ("Initializing NumberLineLabelCell node of type "+type_text);
-		getCellType (type_text);setDefaultProp ();
-		LabelIndex = int.Parse(cell_node.Attributes [AttributeManager.ATTR_LABEL_INDEX].Value);
-		prefabName = LocationManager.NAME_NUM_LINE_LABEL_CELL;
-		DisplayText = cell_node.InnerText;
-	}
-	/// <summary>
 	/// Set NumberLineLabelCell  Type
 	/// </summary>
 	override public void getCellType(string type_text){

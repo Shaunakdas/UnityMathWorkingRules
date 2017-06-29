@@ -27,15 +27,7 @@ public class Line : BaseElement{
 	//Empty Constructor
 	public Line(){
 	}
-	/// <summary>
-	/// Initializes a new instance of the Line class with HTMLNode attribute. Will be overriden by LineType Classes.
-	/// </summary>
-	/// <param name="para">Para.</param>
-	public Line(HtmlNode line_node){
-		RowList = new List<Row>();
-		string type_text = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-		getLineType (type_text);
-	}
+
 	/// <summary>
 	/// Parses the Line Node to generate Row nodes
 	/// </summary>
@@ -111,10 +103,7 @@ public class Line : BaseElement{
 		}
 	}
 
-	override public void updateGOProp(GameObject _elementGO){
-		Debug.Log ("Updating table of"+_elementGO.name);
-		BasicGOOperation.CheckAndRepositionTable (_elementGO);
-	}
+
 
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
@@ -172,7 +161,8 @@ public class Line : BaseElement{
 		BasicGOOperation.CheckAndRepositionTable (CenterContentGO);
 		return lineGO;
 	}
-	virtual public void updateGOProp(GameObject ElementGO){
-		//		Debug.Log ("Updating Text of Line");
+	override public void updateGOProp(GameObject _elementGO){
+		Debug.Log ("Updating table of"+_elementGO.name);
+		BasicGOOperation.CheckAndRepositionTable (_elementGO);
 	}
 }

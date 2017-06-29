@@ -37,6 +37,7 @@ public class TableLine  : Line {
 		if (selBtnHolder != null) {
 			selBtnHolder.setParentCorrectCount (Parent as Paragraph, this);
 		}
+		BasicGOOperation.CheckAndRepositionTable (ElementGO);
 	}
 	//For Selectable Button Cell
 	public void updateSelBtnHolder(GameObject _selBtnGO,bool _selBtnBool){

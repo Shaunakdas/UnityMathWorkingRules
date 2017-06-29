@@ -89,8 +89,9 @@ public class Line : BaseElement{
 		}
 	}
 
-	override public void updateGOProp(GameObject ElementGO){
-//		Debug.Log ("Updating Text of Line");
+	override public void updateGOProp(GameObject _elementGO){
+		Debug.Log ("Updating table of"+_elementGO.name);
+		BasicGOOperation.CheckAndRepositionTable (_elementGO);
 	}
 	/// <summary>
 	/// Generates the Element GameObjects.
@@ -142,8 +143,8 @@ public class Line : BaseElement{
 			row.generateElementGO (lineGO);
 		}
 		updateGOProp (lineGO);
-		BasicGOOperation.CheckAndRepositionTable (CenterContentGO);
 		BasicGOOperation.CheckAndRepositionTable (lineGO);
+		BasicGOOperation.CheckAndRepositionTable (CenterContentGO);
 		return lineGO;
 	}
 	public void addSubmitBtn(){

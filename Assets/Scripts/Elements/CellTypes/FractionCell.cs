@@ -3,33 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
 
-public class TableCell : Cell {
+public class FractionCell : Cell {
 	//For Table type
 	public int ColumnCount {get; set;}
 	public int RowCount {get; set;}
 
 	//Constructor
-	public TableCell(string type):base(type){
+	public FractionCell(string type):base(type){
 	}
 	/// <summary>
 	/// Set Cell Type
 	/// </summary>
 	override public void getCellType(string type_text){
-		switch (type_text) {
-		case "fraction_table": 
-			Type = CellType.FractionTable;
-			break;
-		case "exponent_table": 
-			Type = CellType.ExponentTable;
-			break;
-		}
+		Type = CellType.FractionTable;
 	}
 	/// <summary>
 	/// Initializes a new instance of the Cell class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public TableCell(HtmlNode cell_node) :base(cell_node){
-		prefabName = LocationManager.NAME_TABLE_CELL;
+	public FractionCell(HtmlNode cell_node) :base(cell_node){
+		prefabName = LocationManager.NAME_FRACTION_TABLE_CELL;
 	}
 	/// <summary>
 	/// Parses the parseTableCell Node to generate Row nodes
@@ -57,23 +50,25 @@ public class TableCell : Cell {
 		getAlignType ();
 		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + prefabName)as GameObject;
 		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+		GameObject ContentGO = BasicGOOperation.getChildGameObject (cellGO, LocationManager.NAME_CONTENT_TABLE);
 		ElementGO = cellGO;
 		initGOProp (cellGO);
 		foreach (Row row in RowList) {
-			row.generateElementGO (cellGO);
+			row.generateElementGO (ContentGO);
 		}
 		updateGOProp (cellGO);
 		BasicGOOperation.CheckAndRepositionTable (cellGO);
 		return cellGO;
 	}
 	override public void updateGOProp(GameObject cellGO){
-		switch (Type) {
-		case CellType.FractionTable: 
-			
-			break;
-		case CellType.ExponentTable: 
-			
-			break;
-		}
+
+		BasicGOOperation.RepositionChildTables (cellGO);
+		BasicGOOperation.ResizeToFitChildGO (cellGO);
+		GameObject ContentGO = BasicGOOperation.getChildGameObject (cellGO, LocationManager.NAME_CONTENT_TABLE);
+		ContentGO.GetComponent<UITable> ().columns = ColumnCount;
+		GameObject barGO = BasicGOOperation.getChildGameObject (cellGO, LocationManager.NAME_FRACTION_BAR);
+		barGO.GetComponent<UIWidget>().width =(int) BasicGOOperation.ScaledBounds(cellGO).x;
+		//Setting width as cellGO width
+		//Seeting location as center of cellGO
 	}
 }	

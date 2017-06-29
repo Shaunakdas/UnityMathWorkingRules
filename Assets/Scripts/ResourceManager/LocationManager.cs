@@ -50,6 +50,10 @@ public class LocationManager {
 	public const string NAME_LATEX_TEXT_CELL = "LatexTextCellPF";
 	public const string NAME_TEXT_CELL = "TextCellPF";
 	public const string NAME_TABLE_CELL = "TableLinePF";
+	public const string NAME_FRACTION_TABLE_CELL = "FractionTableCellPF";
+	public const string NAME_FRACTION_BAR = "FractionBarPF";
+
+	public const string NAME_EXPONENT_TABLE_CELL = "ExponentTableCellPF";
 	public const string NAME_SELECT_BTN_CELL = "SelectBtnCellPF";
 	public const string NAME_SELECT_SIGN_CELL = "SelectSignCellPF";
 	public const string NAME_NUM_LINE_LABEL_CELL = "NumLineLabelCellPF";
@@ -63,4 +67,6 @@ public class LocationManager {
 	public const string COMPLETE_LOC_OTHER_TYPE = LOC_PREFAB_TYPE+LOC_ELEMENT_TYPE+LOC_OTHER_TYPE;
 	//Other Prefabs;
 	public const string NAME_CENTER_CONTENT_SCROLL_VIEW = "CenterContentScrollViewPF";
+	public const string NAME_CONTENT_TABLE = "ContentTable";
+	public const string NAME_EMPTY_CONTAINER = "EmptyContainer";
 }

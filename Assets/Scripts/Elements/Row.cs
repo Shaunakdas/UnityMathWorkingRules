@@ -114,10 +114,10 @@ public class Row : BaseElement {
 					newCell = new SelectableButtonCell (cell_node);
 					break;
 				case "fraction_table": 
-					newCell = new TableCell (cell_node);
+					newCell = new FractionCell (cell_node);
 					break;
 				case "exponent_table": 
-					newCell = new TableCell (cell_node);
+					newCell = new ExponentCell (cell_node);
 					break;
 				}
 				//Populate Child Row nodes inside Cell Node
@@ -233,14 +233,14 @@ public class Row : BaseElement {
 		Debug.Log (Parent.GetType ());
 		if (Parent.GetType () == typeof(TableLine)) {
 			TableLine tableElement = Parent as TableLine;
-			Debug.Log ("Number of columns " + CellList.Count + tableElement.ColumnCount);
+			Debug.Log ("Number of columns of " +parentGO.name+ CellList.Count + tableElement.ColumnCount);
 			if (tableElement.ColumnCount == 0) {
 				parentGO.GetComponent<UITable> ().columns = CellList.Count;
 				tableElement.ColumnCount = CellList.Count;
 			} 
-		} else if(Parent.GetType () == typeof(TableCell)) {
-			TableCell tableElement = Parent as TableCell;
-			Debug.Log ("Number of columns " + CellList.Count + tableElement.ColumnCount);
+		} else if(Parent.GetType () == typeof(FractionCell)) {
+			FractionCell tableElement = Parent as FractionCell;
+			Debug.Log ("Number of columns of " +parentGO.name+ CellList.Count + tableElement.ColumnCount);
 			if (tableElement.ColumnCount == 0) {
 				parentGO.GetComponent<UITable> ().columns = CellList.Count;
 				tableElement.ColumnCount = CellList.Count;

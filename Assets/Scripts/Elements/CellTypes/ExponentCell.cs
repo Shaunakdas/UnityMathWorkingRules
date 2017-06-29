@@ -3,33 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
 
-public class TableCell : Cell {
+public class ExponentCell : Cell {
 	//For Table type
 	public int ColumnCount {get; set;}
 	public int RowCount {get; set;}
 
 	//Constructor
-	public TableCell(string type):base(type){
+	public ExponentCell(string type):base(type){
 	}
 	/// <summary>
 	/// Set Cell Type
 	/// </summary>
 	override public void getCellType(string type_text){
-		switch (type_text) {
-		case "fraction_table": 
-			Type = CellType.FractionTable;
-			break;
-		case "exponent_table": 
-			Type = CellType.ExponentTable;
-			break;
-		}
+		Type = CellType.ExponentTable;
 	}
 	/// <summary>
 	/// Initializes a new instance of the Cell class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>
-	public TableCell(HtmlNode cell_node) :base(cell_node){
-		prefabName = LocationManager.NAME_TABLE_CELL;
+	public ExponentCell(HtmlNode cell_node) :base(cell_node){
+		prefabName = LocationManager.NAME_EXPONENT_TABLE_CELL;
 	}
 	/// <summary>
 	/// Parses the parseTableCell Node to generate Row nodes
@@ -57,23 +50,33 @@ public class TableCell : Cell {
 		getAlignType ();
 		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + prefabName)as GameObject;
 		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
+		GameObject ContentGO = BasicGOOperation.getChildGameObject (cellGO, LocationManager.NAME_CONTENT_TABLE);
 		ElementGO = cellGO;
 		initGOProp (cellGO);
 		foreach (Row row in RowList) {
-			row.generateElementGO (cellGO);
+			row.generateElementGO (ContentGO);
 		}
 		updateGOProp (cellGO);
 		BasicGOOperation.CheckAndRepositionTable (cellGO);
 		return cellGO;
 	}
 	override public void updateGOProp(GameObject cellGO){
-		switch (Type) {
-		case CellType.FractionTable: 
-			
-			break;
-		case CellType.ExponentTable: 
-			
-			break;
+		BasicGOOperation.CheckAndRepositionTable (cellGO);
+		//Getting maximum height of sibling gameobjects.
+		float maxSiblingHeight=0f;
+		foreach (Transform siblingTf in cellGO.transform.parent) {
+			if (siblingTf != cellGO.transform) {
+				maxSiblingHeight = Mathf.Max (maxSiblingHeight, (NGUIMath.CalculateAbsoluteWidgetBounds (siblingTf).size.y/BasicGOOperation.scale.y));
+				Debug.Log ("maxSiblingHeight"+maxSiblingHeight);
+			}
 		}
+
+		GameObject ContentGO = BasicGOOperation.getChildGameObject (cellGO, LocationManager.NAME_CONTENT_TABLE);
+
+		float contentHeight = NGUIMath.CalculateAbsoluteWidgetBounds (ContentGO.transform).size.y / BasicGOOperation.scale.y;
+		//Adding empty widget of height 3/4 of earlier calculated widgets to cellGO
+		GameObject emptyPf = Resources.Load (LocationManager.COMPLETE_LOC_OTHER_TYPE + LocationManager.NAME_EMPTY_CONTAINER)as GameObject;
+		GameObject emptyGO = BasicGOOperation.InstantiateNGUIGO (emptyPf, cellGO.transform);
+		emptyGO.GetComponent<UIWidget> ().height =  (int)((0.5 * maxSiblingHeight) + (contentHeight));
 	}
 }	

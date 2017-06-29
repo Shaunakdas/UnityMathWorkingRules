@@ -20,10 +20,10 @@ ScrollView (UI Panel, UI Scroll View) {Depth - 1}
 
 ## Layout Structure
 ```
-	Horizontal Layout 
-		Left|Default|Right
-	Vertical Layout
-		Top|Default|Bottom
+Horizontal Layout 
+	Left|Default|Right
+Vertical Layout
+	Top|Default|Bottom
 ```
 
 ## Adding Monoscript in runtime. 

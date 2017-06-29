@@ -4,10 +4,12 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class NumberLineLabelCell : Cell {
+
+	//-------------Common Attributes -------------------
 	public enum LabelType{Label,LabelAnswer}
 	public LabelType LineLabel{ get; set; }
+
 	public int LabelIndex{ get; set; }
-	public string DisplayText{ get; set; }
 	//Constructor
 	public NumberLineLabelCell(string type, string labelIndex){
 		getCellType (type);
@@ -20,22 +22,9 @@ public class NumberLineLabelCell : Cell {
 		labelDefaultLocation = new Vector3 (-60f, 0f, 0f);
 		labelDefaultSize = new Vector2 (100f, 60f);
 	}
-	/// <summary>
-	/// Set NumberLineLabelCell  Type
-	/// </summary>
-	public void getCellType(string type_text){
-		switch (type_text) {
-		case "number_line_label": 
-			Type = CellType.NumberLineLabel;
-			LineLabel = LabelType.Label;
-			break;
-		case "number_line_label_answer": 
-			Type = CellType.NumberLineLabelAnswer;
-			LineLabel = LabelType.LabelAnswer;
-			break;
-		}
 
-	}
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	/// <summary>
 	/// Initializes a new instance of the NumberLineLabelCell class with HTMLNode attribute
 	/// </summary>
@@ -49,6 +38,24 @@ public class NumberLineLabelCell : Cell {
 		prefabName = LocationManager.NAME_NUM_LINE_LABEL_CELL;
 		DisplayText = cell_node.InnerText;
 	}
+	/// <summary>
+	/// Set NumberLineLabelCell  Type
+	/// </summary>
+	override public void getCellType(string type_text){
+		switch (type_text) {
+		case "number_line_label": 
+			Type = CellType.NumberLineLabel;
+			LineLabel = LabelType.Label;
+			break;
+		case "number_line_label_answer": 
+			Type = CellType.NumberLineLabelAnswer;
+			LineLabel = LabelType.LabelAnswer;
+			break;
+		}
+
+	}
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
 	/// Generates the Element GameObjects.
 	/// </summary>

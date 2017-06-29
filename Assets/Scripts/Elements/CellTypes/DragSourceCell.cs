@@ -5,6 +5,7 @@ using HtmlAgilityPack;
 
 public class DragSourceCell : Cell {
 
+	//-------------Common Attributes -------------------
 	public enum SeriesType{Integer,Prime};
 	public SeriesType SourceType;
 	//For Table type
@@ -12,6 +13,8 @@ public class DragSourceCell : Cell {
 	public int ColumnCount {get; set;}
 	public int RowCount {get; set;}
 
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
 	public DragSourceCell(string type, string id, string displayText){
 		getCellType (type);
@@ -41,8 +44,6 @@ public class DragSourceCell : Cell {
 		DisplayText = cell_node.InnerText;
 		prefabName = LocationManager.NAME_DRAG_SOURCE_CELL;
 	}
-
-
 	/// <summary>
 	/// Set Cell  Type
 	/// </summary>
@@ -61,6 +62,7 @@ public class DragSourceCell : Cell {
 	}
 
 
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 		GameObject labelGO = BasicGOOperation.getChildGameObject (ElementGO, "Label");
@@ -69,10 +71,6 @@ public class DragSourceCell : Cell {
 		ElementGO.GetComponent<CustomDragDropItem> ().restriction = (DragAlign == Paragraph.AlignType.Horizontal)? UIDragDropItem.Restriction.Horizontal:UIDragDropItem.Restriction.Vertical ;
 		GameObject containerGO = BasicGOOperation.getChildGameObject (BasicGOOperation.getChildGameObject (this.Parent.ElementGO, "ScrollView"), "Container");
 		ElementGO.GetComponent<CustomDragDropItem> ().DragScrollView = containerGO;
-		//Increasing size based on text
-//		float width = BasicGOOperation.getTextSize(DisplayText);
-//		float elementWidth = ElementGO.GetComponent<UISprite> ().localSize.y;
-//		elementWidth = (width > 30f) ? (width + 30f) : 60f;
 	}
 	public string generateStandardName(string text){
 		int number; string newText = text;

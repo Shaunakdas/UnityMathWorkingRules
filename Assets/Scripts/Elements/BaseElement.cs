@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 public class BaseElement : MonoBehaviour {
+
+	//-------------Common Attributes -------------------
 	public string prefabName{get; set;}
 	//Parent BaseElement
 	public BaseElement Parent{get; set;}
+
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
-	/// Initiates the GameObject properties based on its corresponding class attribute
+	/// The element game object.
+	/// </summary>
+	public GameObject ElementGO;
+	/// <summary>
+	/// Initiates the GameObject Default properties based on its corresponding class attribute
 	/// </summary>
 	/// <param name="ElementGO">Element GameObject</param>
 	virtual public void initGOProp(GameObject ElementGO){
 	}
 	/// <summary>
-	/// Updates the GameObject properties based on its corresponding class attribute
-	/// </summary>
-	/// <param name="ElementGO">Element GameObject</param>
-	virtual public void updateGOProp(GameObject ElementGO){
-	}
-	/// <summary>
-	/// Generates the corresponding GameObject
+	/// Generates the Element GameObject
 	/// </summary>
 	/// <returns>The element Gameobject</returns>
 	/// <param name="ElementGameObject">Element GameObject</param>
@@ -26,7 +29,9 @@ public class BaseElement : MonoBehaviour {
 		return ElementGameObject;
 	}
 	/// <summary>
-	/// The element game object.
+	/// Updates the GameObject properties based on its child values
 	/// </summary>
-	public GameObject ElementGO;
+	/// <param name="ElementGO">Element GameObject</param>
+	virtual public void updateGOProp(GameObject ElementGO){
+	}
 }

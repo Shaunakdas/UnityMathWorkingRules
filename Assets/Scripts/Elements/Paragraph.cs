@@ -3,23 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
 public class Paragraph : BaseElement{
+	//-------------Common Attributes -------------------
+	//Is the paragraph a comprehension question or question step
 	public enum StepType {Comprehension,QuestionStep};
 	public StepType ParagraphStep;
 
+	//What is the alignment of Paragraph: Vertically or Horizontally
 	public enum AlignType {Vertical,Horizontal};
 	public AlignType ParagraphAlign;
 
-	public int tableCol;
-	//For all types
-	public List<Line> LineList{get; set;}
 
-	//For QuestionStep 
+	//How many correct options are present in current questionstep
 	public enum CorrectType {SingleCorrect,MultipleCorrect}
 	public CorrectType ParagraphCorrect;
+
+	//Number of columns of Table Component
+	public int tableCol;
+
+	//List of child Line elements
+	public List<Line> LineList{get; set;}
+
+
+
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
+	//Empty Contructor
 	public Paragraph(){
 	}
+
 	/// <summary>
-	/// Initializes a new instance of the Paragraph class with correctType attribute
+	/// Initializes a new instance of the Paragraph class with only correctType attribute
 	/// </summary>
 	/// <param name="correctType">Correct type.</param>
 	public Paragraph(string correctType){
@@ -119,6 +132,52 @@ public class Paragraph : BaseElement{
 			}
 		}
 	}
+	/// <summary>
+	/// (Based on matching id) Populates TargetText of DropZone Row Element with Reference of corresponding DragSourceCell 
+	/// </summary>
+	public void populateCellTargetText(){
+		Debug.Log ("Populating Target Text of each drop zone cell");
+		//Tracking all DropZone Cell TargetText
+		List<DropZoneRowCell> dropZoneCellList = new List<DropZoneRowCell> ();
+		List<DragSourceCell> dragSourceCellList = new List<DragSourceCell> ();
+		//Parse through whole line list and its contents to get DragZoneRow Cell with valid id
+		foreach (Line line in LineList) {
+			foreach (Row row in line.RowList) {
+				foreach (var cell in row.CellList) {
+					//					Debug.Log ("Traversing through cell List current type" + cell.GetType ().ToString () + cell.CellId);
+					if ((cell.GetType () == typeof(DropZoneRowCell))&& (cell.CellId != null)) {
+						//						Debug.Log ("Found one Drop zone Cell");
+						DropZoneRowCell dropCell = (DropZoneRowCell)cell;
+						Debug.Log ("Found one Drop zone Cell" + dropCell.CellId);
+						dropZoneCellList.Add (dropCell);
+					}
+				}
+			}
+		}
+		foreach (Line line in LineList) {
+			foreach (Row row in line.RowList) {
+				foreach (var cell in row.CellList) {
+					if ((cell.GetType () == typeof(DragSourceCell)) && (cell.CellId != null)) {
+						DragSourceCell dragCell = (DragSourceCell)cell;
+						Debug.Log ("Found one Drag source Cell"+ dragCell.CellId);
+						dragSourceCellList.Add (dragCell);
+					}
+				}
+			}
+		}
+		foreach (DragSourceCell dragCell in dragSourceCellList) {
+			DropZoneRowCell dropZone = dropZoneCellList.Find (x => x.CellId == dragCell.CellId);
+			Debug.Log ("Changing Target Text of id" + dragCell.DisplayText +dropZone.CellId);
+			dropZone.TargetText = dragCell.DisplayText;
+		}
+	}
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
+	/// <summary>
+	/// Generates the corresponding GameObject
+	/// </summary>
+	/// <returns>The element Gameobject</returns>
+	/// <param name="ElementGameObject">Element GameObject</param>
 	override public GameObject generateElementGO(GameObject parentGO){
 		//Setting targetText of child drop zone cell;
 		populateCellTargetText ();
@@ -145,7 +204,6 @@ public class Paragraph : BaseElement{
 
 			foreach (Line line in LineList) {
 				line.generateElementGO (ParaContentTableGO);
-
 			}
 			if (isCenterContentPresent)
 				resizeCenterContent (CenterContentGO, ParaContentTableGO);
@@ -154,6 +212,11 @@ public class Paragraph : BaseElement{
 		}
 		return ParaContentTableGO;
 	}
+	/// <summary>
+	/// Resizes the content of the Center Scroll View.
+	/// </summary>
+	/// <param name="CenterContentGO">Center content Scroll View GameObject.</param>
+	/// <param name="ParaContentTableGO">Paragraph content table Gameobject.</param>
 	public void resizeCenterContent(GameObject CenterContentGO,GameObject ParaContentTableGO){
 		Vector3 scale = BasicGOOperation.scale;
 		Vector3 remainingSize = ParaContentTableGO.transform.parent.gameObject.GetComponent<UISprite> ().CalculateBounds().size;
@@ -170,9 +233,13 @@ public class Paragraph : BaseElement{
 			}
 		}
 		resizeCenterContentChild (CenterContentGO, ParagraphAlign, remainingSize);
-
-
 	}
+	/// <summary>
+	/// Resizes the dimensions of Child GameObjects of Center Scroll View.
+	/// </summary>
+	/// <param name="CenterContentGO">Center content GameObject</param>
+	/// <param name="align">Align Type</param>
+	/// <param name="newSize">New size of Center Scroll View</param>
 	public void resizeCenterContentChild(GameObject CenterContentGO, AlignType align, Vector3 newSize){
 		if (align == AlignType.Horizontal) {
 			//Change CenterContentGO.width
@@ -191,45 +258,6 @@ public class Paragraph : BaseElement{
 			//Change CenterContentGO.height
 			GameObject ContainerGO = BasicGOOperation.getChildGameObject(CenterContentGO,"Container");
 			ContainerGO.GetComponent<UIWidget> ().height = (int)newSize.y;
-
-		}
-
-	}
-	//Populating Target Text based on DragSource Reference
-	public void populateCellTargetText(){
-		Debug.Log ("Populating Target Text of each drop zone cell");
-		//Tracking all DropZone Cell TargetText
-		List<DropZoneRowCell> dropZoneCellList = new List<DropZoneRowCell> ();
-		List<DragSourceCell> dragSourceCellList = new List<DragSourceCell> ();
-		//Parse through whole line list and its contents to get DragZoneRow Cell with valid id
-		foreach (Line line in LineList) {
-			foreach (Row row in line.RowList) {
-				foreach (var cell in row.CellList) {
-//					Debug.Log ("Traversing through cell List current type" + cell.GetType ().ToString () + cell.CellId);
-					if ((cell.GetType () == typeof(DropZoneRowCell))&& (cell.CellId != null)) {
-//						Debug.Log ("Found one Drop zone Cell");
-						DropZoneRowCell dropCell = (DropZoneRowCell)cell;
-						Debug.Log ("Found one Drop zone Cell" + dropCell.CellId);
-						dropZoneCellList.Add (dropCell);
-					}
-				}
-			}
-		}
-		foreach (Line line in LineList) {
-			foreach (Row row in line.RowList) {
-				foreach (var cell in row.CellList) {
-					if ((cell.GetType () == typeof(DragSourceCell)) && (cell.CellId != null)) {
-						DragSourceCell dragCell = (DragSourceCell)cell;
-						Debug.Log ("Found one Drag source Cell"+ dragCell.CellId);
-						dragSourceCellList.Add (dragCell);
-					}
-				}
-			}
-		}
-		foreach (DragSourceCell dragCell in dragSourceCellList) {
-			DropZoneRowCell dropZone = dropZoneCellList.Find (x => x.CellId == dragCell.CellId);
-			Debug.Log ("Changing Target Text of id" + dragCell.DisplayText +dropZone.CellId);
-			dropZone.TargetText = dragCell.DisplayText;
 		}
 	}
 }

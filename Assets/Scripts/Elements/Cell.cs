@@ -4,23 +4,20 @@ using UnityEngine;
 using HtmlAgilityPack;
 
 public class Cell : BaseElement {
+	//-------------Common Attributes -------------------
 	public Paragraph.AlignType DragAlign;
 
 	public enum CellType {Text,DropZone,DropZoneRow,SelectableButton,SelectableSign,DragSource,FractionTable,ExponentTable,NumberLineLabel,NumberLineLabelAnswer};
-	//Cell Prefabs
-	public GameObject DragSourceCellPF,DropZoneCellPF,LatexTextCellPF,TextCellPF,TableCellPF,SelectBtnCellPF,SelectSignCellPF,NumLineLabelCellPF;
+	public CellType Type{get; set;}
 
 	public string CellId{ get; set; } 
 	public string CellTag{ get; set; }
 	public string DisplayText{ get; set; }
-	public CellType Type{get; set;}
+
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	public Cell(){
 	}
-	/// <summary>
-	/// Set Cell  Type
-	/// </summary>
-	public void getCellType(string type_text){
-	}
+
 	/// <summary>
 	/// Initializes a new instance of the Cell class with HTMLNode attribute
 	/// </summary>
@@ -31,38 +28,17 @@ public class Cell : BaseElement {
 //		Debug.Log ("Initializing Cell node of type "+type_text);
 		getCellType (type_text);
 	}
-	public GameObject getPF(){
-		GameObject prefab =null;
-		switch (Type) {
-		case CellType.DragSource:
-			return DragSourceCellPF;
-		case CellType.DropZone:
-			return DropZoneCellPF;
-		case CellType.DropZoneRow:
-			return DropZoneCellPF;
-		case CellType.ExponentTable:
-			return prefab;
-		case CellType.FractionTable:
-			return prefab;
-		case CellType.NumberLineLabel:
-			return NumLineLabelCellPF;
-		case CellType.NumberLineLabelAnswer:
-			return NumLineLabelCellPF;
-		case CellType.SelectableButton:
-			return prefab;
-		case CellType.SelectableSign:
-			return prefab;
-		case CellType.Text:
-			return LatexTextCellPF;
-		default:
-			return prefab;
-		}
-	}
-
 	virtual public void  getAlignType(){
 		Paragraph paraObj = (Paragraph)this.Parent.Parent.Parent;
 		DragAlign = paraObj.ParagraphAlign;
 	}
+	/// <summary>
+	/// Set Cell  Type
+	/// </summary>
+	virtual public void getCellType(string type_text){
+	}
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
 	/// Generates the Element GameObjects.
 	/// </summary>

@@ -4,9 +4,10 @@ using UnityEngine;
 using HtmlAgilityPack;
 using System.Net;
 public class TextCell : Cell {
+	//-------------Common Attributes -------------------
 
-	public string DisplayText {get; set;}
 
+	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Contructor
 	public TextCell(string displayText, string type){
 		DisplayText = StringWrapper.HtmlToPlainText(displayText);
@@ -25,17 +26,18 @@ public class TextCell : Cell {
 
 //		Debug.Log ("Found TextCell node of content"+ DisplayText);
 	}
-	public void getCellType(string type_text){
+	override public void getCellType(string type_text){
 		switch (type_text) {
 		case "text": 
 			Type = CellType.Text;
 			break;
 		}
 	}
+
+	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 		if (ElementGO.GetComponent<UILabel> () != null) {
-			
 			ElementGO.GetComponent<UILabel> ().text =(DisplayText) ;
 		}
 		if (ElementGO.GetComponent<TEXDrawNGUI> () != null) {

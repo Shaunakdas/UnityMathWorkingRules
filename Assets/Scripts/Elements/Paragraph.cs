@@ -56,7 +56,18 @@ public class Paragraph : BaseElement{
 		switch (para_node.Attributes [AttributeManager.ATTR_TYPE].Value) {
 		case "comprehension": 
 			ParagraphStep = StepType.Comprehension;
-			prefabName = LocationManager.NAME_COMPREHENSION_PARA;
+//			prefabName = LocationManager.NAME_COMPREHENSION_PARA;
+			prefabName = LocationManager.NAME_QUESTION_STEP_PARA;
+			switch (para_node.Attributes [AttributeManager.ATTR_ALIGN].Value) {
+			case "horizontal": 
+				ParagraphAlign = AlignType.Horizontal;
+				tableCol = 0;
+				break;
+			case "vertical": 
+				ParagraphAlign = AlignType.Vertical;
+				tableCol = 1;
+				break;
+			}
 			break;
 		case "question_step": 
 			ParagraphStep = StepType.QuestionStep;
@@ -96,6 +107,8 @@ public class Paragraph : BaseElement{
 			foreach (HtmlNode line_node in node_list) {
 				Line newLine = new Line (line_node);
 				string line_type = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
+
+				Debug.Log ("Line type "+line_type);
 				switch (line_type) {
 				case "text": 
 					newLine = new TextLine (line_node);
@@ -186,7 +199,8 @@ public class Paragraph : BaseElement{
 		GameObject QuestionStepParaPF = Resources.Load (LocationManager.COMPLETE_LOC_PARAGRAPH_TYPE + prefabName)as GameObject;
 		GameObject ParaContentTableGO = null;
 		GameObject CenterContentScrollViewPF = Resources.Load (LocationManager.COMPLETE_LOC_OTHER_TYPE + LocationManager.NAME_CENTER_CONTENT_SCROLL_VIEW)as GameObject;
-		if (ParagraphStep == Paragraph.StepType.QuestionStep) {
+//		if (ParagraphStep == Paragraph.StepType.QuestionStep) {
+		if(true){
 			//Paragraph is of type QuestionStep
 
 			//Adding QuestionStepParaPF to the root GameObject
@@ -266,7 +280,7 @@ public class Paragraph : BaseElement{
 
 	public void setUpChildActiveAnim(List<TargetItemChecker> _targetItemCheckerList){
 		Debug.Log ("setUpChildActiveAnim"+_targetItemCheckerList.Count.ToString());
-		if (_targetItemCheckerList.Count > -1) _targetItemCheckerList[0].activateAnim ();
+		if (_targetItemCheckerList.Count > 0) _targetItemCheckerList[0].activateAnim ();
 	}
 	static public void nextTargetTrigger(TargetItemChecker itemChecker){
 		int currentCounter = targetItemCheckerList.IndexOf (itemChecker);

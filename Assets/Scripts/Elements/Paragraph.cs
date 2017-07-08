@@ -302,12 +302,14 @@ public class Paragraph : BaseElement{
 		if (_targetItemCheckerList.Count > 0) _targetItemCheckerList[0].activateAnim ();
 	}
 	 public void nextTargetTrigger(TargetItemChecker itemChecker){
+		Debug.Log (targetItemCheckerList.Count);
 		int currentCounter = targetItemCheckerList.IndexOf (itemChecker);
-		if (currentCounter < targetItemCheckerList.Count) {
+		if (currentCounter < targetItemCheckerList.Count-1) {
 			targetItemCheckerList [currentCounter + 1].activateAnim ();
 		} else {
 			Debug.Log ("QuestionStep finished");
-//			(ComprehensionBody).nextParaTrigger();
+
+			(this.Parent as ComprehensionBody).nextParaTrigger();
 		}
 	}
 }

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65661811731266590}
   - component: {fileID: 114604609667036128}
   - component: {fileID: 114997080912833774}
+  - component: {fileID: 114945077605790586}
   m_Layer: 8
   m_Name: DropZoneTableItemCellPF
   m_TagString: Untagged
@@ -172,6 +173,54 @@ MonoBehaviour:
   hideInactive: 0
   keepWithinPanel: 0
   sorted: 0
+--- !u!114 &114945077605790586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1208527084749962}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa4a4a103e4fed43a7e9e9df4a6915c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 1
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.49294874
+      value: 1.0158653
+      inSlope: 0.9998679
+      outSlope: 0.9998679
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9958191
+      value: 0.012500763
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 1
+  steeperCurves: 0
+  tweenGroup: 0
+  useFixedUpdate: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  from: {r: 0.34775463, g: 0.0062175663, b: 0.8455882, a: 1}
+  to: {r: 0.61376673, g: 0.23183389, b: 0.9852941, a: 1}
 --- !u!114 &114997080912833774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,4 +232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4afcf11317d9d4d16ba983aeef052e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParagraphRef: {fileID: 0}
+  element: {fileID: 0}
   DropZoneHolderGO: {fileID: 0}

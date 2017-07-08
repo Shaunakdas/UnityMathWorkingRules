@@ -27,12 +27,12 @@ public class HTMLParserTest : MonoBehaviour {
 		string text = System.IO.File.ReadAllText (@"Assets/Data/Question_Data.html");
 		var html = new HtmlDocument ();
 		html.LoadHtml (@text);
-		parser.getParagraphList (html);
-		ParagraphList = parser.ParagraphList;
-		ParagraphList.ForEach( x=> x.generateElementGO(gameObject));
+//		parser.getParagraphList (html);
+//		ParagraphList = parser.ParagraphList;
+//		ParagraphList.ForEach( x=> x.generateElementGO(gameObject));
 
-//		ComprehensionBody body = new ComprehensionBody(html.DocumentNode.Element(AttributeManager.TAG_BODY));
-//		body.generateElementGO (gameObject);
+		ComprehensionBody body = new ComprehensionBody(html.DocumentNode.Element(AttributeManager.TAG_BODY));
+		body.generateElementGO (gameObject);
 //		generateParaUI ();
 		StartCoroutine (WaitForEnd());
 	}

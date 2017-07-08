@@ -9,6 +9,7 @@ public class ComprehensionBody : BaseElement {
 	//List of child Line elements
 	public List<Paragraph> ParagraphList{get; set;}
 	public int CurrentParaCounter{ get; set; }
+	public Paragraph comprehensionParaElem;
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Contructor
 	public ComprehensionBody(){
@@ -21,7 +22,6 @@ public class ComprehensionBody : BaseElement {
 		ParagraphList = new List<Paragraph> ();
 
 		prefabName = LocationManager.NAME_COMPREHENSION_BODY;
-		Debug.Log ("Initializing paragraph node of type "+body_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 		parseChildNode (body_node);
 	}
 
@@ -62,6 +62,7 @@ public class ComprehensionBody : BaseElement {
 				if (para.ParagraphStep == Paragraph.StepType.Comprehension) {
 					//					Generate Comprehension Paragraph
 					CurrentParaCounter = 0;
+					comprehensionParaElem = para;
 					para.generateElementGO (ElementGO);
 				} else {
 					GameObject ParaCounterTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaCounterTable");
@@ -81,8 +82,23 @@ public class ComprehensionBody : BaseElement {
 
 	//----------------------Animations ----------------------------
 	public void nextParaTrigger(){
+		if (CurrentParaCounter > 0) {
+			ParagraphList [CurrentParaCounter].ElementGO.SetActive (false);
+		}
 		CurrentParaCounter++;
-		Paragraph nextPara = ParagraphList [CurrentParaCounter];
-		nextPara.generateElementGO (ElementGO);
+		setQuesVisibility (false);
+		if (CurrentParaCounter < ParagraphList.Count) {
+			Paragraph nextPara = ParagraphList [CurrentParaCounter];
+			nextPara.generateElementGO (ElementGO);
+		}
 	}
+	public void setQuesVisibility(bool displayFlag){
+		foreach (UIWidget widget in comprehensionParaElem.ElementGO.GetComponentsInChildren<UIWidget> ()){
+			if(displayFlag)
+				widget.depth = widget.depth + 6;
+			else
+				widget.depth = widget.depth - 6;
+		}
+	}
+
 }

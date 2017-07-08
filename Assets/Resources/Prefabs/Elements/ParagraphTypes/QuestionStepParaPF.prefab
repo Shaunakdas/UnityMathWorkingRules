@@ -152,7 +152,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: 62adb30369acbf943a67cee0f69267a3, type: 2}
-  mSpriteName: Glow - Inner
+  mSpriteName: Button
   mFillCenter: 1
 --- !u!114 &114518739031940038
 MonoBehaviour:

@@ -40,6 +40,12 @@ public class TextLine : Line {
 
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
+	override public GameObject generateElementGO(GameObject parentGO){
+		ElementGO = base.generateElementGO(parentGO);
+		if (Type == LineType.PostSubmitText)
+			ElementGO.GetComponent<UILabel> ().alpha = 0f;
+		return ElementGO;
+	}
 	override public void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 		ElementGO.GetComponent<UILabel> ().text = DisplayText;

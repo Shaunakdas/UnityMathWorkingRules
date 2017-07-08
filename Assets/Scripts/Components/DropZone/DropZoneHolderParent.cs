@@ -69,7 +69,8 @@ public class DropZoneHolderParent : TargetItemChecker {
 	override public void correctAnim(){
 		Debug.Log ("DropZoneRowCell CorrectAnim");
 		deactivateAnim ();
-		Paragraph.nextTargetTrigger (this);
+		//Empty Paragraph Obje ct to access Paragraph methods
+		ParagraphRef.nextTargetTrigger (this);
 	}
 	/// <summary>
 	/// Incorrect animation.
@@ -77,6 +78,6 @@ public class DropZoneHolderParent : TargetItemChecker {
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim");
 		deactivateAnim ();
-		Paragraph.nextTargetTrigger (this);
+		ParagraphRef.nextTargetTrigger (this);
 	}
 }

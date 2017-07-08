@@ -30,7 +30,9 @@ public class DropZoneRowCell : Cell {
 
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
+	public DropZoneRowCell():base(){
 
+	}
 	/// <summary>
 	/// Initializes a new instance of the DropZoneRowCell class with HTMLNode attribute
 	/// </summary>
@@ -137,13 +139,14 @@ public class DropZoneRowCell : Cell {
 		//_elementGO add to list of aniamtion
 		return _elementGO;
 	}
-	static public GameObject generateDropZoneHolderGO(GameObject parentGO, List<string> _targetTextList, bool idPresent){
+	public GameObject generateDropZoneHolderGO(GameObject parentGO, List<string> _targetTextList, bool idPresent){
 		GameObject dropZoneHolderPrefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_HOLDER_CELL)as GameObject;
 		GameObject dropZoneTableprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_CELL)as GameObject;
 
 		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPrefab, parentGO.transform);
 
 		DropZoneHolder dropZoneHolder = holderGO.GetComponent<DropZoneHolder> ();
+		dropZoneHolder.ParagraphRef = this.ParagraphRef;
 		dropZoneHolder.TargetTextList = _targetTextList;
 		dropZoneHolder.idCheck = idPresent;
 		dropZoneHolder.addToTargetList ();
@@ -167,7 +170,9 @@ public class DropZoneRowCell : Cell {
 				foreach (char targetChar in targetText.ToCharArray().ToList()) {
 					tableWidth += 50 + 5;
 					if (targetChar == '+' || targetChar == '-') {
-						GameObject signBtnGO = SelectableButtonCell.generateSelBtnCellGO (tableGO, "-");
+						//To access DropZoneRowCell methods
+						SelectableButtonCell selectCell = new SelectableButtonCell ();
+						GameObject signBtnGO = selectCell.generateSelBtnCellGO (tableGO, "-");
 					} else {
 						GameObject tableItemGO = initDropZoneTableItem (tableGO, idPresent);
 //						tableItemGO.GetComponent<DropZoneItemChecker>().element = this;
@@ -193,16 +198,20 @@ public class DropZoneRowCell : Cell {
 
 
 	//-------------Static methods to create/update GameObject components for Correct/Incorrect Check-------------------
-	static public GameObject initDropZoneTableItem(GameObject parentGO, bool idPresent){
+	public GameObject initDropZoneTableItem(GameObject parentGO, bool idPresent){
 		GameObject dropZoneTableItemprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_ITEM_CELL)as GameObject;
 		GameObject tableItemGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableItemprefab, parentGO.transform);
 		tableItemGO.GetComponent<DropZoneItemChecker> ().idCheck = (idPresent!=null)?idPresent:false;
 		tableItemGO.GetComponent<DropZoneItemChecker> ().DropZoneHolderGO = parentGO.transform.parent.parent.gameObject;
+		tableItemGO.GetComponent<DropZoneItemChecker>().ParagraphRef = this.ParagraphRef;
 		return tableItemGO;
 	}
-	static public void addDropZoneHolder(GameObject parentGO,GameObject dropZoneHolderGO){
+	public void addDropZoneHolder(GameObject parentGO,GameObject dropZoneHolderGO){
 		dropZoneHolderGO.GetComponent<DropZoneHolder> ().holderListParentGO = parentGO;
-		parentGO.AddComponent<DropZoneHolderParent> ();
+		dropZoneHolderGO.GetComponent<DropZoneHolder> ().ParagraphRef = this.ParagraphRef;
+		if (parentGO.GetComponent<DropZoneHolderParent>() == null)
+			parentGO.AddComponent<DropZoneHolderParent> ();
+		parentGO.GetComponent<DropZoneHolderParent> ().ParagraphRef = this.ParagraphRef;
 		parentGO.GetComponent<DropZoneHolderParent> ().addDropZoneHolder (dropZoneHolderGO);
 		parentGO.GetComponent<DropZoneHolderParent> ().addToTargetList ();
 	}

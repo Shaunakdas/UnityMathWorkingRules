@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetItemChecker : MonoBehaviour {
-
+	public Paragraph ParagraphRef;
 	// Use this for initialization
 	void Start () {
 		

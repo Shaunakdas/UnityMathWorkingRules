@@ -111,7 +111,7 @@ public class SelBtnHolder : TargetItemChecker {
 	override public void correctAnim(){
 		Debug.Log ("DropZoneRowCell CorrectAnim");
 		deactivateAnim ();
-		Paragraph.nextTargetTrigger (this);
+		ParagraphRef.nextTargetTrigger (this);
 	}
 	/// <summary>
 	/// Incorrect animation.
@@ -119,6 +119,6 @@ public class SelBtnHolder : TargetItemChecker {
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim");
 		deactivateAnim ();
-		Paragraph.nextTargetTrigger (this);
+		ParagraphRef.nextTargetTrigger (this);
 	}
 }

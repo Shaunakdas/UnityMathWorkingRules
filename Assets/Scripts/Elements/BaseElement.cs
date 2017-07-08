@@ -40,8 +40,8 @@ public class BaseElement : MonoBehaviour {
 	/// </summary>
 	virtual public void updateGOProp(GameObject ElementGO){
 	}
+	virtual public void setChildParagraphRef(){
 
-
-
+	}
 	
 }

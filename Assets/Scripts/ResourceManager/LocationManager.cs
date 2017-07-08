@@ -7,7 +7,12 @@ public class LocationManager {
 	public const string LOC_PREFAB_TYPE = "Prefabs/";
 	//Elements Types Location
 	public const string LOC_ELEMENT_TYPE = "Elements/";
-
+	//Body Type Location
+	public const string LOC_BODY_TYPE = "BodyTypes/";
+	public const string COMPLETE_LOC_BODY_TYPE = LOC_PREFAB_TYPE+LOC_ELEMENT_TYPE+LOC_BODY_TYPE;
+	//Body Prefabs
+	public const string NAME_COMPREHENSION_BODY = "ComprehensionBodyPF";
+	public const string NAME_PARA_COUNTER = "ParaCounterPF";
 	//Paragraph Types Location
 	public const string LOC_PARAGRAPH_TYPE = "ParagraphTypes/";
 	public const string COMPLETE_LOC_PARAGRAPH_TYPE = LOC_PREFAB_TYPE+LOC_ELEMENT_TYPE+LOC_PARAGRAPH_TYPE;
@@ -69,4 +74,6 @@ public class LocationManager {
 	public const string NAME_CENTER_CONTENT_SCROLL_VIEW = "CenterContentScrollViewPF";
 	public const string NAME_CONTENT_TABLE = "ContentTable";
 	public const string NAME_EMPTY_CONTAINER = "EmptyContainer";
+	public const string NAME_START_WORKING_RULE_BTN = "StartWorkingRuleBtnPF";
+
 }

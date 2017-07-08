@@ -140,6 +140,12 @@ public class Row : BaseElement {
 			}
 		}
 	}
+	override public void  setChildParagraphRef(){
+		foreach (Cell cell in CellList) {
+			cell.ParagraphRef = this.ParagraphRef;
+			cell.setChildParagraphRef ();
+		}
+	}
 	public void initDragSourceCellList(HtmlNode row_node){
 		HtmlAttribute attr_tag = row_node.Attributes [AttributeManager.ATTR_START];
 		if (attr_tag != null) {

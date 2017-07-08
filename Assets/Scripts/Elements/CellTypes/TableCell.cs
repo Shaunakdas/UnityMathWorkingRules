@@ -55,6 +55,12 @@ public class TableCell : Cell {
 
 		}
 	}
+	override public void  setChildParagraphRef(){
+		foreach (Row row in RowList) {
+			row.ParagraphRef = this.ParagraphRef;
+			row.setChildParagraphRef ();
+		}
+	}
 	/// <summary>
 	/// Generates the Element GameObjects.
 	/// </summary>

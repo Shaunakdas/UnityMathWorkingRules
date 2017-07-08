@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttributeManager  {
 
 	public const string BODY_TAG = "body";
-	public const string TAG_P = "p",TAG_LINE = "line",TAG_ROW="trow",TAG_CELL = "tcell";
+	public const string TAG_BODY = "body",TAG_P = "p",TAG_LINE = "line",TAG_ROW="trow",TAG_CELL = "tcell";
 	public const string ATTR_ANSWER = "answer",ATTR_TYPE="type";
 	public const string ATTR_COL_COUNT = "col";
 	//QuestionStep Paragraph

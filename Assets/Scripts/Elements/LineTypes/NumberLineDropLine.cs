@@ -143,24 +143,29 @@ public class NumberLineDropLine  : Line {
 		GameObject itemGO=null;int index=0;
 		foreach (GameObject numberMarkerItem in NumberMarkerList){
 			if (displayNumber) numberMarkerItem.GetComponentInChildren<TEXDrawNGUI> ().text = ( index).ToString() ;
+			//To access DropZoneRowCell methods
+			DropZoneRowCell dropCell = new DropZoneRowCell ();
 			switch (Type) {
 			case LineType.NumberLineDrop:
 				List<string> _targetTextList = StringWrapper.splitTargetText (" ");
-				itemGO = DropZoneRowCell.generateDropZoneHolderGO (numberMarkerItem, _targetTextList, false);
+				itemGO = dropCell.generateDropZoneHolderGO (numberMarkerItem, _targetTextList, false);
 				itemGO.GetComponent<UITable> ().pivot = UIWidget.Pivot.Center;
 				itemGO.GetComponentInChildren<UISprite> ().height = itemGO.GetComponentInChildren<UISprite> ().height - 20;
-				DropZoneRowCell.addDropZoneHolder (ElementGO, itemGO);
+				DropZoneRowCell dropZoneRowCell = new DropZoneRowCell ();
+				dropZoneRowCell.addDropZoneHolder (ElementGO, itemGO);
 				//Set target text
 				break;
 			case LineType.NumberLineSelect:
 //				itemGO = BasicGOOperation.InstantiateNGUIGO (selectBtnPF, numberMarkerItem.transform);
-				itemGO = SelectableButtonCell.generateSelBtnCellGO(numberMarkerItem,"  ");
-				SelectableButtonCell.updateTableCol (itemGO, 0);
-				SelectableButtonCell.updateTextSize (itemGO, 40);
-				SelectableButtonCell.resizeToFit (itemGO);
+				//To access SelectableButtonCell methods
+				SelectableButtonCell selectCell = new SelectableButtonCell ();
+				itemGO = selectCell.generateSelBtnCellGO(numberMarkerItem,"  ");
+				selectCell.updateTableCol (itemGO, 0);
+				selectCell.updateTextSize (itemGO, 40);
+				selectCell.resizeToFit (itemGO);
 				break;
 			case LineType.NumberLineDropJump:
-				itemGO = DropZoneRowCell.generateDropZoneHolderGO (numberMarkerItem,StringWrapper.splitTargetText (""), false);
+				itemGO = dropCell.generateDropZoneHolderGO (numberMarkerItem,StringWrapper.splitTargetText (""), false);
 				break;
 			}
 			itemGO.transform.localPosition = new Vector3 (-60f, 0f,0f);
@@ -188,9 +193,11 @@ public class NumberLineDropLine  : Line {
 			case LineType.NumberLineSelect:
 //				GameObject selBtnGO = BasicGOOperation.getChildGameObject (itemGO ,LocationManager.NAME_SELECT_BTN_CELL);
 //				SelectableButtonCell.updateText (selBtnGO, text);
-				GameObject selBtnGO = SelectableButtonCell.generateSelBtnCellGO(itemGO,text);
-				SelectableButtonCell.updateTextSize (selBtnGO, 40);
-				SelectableButtonCell.resizeToFit (selBtnGO);
+				//To access SelectableButtonCell methods
+				SelectableButtonCell selectCell = new SelectableButtonCell ();
+				GameObject selBtnGO = selectCell.generateSelBtnCellGO(itemGO,text);
+				selectCell.updateTextSize (selBtnGO, 40);
+				selectCell.resizeToFit (selBtnGO);
 				break;
 			case LineType.NumberLineDropJump:
 				itemGO.GetComponentInChildren<TEXDrawNGUI>().text = text; 
@@ -200,14 +207,19 @@ public class NumberLineDropLine  : Line {
 			itemGO = NumberMarkerList [displayIndex];
 			switch (Type) {
 			case LineType.NumberLineDrop:
-				itemGO.GetComponentInChildren<DropZoneHolder>().TargetTextList = StringWrapper.splitTargetText(text); 
+				itemGO.GetComponentInChildren<DropZoneHolder> ().TargetTextList = StringWrapper.splitTargetText (text); 
+				itemGO.GetComponentInChildren<DropZoneHolder> ().ParagraphRef = this.ParagraphRef;
 				//Set target text
 				break;
 			case LineType.NumberLineSelect:
 				//				GameObject selBtnGO = BasicGOOperation.getChildGameObject (itemGO ,LocationManager.NAME_SELECT_BTN_CELL);
 				//				SelectableButtonCell.updateText (selBtnGO, text);
 				SelBtnItemChecker itemChecker = itemGO.GetComponentInChildren<SelBtnItemChecker> ();
-				SelectableButtonCell.updateItemChecker (itemChecker.gameObject, true, ElementGO);
+				SelectableButtonCell selectBtnCell = new SelectableButtonCell ();
+				//To access SelectableButtonCell methods
+				SelectableButtonCell selectCell = new SelectableButtonCell ();
+				selectCell.updateItemChecker (itemChecker.gameObject, true, ElementGO);
+
 				break;
 			case LineType.NumberLineDropJump:
 				itemGO.GetComponentInChildren<TEXDrawNGUI>().text = text; 

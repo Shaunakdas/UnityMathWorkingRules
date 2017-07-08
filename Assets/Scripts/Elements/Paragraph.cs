@@ -36,6 +36,7 @@ public class Paragraph : BaseElement{
 	/// </summary>
 	/// <param name="correctType">Correct type.</param>
 	public Paragraph(string correctType){
+		ParagraphRef = this;
 		switch (correctType) {
 		case "single_correct": 
 			ParagraphCorrect = CorrectType.SingleCorrect;
@@ -50,14 +51,15 @@ public class Paragraph : BaseElement{
 	/// </summary>
 	/// <param name="para"></param>
 	public Paragraph(HtmlNode para_node){
+		ParagraphRef = this;
 		LineList = new List<Line> ();
 		Debug.Log ("Initializing paragraph node of type "+para_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 
 		switch (para_node.Attributes [AttributeManager.ATTR_TYPE].Value) {
 		case "comprehension": 
 			ParagraphStep = StepType.Comprehension;
-//			prefabName = LocationManager.NAME_COMPREHENSION_PARA;
-			prefabName = LocationManager.NAME_QUESTION_STEP_PARA;
+			prefabName = LocationManager.NAME_COMPREHENSION_PARA;
+//			prefabName = LocationManager.NAME_QUESTION_STEP_PARA;
 			switch (para_node.Attributes [AttributeManager.ATTR_ALIGN].Value) {
 			case "horizontal": 
 				ParagraphAlign = AlignType.Horizontal;
@@ -93,6 +95,7 @@ public class Paragraph : BaseElement{
 			break;
 		}
 		parseChildNode (para_node);
+		setChildParagraphRef ();
 	}
 	/// <summary>
 	/// Parses the Paragraph Node to generate Line nodes
@@ -143,6 +146,13 @@ public class Paragraph : BaseElement{
 				LineList.Add (newLine);
 
 			}
+		}
+
+	}
+	override public void  setChildParagraphRef(){
+		foreach (Line line in LineList) {
+			line.ParagraphRef = this.ParagraphRef;
+			line.setChildParagraphRef ();
 		}
 	}
 	/// <summary>
@@ -210,6 +220,7 @@ public class Paragraph : BaseElement{
 			ParaContentTableGO.GetComponent<UITable> ().columns = tableCol;
 			//Checking for Center Content Scroll View
 			bool isCenterContentPresent = false; GameObject CenterContentGO = parentGO;
+			addStartWorkingRuleBtn (ParaContentTableGO); 
 			foreach (Line line in LineList) if (line.LineLocation == Line.LocationType.Default)
 			{
 				CenterContentGO = BasicGOOperation.InstantiateNGUIGO(CenterContentScrollViewPF,ParaContentTableGO.transform);
@@ -276,18 +287,27 @@ public class Paragraph : BaseElement{
 			ContainerGO.GetComponent<UIWidget> ().height = (int)newSize.y;
 		}
 	}
+	public void addStartWorkingRuleBtn(GameObject LineTableGO){
+		if (ParagraphStep == Paragraph.StepType.Comprehension) {
+
+			GameObject StartWorkingRuleBtnPF = Resources.Load (LocationManager.COMPLETE_LOC_OTHER_TYPE + LocationManager.NAME_START_WORKING_RULE_BTN)as GameObject;
+			GameObject StartWorkingRuleBtn = BasicGOOperation.InstantiateNGUIGO(StartWorkingRuleBtnPF,LineTableGO.transform);
+			EventDelegate.Set(StartWorkingRuleBtn.GetComponentInChildren<UIButton>().onClick, delegate() { (this.Parent as ComprehensionBody).nextParaTrigger(); });
+		}
+	}
 	//----------------------Animations ----------------------------
 
 	public void setUpChildActiveAnim(List<TargetItemChecker> _targetItemCheckerList){
 		Debug.Log ("setUpChildActiveAnim"+_targetItemCheckerList.Count.ToString());
 		if (_targetItemCheckerList.Count > 0) _targetItemCheckerList[0].activateAnim ();
 	}
-	static public void nextTargetTrigger(TargetItemChecker itemChecker){
+	 public void nextTargetTrigger(TargetItemChecker itemChecker){
 		int currentCounter = targetItemCheckerList.IndexOf (itemChecker);
 		if (currentCounter < targetItemCheckerList.Count) {
 			targetItemCheckerList [currentCounter + 1].activateAnim ();
 		} else {
 			Debug.Log ("QuestionStep finished");
+//			(ComprehensionBody).nextParaTrigger();
 		}
 	}
 }

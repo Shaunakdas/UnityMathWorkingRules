@@ -78,7 +78,7 @@ public class DropZoneHolder : TargetItemChecker {
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	override public void activateAnim(){
-		Debug.Log ("getActiveAnim of DropZoneRowCell");
+		Debug.Log ("activateAnim of DropZoneRowCell");
 		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
 			itemColor.enabled = true;
 		}
@@ -88,7 +88,7 @@ public class DropZoneHolder : TargetItemChecker {
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	override public void deactivateAnim(){
-		Debug.Log ("getActiveAnim of DropZoneRowCell");
+		Debug.Log ("deactivateAnim of DropZoneRowCell");
 		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
 			itemColor.enabled = false;
 		}
@@ -99,7 +99,7 @@ public class DropZoneHolder : TargetItemChecker {
 	override public void correctAnim(){
 		Debug.Log ("DropZoneRowCell CorrectAnim");
 		deactivateAnim ();
-		Paragraph.nextTargetTrigger (this);
+		ParagraphRef.nextTargetTrigger (this);
 	}
 	/// <summary>
 	/// Incorrect animation.
@@ -107,6 +107,6 @@ public class DropZoneHolder : TargetItemChecker {
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim");
 		deactivateAnim ();
-		Paragraph.nextTargetTrigger (this);
+		ParagraphRef.nextTargetTrigger (this);
 	}
 }

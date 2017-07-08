@@ -44,7 +44,9 @@ public class TableLine  : Line {
 	override public void updateGOProp(GameObject ElementGO){
 		ElementGO.GetComponent<UITable> ().columns = ColumnCount;
 		SelBtnHolder selBtnHolder = ElementGO.GetComponent<SelBtnHolder> ();
+
 		if (selBtnHolder != null) {
+			selBtnHolder.ParagraphRef = this.ParagraphRef;
 			selBtnHolder.setParentCorrectCount (Parent as Paragraph, this);
 		}
 		BasicGOOperation.CheckAndRepositionTable (ElementGO);
@@ -55,6 +57,7 @@ public class TableLine  : Line {
 	public void updateSelBtnHolder(GameObject _selBtnGO,bool _selBtnBool){
 		SelBtnFlag = true;
 		ElementGO.AddComponent<SelBtnHolder> (); SelBtnHolder holderScript = ElementGO.GetComponent<SelBtnHolder> ();
+		holderScript.ParagraphRef = this.ParagraphRef;
 		holderScript.addToTargetList ();
 		holderScript.addSelectBtn (_selBtnGO, _selBtnBool);
 		//Changing Paragraph's correctType

@@ -102,7 +102,12 @@ public class Line : BaseElement{
 			}
 		}
 	}
-
+	override public void  setChildParagraphRef(){
+		foreach (Row row in RowList) {
+			row.ParagraphRef = this.ParagraphRef;
+			row.setChildParagraphRef ();
+		}
+	}
 
 
 

@@ -30,6 +30,9 @@ public class HTMLParserTest : MonoBehaviour {
 		parser.getParagraphList (html);
 		ParagraphList = parser.ParagraphList;
 		ParagraphList.ForEach( x=> x.generateElementGO(gameObject));
+
+//		ComprehensionBody body = new ComprehensionBody(html.DocumentNode.Element(AttributeManager.TAG_BODY));
+//		body.generateElementGO (gameObject);
 //		generateParaUI ();
 		StartCoroutine (WaitForEnd());
 	}

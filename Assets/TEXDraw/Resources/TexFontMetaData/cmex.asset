@@ -85,7 +85,7 @@ MonoBehaviour:
     index: 2
     characterIndex: 194
     fontIndex: 0
-    type: 0
+    type: 2
     height: 0.1
     depth: 1.2
     bearing: -0.15
@@ -105,7 +105,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: \times
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -161,7 +161,7 @@ MonoBehaviour:
     extentRepeatHash: -1
     symbolName: 
     symbolAlt: 
-    characterMap: 0
+    characterMap: 4
   - supported: 1
     index: 5
     characterIndex: 197

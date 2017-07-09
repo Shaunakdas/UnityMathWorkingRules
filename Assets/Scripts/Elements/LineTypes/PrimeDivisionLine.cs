@@ -75,9 +75,9 @@ public class PrimeDivisionLine : Line {
 //		GameObject factorDropCellPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_CELL)as GameObject;
 //		GameObject factorDropCell = BasicGOOperation.InstantiateNGUIGO (factorDropCellPF, primeDivisionLevel.transform);
 		//To access DropZoneRowCell methods
-		DropZoneRowCell dropCell = new DropZoneRowCell ();
+		DropZoneRowCell dropCell = new DropZoneRowCell (this.ParagraphRef);
 		GameObject factorDropCell = dropCell.generateDropZoneHolderGO(primeDivisionLevel,StringWrapper.splitTargetText(factor.ToString()),false);
-		Vector3 factorLocation = factorDropCell.transform.localPosition; factorLocation.x = -50;factorDropCell.transform.localPosition = factorLocation;
+		Vector3 factorLocation = factorDropCell.transform.localPosition; factorLocation.x = -75;factorLocation.y = 50;factorDropCell.transform.localPosition = factorLocation;
 	}
 
 }

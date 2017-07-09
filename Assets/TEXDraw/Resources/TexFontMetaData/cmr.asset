@@ -1619,7 +1619,7 @@ MonoBehaviour:
     extentRepeatHash: -1
     symbolName: 
     symbolAlt: 
-    characterMap: 0
+    characterMap: 16
   - supported: 1
     index: 59
     characterIndex: 59
@@ -1700,7 +1700,7 @@ MonoBehaviour:
     extentRepeatHash: -1
     symbolName: 
     symbolAlt: 
-    characterMap: 0
+    characterMap: 5
   - supported: 1
     index: 62
     characterIndex: 62

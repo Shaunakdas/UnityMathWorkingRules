@@ -115,7 +115,7 @@ public class Paragraph : BaseElement{
 
 				string line_type = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 				if (line_type == "post_submit_text") {
-					postSubmitText = (line_node).InnerText;
+					postSubmitText = StringWrapper.HtmlToPlainText((line_node).InnerText);
 				} else {
 					Line newLine = new Line (line_node);
 					Debug.Log ("Line type " + line_type);

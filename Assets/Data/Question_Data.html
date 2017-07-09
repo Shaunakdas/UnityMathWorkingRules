@@ -1,59 +1,37 @@
-<body code='working-rule-for-write-factors-of-number'>
-		<!-- O write-factors-of-number-->
+<body code='working-rule-for-find-hcf-of-list-of-numbers'>
+		<!-- O hcf-->
 		<p type='comprehension' align='vertical'>
-			<line type='text' locationType='top'> Write all factors of 24  </line>
+			<line type='text' locationType='top'> Find hcf of 24 and 18  </line>
 		</p>
-		<!-- Q -->
-		<p type='question_step' align='vertical' correctType='single_correct'>
-			<line type='text' locationType='top'>Write 12 as product of 2 numbers</line>
-			<line type='table'>
-				<trow>
-					<tcell type='text'>12 =</tcell>
-					<tcell type='drop_zone' answer='1'  size='3'></tcell>
-					<tcell type='text'>\\times</tcell>
-					<tcell type='drop_zone' answer='12' size='3'></tcell>
-				</trow>
-				<trow>
-					<tcell type='text'>12 =</tcell>
-					<tcell type='drop_zone' answer='2'  size='3'></tcell>
-					<tcell type='text'>\\times</tcell>
-					<tcell type='drop_zone' answer='6' size='3'></tcell>
-				</trow>
-				<trow>
-					<tcell type='text'>12 =</tcell>
-					<tcell type='drop_zone' answer='3'  size='3'></tcell>
-					<tcell type='text'>\\times</tcell>
-					<tcell type='drop_zone' answer='4' size='3'></tcell>
-				</trow>
+		<p type='question_step' align='horizontal' correctType='multiple_correct'>
+			<line type='prime_division' target='24'>
 			</line>
 			<line type='table' locationType='bottom'>
-				<trow type='drag_source_line' sourceType='integer' start='0' end='12'>
+				<trow type='drag_source_line' sourceType='prime' start='1' end='18'>
+				</trow>
+			</line>
+		</p>
+		<!-- Q -->
+		<p type='question_step' align='horizontal' correctType='multiple_correct'>
+			<line type='prime_division' target='24'>
+			</line>
+			<line type='post_submit_text'>24=2\\times2\\times2\\times3</line>
+			<line type='table' locationType='bottom'>
+				<trow type='drag_source_line' sourceType='prime' start='1' end='18'>
 				</trow>
 			</line>
 		</p>
 		<!-- S -->
-		<p type='question_step' align='vertical' correctType='multiple_correct'>
-			<line type='text' locationType='top'>Looking at the table list down the factors of 12</line>
-			<line type='table'>
-				<trow>
-					<tcell type='text'>12 = 1 \\times 12</tcell>
-				</trow>
-				<trow>
-					<tcell type='text'>12 = 2 \\times 6</tcell>
-				</trow>
-				<trow>
-					<tcell type='text'>12 = 3 \\times 4</tcell>
-				</trow>
+		<p type='question_step' align='horizontal' correctType='multiple_correct'>
+			
+			<line type='prime_division' target='18' locationType='left'>
 			</line>
-			<line type='table'>
-				<trow>
-					<tcell type='text'>Factors of 12 :</tcell>
-					<tcell type='drop_zone_row' answer='1;2;3;4;6;12' size='12'></tcell>
-				</trow>
-			</line>
-			<line type='table' locationType='bottom'>
-				<trow type='drag_source_line' sourceType='integer' start='0' end='12'>
+			<line type='post_submit_text'>18=2\\times3\\times3</line>
+			<line type='table' locationType='right'>
+				<trow type='drag_source_line' sourceType='prime' start='1' end='18'>
 				</trow>
 			</line>
 		</p>
+		<!-- S -->
+		
 	</body>

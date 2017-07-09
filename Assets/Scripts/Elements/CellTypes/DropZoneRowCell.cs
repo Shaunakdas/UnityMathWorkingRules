@@ -143,6 +143,7 @@ public class DropZoneRowCell : Cell {
 		return _elementGO;
 	}
 	public GameObject generateDropZoneHolderGO(GameObject parentGO, List<string> _targetTextList, bool idPresent){
+		Debug.Log ("DROP_ZONE_HOLDER CREATED"+parentGO.name);
 		GameObject dropZoneHolderPrefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_HOLDER_CELL)as GameObject;
 		GameObject dropZoneTableprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_CELL)as GameObject;
 

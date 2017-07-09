@@ -33,6 +33,9 @@ public class DropZoneRowCell : Cell {
 	public DropZoneRowCell():base(){
 
 	}
+	public DropZoneRowCell(Paragraph paraRef):base(){
+		ParagraphRef = paraRef;
+	}
 	/// <summary>
 	/// Initializes a new instance of the DropZoneRowCell class with HTMLNode attribute
 	/// </summary>
@@ -208,6 +211,8 @@ public class DropZoneRowCell : Cell {
 	}
 	public void addDropZoneHolder(GameObject parentGO,GameObject dropZoneHolderGO){
 		dropZoneHolderGO.GetComponent<DropZoneHolder> ().holderListParentGO = parentGO;
+
+		Debug.Log ("PARAGRAPH_REF 1"+ParagraphRef.ElementGO.name);
 		dropZoneHolderGO.GetComponent<DropZoneHolder> ().ParagraphRef = this.ParagraphRef;
 		if (parentGO.GetComponent<DropZoneHolderParent>() == null)
 			parentGO.AddComponent<DropZoneHolderParent> ();

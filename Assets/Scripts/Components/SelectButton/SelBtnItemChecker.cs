@@ -9,6 +9,7 @@ public class SelBtnItemChecker : MonoBehaviour {
 
 	public void changeInputFlag(){
 		userInputFlag = !userInputFlag;
+		SelBtnHolderGO.GetComponent<SelBtnHolder> ().optionSelected ();
 	}
 	public void incorrectOptionSelected(){
 		//Animation for selecting the wrong option

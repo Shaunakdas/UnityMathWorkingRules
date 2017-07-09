@@ -75,5 +75,6 @@ public class LocationManager {
 	public const string NAME_CONTENT_TABLE = "ContentTable";
 	public const string NAME_EMPTY_CONTAINER = "EmptyContainer";
 	public const string NAME_START_WORKING_RULE_BTN = "StartWorkingRuleBtnPF";
+	public const string NAME_POST_SUBMIT_TABLE = "PostSubmitTablePF";
 
 }

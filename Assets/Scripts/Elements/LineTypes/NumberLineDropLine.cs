@@ -144,14 +144,15 @@ public class NumberLineDropLine  : Line {
 		foreach (GameObject numberMarkerItem in NumberMarkerList){
 			if (displayNumber) numberMarkerItem.GetComponentInChildren<TEXDrawNGUI> ().text = ( index).ToString() ;
 			//To access DropZoneRowCell methods
-			DropZoneRowCell dropCell = new DropZoneRowCell ();
+			DropZoneRowCell dropCell = new DropZoneRowCell (this.ParagraphRef);
 			switch (Type) {
 			case LineType.NumberLineDrop:
 				List<string> _targetTextList = StringWrapper.splitTargetText (" ");
 				itemGO = dropCell.generateDropZoneHolderGO (numberMarkerItem, _targetTextList, false);
+				dropCell.ParagraphRef = this.ParagraphRef;
 				itemGO.GetComponent<UITable> ().pivot = UIWidget.Pivot.Center;
 				itemGO.GetComponentInChildren<UISprite> ().height = itemGO.GetComponentInChildren<UISprite> ().height - 20;
-				DropZoneRowCell dropZoneRowCell = new DropZoneRowCell ();
+				DropZoneRowCell dropZoneRowCell = new DropZoneRowCell (this.ParagraphRef);
 				dropZoneRowCell.addDropZoneHolder (ElementGO, itemGO);
 				//Set target text
 				break;
@@ -207,6 +208,7 @@ public class NumberLineDropLine  : Line {
 			itemGO = NumberMarkerList [displayIndex];
 			switch (Type) {
 			case LineType.NumberLineDrop:
+
 				itemGO.GetComponentInChildren<DropZoneHolder> ().TargetTextList = StringWrapper.splitTargetText (text); 
 				itemGO.GetComponentInChildren<DropZoneHolder> ().ParagraphRef = this.ParagraphRef;
 				//Set target text

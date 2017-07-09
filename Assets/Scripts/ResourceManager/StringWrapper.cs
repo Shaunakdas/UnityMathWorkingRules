@@ -40,7 +40,19 @@ public static class StringWrapper {
 				textToChange = textToChange.Substring(0, end+1) + "}" + textToChange.Substring(end+1);
 			}
 		}
+		if (textToChange.IndexOf ("&gt;") != -1) {
+			Debug.Log ("Replacing greater than sign");
+			textToChange =  textToChange.Replace ("&gt;", ">");
+		}
 
+		if (textToChange.IndexOf ("&lt;") != -1) {
+			Debug.Log ("Replacing greater than sign");
+			textToChange =  textToChange.Replace ("&lt;", "<");
+		}
+		if (textToChange.IndexOf ("\\\\") != -1) {
+			Debug.Log ("Replacing double backslash");
+			textToChange = textToChange.Replace ("\\\\", "\\");
+		}
 		if(std==6 || std ==7){
 			for (var i = 0; i < oldStringLower.Count; i++) {
 				textToChange = textToChange.Replace (oldStringLower [i], newStringLower [i]);
@@ -95,7 +107,7 @@ public static class StringWrapper {
 //		text = lineBreakRegex.Replace(text, System.Environment.NewLine);
 		//Strip formatting
 //		text = stripFormattingRegex.Replace(text, string.Empty);
-
+		text = changeString(text);
 		return text;
 	}
 	static public List<string> splitTargetText(string targetText){

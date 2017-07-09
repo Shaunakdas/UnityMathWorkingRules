@@ -13,7 +13,7 @@ public class TextLine : Line {
 	//Contructor
 	public TextLine(string displayText, string type){
 		RowList = new List<Row>();	
-		DisplayText = displayText;
+		DisplayText = StringWrapper.HtmlToPlainText(displayText);
 		getLineType (type);
 	}
 	/// <summary>
@@ -21,8 +21,9 @@ public class TextLine : Line {
 	/// </summary>
 	/// <param name="para">Para.</param>
 	public TextLine(HtmlNode line_node):base(line_node){
-		DisplayText = line_node.InnerText;
-		prefabName = LocationManager.NAME_TEXT_LINE;
+		DisplayText = StringWrapper.HtmlToPlainText(line_node.InnerText);
+
+		prefabName = LocationManager.NAME_LATEX_TEXT_LINE;
 	}
 	override public void getLineType(string type_text){
 		switch (type_text) {
@@ -48,6 +49,7 @@ public class TextLine : Line {
 	}
 	override public void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
-		ElementGO.GetComponent<UILabel> ().text = DisplayText;
+//		ElementGO.GetComponent<UILabel> ().text = DisplayText;
+		BasicGOOperation.setText(ElementGO,DisplayText);
 	}
 }

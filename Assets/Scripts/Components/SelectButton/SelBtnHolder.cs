@@ -31,16 +31,22 @@ public class SelBtnHolder : TargetItemChecker {
 		//Setting index
 		int tableLineIndex = line.ElementGO.transform.GetSiblingIndex();
 		submitBtnGO.transform.SetSiblingIndex (tableLineIndex + 1);
-		submitBtnGO.GetComponent<UIWidget> ().depth = depth;submitBtnGO.GetComponentInChildren<UILabel> ().depth = depth+1;
+		submitBtnGO.GetComponent<UIWidget> ().depth = depth;
+		submitBtnGO.GetComponentInChildren<UISprite> ().depth = depth+4;submitBtnGO.GetComponentInChildren<UILabel> ().depth = depth+4;
+		submitBtnGO.GetComponent<TweenColor> ().enabled = true;
 		BasicGOOperation.CheckAndRepositionTable (line.ElementGO.transform.parent.gameObject);
-		EventDelegate.Set(submitBtnGO.GetComponent<UIButton>().onClick, delegate() { checkChildCorrect(submitBtnGO); });
+		EventDelegate.Set(submitBtnGO.GetComponent<UIButton>().onClick, delegate() { checkChildCorrect(); });
 
 		if(Paragraph.ParagraphAlign == Paragraph.AlignType.Horizontal){
 		}else{
-			submitBtnGO.GetComponent<UIWidget> ().width = (int)lineSize.x;
+			submitBtnGO.GetComponent<UIWidget> ().width = (int)lineSize.x-200;
 		}
 	}
-	public void checkChildCorrect(GameObject submitBtnGO){
+	public void optionSelected(){
+		if (correctCount == 1) 
+			checkChildCorrect ();
+	}
+	public void checkChildCorrect(){
 		Debug.Log ("checkChildCorrect");
 		//Check for user selected Buttons
 		foreach (GameObject selBtnGO in SelBtnGOList) {
@@ -65,7 +71,7 @@ public class SelBtnHolder : TargetItemChecker {
 				itemChecker.correctOptionIgnored();
 			}
 		}
-//		submitBtnGO
+		ParagraphRef.finishQuestionStep ();
 
 	}
 	void Awake(){

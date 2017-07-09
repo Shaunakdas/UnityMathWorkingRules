@@ -17,6 +17,7 @@ public class Paragraph : BaseElement{
 	public enum CorrectType {SingleCorrect,MultipleCorrect}
 	public CorrectType ParagraphCorrect;
 
+
 	//Number of columns of Table Component
 	public int tableCol;
 
@@ -25,6 +26,9 @@ public class Paragraph : BaseElement{
 
 	//List of target BaseElements
 	static public List<TargetItemChecker> targetItemCheckerList{get; set;}
+
+	//Text to be displayed after completion of paragraph
+	public string postSubmitText{get; set;}
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Contructor
@@ -108,43 +112,43 @@ public class Paragraph : BaseElement{
 //			Debug.Log ("There are " + node_list.Count + " nodes of type: " + HTMLParser.LINE_TAG);
 
 			foreach (HtmlNode line_node in node_list) {
-				Line newLine = new Line (line_node);
-				string line_type = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 
-				Debug.Log ("Line type "+line_type);
-				switch (line_type) {
-				case "text": 
-					newLine = new TextLine (line_node);
-					break;
-				case "post_submit_text": 
-					newLine = new TextLine (line_node);
-					break;
-				case "incorrect_submit_text": 
-					newLine = new TextLine (line_node);
-					break;
-				case "table": 
-					newLine = new TableLine (line_node);
-					break;
-				case "prime_division": 
-					newLine = new PrimeDivisionLine (line_node);
-					break;
-				case "number_line_drop": 
-					newLine = new NumberLineDropLine (line_node);
-					break;
-				case "number_line_select": 
-					newLine = new NumberLineDropLine (line_node);
-					break;
-				case "combination": 
-					newLine = new CombinationLine (line_node);
-					break;
-				}
-				//Populate Child Row nodes inside Line Node
+				string line_type = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
+				if (line_type == "post_submit_text") {
+					postSubmitText = (line_node).InnerText;
+				} else {
+					Line newLine = new Line (line_node);
+					Debug.Log ("Line type " + line_type);
+					switch (line_type) {
+					case "text": 
+						newLine = new TextLine (line_node);
+						break;
+					case "incorrect_submit_text": 
+						newLine = new TextLine (line_node);
+						break;
+					case "table": 
+						newLine = new TableLine (line_node);
+						break;
+					case "prime_division": 
+						newLine = new PrimeDivisionLine (line_node);
+						break;
+					case "number_line_drop": 
+						newLine = new NumberLineDropLine (line_node);
+						break;
+					case "number_line_select": 
+						newLine = new NumberLineDropLine (line_node);
+						break;
+					case "combination": 
+						newLine = new CombinationLine (line_node);
+						break;
+					}
+					//Populate Child Row nodes inside Line Node
 //				newLine.parseChildNode (line_node);
 
-				newLine.Parent = this;
-				//Add Line node into LineList
-				LineList.Add (newLine);
-
+					newLine.Parent = this;
+					//Add Line node into LineList
+					LineList.Add (newLine);
+				}
 			}
 		}
 
@@ -252,6 +256,10 @@ public class Paragraph : BaseElement{
 		foreach (Transform childTransform in ParaContentTableGO.transform) {
 			if (childTransform.gameObject != CenterContentGO) {
 				//Check for size of other GameObjects other than Default Types
+				if (childTransform.gameObject.GetComponent<TEXDrawNGUI> () != null) {
+					Debug.Log (BasicGOOperation.ElementSize(childTransform.gameObject).y);
+				}
+
 				Vector3 childSize = NGUIMath.CalculateAbsoluteWidgetBounds(childTransform).size;
 				childSize.x = childSize.x / scale.x; childSize.y = childSize.y / scale.y;
 				Debug.Log ("Bound of GameObject "+childTransform.gameObject.name+(childSize.x)+" - "+(childSize.y));
@@ -296,20 +304,48 @@ public class Paragraph : BaseElement{
 		}
 	}
 	//----------------------Animations ----------------------------
-
+	/// <summary>
+	/// Sets up first Getting active animation.
+	/// </summary>
+	/// <param name="_targetItemCheckerList">Target item checker list.</param>
 	public void setUpChildActiveAnim(List<TargetItemChecker> _targetItemCheckerList){
 		Debug.Log ("setUpChildActiveAnim"+_targetItemCheckerList.Count.ToString());
-		if (_targetItemCheckerList.Count > 0) _targetItemCheckerList[0].activateAnim ();
+		if (_targetItemCheckerList.Count > 0)
+			_targetItemCheckerList [0].activateAnim ();
 	}
+	/// <summary>
+	/// Sets up the next target trigger
+	/// </summary>
+	/// <param name="itemChecker">Item checker.</param>
 	 public void nextTargetTrigger(TargetItemChecker itemChecker){
 		Debug.Log (targetItemCheckerList.Count);
 		int currentCounter = targetItemCheckerList.IndexOf (itemChecker);
 		if (currentCounter < targetItemCheckerList.Count-1) {
 			targetItemCheckerList [currentCounter + 1].activateAnim ();
 		} else {
-			Debug.Log ("QuestionStep finished");
-
-			(this.Parent as ComprehensionBody).nextParaTrigger();
+			finishQuestionStep ();
 		}
 	}
+	/// <summary>
+	/// Finishes the question step.
+	/// </summary>
+	public void finishQuestionStep(){
+		Debug.Log ("QuestionStep finished");
+		GameObject ParaContentTable = BasicGOOperation.getChildGameObject (ElementGO, "ParaContentTable");
+		ParaContentTable.SetActive (false);
+		setupPostSubmitTable ();
+	}
+	/// <summary>
+	/// Sets up the post submit table.
+	/// </summary>
+	public void setupPostSubmitTable(){
+		GameObject PostSubmitTablePF = Resources.Load (LocationManager.COMPLETE_LOC_PARAGRAPH_TYPE + LocationManager.NAME_POST_SUBMIT_TABLE) as GameObject;
+		GameObject PostSubmitTableGO = BasicGOOperation.InstantiateNGUIGO (PostSubmitTablePF, ElementGO.transform);
+		PostSubmitTableGO.GetComponentInChildren<TEXDrawNGUI> ().text = postSubmitText;
+		EventDelegate.Set(PostSubmitTableGO.GetComponentInChildren<UIButton>().onClick, delegate() { (this.Parent as ComprehensionBody).nextParaTrigger(); });
+		if (!(this.Parent as ComprehensionBody).checkForNextPara ()) {
+			PostSubmitTableGO.GetComponentInChildren<UIButton> ().gameObject.GetComponentInChildren<UILabel>().text ="Working Rule finished";
+		}
+	}
+
 }

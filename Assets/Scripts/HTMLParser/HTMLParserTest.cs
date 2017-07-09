@@ -44,6 +44,9 @@ public class HTMLParserTest : MonoBehaviour {
 		BasicGOOperation.RepositionChildTables (gameObject);
 		BasicGOOperation.RepositionChildTables (gameObject);
 	}
+	public void RepositionAfterEndOfFrame(){
+		StartCoroutine (WaitForEnd());
+	}
 	// Update is called once per frame
 	void Update () {
 		

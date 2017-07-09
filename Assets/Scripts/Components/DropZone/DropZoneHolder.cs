@@ -105,7 +105,7 @@ public class DropZoneHolder : TargetItemChecker {
 	/// Incorrect animation.
 	/// </summary>
 	override public void incorrectAnim(){
-		Debug.Log ("DropZoneRowCell InCorrectAnim");
+		Debug.Log ("DropZoneRowCell InCorrectAnim"+ParagraphRef.ElementGO.name);
 		deactivateAnim ();
 		ParagraphRef.nextTargetTrigger (this);
 	}

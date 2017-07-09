@@ -58,6 +58,7 @@ public class ComprehensionBody : BaseElement {
 		if(true){
 //			Paragraph is of type QuestionStep
 			int StepCounter =1;
+			GameObject ParaCounterTableGO = BasicGOOperation.getChildGameObject (BasicGOOperation.getChildGameObject (ElementGO, "ParaTable"), "ParaCounterTable");
 			foreach (Paragraph para in ParagraphList) {
 				if (para.ParagraphStep == Paragraph.StepType.Comprehension) {
 					//					Generate Comprehension Paragraph
@@ -65,7 +66,7 @@ public class ComprehensionBody : BaseElement {
 					comprehensionParaElem = para;
 					para.generateElementGO (ElementGO);
 				} else {
-					GameObject ParaCounterTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaCounterTable");
+					
 					GameObject ParaCounterPF = Resources.Load (LocationManager.COMPLETE_LOC_BODY_TYPE + LocationManager.NAME_PARA_COUNTER)as GameObject;
 					GameObject ParaCounterGO = BasicGOOperation.InstantiateNGUIGO(ParaCounterPF,ParaCounterTableGO.transform);
 					ParaCounterGO.GetComponentInChildren<UILabel> ().text = StepCounter.ToString ();
@@ -73,7 +74,8 @@ public class ComprehensionBody : BaseElement {
 				}
 
 			}
-
+			ParaCounterTableGO.transform.SetAsLastSibling ();
+			BasicGOOperation.RepositionChildTables (ElementGO);
 //			setUpChildActiveAnim (targetItemCheckerList);
 		}
 		return ElementGO;
@@ -81,17 +83,25 @@ public class ComprehensionBody : BaseElement {
 
 
 	//----------------------Animations ----------------------------
+	public bool checkForNextPara(){
+		return (CurrentParaCounter  < (ParagraphList.Count-1));
+	}
 	public void nextParaTrigger(){
 		if (CurrentParaCounter > 0) {
 			ParagraphList [CurrentParaCounter].ElementGO.SetActive (false);
 		}
-		CurrentParaCounter++;
 		setQuesVisibility (false);
-		if (CurrentParaCounter < ParagraphList.Count) {
-			Paragraph nextPara = ParagraphList [CurrentParaCounter];
-			nextPara.generateElementGO (ElementGO);
+		if (checkForNextPara()) {
+			Paragraph nextPara = ParagraphList [CurrentParaCounter+1];
+			nextPara.generateElementGO (BasicGOOperation.getChildGameObject (ElementGO, "ParaTable"));
+			GameObject ParaCounterTableGO = BasicGOOperation.getChildGameObject (BasicGOOperation.getChildGameObject (ElementGO, "ParaTable"), "ParaCounterTable");
+			ParaCounterTableGO.transform.SetAsLastSibling ();
+			NGUITools.FindInParents<UIRoot> (ElementGO).gameObject.GetComponent<HTMLParserTest> ().RepositionAfterEndOfFrame ();
 		}
+		CurrentParaCounter++;
+		changeParaCounterTableDisplay (CurrentParaCounter);
 	}
+
 	public void setQuesVisibility(bool displayFlag){
 		foreach (UIWidget widget in comprehensionParaElem.ElementGO.GetComponentsInChildren<UIWidget> ()){
 			if(displayFlag)
@@ -100,5 +110,18 @@ public class ComprehensionBody : BaseElement {
 				widget.depth = widget.depth - 6;
 		}
 	}
+	public void changeParaCounterTableDisplay(int currentCounter){
 
+		GameObject ParaCounterTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaCounterTable");
+		foreach (Transform paraCounterTf in ParaCounterTableGO.transform) {
+			Color counterColor = paraCounterTf.gameObject.GetComponent<UISprite> ().color;
+			Debug.Log ("color of Counter Sprite"+counterColor.a.ToString());
+			if (paraCounterTf.GetSiblingIndex() != CurrentParaCounter - 1) {
+				counterColor.a = 0.5f;
+			} else {
+				counterColor.a = 1.0f;
+			}
+			paraCounterTf.gameObject.GetComponent<UISprite> ().color = counterColor;
+		}
+	}
 }

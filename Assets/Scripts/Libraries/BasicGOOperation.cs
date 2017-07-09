@@ -189,6 +189,13 @@ public class BasicGOOperation : MonoBehaviour{
 		finalSize.x = finalSize.x / scale.x; finalSize.y = finalSize.y / scale.y; finalSize.z = finalSize.z / scale.z;
 		return finalSize;
 	}
+	static public void setText(GameObject TextGO, string text){
+		if (TextGO.GetComponent<UILabel> () != null) {
+			TextGO.GetComponent<UILabel> ().text = text;
+		} else {
+			TextGO.GetComponent<TEXDrawNGUI> ().text = text;
+		}
+	}
 }
 
 

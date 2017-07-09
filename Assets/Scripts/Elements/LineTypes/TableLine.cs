@@ -30,6 +30,10 @@ public class TableLine  : Line {
 	/// <param name="para">Para.</param>
 	public TableLine(HtmlNode line_node):base(line_node){
 		prefabName = LocationManager.NAME_TABLE_LINE;
+		HtmlAttribute attr_col = line_node.Attributes [AttributeManager.ATTR_COL_COUNT];
+		if (attr_col != null) {
+			ColumnCount = int.Parse (attr_col.Value);
+		}
 	}
 	override public void getLineType(string type_text){
 		switch (type_text) {
@@ -42,6 +46,7 @@ public class TableLine  : Line {
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public void updateGOProp(GameObject ElementGO){
+		Debug.Log ("COLUMN_COUNT"+ColumnCount);
 		ElementGO.GetComponent<UITable> ().columns = ColumnCount;
 		SelBtnHolder selBtnHolder = ElementGO.GetComponent<SelBtnHolder> ();
 
@@ -56,6 +61,7 @@ public class TableLine  : Line {
 	//For Selectable Button Holder
 	public void updateSelBtnHolder(GameObject _selBtnGO,bool _selBtnBool){
 		SelBtnFlag = true;
+
 		ElementGO.AddComponent<SelBtnHolder> (); SelBtnHolder holderScript = ElementGO.GetComponent<SelBtnHolder> ();
 		holderScript.ParagraphRef = this.ParagraphRef;
 		holderScript.addToTargetList ();

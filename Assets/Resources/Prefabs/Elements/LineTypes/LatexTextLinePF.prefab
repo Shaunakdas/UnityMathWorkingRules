@@ -72,12 +72,12 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 480
   mHeight: 82
-  mDepth: 5
+  mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 96
+  aspectRatio: 5.8536587
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   m_Text: Write number of digits in each number
   m_FontIndex: 15

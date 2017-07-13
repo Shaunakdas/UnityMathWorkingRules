@@ -192,8 +192,13 @@ public class Paragraph : BaseElement{
 				}
 			}
 		}
-		foreach (DragSourceCell dragCell in dragSourceCellList) {
-			DropZoneRowCell dropZone = dropZoneCellList.Find (x => x.CellId == dragCell.CellId);
+//		foreach (DragSourceCell dragCell in dragSourceCellList) {
+//			DropZoneRowCell dropZone = dropZoneCellList.Find (x => x.CellId == dragCell.CellId);
+//			Debug.Log ("Changing Target Text of id" + dragCell.DisplayText +dropZone.CellId);
+//			dropZone.TargetText = dragCell.DisplayText;
+//		}
+		foreach (DropZoneRowCell dropZone in dropZoneCellList) {
+			DragSourceCell dragCell = dragSourceCellList.Find (x => x.CellId == dropZone.CellId);
 			Debug.Log ("Changing Target Text of id" + dragCell.DisplayText +dropZone.CellId);
 			dropZone.TargetText = dragCell.DisplayText;
 		}

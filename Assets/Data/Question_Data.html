@@ -1,37 +1,68 @@
-<body code='working-rule-for-find-hcf-of-list-of-numbers'>
-		<!-- O hcf-->
+	<body code='working-rule-for-simplifying-bracket-and-solving'>
 		<p type='comprehension' align='vertical'>
-			<line type='text' locationType='top'> Find hcf of 24 and 18  </line>
+			<line type='text' locationType='top'> Simplify </line>
+			<line type='text' locationType='top'> 7 - (6 + 3) + (7 - 1) </line>
 		</p>
-		<p type='question_step' align='horizontal' correctType='multiple_correct'>
-			<line type='prime_division' target='24'>
+		<p type='question_step' align='vertical' correctType='single_correct'>
+			<line type='text' locationType='top'> Solve the expression in first bracket </line>
+			<line type='text'> 7 - (6 + 3) + (7 - 1) </line>
+			<line type='table'>
+				<trow>
+					<tcell type='text'>7 -</tcell>
+					<tcell type='selectable_button' answer='1'>(6 + 3)</tcell>
+					<tcell type='text'> + </tcell>
+					<tcell type='selectable_button' answer='0'>(7 - 1)</tcell>
+				</trow>
+			</line>
+			<line type='table'>
+				<trow>
+					<tcell type='text'>6 + 3 = </tcell>
+					<tcell type='drop_zone' answer='9'></tcell>
+				</trow>
+			</line>
+
+			<line type='table' locationType='bottom'>
+				<trow type='drag_source_line' sourceType='integer' start='0' end='9'>
+				</trow>
+			</line>
+		</p>
+		<p type='question_step' align='vertical' correctType='single_correct'>
+			<line type='text' locationType='top'> Solve the expression in second bracket </line>
+			<line type='text'> 7 - (6 + 3) + (7 - 1) </line>
+			<line type='table'>
+				<trow>
+					<tcell type='text'>7 -</tcell>
+					<tcell type='selectable_button' answer='1'>(6 + 3)</tcell>
+					<tcell type='text'> + </tcell>
+					<tcell type='selectable_button' answer='0'>(7 - 1)</tcell>
+				</trow>
+			</line>
+			<line type='table'>
+				<trow>
+					<tcell type='text'>7 - 1 = </tcell>
+					<tcell type='drop_zone' answer='8'></tcell>
+				</trow>
+			</line>
+
+			<line type='table' locationType='bottom'>
+				<trow type='drag_source_line' sourceType='integer' start='0' end='9'>
+				</trow>
+			</line>
+		</p>
+		<p type='question_step' align='vertical' correctType='single_correct'>
+			<line type='text' locationType='top'> Solve the final expression </line>
+			<line type='text'> 7 - (6 + 3) + (7 - 1) </line>
+			<line type='text'> 6 + 3 = 9 </line>
+			<line type='text'> 7 - 1 = 8 </line>
+			<line type='table'>
+				<trow>
+					<tcell type='text'>7 - 9 + 8 = </tcell>
+					<tcell type='drop_zone' answer='6'></tcell>
+				</trow>
 			</line>
 			<line type='table' locationType='bottom'>
-				<trow type='drag_source_line' sourceType='prime' start='1' end='18'>
+				<trow type='drag_source_line' sourceType='integer' start='0' end='9'>
 				</trow>
 			</line>
 		</p>
-		<!-- Q -->
-		<p type='question_step' align='horizontal' correctType='multiple_correct'>
-			<line type='prime_division' target='24'>
-			</line>
-			<line type='post_submit_text'>24=2\\times2\\times2\\times3</line>
-			<line type='table' locationType='bottom'>
-				<trow type='drag_source_line' sourceType='prime' start='1' end='18'>
-				</trow>
-			</line>
-		</p>
-		<!-- S -->
-		<p type='question_step' align='horizontal' correctType='multiple_correct'>
-			
-			<line type='prime_division' target='18' locationType='left'>
-			</line>
-			<line type='post_submit_text'>18=2\\times3\\times3</line>
-			<line type='table' locationType='right'>
-				<trow type='drag_source_line' sourceType='prime' start='1' end='18'>
-				</trow>
-			</line>
-		</p>
-		<!-- S -->
-		
 	</body>

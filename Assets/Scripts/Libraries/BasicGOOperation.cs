@@ -168,7 +168,7 @@ public class BasicGOOperation : MonoBehaviour{
 	/// <param name="ParentGameObject">Parent game object.</param>
 	static public void ResizeToFitChildGO(GameObject ParentGameObject){
 		RepositionChildTables (ParentGameObject);
-		Debug.Log ("ResizeToFitChildGO child count"+(NGUIMath.CalculateRelativeWidgetBounds(ParentGameObject.transform.GetChild(0).GetChild(0)).size.y));
+//		Debug.Log ("ResizeToFitChildGO child count"+(NGUIMath.CalculateRelativeWidgetBounds(ParentGameObject.transform.GetChild(0).GetChild(0)).size.y));
 		Vector3 finalSize = NGUIMath.CalculateRelativeWidgetBounds (ParentGameObject.transform).size;
 //		finalSize.x = finalSize.x / scale.x; finalSize.y = finalSize.y / scale.y;
 		if (ParentGameObject.GetComponent<UIWidget> () != null) {

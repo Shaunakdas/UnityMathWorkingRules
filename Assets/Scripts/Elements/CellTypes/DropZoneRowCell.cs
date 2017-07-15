@@ -155,9 +155,14 @@ public class DropZoneRowCell : Cell {
 		dropZoneHolder.idCheck = idPresent;
 		dropZoneHolder.addToTargetList ();
 
+
 		Debug.Log ("TargetText list"+_targetTextList.Count+idPresent);
 		foreach (string targetText in _targetTextList){
 			Debug.Log ("TargetText"+targetText.ToString());
+
+			//Initing List of DropZoneItemChecker to then add to ItemCheckerMasterList of DropZoneHolder
+			List<DropZoneItemChecker> itemCheckerList =  new List<DropZoneItemChecker>();
+
 			GameObject backgroundGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableprefab, holderGO.transform);
 			Debug.Log ("backgroundGO "+backgroundGO.name.ToString());
 
@@ -166,6 +171,7 @@ public class DropZoneRowCell : Cell {
 			if (idPresent) {
 				//id attribute is present. So there is no need to divide drop zone into individual item
 				GameObject tableItemGO =  initDropZoneTableItem(tableGO,idPresent);
+				itemCheckerList.Add (tableItemGO.GetComponent<DropZoneItemChecker>());
 //				tableItemGO.GetComponent<DropZoneItemChecker>().element = this;
 				int contentWidth = targetText.ToCharArray ().Length * 30;
 				tableItemGO.GetComponent<UISprite> ().width = contentWidth;
@@ -179,10 +185,15 @@ public class DropZoneRowCell : Cell {
 						GameObject signBtnGO = selectCell.generateSelBtnCellGO (tableGO, "-");
 					} else {
 						GameObject tableItemGO = initDropZoneTableItem (tableGO, idPresent);
+						itemCheckerList.Add (tableItemGO.GetComponent<DropZoneItemChecker>());
 //						tableItemGO.GetComponent<DropZoneItemChecker>().element = this;
 					}
 				}
 			}
+
+			//Adding itemCheckerList to ItemCheckerMasterList of DropZoneHolderGO
+			tableGO.transform.parent.parent.gameObject.GetComponent<DropZoneHolder>().ItemCheckerMasterList.Add(itemCheckerList); 
+
 //			BasicGOOperation.ResizeToFitChildGO (backgroundGO);
 			backgroundGO.GetComponent<UISprite>().width = tableWidth;
 			//			updateGOProp (backgroundGO);

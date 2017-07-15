@@ -151,6 +151,7 @@ public class CustomDragDropItem : UIDragDropItem {
 		DropZoneItemChecker itemChecker = surface.GetComponent<DropZoneItemChecker> ();
 		if (itemChecker != null) {
 			Debug.Log ("notifySurface text "+this.gameObject.GetComponentInChildren<UILabel> ().text);
+			Debug.Log ("surface name "+surface.name);
 			if (itemChecker.checkDropZoneItem (this.gameObject.GetComponentInChildren<UILabel> ().text)) {
 				return true;
 			}

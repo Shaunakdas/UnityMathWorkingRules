@@ -7,8 +7,11 @@ public class DropZoneHolder : TargetItemChecker {
 	public bool multipleHolderCheck;
 	public GameObject holderListParentGO;
 	public List<string> TargetTextList{get; set;}
+	public int TargetPending{ get; set; }
+	public List<List<DropZoneItemChecker>> ItemCheckerMasterList{ get; set; }
 	void Awake(){
 		multipleHolderCheck = false;
+		ItemCheckerMasterList = new List<List<DropZoneItemChecker>> ();
 	}
 	// Use this for initialization
 	void Start () {
@@ -17,7 +20,7 @@ public class DropZoneHolder : TargetItemChecker {
 	override public void addToTargetList(){
 		Paragraph.targetItemCheckerList.Add (this);
 	}
-	public bool checkDropZoneItem(string inputText){
+	public bool checkDropZoneItem(string inputText, DropZoneItemChecker itemChecker){
 		Debug.Log ("Holder: checkDropZoneItem for checking "+inputText);
 		bool inputCorrect = false;
 		if (idCheck) {
@@ -32,11 +35,12 @@ public class DropZoneHolder : TargetItemChecker {
 		if (multipleHolderCheck) {
 			holderListParentGO.GetComponent<DropZoneHolderParent> ().dropEvent(inputCorrect);
 		}
-		if (inputCorrect) {
-			correctAnim ();
-		} else {
-			incorrectAnim ();
-		}
+		resultAnim (inputCorrect, itemChecker);
+//		if (inputCorrect) {
+//			correctAnim (itemChecker);
+//		} else {
+//			incorrectAnim (itemChecker);
+//		}
 		return inputCorrect;
 	}
 	public bool checkCompositeText(string inputText){
@@ -98,15 +102,51 @@ public class DropZoneHolder : TargetItemChecker {
 	/// </summary>
 	override public void correctAnim(){
 		Debug.Log ("DropZoneRowCell CorrectAnim");
-		deactivateAnim ();
-		ParagraphRef.nextTargetTrigger (this);
 	}
 	/// <summary>
 	/// Incorrect animation.
 	/// </summary>
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim"+ParagraphRef.ElementGO.name);
-		deactivateAnim ();
+	}
+
+	public void resultAnim(bool inputCorrect, DropZoneItemChecker itemChecker){
+		if(inputCorrect){
+			correctAnim ();
+		}else{
+			incorrectAnim();
+		}
+		if (!nextItemChecker (itemChecker))
+			nextTargetTrigger ();
+	}
+	public bool nextItemChecker(DropZoneItemChecker _attemptedItemChecker){
+		bool nextFound = false;
+		List<DropZoneItemChecker> attemptedItemCheckerList = new List<DropZoneItemChecker>();
+//		for (int i =0; i<ItemCheckerMasterList.Count; i++){
+//			for (int j=0; j< ItemCheckerMasterList[i].Count; j++){
+		foreach (List<DropZoneItemChecker> itemCheckerList in ItemCheckerMasterList) {
+			foreach(DropZoneItemChecker itemChecker in itemCheckerList){
+				if (_attemptedItemChecker == itemChecker) {
+					attemptedItemCheckerList = itemCheckerList;
+				}
+			}
+		}
+
+		_attemptedItemChecker.deactivateAnim ();
+		attemptedItemCheckerList.Remove (_attemptedItemChecker);
+		if (attemptedItemCheckerList.Count > 0)
+			nextFound = true;
+		else {
+			ItemCheckerMasterList.Remove (attemptedItemCheckerList);
+		}
+		if ((!nextFound)&&(ItemCheckerMasterList.Count > 0)) {
+			nextFound = true;
+		}
+		return nextFound;
+	}
+	public void nextTargetTrigger(){
+		Debug.Log ("TargetPending"+TargetPending);
 		ParagraphRef.nextTargetTrigger (this);
+		
 	}
 }

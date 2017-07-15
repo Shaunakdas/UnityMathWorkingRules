@@ -8,6 +8,9 @@ public class DropZoneHolder : TargetItemChecker {
 	public GameObject holderListParentGO;
 	public List<string> TargetTextList{get; set;}
 	public int TargetPending{ get; set; }
+	/// <summary>
+	/// list of list of DropZoneItemChecker for managing animatiojn after user input. 
+	/// </summary>
 	public List<List<DropZoneItemChecker>> ItemCheckerMasterList{ get; set; }
 	void Awake(){
 		multipleHolderCheck = false;
@@ -131,7 +134,7 @@ public class DropZoneHolder : TargetItemChecker {
 				}
 			}
 		}
-
+		//Deactivating animation of attempted dropzone
 		_attemptedItemChecker.deactivateAnim ();
 		attemptedItemCheckerList.Remove (_attemptedItemChecker);
 		if (attemptedItemCheckerList.Count > 0)

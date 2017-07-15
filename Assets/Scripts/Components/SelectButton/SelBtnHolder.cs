@@ -71,7 +71,8 @@ public class SelBtnHolder : TargetItemChecker {
 				itemChecker.correctOptionIgnored();
 			}
 		}
-		ParagraphRef.finishQuestionStep ();
+		deactivateAnim ();
+		ParagraphRef.nextTargetTrigger (this);
 
 	}
 	void Awake(){

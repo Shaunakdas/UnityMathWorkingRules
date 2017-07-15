@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 114492628169051842}
   - component: {fileID: 114912070740575162}
   m_Layer: 8
-  m_Name: SelectBtnCellPF
+  m_Name: PositiveBtnCellPF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

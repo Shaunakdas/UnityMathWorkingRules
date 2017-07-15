@@ -171,7 +171,7 @@ MonoBehaviour:
   columns: 0
   direction: 0
   sorting: 0
-  pivot: 1
+  pivot: 4
   cellAlignment: 4
   hideInactive: 1
   keepWithinPanel: 1

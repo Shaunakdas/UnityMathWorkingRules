@@ -232,6 +232,36 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114915475429964798, guid: 50de04f15de7746b68ea0aaa3c42b36f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114037403264234286, guid: 50de04f15de7746b68ea0aaa3c42b36f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114915475429964798, guid: 50de04f15de7746b68ea0aaa3c42b36f,
+        type: 2}
+      propertyPath: drawCall
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114915475429964798, guid: 50de04f15de7746b68ea0aaa3c42b36f,
+        type: 2}
+      propertyPath: drawCallQueue
+      value: 3004
+      objectReference: {fileID: 0}
+    - target: {fileID: 114037403264234286, guid: 50de04f15de7746b68ea0aaa3c42b36f,
+        type: 2}
+      propertyPath: drawCall
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114037403264234286, guid: 50de04f15de7746b68ea0aaa3c42b36f,
+        type: 2}
+      propertyPath: drawCallQueue
+      value: 3005
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50de04f15de7746b68ea0aaa3c42b36f, type: 2}
   m_IsPrefabParent: 0
@@ -1662,7 +1692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   drawCall: {fileID: 0}
-  material: {fileID: 0}
+  material: {fileID: 2100000, guid: 9d473469be5a9fc448e911362f79b8a9, type: 2}
   drawCallQueue: 3001
 --- !u!114 &1576359262
 MonoBehaviour:
@@ -1677,7 +1707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 2
   drawCall: {fileID: 0}
-  material: {fileID: 2100000, guid: 9d473469be5a9fc448e911362f79b8a9, type: 2}
+  material: {fileID: 2100000, guid: ec268c3ea1baceb4abb2168daed86f68, type: 2}
   drawCallQueue: 3002
 --- !u!114 &1576359263
 MonoBehaviour:

@@ -12,7 +12,7 @@ public class PrimeDivision  {
 		PrimeFactorList = GeneratePrimeList (target);
 		PrimeDividendList = GenerateDividendList (target, PrimeFactorList);
 	}
-	public static List<int> GeneratePrimeList(int number){
+	public List<int> GeneratePrimeList(int number){
 		var primes = new List<int>();
 
 		for(int div = 2; div<=number; div++){
@@ -23,9 +23,11 @@ public class PrimeDivision  {
 		}
 		return primes;
 	}
-	public static List<int> GenerateDividendList(int number, List<int> primeFactorList){
+	public List<int> GenerateDividendList(int number, List<int> primeFactorList){
 		var dividends = new List<int>();
+		dividends.Add (number);
 		foreach (int factor in primeFactorList) {
+			Debug.Log ("PRIME_DIVIDEND" + (number / factor));
 			dividends.Add (number/factor);
 			number = number / factor;
 		}

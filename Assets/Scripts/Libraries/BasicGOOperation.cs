@@ -191,6 +191,15 @@ public class BasicGOOperation : MonoBehaviour{
 		finalSize.x = finalSize.x / scale.x; finalSize.y = finalSize.y / scale.y; finalSize.z = finalSize.z / scale.z;
 		return finalSize;
 	}
+	static public Vector3 NGUIPosition(Transform transform){
+		Vector3 finalSize = transform.position;
+		finalSize.x = finalSize.x / scale.x; finalSize.y = finalSize.y / scale.y; finalSize.z = finalSize.z / scale.z;
+		return finalSize;
+	}
+	static public Vector3 ScaledVector(Vector3 vector3){
+		vector3.x = vector3.x / scale.x; vector3.y = vector3.y / scale.y; vector3.z = vector3.z / scale.z;
+		return vector3;
+	}
 	static public void setText(GameObject TextGO, string text){
 		if (TextGO.GetComponent<UILabel> () != null) {
 			TextGO.GetComponent<UILabel> ().text = text;

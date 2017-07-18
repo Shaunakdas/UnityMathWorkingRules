@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DropZoneHolder : TargetItemChecker {
+
+	//----------------------Common attributes ----------------------------
 	public bool idCheck{ get; set; }
 	public bool multipleHolderCheck;
 	public GameObject holderListParentGO;
@@ -20,6 +22,8 @@ public class DropZoneHolder : TargetItemChecker {
 	void Start () {
 //		TargetTextList = new List<string> ();
 	}
+
+	//----------------------Target Matching and checking mechanism ----------------------------
 	override public void addToTargetList(){
 		Paragraph.targetItemCheckerList.Add (this);
 	}
@@ -39,11 +43,6 @@ public class DropZoneHolder : TargetItemChecker {
 			holderListParentGO.GetComponent<DropZoneHolderParent> ().dropEvent(inputCorrect);
 		}
 		resultAnim (inputCorrect, itemChecker);
-//		if (inputCorrect) {
-//			correctAnim (itemChecker);
-//		} else {
-//			incorrectAnim (itemChecker);
-//		}
 		return inputCorrect;
 	}
 	public bool checkCompositeText(string inputText){
@@ -106,27 +105,45 @@ public class DropZoneHolder : TargetItemChecker {
 	override public void correctAnim(){
 		Debug.Log ("DropZoneRowCell CorrectAnim");
 	}
+	public void correctAnim(DropZoneItemChecker itemChecker){
+		Debug.Log ("DropZoneRowCell CorrectAnim");
+		if (!nextItemChecker (itemChecker))
+			nextTargetTrigger ();
+	}
 	/// <summary>
 	/// Incorrect animation.
 	/// </summary>
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim"+ParagraphRef.ElementGO.name);
 	}
+	public void incorrectAnim(DropZoneItemChecker itemChecker){
+		Debug.Log ("DropZoneRowCell InCorrectAnim"+ParagraphRef.ElementGO.name);
+		DragSourceCell targetCell = findCorrectDragItem(itemChecker);
+		targetCell.DroppedOnSurface += delegate {
+			if (!nextItemChecker (itemChecker))
+				nextTargetTrigger ();
+		};
 
+		targetCell.dragToDropZone (itemChecker.gameObject);
+	}
+	
 	public void resultAnim(bool inputCorrect, DropZoneItemChecker itemChecker){
 		if(inputCorrect){
-			correctAnim ();
+			correctAnim (itemChecker);
 		}else{
-			incorrectAnim();
+			incorrectAnim(itemChecker);
 		}
-		if (!nextItemChecker (itemChecker))
-			nextTargetTrigger ();
+		//If DropZone Holder doesn't has pending DropZoneItemChecker
+
 	}
+	/// <summary>
+	/// Finds the if another DropZoneItemChecker exists in masterList of list of DropZoneItemChecker in current DropZoneHolder
+	/// </summary>
+	/// <returns><c>true</c>, if item checker was nexted, <c>false</c> otherwise.</returns>
+	/// <param name="_attemptedItemChecker">Attempted item checker.</param>
 	public bool nextItemChecker(DropZoneItemChecker _attemptedItemChecker){
 		bool nextFound = false;
 		List<DropZoneItemChecker> attemptedItemCheckerList = new List<DropZoneItemChecker>();
-//		for (int i =0; i<ItemCheckerMasterList.Count; i++){
-//			for (int j=0; j< ItemCheckerMasterList[i].Count; j++){
 		foreach (List<DropZoneItemChecker> itemCheckerList in ItemCheckerMasterList) {
 			foreach(DropZoneItemChecker itemChecker in itemCheckerList){
 				if (_attemptedItemChecker == itemChecker) {
@@ -148,8 +165,41 @@ public class DropZoneHolder : TargetItemChecker {
 		return nextFound;
 	}
 	public void nextTargetTrigger(){
+
 		Debug.Log ("TargetPending"+TargetPending);
 		ParagraphRef.nextTargetTrigger (this);
+
+	}
+	public void nextTargetTrigger(DragSourceCell dragCell){
 		
+		Debug.Log ("TargetPending"+TargetPending);
+		ParagraphRef.nextTargetTrigger (this);
+
+	}
+	public DragSourceCell findCorrectDragItem(DropZoneItemChecker dropZoneItem){
+		//Find the target drag cell
+		DragSourceCell targetCell;
+		Debug.Log ("Inside findCorrectDragItem");
+		foreach (Line line in ParagraphRef.LineList) {
+			foreach (Row row in line.RowList) {
+				if (row.Type == Row.RowType.DragSource) {
+					foreach (Cell cell in row.CellList) {
+						if (idCheck) {
+							if(cell.ElementGO.GetComponentInChildren<UILabel>().text == TargetTextList[0]){
+								Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
+								return (cell as DragSourceCell);
+							}
+						} else {
+							if(cell.ElementGO.GetComponentInChildren<UILabel>().text == TargetTextList[0]){
+								Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
+								return (cell as DragSourceCell);
+							}
+						}
+
+					}
+				}
+			}
+		}
+		return null;
 	}
 }

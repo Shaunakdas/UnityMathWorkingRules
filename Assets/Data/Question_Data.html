@@ -1,115 +1,116 @@
-<body code='working-rule-for-remembering-different-notations'>
-		<p type='comprehension' align='vertical' correctType='single_correct'>
-			<line type='text' locationType='top'> Write numbers in Roman numerals </line>
+<body code='working-rule-for-comparing-multiple-numbers'>
+		<!-- 04 comparing-numbers -->
+		<p type='comprehension' align='vertical'>
+			<line type='text' locationType='top'> Compare following numbers \n 250105, 2496, 255006 </line>
 		</p>
+		<!-- Q4 -->
 		<p type='question_step' align='vertical' correctType='single_correct'>
-			<line type='text' locationType='top'> Go through the table and write numbers in Roman numeral form </line>
+			<line type='text' locationType='top'>Write number of digits in each number</line>
+			<line type='post_submit_text'>We know that number with least amount of digits is the smallest</line>
 			<line type='table'>
 				<trow>
-					<tcell type='text'>1</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>I</tcell>
-					<tcell type='text'>10</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>X</tcell>
+					<tcell type='text'>250105</tcell>
+					<tcell type='drop_zone' answer='6'></tcell>
 				</trow>
 				<trow>
-					<tcell type='text'>2</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>II</tcell>
-					<tcell type='text'>20</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>XX</tcell>
+					<tcell type='text'>1056</tcell>
+					<tcell type='drop_zone' answer='4'></tcell>
 				</trow>
 				<trow>
-					<tcell type='text'>3</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>III</tcell>
-					<tcell type='text'>30</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>XXX</tcell>
+					<tcell type='text'>255006</tcell>
+					<tcell type='drop_zone' answer='6'></tcell>
 				</trow>
-				<trow>
-					<tcell type='text'>4</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>IV</tcell>
-					<tcell type='text'>40</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>XL</tcell>
+			</line>
+
+			<line type='table' locationType='bottom'>
+				<trow type='drag_source_line' sourceType='integer' start='0' end='9'>
 				</trow>
+			</line>
+		</p>
+		<!-- S4 -->
+		<p type='question_step' align='vertical' correctType='single_correct'>
+			<line type='text' locationType='top'>Drag the smallest number to the first spot on the compairision table</line>
+			<line type='post_submit_text'>Now we have to compare 2 numbers with same number of digits</line>
+			<line type='table'>
 				<trow>
-					<tcell type='text'>5</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>V</tcell>
-					<tcell type='text'>50</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>L</tcell>
-				</trow>
-				<trow>
+					<tcell type='text'>250105</tcell>
 					<tcell type='text'>6</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>VI</tcell>
-					<tcell type='text'>60</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>LX</tcell>
 				</trow>
 				<trow>
-					<tcell type='text'>7</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>VII</tcell>
-					<tcell type='text'>70</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>LXX</tcell>
+					<tcell type='text'>1056</tcell>
+					<tcell type='text'>4</tcell>
 				</trow>
 				<trow>
-					<tcell type='text'>8</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>VIII</tcell>
-					<tcell type='text'>80</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>LXXX</tcell>
-				</trow>
-				<trow>
-					<tcell type='text'>9</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>IX</tcell>
-					<tcell type='text'>90</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>XC</tcell>
-				</trow>
-				<trow>
-					<tcell type='text'>100</tcell>
-					<tcell type='text'>=</tcell>
-					<tcell type='text'>C</tcell>
+					<tcell type='text'>255006</tcell>
+					<tcell type='text'>6</tcell>
 				</trow>
 			</line>
 			<line type='table'>
 				<trow>
-					<tcell type='text'>3</tcell>
-					<tcell type='text'> = </tcell>
-					<tcell type='drop_zone' answer='III'></tcell>
+					<tcell type='drop_zone' id='1' size='5'></tcell>
+					<tcell type='text'>&lt;</tcell>
+					<tcell type='text'>     </tcell>
+					<tcell type='text'>&lt;</tcell>
+					<tcell type='text'>     </tcell>
+				</trow>
+			</line>
+
+			<line type='table' locationType='bottom'>
+				<trow type='drag_source_line' >
+					<tcell type='text'>250105</tcell>
+					<tcell type='text' id='1'>1056</tcell>
+					<tcell type='text'>255006</tcell>
+				</trow>
+			</line>
+		</p>
+		<!-- U4 -->
+		<p type='question_step' align='vertical' correctType='single_correct'>
+			<line type='text' locationType='top'>In the remaining 2 numbers, find the largest digit where 2 numbers differ</line>
+			<line type='post_submit_text'>Now we know digit at the thousands place of 255006 is greater than 250105</line>
+			<line type='text'>250105 and 255006</line>
+			<line type='table'>
+				<trow>
+					<tcell type='selectable_button' answer='0'>2</tcell>
+					<tcell type='selectable_button' answer='0'>5</tcell>
+					<tcell type='selectable_button' answer='0'>0</tcell>
+					<tcell type='selectable_button' answer='0'>1</tcell>
+					<tcell type='selectable_button' answer='0'>0</tcell>
+					<tcell type='selectable_button' answer='0'>5</tcell>
 				</trow>
 				<trow>
-					<tcell type='text'>6</tcell>
-					<tcell type='text'> = </tcell>
-					<tcell type='drop_zone' answer='VI'></tcell>
+					<tcell type='selectable_button' answer='0'>2</tcell>
+					<tcell type='selectable_button' answer='0'>5</tcell>
+					<tcell type='selectable_button' answer='1'>5</tcell>
+					<tcell type='selectable_button' answer='0'>0</tcell>
+					<tcell type='selectable_button' answer='0'>0</tcell>
+					<tcell type='selectable_button' answer='0'>6</tcell>
 				</trow>
+			</line>
+		</p>
+		<!-- V4 -->
+		<p type='question_step' align='vertical' correctType='single_correct'>
+			<line type='text' locationType='top'>Arrange the remaining 2 numbers on the compairision table</line>
+			<line type='post_submit_text'>Now you know how to arrange large numbers. Yay!!</line>
+			<line type='table'>
 				<trow>
-					<tcell type='text'>9</tcell>
-					<tcell type='text'> = </tcell>
-					<tcell type='drop_zone' answer=''IX></tcell>
+					<tcell type='text'> 25{\bg[yellow]\color[black]0}106</tcell>
+					<tcell type='text'> 25{\bg[yellow]\color[black]5}006</tcell>
+				</trow>
+			</line>
+			<line type='table'>
+				<trow>
+					<tcell type='text'>1056</tcell>
+					<tcell type='text'>&lt;</tcell>
+					<tcell type='drop_zone' id='2' size='8'></tcell>
+					<tcell type='text'>&lt;</tcell>
+					<tcell type='drop_zone' id='1' size='8'></tcell>
 				</trow>
 			</line>
 			<line type='table' locationType='bottom'>
-				<trow type='drag_source_line'>
-					<tcell type='text'>I</tcell>
-					<tcell type='text'>X</tcell>
-					<tcell type='text'>V</tcell>
+				<trow type='drag_source_line' >
+					<tcell type='text' id='1'>250105</tcell>
+					<tcell type='text' id='2'>255006</tcell>
 				</trow>
 			</line>
-		</p>
-		<p type='question_step' align='vertical' correctType='single_correct'>
-		</p>
-		<p type='question_step' align='vertical' correctType='single_correct'>
 		</p>
 	</body>

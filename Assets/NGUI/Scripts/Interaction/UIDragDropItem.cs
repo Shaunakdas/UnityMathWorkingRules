@@ -248,8 +248,9 @@ public class UIDragDropItem : MonoBehaviour
 	/// Drop the dragged item.
 	/// </summary>
 
-	public void StopDragging (GameObject go = null)
+	public virtual void StopDragging (GameObject go = null)
 	{
+
 		if (mDragging)
 		{
 			mDragging = false;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CustomDragDropItem : UIDragDropItem {
 	public GameObject DragScrollView;
+	public GameObject itemClone;
 	public override void StartDragging ()
 	{
 
@@ -19,7 +20,7 @@ public class CustomDragDropItem : UIDragDropItem {
 				clone.transform.localPosition = transform.localPosition;
 				clone.transform.localRotation = transform.localRotation;
 				clone.transform.localScale = transform.localScale;
-
+				itemClone = clone;
 				UIButtonColor bc = clone.GetComponent<UIButtonColor>();
 				if (bc != null) bc.defaultColor = GetComponent<UIButtonColor>().defaultColor;
 
@@ -86,6 +87,20 @@ public class CustomDragDropItem : UIDragDropItem {
 		StartDragging();
 	}
 
+	/// <summary>
+	/// Drop the dragged item.
+	/// </summary>
+
+	override public void StopDragging (GameObject go = null)
+	{
+		if (go != null){
+			Debug.Log ("GameObject name " + go.name);
+			if (mDragging) {
+				mDragging = false;
+				OnDragDropRelease (go);
+			}
+		}
+	}
 	protected override void OnDragDropRelease (GameObject surface)
 	{
 
@@ -142,12 +157,14 @@ public class CustomDragDropItem : UIDragDropItem {
 			Debug.Log ("Correct Answer");
 			surface.GetComponent<UIDragDropContainer> ().enabled = false;
 		} else {
+			NGUITools.Destroy (gameObject);
 			Debug.Log ("Incorrect Answer");
 		}
 		// We're now done
 		OnDragDropEnd();
 	}
 	public bool notifySurface(GameObject surface){
+		Debug.Log ("Name of surface"+surface.name);
 		DropZoneItemChecker itemChecker = surface.GetComponent<DropZoneItemChecker> ();
 		if (itemChecker != null) {
 			Debug.Log ("notifySurface text "+this.gameObject.GetComponentInChildren<UILabel> ().text);

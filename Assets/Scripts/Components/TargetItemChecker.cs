@@ -41,4 +41,10 @@ public class TargetItemChecker : MonoBehaviour {
 	virtual public void incorrectAnim(){
 
 	}
+	/// <summary>
+	/// Correction animation.
+	/// </summary>
+	virtual public void correctionAnim(){
+
+	}
 }

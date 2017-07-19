@@ -57,20 +57,13 @@ public class SelBtnHolder : TargetItemChecker {
 			if (itemChecker.userInputFlag) {
 				//CheckAnimation if userinputFlag is correct. Wait
 				if (itemChecker.correctFlag) {
-					itemChecker.correctOptionSelected ();
+					itemChecker.correctAnim ();
 				} else {
-					itemChecker.incorrectOptionSelected ();
+					itemChecker.incorrectAnim ();
 				}
 			}
 		}
-		//check in not user selected buttons
-		foreach (GameObject selBtnGO in SelBtnGOList) {
-			SelBtnItemChecker itemChecker = selBtnGO.GetComponent<SelBtnItemChecker> ();
-			if ((!itemChecker.userInputFlag)&&(itemChecker.correctFlag)) {
-				//Animation for showing the correct options
-				itemChecker.correctOptionIgnored();
-			}
-		}
+		correctionAnim ();
 		deactivateAnim ();
 		ParagraphRef.nextTargetTrigger (this);
 
@@ -125,6 +118,22 @@ public class SelBtnHolder : TargetItemChecker {
 	/// </summary>
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim");
+		deactivateAnim ();
+		ParagraphRef.nextTargetTrigger (this);
+	}
+	/// <summary>
+	/// Correction animation.
+	/// </summary>
+	override public void correctionAnim(){
+		Debug.Log ("DropZoneRowCell CorrectionAnim");
+		//check in not user selected buttons
+		foreach (GameObject selBtnGO in SelBtnGOList) {
+			SelBtnItemChecker itemChecker = selBtnGO.GetComponent<SelBtnItemChecker> ();
+			if ((!itemChecker.userInputFlag)&&(itemChecker.correctFlag)) {
+				//Animation for showing the correct options
+				itemChecker.correctionAnim();
+			}
+		}
 		deactivateAnim ();
 		ParagraphRef.nextTargetTrigger (this);
 	}

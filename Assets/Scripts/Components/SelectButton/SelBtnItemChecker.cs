@@ -11,17 +11,17 @@ public class SelBtnItemChecker : MonoBehaviour {
 		userInputFlag = !userInputFlag;
 		SelBtnHolderGO.GetComponent<SelBtnHolder> ().optionSelected ();
 	}
-	public void incorrectOptionSelected(){
+	public void incorrectAnim(){
 		//Animation for selecting the wrong option
-		Debug.Log("incorrectOptionSelected");
+		Debug.Log("incorrectAnim");
 	}
-	public void correctOptionSelected(){
+	public void correctAnim(){
 		//Animation for selecting the correct option
-		Debug.Log("correctOptionSelected");
+		Debug.Log("correctAnim");
 	}
-	public void correctOptionIgnored(){
+	public void correctionAnim(){
 		//Animation for ignoring the correct option
-		Debug.Log("correctOptionIgnored");
+		Debug.Log("correctionAnim");
 	}
 	void Awake(){
 		correctFlag = false; userInputFlag = false;

@@ -28,6 +28,12 @@ public class BaseElement : MonoBehaviour {
 	virtual public void initGOProp(GameObject ElementGO){
 	}
 	/// <summary>
+	/// Find SiblingIndex in UIElement structure
+	/// </summary>
+	virtual public int siblingIndex(){
+		return 0;
+	}
+	/// <summary>
 	/// Generates the Element GameObject
 	/// </summary>
 	/// <returns>The element Gameobject</returns>
@@ -43,5 +49,14 @@ public class BaseElement : MonoBehaviour {
 	virtual public void setChildParagraphRef(){
 
 	}
-	
+	/// <summary>
+	/// Hides the element GameObject.
+	/// </summary>
+	virtual public void hideElementGO(){
+	}
+	/// <summary>
+	/// Displays the element GameObject.
+	/// </summary>
+	virtual public void displayElementGO(){
+	}
 }

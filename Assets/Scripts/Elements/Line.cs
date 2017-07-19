@@ -109,7 +109,13 @@ public class Line : BaseElement{
 		}
 	}
 
-
+	override public int siblingIndex(){
+		for (int i = 0; i < (Parent as Paragraph).LineList.Count - 1; i++) {
+			if ((Parent as Paragraph).LineList [i] == this)
+				return i;
+		}
+		return 0;
+	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
@@ -169,5 +175,21 @@ public class Line : BaseElement{
 	override public void updateGOProp(GameObject _elementGO){
 		Debug.Log ("Updating table of"+_elementGO.name);
 		BasicGOOperation.CheckAndRepositionTable (_elementGO);
+	}
+	//----------------------Animations ----------------------------
+	override public void hideElementGO(){
+		BasicGOOperation.hideElementGO (ElementGO);
+	}
+	override public void displayElementGO(){
+		BasicGOOperation.displayElementGOAnim (ElementGO);
+		foreach (Row row in RowList) {
+			row.displayElementGO ();
+		}
+	}
+	 public void displayElementGO(EventDelegate nextAnim){
+//		BasicGOOperation.displayElementGOAnim (ElementGO,ParagraphRef.LineList);
+//		foreach (Row row in RowList) {
+//			row.displayElementGO ();
+//		}
 	}
 }

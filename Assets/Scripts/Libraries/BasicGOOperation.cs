@@ -207,6 +207,55 @@ public class BasicGOOperation : MonoBehaviour{
 			TextGO.GetComponent<TEXDrawNGUI> ().text = text;
 		}
 	}
+	static public void hideElementGO(GameObject ParentGO){
+		if (ParentGO.GetComponent<UIWidget> () != null) {
+			ParentGO.GetComponent<UIWidget> ().alpha = 0f;
+		}else if(ParentGO.GetComponentInChildren<UIWidget> () != null){
+			ParentGO.GetComponentInChildren<UIWidget> ().alpha = 0f;
+		}
+	}
+	static public void displayElementGO(GameObject ParentGO){
+		if (ParentGO.GetComponent<UIWidget> () != null) {
+			ParentGO.GetComponent<UIWidget> ().alpha = 1f;
+		}else if(ParentGO.GetComponentInChildren<UIWidget> () != null){
+			ParentGO.GetComponentInChildren<UIWidget> ().alpha = 1f;
+		}
+	}
+	static public void displayElementGOAnim(GameObject ParentGO){
+		if (ParentGO.GetComponent<UIWidget> () != null) {
+			alphaAnim (ParentGO.GetComponent<UIWidget>(), 0f, 1f);
+		}else if(ParentGO.GetComponentInChildren<UIWidget> () != null){
+			alphaAnim (ParentGO.GetComponentInChildren<UIWidget>(), 0f, 1f);
+		}
+	}
+	static public void alphaAnim(UIWidget _elementWidget, float _fromAlpha, float _toAlpha){
+		if (_elementWidget.gameObject.GetComponent<TweenAlpha> () == null) {
+			_elementWidget.gameObject.AddComponent<TweenAlpha> ();
+		}
+		TweenAlpha elementTweenAlpha = _elementWidget.gameObject.GetComponent<TweenAlpha> ();
+		if (elementTweenAlpha != null) {
+			elementTweenAlpha.from = _fromAlpha; 
+			elementTweenAlpha.to = _toAlpha; 
+			elementTweenAlpha.duration = 2f;
+			elementTweenAlpha.Play (true);
+		}
+
+	}
+	static public void alphaAnim(UIWidget _elementWidget, float _fromAlpha, float _toAlpha, EventDelegate nextAnim){
+		if (_elementWidget.gameObject.GetComponent<TweenAlpha> () == null) {
+			_elementWidget.gameObject.AddComponent<TweenAlpha> ();
+		}
+		TweenAlpha elementTweenAlpha = _elementWidget.gameObject.GetComponent<TweenAlpha> ();
+		if (elementTweenAlpha != null) {
+			elementTweenAlpha.from = _fromAlpha; 
+			elementTweenAlpha.to = _toAlpha; 
+			elementTweenAlpha.duration = 2f;
+			elementTweenAlpha.onFinished.Add (nextAnim);
+			elementTweenAlpha.Play (true);
+
+		}
+
+	}
 }
 
 

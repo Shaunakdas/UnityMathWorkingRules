@@ -198,7 +198,13 @@ public class Row : BaseElement {
 		}
 		return true;
 	}
-
+	override public int siblingIndex(){
+		for (int i = 0; i < (Parent as Line).RowList.Count - 1; i++) {
+			if ((Parent as Line).RowList [i] == this)
+				return i;
+		}
+		return 0;
+	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>

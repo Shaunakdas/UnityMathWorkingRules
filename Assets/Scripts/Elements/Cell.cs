@@ -44,7 +44,13 @@ public class Cell : TableLine {
 	virtual public void  getAlignType(){
 		DragAlign = Paragraph.ParagraphAlign;
 	}
-
+	override public int siblingIndex(){
+		for (int i = 0; i < (Parent as Row).CellList.Count - 1; i++) {
+			if ((Parent as Row).CellList [i] == this)
+				return i;
+		}
+		return 0;
+	}
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
 	/// Generates the Element GameObjects.

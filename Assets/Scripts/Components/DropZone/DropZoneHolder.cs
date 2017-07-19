@@ -118,6 +118,16 @@ public class DropZoneHolder : TargetItemChecker {
 	}
 	public void incorrectAnim(DropZoneItemChecker itemChecker){
 		Debug.Log ("DropZoneRowCell InCorrectAnim"+ParagraphRef.ElementGO.name);
+		correctionAnim (itemChecker);
+	}
+	/// <summary>
+	/// Correction animation.
+	/// </summary>
+	override public void correctionAnim(){
+		Debug.Log ("DropZoneRowCell correctionAnim");
+	}
+	public void correctionAnim(DropZoneItemChecker itemChecker){
+		Debug.Log ("DropZoneRowCell correctionAnim");
 		DragSourceCell targetCell = findCorrectDragItem(itemChecker);
 		targetCell.DroppedOnSurface += delegate {
 			if (!nextItemChecker (itemChecker))
@@ -126,7 +136,6 @@ public class DropZoneHolder : TargetItemChecker {
 
 		targetCell.dragToDropZone (itemChecker.gameObject);
 	}
-	
 	public void resultAnim(bool inputCorrect, DropZoneItemChecker itemChecker){
 		if(inputCorrect){
 			correctAnim (itemChecker);
@@ -176,6 +185,11 @@ public class DropZoneHolder : TargetItemChecker {
 		ParagraphRef.nextTargetTrigger (this);
 
 	}
+	/// <summary>
+	/// Returns the correct drag item.
+	/// </summary>
+	/// <returns>The correct drag item.</returns>
+	/// <param name="dropZoneItem">Drop zone item</param>
 	public DragSourceCell findCorrectDragItem(DropZoneItemChecker dropZoneItem){
 		//Find the target drag cell
 		DragSourceCell targetCell;

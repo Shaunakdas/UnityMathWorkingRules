@@ -245,8 +245,11 @@ public class Paragraph : BaseElement{
 				resizeCenterContent (CenterContentGO, ParaContentTableGO);
 			BasicGOOperation.CheckAndRepositionTable (ParaContentTableGO);
 //			setUpChildActiveAnim (targetItemCheckerList);
-			hideElementGO ();
-			displayElementGO ();
+
+			if (ParagraphStep == Paragraph.StepType.QuestionStep) {
+				hideElementGO ();
+				displayElementGO ();
+			}
 		}
 		return ParaContentTableGO;
 	}

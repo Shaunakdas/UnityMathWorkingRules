@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetItemChecker : MonoBehaviour {
+	public EventDelegate nextEvent;
 	public Paragraph ParagraphRef;
 	// Use this for initialization
 	void Start () {
@@ -46,5 +47,10 @@ public class TargetItemChecker : MonoBehaviour {
 	/// </summary>
 	virtual public void correctionAnim(){
 
+	}
+	/// <summary>
+	/// Triggers the next Animation.
+	/// </summary>
+	virtual public void nextAnimTrigger(){
 	}
 }

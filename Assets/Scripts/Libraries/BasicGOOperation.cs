@@ -208,6 +208,7 @@ public class BasicGOOperation : MonoBehaviour{
 		}
 	}
 	static public void hideElementGO(GameObject ParentGO){
+		Debug.Log ("HIDE ELEMENTGO"+ParentGO);
 		if (ParentGO.GetComponent<UIWidget> () != null) {
 			ParentGO.GetComponent<UIWidget> ().alpha = 0f;
 		} else {
@@ -262,6 +263,7 @@ public class BasicGOOperation : MonoBehaviour{
 		}
 	}
 	static public void alphaAnim(UIWidget _elementWidget, float _fromAlpha, float _toAlpha){
+		Debug.Log ("ALPHA ANIM 1"+_elementWidget.gameObject.name+_fromAlpha+_toAlpha);
 		if (_elementWidget.gameObject.GetComponent<TweenAlpha> () == null) {
 			_elementWidget.gameObject.AddComponent<TweenAlpha> ();
 		}
@@ -275,6 +277,7 @@ public class BasicGOOperation : MonoBehaviour{
 
 	}
 	static public void alphaAnim(UIWidget _elementWidget, float _fromAlpha, float _toAlpha, EventDelegate nextAnim){
+		Debug.Log ("ALPHA ANIM 2"+_elementWidget.gameObject.name+_fromAlpha+_toAlpha);
 		if (_elementWidget.gameObject.GetComponent<TweenAlpha> () == null) {
 			_elementWidget.gameObject.AddComponent<TweenAlpha> ();
 		}
@@ -288,6 +291,13 @@ public class BasicGOOperation : MonoBehaviour{
 
 		}
 
+	}
+	static public UIButton getFirstButton(GameObject _elementGO){
+		if (_elementGO.GetComponent<UIButton> () != null) {
+			return _elementGO.GetComponent<UIButton> ();
+		} else {
+			return _elementGO.GetComponentInChildren<UIButton> ();
+		}
 	}
 }
 

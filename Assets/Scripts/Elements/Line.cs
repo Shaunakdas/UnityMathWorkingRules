@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
+using System.Linq;
 
 public class Line : BaseElement{
 
@@ -110,11 +111,14 @@ public class Line : BaseElement{
 	}
 
 	override public int siblingIndex(){
-		for (int i = 0; i < (Parent as Paragraph).LineList.Count - 1; i++) {
-			if ((Parent as Paragraph).LineList [i] == this)
-				return i;
+		int index = 0;
+		Paragraph para = (Parent as Paragraph);
+		for (int i = 0; i < para.LineList.Count; i++) {
+			if (para.LineList [i].ElementGO == this.ElementGO) {
+				index = i;
+			}
 		}
-		return 0;
+		return index;
 	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
@@ -181,15 +185,36 @@ public class Line : BaseElement{
 		BasicGOOperation.hideElementGO (ElementGO);
 	}
 	override public void displayElementGO(){
-		if (siblingIndex () < ParagraphRef.LineList.Count - 1) {
-			BasicGOOperation.displayElementGOAnim (ElementGO, new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO));
-		} else {
-			BasicGOOperation.displayElementGOAnim (ElementGO);
+		bool lastFlag = (siblingIndex () == ParagraphRef.LineList.Count-1);
+		EventDelegate nextEvent = new EventDelegate (ParagraphRef.finishQuestionStep);
+		if (!lastFlag) {
+			nextEvent = new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO);
 		}
-//		BasicGOOperation.displayElementGOAnim (ElementGO);
-//		foreach (Row row in RowList) {
-//			row.displayElementGO ();
-//		}
+		//checking for TargetItemChecker
+		if (ElementGO.GetComponentsInChildren<TargetItemChecker>().Length > 0) {
+			BasicGOOperation.displayElementGOAnim (ElementGO);
+			activateItemCheckerListAnim (nextEvent);
+		} else if (BasicGOOperation.getFirstButton(ElementGO)!=null) {
+			UIButton btn = BasicGOOperation.getFirstButton (ElementGO);
+			EventDelegate.Set (btn.onClick, nextEvent);
+		} else {
+			//
+			BasicGOOperation.displayElementGOAnim (ElementGO, nextEvent);
+		}
+	}
+	public void activateItemCheckerListAnim(EventDelegate nextEvent){
+		//Going through all targetItemChecker in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
+		for(int i = 0; i < Paragraph.targetItemCheckerList.Count - 1; i++){
+			activateItemCheckerAnim (i,new EventDelegate (Paragraph.targetItemCheckerList [i + 1].activateAnim));
+		}
+		activateItemCheckerAnim (Paragraph.targetItemCheckerList.Count - 1,nextEvent);
+	}
+	public void activateItemCheckerAnim(int _lineIndex, EventDelegate _nextEvent){
+		TargetItemChecker itemChecker = Paragraph.targetItemCheckerList [_lineIndex];
+		if (ElementGO.GetComponentsInChildren<TargetItemChecker> ().Contains (itemChecker)) {
+			itemChecker.nextEvent = _nextEvent;
+			itemChecker.activateAnim ();
+		}
 	}
 	 public void displayElementGO(EventDelegate nextAnim){
 //		BasicGOOperation.displayElementGOAnim (ElementGO,ParagraphRef.LineList);

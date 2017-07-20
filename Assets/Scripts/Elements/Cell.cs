@@ -45,7 +45,7 @@ public class Cell : TableLine {
 		DragAlign = Paragraph.ParagraphAlign;
 	}
 	override public int siblingIndex(){
-		for (int i = 0; i < (Parent as Row).CellList.Count - 1; i++) {
+		for (int i = 0; i < (Parent as Row).CellList.Count; i++) {
 			if ((Parent as Row).CellList [i] == this)
 				return i;
 		}

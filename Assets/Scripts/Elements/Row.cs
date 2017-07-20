@@ -199,7 +199,7 @@ public class Row : BaseElement {
 		return true;
 	}
 	override public int siblingIndex(){
-		for (int i = 0; i < (Parent as Line).RowList.Count - 1; i++) {
+		for (int i = 0; i < (Parent as Line).RowList.Count; i++) {
 			if ((Parent as Line).RowList [i] == this)
 				return i;
 		}

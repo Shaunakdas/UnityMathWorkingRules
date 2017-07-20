@@ -65,7 +65,7 @@ public class SelBtnHolder : TargetItemChecker {
 		}
 		correctionAnim ();
 		deactivateAnim ();
-		ParagraphRef.nextTargetTrigger (this);
+		nextAnimTrigger ();
 
 	}
 	void Awake(){
@@ -111,7 +111,7 @@ public class SelBtnHolder : TargetItemChecker {
 	override public void correctAnim(){
 		Debug.Log ("DropZoneRowCell CorrectAnim");
 		deactivateAnim ();
-		ParagraphRef.nextTargetTrigger (this);
+		nextAnimTrigger ();
 	}
 	/// <summary>
 	/// Incorrect animation.
@@ -119,7 +119,7 @@ public class SelBtnHolder : TargetItemChecker {
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim");
 		deactivateAnim ();
-		ParagraphRef.nextTargetTrigger (this);
+		nextAnimTrigger ();
 	}
 	/// <summary>
 	/// Correction animation.
@@ -135,6 +135,11 @@ public class SelBtnHolder : TargetItemChecker {
 			}
 		}
 		deactivateAnim ();
-		ParagraphRef.nextTargetTrigger (this);
+		nextAnimTrigger ();
+	}
+	override public void nextAnimTrigger(){
+		Debug.Log ("nextAnimTrigger"+nextEvent.ToString());
+		nextEvent.Execute ();
+		//		ParagraphRef.nextTargetTrigger (this);
 	}
 }

@@ -244,7 +244,7 @@ public class Paragraph : BaseElement{
 			if (isCenterContentPresent)
 				resizeCenterContent (CenterContentGO, ParaContentTableGO);
 			BasicGOOperation.CheckAndRepositionTable (ParaContentTableGO);
-			setUpChildActiveAnim (targetItemCheckerList);
+//			setUpChildActiveAnim (targetItemCheckerList);
 			hideElementGO ();
 			displayElementGO ();
 		}
@@ -315,13 +315,19 @@ public class Paragraph : BaseElement{
 		BasicGOOperation.hideElementGO (ElementGO);
 	}
 	override public void displayElementGO(){
-		BasicGOOperation.displayElementGOAnim (ElementGO);
-//		foreach (Line line in LineList) {
-//			line.displayElementGO ();
-//		}
-		for (int i = 0; i < LineList.Count - 1; i++) {
-			LineList[i].displayElementGO (new EventDelegate(LineList[i].displayElementGO));
+		BasicGOOperation.displayElementGO (ElementGO);
+		for (int i = 0; i < LineList.Count; i++) {
+			LineList[i].hideElementGO ();
 		}
+		LineList[0].displayElementGO ();
+//		if(ParagraphStep == StepType.QuestionStep){
+//			for (int i = 0; i < LineList.Count - 1; i++) {
+//				LineList[i].hideElementGO ();
+//			}
+//			LineList[0].displayElementGO ();
+//		}else{
+//			BasicGOOperation.displayElementGO (ElementGO);
+//		}
 	}
 	/// <summary>
 	/// Sets up first Getting active animation.

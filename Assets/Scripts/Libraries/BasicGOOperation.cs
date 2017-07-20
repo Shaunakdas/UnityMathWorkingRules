@@ -210,22 +210,55 @@ public class BasicGOOperation : MonoBehaviour{
 	static public void hideElementGO(GameObject ParentGO){
 		if (ParentGO.GetComponent<UIWidget> () != null) {
 			ParentGO.GetComponent<UIWidget> ().alpha = 0f;
-		}else if(ParentGO.GetComponentInChildren<UIWidget> () != null){
-			ParentGO.GetComponentInChildren<UIWidget> ().alpha = 0f;
+		} else {
+			foreach (Transform childTf in ParentGO.transform) {
+				UIWidget childWidget = childTf.gameObject.GetComponent<UIWidget> ();
+				if (childWidget != null){
+					childWidget.alpha = 0f;
+				}
+			}
 		}
 	}
 	static public void displayElementGO(GameObject ParentGO){
 		if (ParentGO.GetComponent<UIWidget> () != null) {
 			ParentGO.GetComponent<UIWidget> ().alpha = 1f;
-		}else if(ParentGO.GetComponentInChildren<UIWidget> () != null){
-			ParentGO.GetComponentInChildren<UIWidget> ().alpha = 1f;
+		}else {
+			foreach (Transform childTf in ParentGO.transform) {
+				UIWidget childWidget = childTf.gameObject.GetComponent<UIWidget> ();
+				if (childWidget != null){
+					childWidget.alpha = 1f;
+				}
+			}
 		}
 	}
 	static public void displayElementGOAnim(GameObject ParentGO){
 		if (ParentGO.GetComponent<UIWidget> () != null) {
 			alphaAnim (ParentGO.GetComponent<UIWidget>(), 0f, 1f);
-		}else if(ParentGO.GetComponentInChildren<UIWidget> () != null){
-			alphaAnim (ParentGO.GetComponentInChildren<UIWidget>(), 0f, 1f);
+		}else {
+			foreach (Transform childTf in ParentGO.transform) {
+				UIWidget childWidget = childTf.gameObject.GetComponent<UIWidget> ();
+				if (childWidget != null){
+					alphaAnim (childWidget, 0f, 1f);
+				}
+			}
+		}
+	}
+
+	static public void displayElementGOAnim(GameObject ParentGO, EventDelegate nextAnim){
+		if (ParentGO.GetComponent<UIWidget> () != null) {
+			alphaAnim (ParentGO.GetComponent<UIWidget> (), 0f, 1f, nextAnim);
+		} else {
+			//Go through the list of child transforms of ParentGO and start animation if they have UIWidget Component
+			for (int i = 0; i < ParentGO.transform.childCount; i++) {
+				UIWidget childWidget = ParentGO.transform.GetChild (i).GetComponent<UIWidget>();
+				if (childWidget != null){
+					if (i != ParentGO.transform.childCount - 1) {
+						alphaAnim (childWidget, 0f, 1f);
+					} else {
+						alphaAnim (childWidget, 0f, 1f, nextAnim);
+					}
+				}
+			}
 		}
 	}
 	static public void alphaAnim(UIWidget _elementWidget, float _fromAlpha, float _toAlpha){

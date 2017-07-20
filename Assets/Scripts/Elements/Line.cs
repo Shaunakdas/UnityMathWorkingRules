@@ -181,10 +181,15 @@ public class Line : BaseElement{
 		BasicGOOperation.hideElementGO (ElementGO);
 	}
 	override public void displayElementGO(){
-		BasicGOOperation.displayElementGOAnim (ElementGO);
-		foreach (Row row in RowList) {
-			row.displayElementGO ();
+		if (siblingIndex () < ParagraphRef.LineList.Count - 1) {
+			BasicGOOperation.displayElementGOAnim (ElementGO, new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO));
+		} else {
+			BasicGOOperation.displayElementGOAnim (ElementGO);
 		}
+//		BasicGOOperation.displayElementGOAnim (ElementGO);
+//		foreach (Row row in RowList) {
+//			row.displayElementGO ();
+//		}
 	}
 	 public void displayElementGO(EventDelegate nextAnim){
 //		BasicGOOperation.displayElementGOAnim (ElementGO,ParagraphRef.LineList);

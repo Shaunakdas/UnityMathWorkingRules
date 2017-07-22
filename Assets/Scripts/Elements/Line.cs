@@ -190,6 +190,7 @@ public class Line : BaseElement{
 		if (!lastFlag) {
 			nextEvent = new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO);
 		}
+		displayDragSourceLine ();
 		//checking for TargetItemChecker
 		if (ElementGO.GetComponentsInChildren<TargetItemChecker>().Length > 0) {
 			BasicGOOperation.displayElementGOAnim (ElementGO);
@@ -214,6 +215,11 @@ public class Line : BaseElement{
 		if (ElementGO.GetComponentsInChildren<TargetItemChecker> ().Contains (itemChecker)) {
 			itemChecker.nextEvent = _nextEvent;
 			itemChecker.activateAnim ();
+		}
+	}
+	public void displayDragSourceLine(){
+		if (ElementGO.GetComponentInChildren<DropZoneItemChecker> () != null) {
+			
 		}
 	}
 	 public void displayElementGO(EventDelegate nextAnim){

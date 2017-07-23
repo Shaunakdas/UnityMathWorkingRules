@@ -22,7 +22,7 @@ public class RangeTableLine  : TableLine {
 
 	public int correctionCount = 1;
 
-	public List<SelBtnItemChecker> SelItemList;
+	public List<SelItem> SelItemList;
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
 	public RangeTableLine(){
@@ -51,8 +51,9 @@ public class RangeTableLine  : TableLine {
 		eliminate =  StringWrapper.HtmlAttrValueBool (line_node, AttributeManager.ATTR_ELIMINATE);
 		correctionCount =  StringWrapper.HtmlAttrValueInt (line_node, AttributeManager.ATTR_CORRECTION_COUNT);
 		generateSelItemList ();
+		generateRowList (line_node);
 	}
-	override public void parseChildNode(HtmlNode line_node){
+	public void generateRowList(HtmlNode line_node){
 		base.parseChildNode(line_node);
 		//Adding a row
 		Row row = new Row ();
@@ -66,25 +67,27 @@ public class RangeTableLine  : TableLine {
 		SelItemList = generateRangeContent(rangeStart,rangeEnd,rangeCount,sortOrder);
 		SelItemList = setCorrectFlag (SelItemList, correctItemType, correctTargetList);
 	}
-	public List<SelBtnItemChecker> generateRangeContent(int _rangeStart, int _rangeEnd, int _rangeCount, Sort _sort){
-		List<SelBtnItemChecker> _selItemList = new List<SelBtnItemChecker> ();
+	public List<SelItem> generateRangeContent(int _rangeStart, int _rangeEnd, int _rangeCount, Sort _sort){
+		List<SelItem> _selItemList = new List<SelItem> ();
+
 		if (_sort == Sort.Random) {
 			List<int> RandomNum = StringWrapper.generateRandInRange (_rangeStart, _rangeEnd, _rangeCount);
 			for (int i = 0; i < _rangeCount; i++) {
-				SelBtnItemChecker selItem = null;
+				SelItem selItem = new SelItem();
 				selItem.DisplayText = RandomNum [i].ToString ();
 				_selItemList.Add (selItem);
 			}
 		} else {
 			for (int i = 0; i < _rangeCount; i++) {
-				SelBtnItemChecker selItem = null;
-				float unitDiff = (_rangeEnd - _rangeStart) / _rangeCount;
+				SelItem selItem = new SelItem();
+				float unitDiff = ((float)(_rangeEnd - _rangeStart)) / _rangeCount;
+//				Debug.Log (_rangeStart.ToString()+"and"+unitDiff.ToString()+"and"+_rangeCount.ToString());
 				switch (_sort) {
 				case Sort.Increasing:
-					selItem.DisplayText = ((int)_rangeStart + (unitDiff * i)).ToString ();
+					selItem.DisplayText = ((int)(_rangeStart + (unitDiff * (i+1)))).ToString ();
 					break;
 				case Sort.Decreasing:
-					selItem.DisplayText = ((int)_rangeEnd - (unitDiff * i)).ToString ();
+					selItem.DisplayText = ((int)(_rangeEnd - (unitDiff * i))).ToString ();
 					break;
 				}
 				_selItemList.Add (selItem);
@@ -92,17 +95,18 @@ public class RangeTableLine  : TableLine {
 		}
 		switch (_sort) {
 		case Sort.Increasing:
-			_selItemList [0].DisplayText = _rangeStart.ToString (); _selItemList [SelItemList.Count - 1].DisplayText = _rangeEnd.ToString ();
+			_selItemList [0].DisplayText = _rangeStart.ToString (); _selItemList [_selItemList.Count - 1].DisplayText = _rangeEnd.ToString ();
 			break;
 		case Sort.Decreasing:
-			_selItemList [0].DisplayText = _rangeEnd.ToString (); _selItemList [SelItemList.Count - 1].DisplayText = _rangeStart.ToString ();
+			_selItemList [0].DisplayText = _rangeEnd.ToString (); _selItemList [_selItemList.Count - 1].DisplayText = _rangeStart.ToString ();
 			break;
 		}
 		return _selItemList;
 	}
 
-	public List<SelBtnItemChecker> setCorrectFlag(List<SelBtnItemChecker> _selItemList, ItemType _itemType, List<int> _targetList){
+	public List<SelItem> setCorrectFlag(List<SelItem> _selItemList, ItemType _itemType, List<int> _targetList){
 		for (int i = 0; i < _selItemList.Count; i++) {
+			Debug.Log (_selItemList[i].DisplayText);
 			bool correctFlag = false; int content = int.Parse (_selItemList[i].DisplayText);int _targetCount = _targetList.Count;
 			switch (_itemType) {
 			case ItemType.Multiple:
@@ -114,14 +118,14 @@ public class RangeTableLine  : TableLine {
 				break;
 			case ItemType.Factor:
 				int gcd = (_targetCount == 1)?_targetList[0]:PrimeDivision.gcd (_targetList[0],_targetList[1]);
-				correctFlag = ((content % gcd) == 0) ? true : false;
+				correctFlag = ((gcd % content) == 0) ? true : false;
 				break;
 			}
 			_selItemList [i].correctFlag = correctFlag;_selItemList [i].HighlightOnCorrectSelection = !eliminate;
 		}
 		return _selItemList;
 	}
-	public List<Cell> generateSelBtnList(List<SelBtnItemChecker> _selItemList, Row row){
+	public List<Cell> generateSelBtnList(List<SelItem> _selItemList, Row row){
 		List<Cell> selBtnList = new List<Cell>();
 		for (int i = 0; i < _selItemList.Count; i++) {
 			SelectableButtonCell selBtnCell = new SelectableButtonCell (_selItemList[i]);

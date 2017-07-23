@@ -17,10 +17,10 @@ public class SelectableButtonCell : Cell {
 		correctFlag = answer=="1"? true:false;
 		DisplayText = displayText;
 	}
-	public SelectableButtonCell(SelBtnItemChecker itemChecker):base(){
-		correctFlag = itemChecker.correctFlag;
+	public SelectableButtonCell(SelItem item):base(){
+		correctFlag = item.correctFlag;
 		prefabName = LocationManager.NAME_SELECT_BTN_CELL;
-		DisplayText = itemChecker.DisplayText;
+		DisplayText = item.DisplayText;
 	}
 	/// Initializes a new instance of the SelectableButtonCell class with HTMLNode attribute
 	/// </summary>

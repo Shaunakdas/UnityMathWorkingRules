@@ -32,10 +32,10 @@ MonoBehaviour:
     characterIndex: 192
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0
-    italic: 0.5
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -59,10 +59,10 @@ MonoBehaviour:
     characterIndex: 193
     fontIndex: 13
     type: 0
-    height: 0.7
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.5
+    height: 0.65
+    depth: 0.05
+    bearing: 0
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -86,10 +86,10 @@ MonoBehaviour:
     characterIndex: 194
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.3
-    bearing: 0.05
-    italic: 0.4
+    height: 0.7
+    depth: 0.25
+    bearing: 0
+    italic: 0.35
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -113,10 +113,10 @@ MonoBehaviour:
     characterIndex: 195
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.3
-    bearing: 0.05
-    italic: 0.4
+    height: 0.7
+    depth: 0.25
+    bearing: 0
+    italic: 0.35
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -140,10 +140,10 @@ MonoBehaviour:
     characterIndex: 196
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.3
-    bearing: 0
-    italic: 0.5
+    height: 0.5
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -167,10 +167,10 @@ MonoBehaviour:
     characterIndex: 197
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.4
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.35
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -194,10 +194,10 @@ MonoBehaviour:
     characterIndex: 198
     fontIndex: 13
     type: 0
-    height: 0.65
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.4
+    height: 0.6
+    depth: 0.05
+    bearing: 0
+    italic: 0.35
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -221,10 +221,10 @@ MonoBehaviour:
     characterIndex: 199
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.6
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -248,10 +248,10 @@ MonoBehaviour:
     characterIndex: 200
     fontIndex: 13
     type: 0
-    height: 1
-    depth: 0.05
-    bearing: 0
-    italic: 0.7
+    height: 0.9
+    depth: 0
+    bearing: -0.05
+    italic: 0.65
     width: 0.65
     font_reqGlyphSize: 20
     sprite_uv:
@@ -275,10 +275,10 @@ MonoBehaviour:
     characterIndex: 201
     fontIndex: 13
     type: 0
-    height: 1
-    depth: 0.05
-    bearing: 0
-    italic: 0.7
+    height: 0.9
+    depth: 0
+    bearing: -0.05
+    italic: 0.65
     width: 0.65
     font_reqGlyphSize: 20
     sprite_uv:
@@ -302,10 +302,10 @@ MonoBehaviour:
     characterIndex: 202
     fontIndex: 13
     type: 0
-    height: 1
-    depth: 0.05
-    bearing: 0
-    italic: 0.7
+    height: 0.9
+    depth: 0
+    bearing: -0.05
+    italic: 0.65
     width: 0.65
     font_reqGlyphSize: 20
     sprite_uv:
@@ -329,10 +329,10 @@ MonoBehaviour:
     characterIndex: 203
     fontIndex: 13
     type: 0
-    height: 0.95
-    depth: 0.05
-    bearing: 0
-    italic: 0.7
+    height: 0.85
+    depth: 0
+    bearing: -0.05
+    italic: 0.65
     width: 0.65
     font_reqGlyphSize: 20
     sprite_uv:
@@ -356,10 +356,10 @@ MonoBehaviour:
     characterIndex: 204
     fontIndex: 13
     type: 0
-    height: 1
-    depth: 0.05
-    bearing: 0.05
-    italic: 0.3
+    height: 0.9
+    depth: 0
+    bearing: 0
+    italic: 0.25
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -383,10 +383,10 @@ MonoBehaviour:
     characterIndex: 205
     fontIndex: 13
     type: 0
-    height: 1
-    depth: 0.05
-    bearing: 0
-    italic: 0.3
+    height: 0.9
+    depth: 0
+    bearing: -0.05
+    italic: 0.25
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -410,10 +410,10 @@ MonoBehaviour:
     characterIndex: 206
     fontIndex: 13
     type: 0
-    height: 1
-    depth: 0.05
-    bearing: 0.1
-    italic: 0.35
+    height: 0.9
+    depth: 0
+    bearing: 0.05
+    italic: 0.3
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -437,10 +437,10 @@ MonoBehaviour:
     characterIndex: 207
     fontIndex: 13
     type: 0
-    height: 0.95
-    depth: 0.05
-    bearing: 0.1
-    italic: 0.35
+    height: 0.85
+    depth: 0
+    bearing: 0.05
+    italic: 0.3
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -464,10 +464,10 @@ MonoBehaviour:
     characterIndex: 176
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: -0.4
-    bearing: 0
-    italic: 0.4
+    height: 0.7
+    depth: -0.45
+    bearing: -0.05
+    italic: 0.35
     width: 0.4
     font_reqGlyphSize: 20
     sprite_uv:
@@ -491,10 +491,10 @@ MonoBehaviour:
     characterIndex: 209
     fontIndex: 13
     type: 0
-    height: 0.95
-    depth: 0.05
-    bearing: 0
-    italic: 0.7
+    height: 0.85
+    depth: 0
+    bearing: -0.05
+    italic: 0.65
     width: 0.7
     font_reqGlyphSize: 20
     sprite_uv:
@@ -518,10 +518,10 @@ MonoBehaviour:
     characterIndex: 210
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: -0.35
-    bearing: 0.05
-    italic: 0.25
+    height: 0.7
+    depth: -0.4
+    bearing: 0
+    italic: 0.2
     width: 0.2
     font_reqGlyphSize: 20
     sprite_uv:
@@ -545,10 +545,10 @@ MonoBehaviour:
     characterIndex: 211
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: -0.3
-    bearing: 0.05
-    italic: 0.25
+    height: 0.7
+    depth: -0.35
+    bearing: 0
+    italic: 0.2
     width: 0.2
     font_reqGlyphSize: 20
     sprite_uv:
@@ -572,10 +572,10 @@ MonoBehaviour:
     characterIndex: 212
     fontIndex: 13
     type: 0
-    height: 1
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.8
+    height: 0.9
+    depth: 0.05
+    bearing: 0
+    italic: 0.75
     width: 0.8
     font_reqGlyphSize: 20
     sprite_uv:
@@ -599,10 +599,10 @@ MonoBehaviour:
     characterIndex: 213
     fontIndex: 13
     type: 0
-    height: 0.95
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.8
+    height: 0.85
+    depth: 0.05
+    bearing: 0
+    italic: 0.75
     width: 0.8
     font_reqGlyphSize: 20
     sprite_uv:
@@ -626,10 +626,10 @@ MonoBehaviour:
     characterIndex: 214
     fontIndex: 13
     type: 0
-    height: 0.95
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.8
+    height: 0.85
+    depth: 0.05
+    bearing: 0
+    italic: 0.75
     width: 0.8
     font_reqGlyphSize: 20
     sprite_uv:
@@ -653,10 +653,10 @@ MonoBehaviour:
     characterIndex: 183
     fontIndex: 13
     type: 0
-    height: 0.5
-    depth: -0.25
-    bearing: -0.05
-    italic: 0.3
+    height: 0.45
+    depth: -0.3
+    bearing: -0.1
+    italic: 0.25
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -680,10 +680,10 @@ MonoBehaviour:
     characterIndex: 216
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.8
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.75
     width: 0.8
     font_reqGlyphSize: 20
     sprite_uv:
@@ -707,10 +707,10 @@ MonoBehaviour:
     characterIndex: 217
     fontIndex: 13
     type: 0
-    height: 1
-    depth: 0.1
-    bearing: 0
-    italic: 0.7
+    height: 0.9
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.65
     width: 0.7
     font_reqGlyphSize: 20
     sprite_uv:
@@ -734,10 +734,10 @@ MonoBehaviour:
     characterIndex: 218
     fontIndex: 13
     type: 0
-    height: 1
-    depth: 0.1
-    bearing: 0
-    italic: 0.7
+    height: 0.9
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.65
     width: 0.7
     font_reqGlyphSize: 20
     sprite_uv:
@@ -761,10 +761,10 @@ MonoBehaviour:
     characterIndex: 219
     fontIndex: 13
     type: 0
-    height: 1
-    depth: 0.1
-    bearing: 0
-    italic: 0.7
+    height: 0.9
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.65
     width: 0.7
     font_reqGlyphSize: 20
     sprite_uv:
@@ -788,10 +788,10 @@ MonoBehaviour:
     characterIndex: 220
     fontIndex: 13
     type: 0
-    height: 0.95
-    depth: 0.1
-    bearing: 0
-    italic: 0.7
+    height: 0.85
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.65
     width: 0.7
     font_reqGlyphSize: 20
     sprite_uv:
@@ -815,10 +815,10 @@ MonoBehaviour:
     characterIndex: 181
     fontIndex: 13
     type: 0
-    height: 0.6
-    depth: 0.25
-    bearing: 0
-    italic: 0.55
+    height: 0.55
+    depth: 0.2
+    bearing: -0.05
+    italic: 0.5
     width: 0.6
     font_reqGlyphSize: 20
     sprite_uv:
@@ -842,10 +842,10 @@ MonoBehaviour:
     characterIndex: 182
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.25
-    bearing: 0.05
-    italic: 0.6
+    height: 0.7
+    depth: 0.2
+    bearing: 0
+    italic: 0.55
     width: 0.55
     font_reqGlyphSize: 20
     sprite_uv:
@@ -869,10 +869,10 @@ MonoBehaviour:
     characterIndex: 223
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.1
-    bearing: 0
-    italic: 0.65
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.6
     width: 0.6
     font_reqGlyphSize: 20
     sprite_uv:
@@ -896,10 +896,10 @@ MonoBehaviour:
     characterIndex: 239
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.05
-    bearing: 0.1
-    italic: 0.35
+    height: 0.7
+    depth: 0
+    bearing: 0.05
+    italic: 0.3
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -923,10 +923,10 @@ MonoBehaviour:
     characterIndex: 33
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0
-    italic: 0.3
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.25
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -950,10 +950,10 @@ MonoBehaviour:
     characterIndex: 34
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: -0.4
-    bearing: 0.05
-    italic: 0.4
+    height: 0.7
+    depth: -0.45
+    bearing: 0
+    italic: 0.35
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -977,10 +977,10 @@ MonoBehaviour:
     characterIndex: 35
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.6
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
     width: 0.55
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1004,10 +1004,10 @@ MonoBehaviour:
     characterIndex: 36
     fontIndex: 13
     type: 0
-    height: 0.85
-    depth: 0.2
-    bearing: 0.05
-    italic: 0.6
+    height: 0.75
+    depth: 0.15
+    bearing: 0
+    italic: 0.55
     width: 0.55
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1031,10 +1031,10 @@ MonoBehaviour:
     characterIndex: 37
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.1
-    bearing: 0
-    italic: 0.9
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.85
     width: 0.9
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1058,10 +1058,10 @@ MonoBehaviour:
     characterIndex: 38
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.8
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.75
     width: 0.75
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1085,10 +1085,10 @@ MonoBehaviour:
     characterIndex: 39
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: -0.35
-    bearing: 0
-    italic: 0.2
+    height: 0.7
+    depth: -0.4
+    bearing: -0.05
+    italic: 0.15
     width: 0.2
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1112,10 +1112,10 @@ MonoBehaviour:
     characterIndex: 40
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.25
-    bearing: -0.05
-    italic: 0.35
+    height: 0.7
+    depth: 0.2
+    bearing: -0.1
+    italic: 0.3
     width: 0.4
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1139,10 +1139,10 @@ MonoBehaviour:
     characterIndex: 41
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.25
-    bearing: 0
-    italic: 0.35
+    height: 0.7
+    depth: 0.2
+    bearing: -0.05
+    italic: 0.3
     width: 0.4
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1166,10 +1166,10 @@ MonoBehaviour:
     characterIndex: 42
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: -0.35
-    bearing: 0.05
-    italic: 0.3
+    height: 0.7
+    depth: -0.4
+    bearing: 0
+    italic: 0.25
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1193,10 +1193,10 @@ MonoBehaviour:
     characterIndex: 43
     fontIndex: 13
     type: 0
-    height: 0.65
-    depth: 0.15
-    bearing: 0.05
-    italic: 0.8
+    height: 0.6
+    depth: 0.1
+    bearing: 0
+    italic: 0.75
     width: 0.75
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1220,10 +1220,10 @@ MonoBehaviour:
     characterIndex: 44
     fontIndex: 13
     type: 0
-    height: 0.2
-    depth: 0.25
-    bearing: 0
-    italic: 0.3
+    height: 0.15
+    depth: 0.2
+    bearing: -0.05
+    italic: 0.25
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1247,10 +1247,10 @@ MonoBehaviour:
     characterIndex: 45
     fontIndex: 13
     type: 0
-    height: 0.35
-    depth: -0.15
-    bearing: 0.05
-    italic: 0.8
+    height: 0.3
+    depth: -0.2
+    bearing: 0
+    italic: 0.75
     width: 0.75
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1274,10 +1274,10 @@ MonoBehaviour:
     characterIndex: 46
     fontIndex: 13
     type: 0
-    height: 0.2
-    depth: 0.1
-    bearing: 0
-    italic: 0.3
+    height: 0.15
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.25
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1301,10 +1301,10 @@ MonoBehaviour:
     characterIndex: 47
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.25
-    bearing: 0.05
-    italic: 0.55
+    height: 0.7
+    depth: 0.2
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1328,10 +1328,10 @@ MonoBehaviour:
     characterIndex: 48
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.55
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1355,10 +1355,10 @@ MonoBehaviour:
     characterIndex: 49
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.55
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1382,10 +1382,10 @@ MonoBehaviour:
     characterIndex: 50
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.05
-    bearing: 0
-    italic: 0.55
+    height: 0.5
+    depth: 0
+    bearing: -0.05
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1409,10 +1409,10 @@ MonoBehaviour:
     characterIndex: 51
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.25
-    bearing: 0.05
-    italic: 0.5
+    height: 0.5
+    depth: 0.2
+    bearing: 0
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1436,10 +1436,10 @@ MonoBehaviour:
     characterIndex: 52
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.25
-    bearing: 0.05
-    italic: 0.55
+    height: 0.5
+    depth: 0.2
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1463,10 +1463,10 @@ MonoBehaviour:
     characterIndex: 53
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.25
-    bearing: 0.05
-    italic: 0.55
+    height: 0.5
+    depth: 0.2
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1490,10 +1490,10 @@ MonoBehaviour:
     characterIndex: 54
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.55
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1517,10 +1517,10 @@ MonoBehaviour:
     characterIndex: 55
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.25
-    bearing: 0.05
-    italic: 0.55
+    height: 0.5
+    depth: 0.2
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1544,10 +1544,10 @@ MonoBehaviour:
     characterIndex: 56
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.55
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1571,10 +1571,10 @@ MonoBehaviour:
     characterIndex: 57
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.25
-    bearing: 0.05
-    italic: 0.55
+    height: 0.5
+    depth: 0.2
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1598,10 +1598,10 @@ MonoBehaviour:
     characterIndex: 58
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.25
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.2
     width: 0.2
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1625,10 +1625,10 @@ MonoBehaviour:
     characterIndex: 59
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.25
-    bearing: 0.05
-    italic: 0.25
+    height: 0.5
+    depth: 0.2
+    bearing: 0
+    italic: 0.2
     width: 0.2
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1652,10 +1652,10 @@ MonoBehaviour:
     characterIndex: 60
     fontIndex: 13
     type: 0
-    height: 0.65
-    depth: -0.05
-    bearing: 0
-    italic: 0.6
+    height: 0.6
+    depth: -0.1
+    bearing: -0.05
+    italic: 0.55
     width: 0.6
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1679,10 +1679,10 @@ MonoBehaviour:
     characterIndex: 61
     fontIndex: 13
     type: 0
-    height: 0.45
-    depth: -0.05
-    bearing: 0
-    italic: 0.8
+    height: 0.4
+    depth: -0.1
+    bearing: -0.05
+    italic: 0.75
     width: 0.75
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1706,10 +1706,10 @@ MonoBehaviour:
     characterIndex: 62
     fontIndex: 13
     type: 0
-    height: 0.65
-    depth: -0.05
-    bearing: 0
-    italic: 0.6
+    height: 0.6
+    depth: -0.1
+    bearing: -0.05
+    italic: 0.55
     width: 0.6
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1733,10 +1733,10 @@ MonoBehaviour:
     characterIndex: 63
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.45
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.4
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1760,10 +1760,10 @@ MonoBehaviour:
     characterIndex: 64
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.3
-    bearing: 0
-    italic: 1.05
+    height: 0.7
+    depth: 0.25
+    bearing: -0.05
+    italic: 1
     width: 1
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1787,10 +1787,10 @@ MonoBehaviour:
     characterIndex: 65
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.8
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.75
     width: 0.7
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1814,10 +1814,10 @@ MonoBehaviour:
     characterIndex: 66
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.9
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.85
     width: 0.9
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1841,10 +1841,10 @@ MonoBehaviour:
     characterIndex: 67
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0
-    italic: 0.7
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.65
     width: 0.6
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1868,10 +1868,10 @@ MonoBehaviour:
     characterIndex: 68
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.8
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.75
     width: 0.85
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1895,10 +1895,10 @@ MonoBehaviour:
     characterIndex: 69
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0
-    italic: 0.7
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.65
     width: 0.65
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1922,10 +1922,10 @@ MonoBehaviour:
     characterIndex: 70
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.25
-    bearing: 0.05
-    italic: 0.7
+    height: 0.7
+    depth: 0.2
+    bearing: 0
+    italic: 0.65
     width: 0.6
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1949,10 +1949,10 @@ MonoBehaviour:
     characterIndex: 71
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0
-    italic: 0.8
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.75
     width: 0.8
     font_reqGlyphSize: 20
     sprite_uv:
@@ -1976,10 +1976,10 @@ MonoBehaviour:
     characterIndex: 72
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.2
-    bearing: 0.05
-    italic: 0.7
+    height: 0.7
+    depth: 0.15
+    bearing: 0
+    italic: 0.65
     width: 0.7
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2003,10 +2003,10 @@ MonoBehaviour:
     characterIndex: 73
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.6
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
     width: 0.55
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2030,10 +2030,10 @@ MonoBehaviour:
     characterIndex: 74
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.2
-    bearing: 0.1
-    italic: 0.6
+    height: 0.7
+    depth: 0.15
+    bearing: 0.05
+    italic: 0.55
     width: 0.55
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2057,10 +2057,10 @@ MonoBehaviour:
     characterIndex: 75
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.75
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.7
     width: 0.65
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2084,10 +2084,10 @@ MonoBehaviour:
     characterIndex: 76
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.7
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.65
     width: 0.65
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2111,10 +2111,10 @@ MonoBehaviour:
     characterIndex: 77
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 1.1
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 1.05
     width: 1.05
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2138,10 +2138,10 @@ MonoBehaviour:
     characterIndex: 78
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.9
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.85
     width: 0.85
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2165,10 +2165,10 @@ MonoBehaviour:
     characterIndex: 79
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.8
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.75
     width: 0.85
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2192,10 +2192,10 @@ MonoBehaviour:
     characterIndex: 80
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.3
-    bearing: 0.05
-    italic: 0.9
+    height: 0.7
+    depth: 0.25
+    bearing: 0
+    italic: 0.85
     width: 0.85
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2219,10 +2219,10 @@ MonoBehaviour:
     characterIndex: 81
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.15
-    bearing: 0.05
-    italic: 0.85
+    height: 0.7
+    depth: 0.1
+    bearing: 0
+    italic: 0.8
     width: 0.85
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2246,10 +2246,10 @@ MonoBehaviour:
     characterIndex: 82
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.9
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.85
     width: 0.85
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2273,10 +2273,10 @@ MonoBehaviour:
     characterIndex: 83
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.85
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.8
     width: 0.85
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2300,10 +2300,10 @@ MonoBehaviour:
     characterIndex: 84
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.75
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.7
     width: 0.65
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2327,10 +2327,10 @@ MonoBehaviour:
     characterIndex: 85
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.1
-    italic: 0.75
+    height: 0.7
+    depth: 0.05
+    bearing: 0.05
+    italic: 0.7
     width: 0.65
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2354,10 +2354,10 @@ MonoBehaviour:
     characterIndex: 86
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.9
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.85
     width: 0.85
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2381,10 +2381,10 @@ MonoBehaviour:
     characterIndex: 87
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 1.15
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 1.1
     width: 1.05
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2408,10 +2408,10 @@ MonoBehaviour:
     characterIndex: 88
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.8
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.75
     width: 0.7
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2435,10 +2435,10 @@ MonoBehaviour:
     characterIndex: 89
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.3
-    bearing: 0.05
-    italic: 0.8
+    height: 0.7
+    depth: 0.25
+    bearing: 0
+    italic: 0.75
     width: 0.85
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2462,10 +2462,10 @@ MonoBehaviour:
     characterIndex: 90
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.2
-    bearing: 0.05
-    italic: 0.65
+    height: 0.7
+    depth: 0.15
+    bearing: 0
+    italic: 0.6
     width: 0.6
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2489,10 +2489,10 @@ MonoBehaviour:
     characterIndex: 91
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.2
-    bearing: -0.05
-    italic: 0.35
+    height: 0.7
+    depth: 0.15
+    bearing: -0.1
+    italic: 0.3
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2516,10 +2516,10 @@ MonoBehaviour:
     characterIndex: 92
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.35
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.3
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2543,10 +2543,10 @@ MonoBehaviour:
     characterIndex: 93
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.2
-    bearing: 0.1
-    italic: 0.25
+    height: 0.7
+    depth: 0.15
+    bearing: 0.05
+    italic: 0.2
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2570,10 +2570,10 @@ MonoBehaviour:
     characterIndex: 94
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: -0.4
-    bearing: 0.05
-    italic: 0.55
+    height: 0.7
+    depth: -0.45
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2597,10 +2597,10 @@ MonoBehaviour:
     characterIndex: 95
     fontIndex: 13
     type: 0
-    height: -0.05
-    depth: 0.25
-    bearing: 0.1
-    italic: 0.65
+    height: -0.1
+    depth: 0.2
+    bearing: 0.05
+    italic: 0.6
     width: 0.55
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2624,10 +2624,10 @@ MonoBehaviour:
     characterIndex: 96
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: -0.5
-    bearing: 0.05
-    italic: 0.3
+    height: 0.7
+    depth: -0.55
+    bearing: 0
+    italic: 0.25
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2651,10 +2651,10 @@ MonoBehaviour:
     characterIndex: 97
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0
-    italic: 0.55
+    height: 0.5
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2678,10 +2678,10 @@ MonoBehaviour:
     characterIndex: 98
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0
-    italic: 0.5
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2705,10 +2705,10 @@ MonoBehaviour:
     characterIndex: 99
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0
-    italic: 0.45
+    height: 0.5
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.4
     width: 0.4
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2732,10 +2732,10 @@ MonoBehaviour:
     characterIndex: 100
     fontIndex: 13
     type: 0
-    height: 0.7
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.5
+    height: 0.65
+    depth: 0.05
+    bearing: 0
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2759,10 +2759,10 @@ MonoBehaviour:
     characterIndex: 101
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0
-    italic: 0.45
+    height: 0.5
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.4
     width: 0.4
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2786,10 +2786,10 @@ MonoBehaviour:
     characterIndex: 102
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.3
-    bearing: 0.05
-    italic: 0.4
+    height: 0.7
+    depth: 0.25
+    bearing: 0
+    italic: 0.35
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2813,10 +2813,10 @@ MonoBehaviour:
     characterIndex: 103
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.3
-    bearing: 0.05
-    italic: 0.55
+    height: 0.5
+    depth: 0.25
+    bearing: 0
+    italic: 0.5
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2840,10 +2840,10 @@ MonoBehaviour:
     characterIndex: 104
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.3
-    bearing: 0
-    italic: 0.5
+    height: 0.7
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2867,10 +2867,10 @@ MonoBehaviour:
     characterIndex: 105
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.35
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.3
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2894,10 +2894,10 @@ MonoBehaviour:
     characterIndex: 106
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.3
-    bearing: 0.1
-    italic: 0.25
+    height: 0.7
+    depth: 0.25
+    bearing: 0.05
+    italic: 0.2
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2921,10 +2921,10 @@ MonoBehaviour:
     characterIndex: 107
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.45
+    height: 0.7
+    depth: 0.05
+    bearing: 0
+    italic: 0.4
     width: 0.4
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2948,10 +2948,10 @@ MonoBehaviour:
     characterIndex: 108
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: 0.1
-    bearing: 0
-    italic: 0.35
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.3
     width: 0.3
     font_reqGlyphSize: 20
     sprite_uv:
@@ -2975,10 +2975,10 @@ MonoBehaviour:
     characterIndex: 109
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.85
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.8
     width: 0.75
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3002,10 +3002,10 @@ MonoBehaviour:
     characterIndex: 110
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.6
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
     width: 0.55
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3029,10 +3029,10 @@ MonoBehaviour:
     characterIndex: 111
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0
-    italic: 0.5
+    height: 0.5
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3056,10 +3056,10 @@ MonoBehaviour:
     characterIndex: 112
     fontIndex: 13
     type: 0
-    height: 0.6
-    depth: 0.3
-    bearing: 0.05
-    italic: 0.5
+    height: 0.55
+    depth: 0.25
+    bearing: 0
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3083,10 +3083,10 @@ MonoBehaviour:
     characterIndex: 113
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.3
-    bearing: 0
-    italic: 0.5
+    height: 0.5
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3110,10 +3110,10 @@ MonoBehaviour:
     characterIndex: 114
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.45
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.4
     width: 0.4
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3137,10 +3137,10 @@ MonoBehaviour:
     characterIndex: 115
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0.1
-    italic: 0.5
+    height: 0.5
+    depth: 0.05
+    bearing: 0.05
+    italic: 0.45
     width: 0.45
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3164,10 +3164,10 @@ MonoBehaviour:
     characterIndex: 116
     fontIndex: 13
     type: 0
-    height: 0.7
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.4
+    height: 0.65
+    depth: 0.05
+    bearing: 0
+    italic: 0.35
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3191,10 +3191,10 @@ MonoBehaviour:
     characterIndex: 117
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.6
+    height: 0.5
+    depth: 0.05
+    bearing: 0
+    italic: 0.55
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3218,10 +3218,10 @@ MonoBehaviour:
     characterIndex: 118
     fontIndex: 13
     type: 0
-    height: 0.6
-    depth: 0.1
-    bearing: 0
-    italic: 0.5
+    height: 0.55
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3245,10 +3245,10 @@ MonoBehaviour:
     characterIndex: 119
     fontIndex: 13
     type: 0
-    height: 0.6
-    depth: 0.1
-    bearing: 0.05
-    italic: 0.75
+    height: 0.55
+    depth: 0.05
+    bearing: 0
+    italic: 0.7
     width: 0.75
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3272,10 +3272,10 @@ MonoBehaviour:
     characterIndex: 120
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.25
-    bearing: 0.05
-    italic: 0.45
+    height: 0.5
+    depth: 0.2
+    bearing: 0
+    italic: 0.4
     width: 0.4
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3299,10 +3299,10 @@ MonoBehaviour:
     characterIndex: 121
     fontIndex: 13
     type: 0
-    height: 0.6
-    depth: 0.3
-    bearing: 0.05
-    italic: 0.5
+    height: 0.55
+    depth: 0.25
+    bearing: 0
+    italic: 0.45
     width: 0.5
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3326,10 +3326,10 @@ MonoBehaviour:
     characterIndex: 122
     fontIndex: 13
     type: 0
-    height: 0.55
-    depth: 0.3
-    bearing: 0.1
-    italic: 0.4
+    height: 0.5
+    depth: 0.25
+    bearing: 0.05
+    italic: 0.35
     width: 0.4
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3353,10 +3353,10 @@ MonoBehaviour:
     characterIndex: 123
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.3
-    bearing: 0.05
-    italic: 0.4
+    height: 0.7
+    depth: 0.25
+    bearing: 0
+    italic: 0.35
     width: 0.35
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3380,10 +3380,10 @@ MonoBehaviour:
     characterIndex: 124
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.3
-    bearing: 0
-    italic: 0.25
+    height: 0.7
+    depth: 0.25
+    bearing: -0.05
+    italic: 0.2
     width: 0.25
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3407,10 +3407,10 @@ MonoBehaviour:
     characterIndex: 125
     fontIndex: 13
     type: 0
-    height: 0.75
-    depth: -0.35
-    bearing: 0.05
-    italic: 0.25
+    height: 0.7
+    depth: -0.4
+    bearing: 0
+    italic: 0.2
     width: 0.2
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3434,10 +3434,10 @@ MonoBehaviour:
     characterIndex: 126
     fontIndex: 13
     type: 0
-    height: 0.5
-    depth: -0.2
-    bearing: 0.05
-    italic: 0.6
+    height: 0.45
+    depth: -0.25
+    bearing: 0
+    italic: 0.55
     width: 0.6
     font_reqGlyphSize: 20
     sprite_uv:
@@ -3461,10 +3461,10 @@ MonoBehaviour:
     characterIndex: 255
     fontIndex: 13
     type: 0
-    height: 0.8
-    depth: 0.1
-    bearing: 0
-    italic: 0.35
+    height: 0.7
+    depth: 0.05
+    bearing: -0.05
+    italic: 0.3
     width: 0.4
     font_reqGlyphSize: 20
     sprite_uv:

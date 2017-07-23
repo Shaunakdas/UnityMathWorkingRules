@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 8
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -25,6 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -41,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 9
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -53,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 4
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -66,13 +67,27 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_DirectLightInLightProbes: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
+    m_MixedBakeMode: 1
+    m_BakeBackend: 0
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVRFiltering: 0
+    m_PVRFilteringMode: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_RuntimeCPUUsage: 25
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -89,6 +104,8 @@ NavMeshSettings:
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &15614049
@@ -138,19 +155,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616e64207461626c6573210d
+  m_Text: "... and tables!\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -214,26 +228,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &21087356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,19 +270,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5f7375625e73757065727d7363726970745f7375625e7375706572
+  m_Text: _sub^super}script_sub^super
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -347,19 +342,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c636f6c6f725b3263325d5c636d74745c5c636f6c6f727d20616e64205c73697a655b325d205c636d74745c5c73697a657d200a5c73697a655b2e345d7b7d0a5c636f6c6f725b6379616e5d636f6d6d616e6473205c636f6c6f725b5d666f72205c636f6c6f725b6639395d5c636d6278204558545241205c636c725b6d61726f6f6e5d635c636c725b7265645d755c636c725b7265645d735c636c725b6f72616e67655d745c636c725b79656c6c6f775d6f5c636c725b6c696d655d6d5c636c725b677265656e5d695c636c725b7465616c5d7a5c636c725b6379616e5d615c636c725b6461726b626c75655d745c636c725b6e6176795d695c636c725b707572706c655d6f5c636c725b6d6167656e74615d6e0d0a0a5c73697a655b335d5c6d6174687b395c73697a655b312e342d2e355d7b5c667261637b337d7b347d7d205c636c725b677265795d7b7c7d2420325c73697a655b312e355d2e39397d
+  m_Text: "\\color[2c2]\\cmtt\\\\color} and \\size[2] \\cmtt\\\\size} \n\\size[.4]{}\n\\color[cyan]commands
+    \\color[]for \\color[f99]\\cmbx EXTRA \\clr[maroon]c\\clr[red]u\\clr[red]s\\clr[orange]t\\clr[yellow]o\\clr[lime]m\\clr[green]i\\clr[teal]z\\clr[cyan]a\\clr[darkblue]t\\clr[navy]i\\clr[purple]o\\clr[magenta]n\r\n\n\\size[3]\\math{9\\size[1.4-.5]{\\frac{3}{4}}
+    \\clr[grey]{|}$ 2\\size[1.5].99}"
   m_FontIndex: 11
   m_Size: 45
   m_AutoFit: 1
@@ -423,26 +417,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &37395961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,19 +459,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 7b5c7b5c6174617269626f785c7d5c7b5c6174617269626f785c7d7d5f5f7b5c7d7d
+  m_Text: '{\{\ataribox\}\{\ataribox\}}__{\}}'
   m_FontIndex: -1
   m_Size: 40
   m_AutoFit: 1
@@ -591,7 +566,7 @@ Canvas:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 39535654}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 858249879}
   m_PlaneDistance: 100
@@ -600,6 +575,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -751,19 +727,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: d7c5a2af90e37fd4a9dc11587ff50f36, type: 2}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c73756d5e7b5c696e6674797d5f7b307d205c6e667261637b5445587d7b5c73697a655b2e38355d447261777d
+  m_Text: \sum^{\infty}_{0} \nfrac{TEX}{\size[.85]Draw}
   m_FontIndex: -1
   m_Size: 100
   m_AutoFit: 0
@@ -814,7 +787,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 133725734}
   m_Enabled: 1
-  serializedVersion: 7
+  serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.43382353, g: 0.9765719, b: 1, a: 1}
   m_Intensity: 8
@@ -839,6 +812,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &167185108
@@ -890,26 +865,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &167185111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,19 +907,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c6d6574615b616c69676e3d6c5d20546f20746865206c6566740a5c6d6574615b616c69676e3d725d206f722072696768743f
+  m_Text: '\meta[align=l] To the left
+
+    \meta[align=r] or right?'
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 5
@@ -1024,26 +982,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &232252359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,19 +1024,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c667261637b6672616374696f6e7d7b77697468206c696e657d
+  m_Text: \frac{fraction}{with line}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -1145,7 +1084,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 237979740}
   m_Enabled: 1
-  serializedVersion: 7
+  serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.49264705, b: 0.49264705, a: 1}
   m_Intensity: 1.95
@@ -1170,6 +1109,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &262894278
@@ -1270,26 +1211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &265299907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,19 +1253,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c6e667261637b6672616374696f6e7d7b6e6f206c696e657d
+  m_Text: \nfrac{fraction}{no line}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -1403,19 +1325,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 9fb82840f4e3d604081053d86702b0a8, type: 2}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c7069
+  m_Text: \pi
   m_FontIndex: 15
   m_Size: 411.6
   m_AutoFit: 0
@@ -1479,26 +1398,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &293613008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,19 +1440,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c6e6f74206e6f747d205c6e6e6f747b6e6e6f747d
+  m_Text: \not not} \nnot{nnot}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -1613,26 +1513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &315608040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1671,19 +1555,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c756e6f7420756e6f747d205c6f6e6f74206f6e6f747d0a5c686e6f7420686e6f747d205c646e6f7420646e6f747d
+  m_Text: '\unot unot} \onot onot}
+
+    \hnot hnot} \dnot dnot}'
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -1814,19 +1697,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2b3530205061676573206f6620446f63756d656e746174696f6e205c636d737320666f7220726f6275737420756e6465727374616e64696e67206f66205c636d6d697b544558447261777d2066756e6374696f6e616c69746965732e2e2e0a0a5c73697a655b2e375d5c636d72202a2920646f63756d656e746174696f6e20697320616c77617973205c636c725b3363665d206672656520746f20646f776e6c6f6164
+  m_Text: '+50 Pages of Documentation \cmss for robust understanding of \cmmi{TEXDraw}
+    functionalities...
+
+
+    \size[.7]\cmr *) documentation is always \clr[3cf] free to download'
   m_FontIndex: 15
   m_Size: 40
   m_AutoFit: 0
@@ -1877,7 +1761,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 355911494}
   m_Enabled: 1
-  serializedVersion: 7
+  serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.959, g: 0.46831423, b: 0.416206, a: 1}
   m_Intensity: 8
@@ -1902,6 +1786,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &356243935
@@ -1953,26 +1839,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &356243938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2011,19 +1881,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c726f6f745b726f6f745d7b7374616e646172647d
+  m_Text: \root[root]{standard}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -2086,19 +1953,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c636d6d697b544558447261777d205c6f70656e735b695d20616c736f20636f6d6573207769746820576f72642077726170206665617475726520616e64204a75737469667920416c69676d656e742c2077697468205c636c725b79656c6c6f775d7b6465646963617465647d206175746f2d6c61796f757420666561747572652e0a0a416e64206d6f726520666561747572657320636f6d696e6720696e2e2e2e
+  m_Text: '\cmmi{TEXDraw} \opens[i] also comes with Word wrap feature and Justify
+    Aligment, with \clr[yellow]{dedicated} auto-layout feature.
+
+
+    And more features coming in...'
   m_FontIndex: 15
   m_Size: 45
   m_AutoFit: 3
@@ -2162,26 +2030,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &455753114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2220,19 +2072,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c6d6574615b6c6561643d315d204e6f2074696768742073747566662c206a75737420736f6d6520696e6e6f63656e7420776f7264732c2069736e27743f
+  m_Text: \meta[lead=1] No tight stuff, just some innocent words, isn't?
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 5
@@ -2294,19 +2143,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616e64207461626c6573210d
+  m_Text: "... and tables!\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -2370,26 +2216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &526479859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2428,19 +2258,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c73696e5e327d78202d205c636f735e327d793d31
+  m_Text: \sin^2}x - \cos^2}y=1
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -2503,19 +2330,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c696e745e7b2020202020347d5f7b30207d5c73696e28785e65295c617070726f785c70726f645e355f7b785c72696768746172726f77307d33782d5c70695f69
+  m_Text: \int^{     4}_{0 }\sin(x^e)\approx\prod^5_{x\rightarrow0}3x-\pi_i
   m_FontIndex: -1
   m_Size: 70
   m_AutoFit: 1
@@ -2577,19 +2401,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616e64207461626c6573210d
+  m_Text: "... and tables!\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -2672,24 +2493,29 @@ MonoBehaviour:
     scale: 1
     offset: 0
   curve:
+    serializedVersion: 2
     m_Curve:
-    - time: 0
+    - serializedVersion: 2
+      time: 0
       value: 1
       inSlope: 3.101419
       outSlope: 3.101419
       tangentMode: 0
-    - time: 0.5
+    - serializedVersion: 2
+      time: 0.5
       value: 0.85
       inSlope: -4.3815236
       outSlope: -4.3815236
       tangentMode: 0
-    - time: 1
+    - serializedVersion: 2
+      time: 1
       value: 1
       inSlope: 2.3959413
       outSlope: 2.3959413
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   multiplier: 1
 --- !u!114 &599696533
 MonoBehaviour:
@@ -2706,14 +2532,32 @@ MonoBehaviour:
     scale: 1
     offset: 0
   gradient:
-    key0: {}
-    key1: {}
-    key2: {}
-    key3: {}
-    key4: {}
-    key5: {}
-    key6: {}
-    key7: {}
+    serializedVersion: 2
+    key0: {r: 1, g: 0.68235296, b: 0, a: 1}
+    key1: {r: 0.52156866, g: 0, b: 0.4509804, a: 1}
+    key2: {r: 0, g: 0.13333334, b: 1, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 31804
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   mixMode: 0
@@ -2729,19 +2573,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 54455844726177207769746820437572766564205363616c696e67
+  m_Text: TEXDraw with Curved Scaling
   m_FontIndex: 12
   m_Size: 60
   m_AutoFit: 0
@@ -2880,26 +2721,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &612940174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2938,19 +2763,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c73697a655b2e395d206368616e6765205c73697a65207468650a5c73697a655b2e5d206f766572616c6c205c73697a655b312e355d2073697a65
+  m_Text: '\size[.9] change \size the
+
+    \size[.] overall \size[1.5] size'
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -3013,19 +2837,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c636c725b6666365d546f7020706572666f726d616e63657d205c636d7373206973206172636869657665642077697468207265736f757263652d706f6f6c696e672073797374656d207468617420616c7265616479206265656e205c6f70656e737b496d706c656d656e7465647d20696e2074686973207061636b6167650a0a5c73697a655b2e365d5c6f70656e735b695d202a292054686973206d65616e7320796f7520616c736f2063616e20696d70726f766520796f757220696e2d67616d6520706572666f726d616e636520627920696d706c656d656e7473207468652073616d65206265686176696f757220746f20736f6d65776865726520696e20796f75722072756e74696d652d6f6e6c7920636c61737365730a0a5c73697a655b2e365d5c6f70656e735b695d202a2a2920424f4e55533a20456469746f722057696e646f7720666f7220636865636b696e6720746865207573616765206f6620636c6173736573205c73697a655b2e375d5c52696768746172726f77
+  m_Text: '\clr[ff6]Top performance} \cmss is archieved with resource-pooling system
+    that already been \opens{Implemented} in this package
+
+
+    \size[.6]\opens[i] *) This means you also can improve your in-game performance
+    by implements the same behaviour to somewhere in your runtime-only classes
+
+
+    \size[.6]\opens[i] **) BONUS: Editor Window for checking the usage of classes
+    \size[.7]\Rightarrow'
   m_FontIndex: 15
   m_Size: 40
   m_AutoFit: 0
@@ -3087,19 +2917,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 34204275696c742d696e20737570706c656d656e747320666f7220717569636b2c20636c65616e202620636f6e76656e69656e63652065646974696e67
+  m_Text: 4 Built-in supplements for quick, clean & convenience editing
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -3163,26 +2990,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &697144403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3221,19 +3032,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c7472735b522d32305d20726f746174696e67207374756666200a5c6d7472735b523230545931395d20666f727d205c6d7472735b522d31305d2066756e
+  m_Text: "\\trs[R-20] rotating stuff \n\\mtrs[R20TY19] for} \\mtrs[R-10] fun"
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -3297,26 +3105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &706250489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3355,19 +3147,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 7363726970745e315e325e33
+  m_Text: script^1^2^3
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -3411,19 +3200,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c73697a655b2e365d7b5c636d74747b455c5e315c5f303d5c5c73756d5c5f305c5e5c7b5c5c696e6674795c7d5c5c747269616e676c65285c5c70695c5f332d325c5e34297d0a5c73697a655b2e335d7b7d0a5c6d61747269787b7c7c7c7d5c446f776e6172726f775c6d61747269787b7c7c7c7d0a455e315f303d5c73756d5f305e7b5c696e6674797d5c747269616e676c65285c70695f332d325e34290d
+  m_Text: "\\size[.6]{\\cmtt{E\\^1\\_0=\\\\sum\\_0\\^\\{\\\\infty\\}\\\\triangle(\\\\pi\\_3-2\\^4)}\n\\size[.3]{}\n\\matrix{|||}\\Downarrow\\matrix{|||}\nE^1_0=\\sum_0^{\\infty}\\triangle(\\pi_3-2^4)\r"
   m_FontIndex: -1
   m_Size: 70
   m_AutoFit: 1
@@ -3504,19 +3290,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 9fb82840f4e3d604081053d86702b0a8, type: 2}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 54686973206f6e65207573696e67200a5368616465722d44726976656e206772616469656e74730a0a5c73697a655b2e355d43616e206265206170706c696564206173200a5c73697a655b2e355d612077686f6c6520746578742f706572206c696e652f70657220636861726163746572
+  m_Text: "This one using \nShader-Driven gradients\n\n\\size[.5]Can be applied as
+    \n\\size[.5]a whole text/per line/per character"
   m_FontIndex: 15
   m_Size: 35
   m_AutoFit: 1
@@ -3646,19 +3430,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 57697468205c636d6d697b544558447261777d2c2063726561746520616e79206672616374696f6e732c207261646963616c732c206d6174726978202e2e2e
+  m_Text: With \cmmi{TEXDraw}, create any fractions, radicals, matrix ...
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -3720,19 +3501,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 54686973206973205c636c725b3263665d64656661756c740a0a5c636d7220556e2d6c69742c206661737465737420616e642073696d706c6573742073686164657220617420616c6c
+  m_Text: 'This is \clr[2cf]default
+
+
+    \cmr Un-lit, fastest and simplest shader at all'
   m_FontIndex: 15
   m_Size: 30
   m_AutoFit: 1
@@ -3783,7 +3564,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 829463278}
   m_Enabled: 1
-  serializedVersion: 7
+  serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.9921907, g: 1, b: 0.43382353, a: 1}
   m_Intensity: 5.49
@@ -3808,6 +3589,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &851403878
@@ -3846,7 +3629,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 851403878}
   m_Enabled: 1
-  serializedVersion: 7
+  serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.43382353, g: 1, b: 0.5314402, a: 1}
   m_Intensity: 8
@@ -3871,6 +3654,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &858249875
@@ -3943,6 +3728,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -4008,19 +3795,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 486572652c20696e2074686973207363656e65207765206d61696e7461696e7320746865206578616d706c6573206f6620776861742073686f776e20696e2061737365742073746f726520706167652e0a0a5c636d737320496620796f7520776f6e6465722061626f757420686f77207765206372656174652074686573652073637265656e73686f74732c207468656e2077652077696c6c20616e737765722074686174206279205c6f70656e737b7475726e696e67206f6e7d2065616368206f66202753686f742720696e20746865204869657261726368792e0a0a4861707079206578706c6f72696e6721205c626c61636b736d696c6579
+  m_Text: 'Here, in this scene we maintains the examples of what shown in asset store
+    page.
+
+
+    \cmss If you wonder about how we create these screenshots, then we will answer
+    that by \opens{turning on} each of ''Shot'' in the Hierarchy.
+
+
+    Happy exploring! \blacksmiley'
   m_FontIndex: 12
   m_Size: 40
   m_AutoFit: 0
@@ -4084,26 +3876,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &906618028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4142,19 +3918,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 723d5c726f6f747b785e322b795e327d
+  m_Text: r=\root{x^2+y^2}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -4290,19 +4063,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c73697a655b325d20436865636b6f7574204c6973740a5c6c7461626c655b3131313132305d205c4e616d65202020202020265c416d6f756e74265c517479265c546f74616c207c426f6f6b26243526783426243230207c50656e26243326783526243135207c43726973736f72262434267832262438207c52756c6572262432267836262431320a546f74616c3a202020202020202020202020202020202020202020202024353520202020
+  m_Text: '\size[2] Checkout List
+
+    \ltable[111120] \Name      &\Amount&\Qty&\Total |Book&$5&x4&$20 |Pen&$3&x5&$15
+    |Crissor&$4&x2&$8 |Ruler&$2&x6&$12
+
+    Total:                       $55    '
   m_FontIndex: 12
   m_Size: 35
   m_AutoFit: 1
@@ -4366,26 +4141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &971305439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4424,19 +4183,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 285c6d61747269787b5c636d7373203126327c3326347d292d5c7b5c766d61747269787b617c6326627c647d5c7d
+  m_Text: (\matrix{\cmss 1&2|3&4})-\{\vmatrix{a|c&b|d}\}
   m_FontIndex: -1
   m_Size: 40
   m_AutoFit: 1
@@ -4500,26 +4256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1012248340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4558,19 +4298,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 7b7363726970747d5e5e6f7665725f5f756e646572
+  m_Text: '{script}^^over__under'
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -4633,19 +4370,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 0.508012
-    g: 1
-    b: 0.27205884
-    a: 1
+  m_Color: {r: 0.508012, g: 1, b: 0.27205884, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 496d706f72745c6b65797b616e64207573655c676966742073707269746573205c636f6e766578737461722061732061205c666c69676874202073796d626f6c205c6c6f636b206368617261637465720d5c6865617274
+  m_Text: "Import\\key{and use\\gift sprites \\convexstar as a \\flight  symbol \\lock
+    character\r\\heart"
   m_FontIndex: 2
   m_Size: 65
   m_AutoFit: 1
@@ -4710,30 +4445,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionTime: 0.1
   useRealtime: 0
-  normal:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  hover:
-    r: 0.9
-    g: 0.9
-    b: 0.9
-    a: 1
-  pressed:
-    r: 0.65
-    g: 0.65
-    b: 0.65
-    a: 1
-  after:
-    r: 0.7
-    g: 0.7
-    b: 1
-    a: 1
+  normal: {r: 1, g: 1, b: 1, a: 1}
+  hover: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  pressed: {r: 0.65, g: 0.65, b: 0.65, a: 1}
+  after: {r: 0.7, g: 0.7, b: 1, a: 1}
   m_OnLinkClicked:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 5445584c696e6b436c69636b4576656e742c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: TEXLinkClickEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &1070644579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4746,19 +4466,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c756c696e6b5c6f70656e735b695d436c69636b206d657d20746f20706f7020736f6d65206c696e6b732e0a4576657279206c696e6b732077696c6c206d61726b6564205c6c696e6b7b677265656e7d20696e207363656e6520746f20696e64696361746520746861742069276c6c20776f726b2070726f7065726c790a0a0a5c73697a655b2e385d5c636d7373205768656e20746865736520626f78657320636c69636b6564206279206d6f7573652f746f7563682c2049742077696c6c206368616e6765207468656972205c636c725b6262665d7b636f6c6f727d206261736564206f6e2074686569722073746174652c2073696d696c6172206c696b6520627574746f6e2e2e2e20616e64206574632e2e206574632e2e2028646f63732077696c6c20636c656172207468617429203a29
+  m_Text: '\ulink\opens[i]Click me} to pop some links.
+
+    Every links will marked \link{green} in scene to indicate that i''ll work properly
+
+
+
+    \size[.8]\cmss When these boxes clicked by mouse/touch, It will change their \clr[bbf]{color}
+    based on their state, similar like button... and etc.. etc.. (docs will clear
+    that) :)'
   m_FontIndex: 12
   m_Size: 40
   m_AutoFit: 0
@@ -4809,7 +4534,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1134714926}
   m_Enabled: 1
-  serializedVersion: 7
+  serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 0.755071, b: 0.49264705, a: 1}
   m_Intensity: 5
@@ -4834,6 +4559,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &1134961139
@@ -4918,19 +4645,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616e64207461626c6573210d
+  m_Text: "... and tables!\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -4993,19 +4717,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 9fb82840f4e3d604081053d86702b0a8, type: 2}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c7069
+  m_Text: \pi
   m_FontIndex: 15
   m_Size: 483.8
   m_AutoFit: 0
@@ -5100,19 +4821,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616e64207461626c6573210d
+  m_Text: "... and tables!\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -5175,19 +4893,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 3c207c7b5b7b5c646f776e6172726f777b5c7b5c726f6f747b5c726f6f747b5c726f6f747b5c726f6f747b7b5c70697d7d7d7d7d5c7d7d5e5e7b5c686f6f6b72696768747d5c75706172726f777d5d7d5f5f7b5c4c65667472696768746172726f777d7c203e
+  m_Text: < |{[{\downarrow{\{\root{\root{\root{\root{{\pi}}}}}\}}^^{\hookright}\uparrow}]}__{\Leftrightarrow}|
+    >
   m_FontIndex: -1
   m_Size: 74.1
   m_AutoFit: 1
@@ -5251,26 +4967,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1225015339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5309,19 +5009,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c766e6e6f745b312e352d322e385d5c766e6e6f745b352e372d2e385d5c667261637b636f6e74726f6c20746865206c696e657d7b7769746820707265636973696f6e7d
+  m_Text: \vnnot[1.5-2.8]\vnnot[5.7-.8]\frac{control the line}{with precision}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -5367,26 +5064,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1225665376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5425,19 +5106,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 536e3d5c667261637b6128312d72295e327d7b312d727d
+  m_Text: Sn=\frac{a(1-r)^2}{1-r}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -5518,19 +5196,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c636c725b6379616e5d5c6f70656e737b42726f7773657d7d20616e6420757365206f766572205c636c725b6666305d7b2b3630307d206d617468656d61746963616c2073796d626f6c7320496e636c7564656420696e20746865205061636b6167652e2e2e0a0a456173696572207769746820637573746f6d697a656420456469746f72210a0a5c636c725b62726f776e5d4578616d706c653a0a5c636d74747b5c5c5468657461205c72696768746172726f77205c5468657461
+  m_Text: '\clr[cyan]\opens{Browse}} and use over \clr[ff0]{+600} mathematical symbols
+    Included in the Package...
+
+
+    Easier with customized Editor!
+
+
+    \clr[brown]Example:
+
+    \cmtt{\\Theta \rightarrow \Theta'
   m_FontIndex: 2
   m_Size: 45
   m_AutoFit: 1
@@ -5574,19 +5258,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20657870616e6461626c652064656c696d69746572732c206172726f7773202e2e2e20
+  m_Text: '... expandable delimiters, arrows ... '
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -5666,19 +5347,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616363656e74732c206c696d69742c206c6f672c206f7665726c6179206c696e65732e2e2e0d
+  m_Text: "... accents, limit, log, overlay lines...\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -5755,19 +5433,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 9d473469be5a9fc448e911362f79b8a9, type: 2}
-  m_Color:
-    r: 0
-    g: 0
-    b: 0
-    a: 1
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 54686973206f6e6520636f756e7473206c6967687420696e20746865207363656e653b0a416c6c206b696e64206f66206c6967687473206973206163636570746564202a0a0a5c73697a655b2e355d2a292043616e766173206d757374206e6f742073657420746f2073637265656e206f7665726c617920746f206d616b6520746869732073686164657220776f726b73
+  m_Text: 'This one counts light in the scene;
+
+    All kind of lights is accepted *
+
+
+    \size[.5]*) Canvas must not set to screen overlay to make this shader works'
   m_FontIndex: 15
   m_Size: 33
   m_AutoFit: 1
@@ -5830,19 +5510,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c73697a655b2e35355d7b736f6c767b655c61637574657d5c7769646574696c6465205c6f6e6f747b5c746869737d205c636d74747b6966207b796f755c776964656861747d205c686e6f745b2d2e30355d7b6461726520746f7d205c756e6f747b5c636d62787b726561647d205c636f6c6f725b6666305d7b5c646e6f745b2d2e3033355d7b74686973206f6e657d7d7d0a5c6e6e6f745b2e362d2e335d7b5e325c6c6f6720327d5c74696d6573287b5c6c696d5f5f7b785c72696768746172726f775c696e6674797d205c766e6f745b2e312d2e395d7b5c667261637b327d7b342d787d7d7d29
+  m_Text: '\size[.55]{solv{e\acute}\widetilde \onot{\this} \cmtt{if {you\widehat}
+    \hnot[-.05]{dare to} \unot{\cmbx{read} \color[ff0]{\dnot[-.035]{this one}}}
+
+    \nnot[.6-.3]{^2\log 2}\times({\lim__{x\rightarrow\infty} \vnot[.1-.9]{\frac{2}{4-x}}})'
   m_FontIndex: -1
   m_Size: 70.03
   m_AutoFit: 1
@@ -5904,19 +5584,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616e64207461626c6573210d
+  m_Text: "... and tables!\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -5980,26 +5657,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1363163082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6038,19 +5699,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c6d6574615b6b65726e3d2d2e315d205665727920746967687420776f726473
+  m_Text: \meta[kern=-.1] Very tight words
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -6114,26 +5772,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1377444233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6172,19 +5814,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c6c6566746172726f777b5c63646f745c7371756172655c63646f747d5f5f7b5c72627261636b7d5c72696768746172726f77
+  m_Text: \leftarrow{\cdot\square\cdot}__{\rbrack}\rightarrow
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -6246,19 +5885,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c73697a655b2e345d43726561746520616e79206d6174682065787072657373696f6e7320696e7369646520556e697479210a455e315f303d5c73756d5f305e7b5c696e6674797d5c747269616e676c65285c70695f332d325e34290d
+  m_Text: "\\size[.4]Create any math expressions inside Unity!\nE^1_0=\\sum_0^{\\infty}\\triangle(\\pi_3-2^4)\r"
   m_FontIndex: -1
   m_Size: 59.2
   m_AutoFit: 2
@@ -6322,26 +5958,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1405976984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6380,19 +6000,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c5369676d617d783d5c64656c74617d6e2d5c67616d6d617d79
+  m_Text: \Sigma}x=\delta}n-\gamma}y
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -6454,19 +6071,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616e64207461626c6573210d
+  m_Text: "... and tables!\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -6528,19 +6142,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5445585c636c725b6461345d44726177
+  m_Text: TEX\clr[da4]Draw
   m_FontIndex: 1
   m_Size: 40
   m_AutoFit: 2
@@ -6604,26 +6215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1462100731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6662,19 +6257,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c6e667261637b7b776f7264737d5f5f7b5c7262726163657d7d7b5c73697a655b2e5d696e2061206e75747368656c6c737d
+  m_Text: \nfrac{{words}__{\rbrace}}{\size[.]in a nutshells}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -6738,26 +6330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1463525601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6796,19 +6372,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c746578745b625d626f6c647d206f72205c746578745b695d206974616c69637d206f72205c746578745b62695d626f74682e
+  m_Text: \text[b]bold} or \text[i] italic} or \text[bi]both.
   m_FontIndex: 14
   m_Size: 40
   m_AutoFit: 5
@@ -6872,26 +6445,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1480823810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6930,19 +6487,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c726f6f745b5c6c62726163655d7b67656e6572696320726f6f747d
+  m_Text: \root[\lbrace]{generic root}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -7006,26 +6560,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1487755040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7064,19 +6602,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c7461626c657b6d792673696d706c65267461626c657c6973266c696b65266d616769637d
+  m_Text: \table{my&simple&table|is&like&magic}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -7140,26 +6675,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1602148341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7198,19 +6717,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c756e64657220756e6465727d205c6f766572206f766572
+  m_Text: \under under} \over over
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -7272,19 +6788,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616e64207461626c6573210d
+  m_Text: "... and tables!\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -7400,19 +6913,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 73dd7443412082c409b2a02842af61a1, type: 2}
-  m_Color:
-    r: 0.71323526
-    g: 0.9288032
-    b: 1
-    a: 1
+  m_Color: {r: 0.71323526, g: 0.9288032, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 4f7220757365205c636c725b6666305d2074696c656420746578747572657d20696620796f752077616e74
+  m_Text: Or use \clr[ff0] tiled texture} if you want
   m_FontIndex: 15
   m_Size: 49
   m_AutoFit: 1
@@ -7537,19 +7047,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c636865636b5c73697a655b2e375d205c6f70656e7320416476616e636564205c636d725c73697a655b2e355d7465787420736f6c7574696f6e20666f7220556e6974790a5c636865636b5c73697a655b2e375d205c6f70656e73204c415445582074616773205c636d725c73697a655b2e355d666f7220636c65616e202620666c657869626c652072656e646572696e670a5c636865636b5c73697a655b2e375d205c6f70656e732046617374205c636d725c73697a655b2e355d616e64204c6967687477656967687420666f72204d6f62696c6573
+  m_Text: '\check\size[.7] \opens Advanced \cmr\size[.5]text solution for Unity
+
+    \check\size[.7] \opens LATEX tags \cmr\size[.5]for clean & flexible rendering
+
+    \check\size[.7] \opens Fast \cmr\size[.5]and Lightweight for Mobiles'
   m_FontIndex: -1
   m_Size: 41.9
   m_AutoFit: 2
@@ -7611,19 +7122,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 3d8751f19f0712c4d96402698f5b503d, type: 2}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c73697a655b325d5445585c636c725b3263665d44726177
+  m_Text: \size[2]TEX\clr[2cf]Draw
   m_FontIndex: -1
   m_Size: 59.2
   m_AutoFit: 2
@@ -7687,26 +7195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1792430147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7745,19 +7237,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c636d72206368616e6765205c636d6669206d790a5c636d737320666f6e74205c636d74742074797065
+  m_Text: '\cmr change \cmfi my
+
+    \cmss font \cmtt type'
   m_FontIndex: -1
   m_Size: 40
   m_AutoFit: 1
@@ -7819,19 +7310,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 4472617720616e79206d617468656d61746963616c2065787072657373696f6e732066726f6d20737472696e672c205c636d62787b496e7374616e746c797d
+  m_Text: Draw any mathematical expressions from string, \cmbx{Instantly}
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -7896,26 +7384,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1853202279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7972,19 +7444,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c73756d5e313233345f35363738205c696e745e31325f337d205c76686f6c645b322e345d5e325f335c76686f6c645b312e385d7b5c727371627261636b7d
+  m_Text: \sum^1234_5678 \int^12_3} \vhold[2.4]^2_3\vhold[1.8]{\rsqbrack}
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -8046,19 +7515,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616e64207461626c6573210d
+  m_Text: "... and tables!\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -8121,19 +7587,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c636f6c6f725b6666305d5c436f6d62696e657d20616e79205c636d62785b695d20666f6e74737d205c6575726d20696e746f205c6575666d2073696e676c65205c636d666920636f6d706f6e656e74205c62626f6c6420776974680a5c73697a655b2e355d7b200a205c636d7474205c5c3c666f6e746e616d653e5c7b5c7d205c6f70656e735b695d2074616773
+  m_Text: "\\color[ff0]\\Combine} any \\cmbx[i] fonts} \\eurm into \\eufm single \\cmfi
+    component \\bbold with\n\\size[.5]{ \n \\cmtt \\\\<fontname>\\{\\} \\opens[i]
+    tags"
   m_FontIndex: -1
   m_Size: 70
   m_AutoFit: 1
@@ -8195,19 +7660,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20616e64207461626c6573210d
+  m_Text: "... and tables!\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -8269,19 +7731,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 34205368616465722076617269616e7473
+  m_Text: 4 Shader variants
   m_FontIndex: 15
   m_Size: 30
   m_AutoFit: 1
@@ -8345,26 +7804,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &2014598231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8403,19 +7846,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c6d617468282828285c636d73737b44656c696d7d29292929
+  m_Text: \math((((\cmss{Delim}))))
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1
@@ -8466,7 +7906,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2038331960}
   m_Enabled: 1
-  serializedVersion: 7
+  serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.49264705, g: 0.91602427, b: 1, a: 1}
   m_Intensity: 6.31
@@ -8491,6 +7931,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &2084484761
@@ -8540,19 +7982,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: d7c5a2af90e37fd4a9dc11587ff50f36, type: 2}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 54686973206f6e6520636f756e7473206c6967687420696e20746865207363656e653b0a5c73697a655b2e375d416c6c206b696e6473206f66206c6967687473202b204e6f726d616c2062756d7073206172652061636365707465642a0a0a5c73697a655b2e355d2a292043616e766173206d757374206e6f742073657420746f2073637265656e206f7665726c617920746f206d616b652074686973206c69742073686164657220776f726b732070726f7065726c79
+  m_Text: 'This one counts light in the scene;
+
+    \size[.7]All kinds of lights + Normal bumps are accepted*
+
+
+    \size[.5]*) Canvas must not set to screen overlay to make this lit shader works
+    properly'
   m_FontIndex: 15
   m_Size: 35
   m_AutoFit: 1
@@ -8615,19 +8060,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c667261637b5c616c7068612d335c667261637b317d7b397d7d7b362d5c726f6f747b5c626574617d7d2b5c726f6f745b31305d7b7c5c6d61747269787b6126627c63265c6368697d7c7d2d285c67616d6d6129
+  m_Text: \frac{\alpha-3\frac{1}{9}}{6-\root{\beta}}+\root[10]{|\matrix{a&b|c&\chi}|}-(\gamma)
   m_FontIndex: -1
   m_Size: 70.68
   m_AutoFit: 1
@@ -8689,19 +8131,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2e2e2e20736372697074732c206c61726765206f70657261746f72732c20696e74656772616c73202e2e2e0d
+  m_Text: "... scripts, large operators, integrals ...\r"
   m_FontIndex: 12
   m_Size: 25
   m_AutoFit: 1
@@ -8765,26 +8204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ea1d7acf4d389439a1dfe15338304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft:
-    r: 0.8117647
-    g: 1
-    b: 0.78676474
-    a: 1
-  topRight:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  bottomRight:
-    r: 0.9446248
-    g: 1
-    b: 0.42647058
-    a: 1
-  bottomLeft:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  topLeft: {r: 0.8117647, g: 1, b: 0.78676474, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomRight: {r: 0.9446248, g: 1, b: 0.42647058, a: 1}
+  bottomLeft: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &2113687927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8823,19 +8246,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 4e3d522a465f737d465f707d465f657d6e5f687a7d465f627d4c5f62
+  m_Text: N=R*F_s}F_p}F_e}n_hz}F_b}L_b
   m_FontIndex: 11
   m_Size: 40
   m_AutoFit: 1

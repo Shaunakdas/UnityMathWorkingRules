@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 8
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -25,6 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_AmbientIntensity: 0
   m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -41,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 9
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -53,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 4
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -66,13 +67,27 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_DirectLightInLightProbes: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
+    m_MixedBakeMode: 1
+    m_BakeBackend: 0
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVRFiltering: 0
+    m_PVRFilteringMode: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_RuntimeCPUUsage: 25
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -89,6 +104,8 @@ NavMeshSettings:
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &47388262
@@ -138,30 +155,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 0.11580883
-    g: 0.8121703
-    b: 0.875
-    a: 1
+  m_Color: {r: 0.11580883, g: 0.8121703, b: 0.875, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
-  m_Text: 5c636f6c6f725b79656c6c6f775d7b5c696465615c6e667261637b5c636d6d697b73707269746573206e6f772063616e7d7d7b5c636d6d697b616374206c696b6520666f6e747d2c7d5c676966747d0a5c636f6c6f727b5c636d727b736f20692063616e207361793a7d7d0a0a5c636861742068692120492764205c686561727420796f7520616e645c6c6f6f6b757020796f75725c6b65790a62757420492063616e2774205c63616c6c20796f75206261636b206174205c74696d652e0a736f2c205c77726f6e676d61726b20776f7272792c2069206861766520616e205c696465613a0a746f6d6f72726f772c2049276c6c205c666c6967687420746f20796f7572205c706c6163656d61726b200a746f2073656e64206d79205c676966742c205c686561727420616e6420796f7572205c6b6579200a736f20796f752063616e205c636f6c6f727b5c736d696c65797d20746f206d652e
+  debugReport: 
+  m_Text: "\\color[yellow]{\\idea\\nfrac{\\cmmi{sprites now can}}{\\cmmi{act like
+    font},}\\gift}\n\\color{\\cmr{so i can say:}}\n\n\\chat hi! I'd \\heart you and\\lookup
+    your\\key\nbut I can't \\call you back at \\time.\nso, \\wrongmark worry, i have
+    an \\idea:\ntomorrow, I'll \\flight to your \\placemark \nto send my \\gift, \\heart
+    and your \\key \nso you can \\color{\\smiley} to me."
   m_FontIndex: -1
   m_Size: 50
   m_AutoFit: 1
   m_AutoWrap: 0
-  m_SpaceSize: 0.343
   m_AutoFill: 0
+  m_SpaceSize: 0.343
   m_Align: {x: 0.5, y: 0.5}
-  debugReport: 
-  onLinkClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: 544558447261772b544558447261774c696e6b416374696f6e2c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+  m_mesh: {fileID: 0}
 --- !u!222 &47388265
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -197,30 +212,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
-  m_Text: 5c6d61747269787b7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7d5c6c6272616365
+  debugReport: 
+  m_Text: \matrix{||||||||||||||||||||||||||||||||}\lbrace
   m_FontIndex: -1
   m_Size: 50
   m_AutoFit: 1
   m_AutoWrap: 0
-  m_SpaceSize: 0.2
   m_AutoFill: 0
+  m_SpaceSize: 0.2
   m_Align: {x: 0.5, y: 0.5}
-  debugReport: 
-  onLinkClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: 544558447261772b544558447261774c696e6b416374696f6e2c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+  m_mesh: {fileID: 0}
 --- !u!222 &1329349935
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -315,6 +324,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -454,30 +465,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
-  m_Text: 5c6d61747269787b7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7c7d5c726272616365
+  debugReport: 
+  m_Text: \matrix{||||||||||||||||||||||||||||||||}\rbrace
   m_FontIndex: -1
   m_Size: 50
   m_AutoFit: 1
   m_AutoWrap: 0
-  m_SpaceSize: 0.2
   m_AutoFill: 0
+  m_SpaceSize: 0.2
   m_Align: {x: 0.5, y: 0.5}
-  debugReport: 
-  onLinkClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: 544558447261772b544558447261774c696e6b416374696f6e2c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+  m_mesh: {fileID: 0}
 --- !u!222 &1672940198
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -546,7 +551,7 @@ Canvas:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1785254157}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
@@ -555,6 +560,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

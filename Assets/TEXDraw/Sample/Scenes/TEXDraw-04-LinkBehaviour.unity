@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 8
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -25,6 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -41,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 9
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -53,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 4
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -66,13 +67,27 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_DirectLightInLightProbes: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
+    m_MixedBakeMode: 1
+    m_BakeBackend: 0
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVRFiltering: 0
+    m_PVRFilteringMode: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_RuntimeCPUUsage: 25
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -89,6 +104,8 @@ NavMeshSettings:
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &133570992
@@ -155,30 +172,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionTime: 0.1
   useRealtime: 0
-  normal:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  hover:
-    r: 0.33088237
-    g: 0.33088237
-    b: 0.33088237
-    a: 1
-  pressed:
-    r: 0.13235295
-    g: 0.13235295
-    b: 0.13235295
-    a: 1
-  after:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  normal: {r: 1, g: 1, b: 1, a: 1}
+  hover: {r: 0.33088237, g: 0.33088237, b: 0.33088237, a: 1}
+  pressed: {r: 0.13235295, g: 0.13235295, b: 0.13235295, a: 1}
+  after: {r: 1, g: 1, b: 1, a: 1}
   m_OnLinkClicked:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 5445584c696e6b436c69636b4576656e742c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: TEXLinkClickEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &133570996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,19 +193,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 0.86764705
-    a: 1
+  m_Color: {r: 1, g: 1, b: 0.86764705, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c6c696e6b7b5c6d636c725b3339665d7b5c706c617920436f6c6f7220747765656e696e677d7d0a5c6c696e6b7b5c6d636c725b3366335d7b5c636865636b6d61726b204d6f757365202620546f75636870616420737570706f72747d7d0a5c6c696e6b7b5c6d636c725b6666335d7b5c63686174205265736574207768656e2052652d656e61626c65642f52657365744c696e6b7328297d7d200a5c6c696e6b7b5c6d636c725b6634345d7b5c77726f6e676d61726b204b6579626f61726420737570706f72742028796574297d7d
+  m_Text: "\\link{\\mclr[39f]{\\play Color tweening}}\n\\link{\\mclr[3f3]{\\checkmark
+    Mouse & Touchpad support}}\n\\link{\\mclr[ff3]{\\chat Reset when Re-enabled/ResetLinks()}}
+    \n\\link{\\mclr[f44]{\\wrongmark Keyboard support (yet)}}"
   m_FontIndex: 9
   m_Size: 50
   m_AutoFit: 1
@@ -288,6 +289,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -534,41 +537,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionTime: 0.1
   useRealtime: 0
-  normal:
-    r: 0.9264706
-    g: 0.9264706
-    b: 0.9264706
-    a: 1
-  hover:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  pressed:
-    r: 0.44117647
-    g: 0.44117647
-    b: 0.44117647
-    a: 1
-  after:
-    r: 0.4705882
-    g: 0.4705882
-    b: 1
-    a: 1
+  normal: {r: 0.9264706, g: 0.9264706, b: 0.9264706, a: 1}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 0.44117647, g: 0.44117647, b: 0.44117647, a: 1}
+  after: {r: 0.4705882, g: 0.4705882, b: 1, a: 1}
   m_OnLinkClicked:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1396263472}
-        m_MethodName: 54657374
+        m_MethodName: Test
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 556e697479456e67696e652e4f626a6563742c20556e697479456e67696e65
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: 5445584c696e6b436c69636b4576656e742c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: TEXLinkClickEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &1396263473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,19 +569,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 0.86764705
-    a: 1
+  m_Color: {r: 1, g: 1, b: 0.86764705, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 73696e6365205c636d6d6920544558447261775e207b5c636d727b322e357d7d7d206c696e6b0a6265686176696f7572205c636d6d697b69737d20617661696c61626c65210a0a547279205c636d6278205c6c696e6b20436c69636b206f6e20486572650a0a41646420736f6d65206f7665727269646520746f206765740a205c756c696e6b5b596f7520444944204954203a445d7b5c636d62787b4d6f726520636f6e74726f6c7d7d206f6e2043616c6c6261636b73
+  m_Text: "since \\cmmi TEXDraw^ {\\cmr{2.5}}} link\nbehaviour \\cmmi{is} available!\n\nTry
+    \\cmbx \\link Click on Here\n\nAdd some override to get\n \\ulink[You DID IT :D]{\\cmbx{More
+    control}} on Callbacks"
   m_FontIndex: 11
   m_Size: 50
   m_AutoFit: 1
@@ -723,7 +710,7 @@ Canvas:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1552760816}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
@@ -732,6 +719,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

@@ -24,16 +24,16 @@ MonoBehaviour:
   sprite_yLength: 4
   sprite_detectAlpha: 0
   sprite_scale: 1
-  sprite_lineOffset: 0
-  sprite_alphaOnly: 0
+  sprite_lineOffset: -0.2
+  sprite_alphaOnly: 1
   chars:
   - supported: 1
     index: 0
     characterIndex: 192
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: play
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -59,8 +59,8 @@ MonoBehaviour:
     characterIndex: 193
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -78,7 +78,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: pause
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -86,8 +86,8 @@ MonoBehaviour:
     characterIndex: 194
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -105,7 +105,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: stop
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -113,8 +113,8 @@ MonoBehaviour:
     characterIndex: 195
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -132,7 +132,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: step
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -140,8 +140,8 @@ MonoBehaviour:
     characterIndex: 196
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -159,7 +159,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: electric
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -167,8 +167,8 @@ MonoBehaviour:
     characterIndex: 197
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -186,7 +186,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: sunshine
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -194,8 +194,8 @@ MonoBehaviour:
     characterIndex: 198
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -213,7 +213,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: moon
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -221,8 +221,8 @@ MonoBehaviour:
     characterIndex: 199
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -240,7 +240,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: cloud
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -248,8 +248,8 @@ MonoBehaviour:
     characterIndex: 200
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -267,7 +267,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: lock
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -275,8 +275,8 @@ MonoBehaviour:
     characterIndex: 201
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -294,7 +294,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: finger
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -302,8 +302,8 @@ MonoBehaviour:
     characterIndex: 202
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -321,7 +321,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: convexstar
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -329,8 +329,8 @@ MonoBehaviour:
     characterIndex: 203
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -348,7 +348,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: time
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -356,8 +356,8 @@ MonoBehaviour:
     characterIndex: 204
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -375,7 +375,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: rocket
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -383,8 +383,8 @@ MonoBehaviour:
     characterIndex: 205
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -402,7 +402,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: flight
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -410,8 +410,8 @@ MonoBehaviour:
     characterIndex: 206
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -429,7 +429,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: placemark
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -437,8 +437,8 @@ MonoBehaviour:
     characterIndex: 207
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -456,7 +456,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: speed
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -464,8 +464,8 @@ MonoBehaviour:
     characterIndex: 176
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -483,7 +483,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: reset
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -491,8 +491,8 @@ MonoBehaviour:
     characterIndex: 209
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -510,7 +510,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: wrench
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -518,8 +518,8 @@ MonoBehaviour:
     characterIndex: 210
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -537,7 +537,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: dumpbin
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -545,8 +545,8 @@ MonoBehaviour:
     characterIndex: 211
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -564,7 +564,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: stack
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -572,8 +572,8 @@ MonoBehaviour:
     characterIndex: 212
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -591,7 +591,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: call
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -599,8 +599,8 @@ MonoBehaviour:
     characterIndex: 213
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -618,7 +618,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: heart
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -626,8 +626,8 @@ MonoBehaviour:
     characterIndex: 214
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -645,7 +645,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: wrongmark
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -653,8 +653,8 @@ MonoBehaviour:
     characterIndex: 183
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -672,7 +672,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: checkmark
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -680,8 +680,8 @@ MonoBehaviour:
     characterIndex: 216
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -699,7 +699,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: cross
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -707,8 +707,8 @@ MonoBehaviour:
     characterIndex: 217
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -726,7 +726,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: speedup
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -734,8 +734,8 @@ MonoBehaviour:
     characterIndex: 218
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -753,7 +753,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: levelup
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -761,8 +761,8 @@ MonoBehaviour:
     characterIndex: 219
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -780,7 +780,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: chat
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -788,8 +788,8 @@ MonoBehaviour:
     characterIndex: 220
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -807,7 +807,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: idea
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -815,8 +815,8 @@ MonoBehaviour:
     characterIndex: 181
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -834,7 +834,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: lookup
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -842,8 +842,8 @@ MonoBehaviour:
     characterIndex: 182
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -861,7 +861,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: key
     symbolAlt: 
     characterMap: 0
   - supported: 1
@@ -869,8 +869,8 @@ MonoBehaviour:
     characterIndex: 223
     fontIndex: 16
     type: 0
-    height: 1
-    depth: -0
+    height: 0.8
+    depth: 0.2
     bearing: 0
     italic: 1
     width: 1
@@ -888,7 +888,7 @@ MonoBehaviour:
     extentMiddleHash: -1
     extentBottomHash: -1
     extentRepeatHash: -1
-    symbolName: 
+    symbolName: gift
     symbolAlt: 
     characterMap: 0
   charCatalogs:

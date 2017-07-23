@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 8
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -25,6 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -41,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 9
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -53,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 4
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -66,13 +67,27 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_DirectLightInLightProbes: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
+    m_MixedBakeMode: 1
+    m_BakeBackend: 0
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVRFiltering: 0
+    m_PVRFilteringMode: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_RuntimeCPUUsage: 25
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -89,6 +104,8 @@ NavMeshSettings:
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &79910428
@@ -162,6 +179,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -198,49 +217,80 @@ MonoBehaviour:
   tex: {fileID: 298026466}
   dropdown: {fileID: 1029153600}
   templates:
-  - 5c667261637b6672616374696f6e7d7b77697468206c696e657d5c6e5c6e667261637b6672616374696f6e7d7b776974686f7574206c696e657d5c6e5c6c667261637b6c6566747d7b6672616374696f6e7d205c72667261637b72696768747d7b6672616374696f6e7d0d
-  - 5c726f6f745b726f6f745d7b7374616e646172647d205c726f6f745b5c6c62726163655d7b67656e6572696320726f6f747d0d
-  - 5c7363726970745e315e325e335f345c6e205e73757065725f7375625c7363726970745e73757065725f7375620d
-  - 7b736372697074737d5e5e6f7665725f5f756e646572205c756e6465725c6f76657220696e206265747765656e7d5c6e7b6d79207761797d5e5e7b5c72696768746172726f777d205c686f6c645b335d7b5c72696768746172726f777d5e5e7b657175616c7320746f7d0d
-  - 5c73756d5e5c696e6674795f7b693d307d205c696e745e3132335f343536205c76686f6c645b325d7b5c727371627261636b7d5e615f620d
-  - 5c6e6f74206e6f747d205c6e6e6f74206e6e6f747d205c756e6f7420756e6f747d205c6e5c6f6e6f74206f6e6f747d205c686e6f7420686e6f747d205c646e6f7420646e6f747d0d
-  - 285c6d61747269787b6126627c6326647d295c74696d65737c5c766d61747269787b617c6326627c647d7c0d
-  - 5c4c6566746172726f77205c4c65667472696768746172726f77205c52696768746172726f775c6e5c76686f6c645b325d7b5c75706172726f777d20785c686f6c645b335d7b5c6c65667472696768746172726f777d79205c76686f6c645b325d7b5c646f776e6172726f777d0d
-  - 5c6c6d6f757374616368655c6c616e676c655c6c6c627261636b65745c7b5b287b5c48656c6c6f7d295d5c7d5c7272627261636b65745c72616e676c655c726d6f757374616368650d
-  - 615c74696c646520655c64646f74205c696d6174685c68617420755c746970206f5c62617220765c76656320795c677261766520785c616375746520625c62726576655c6e2020202e7b6162637d5c77696465686174207b6364667d5c7769646574696c646520625e5e3a7b706f6f717d5e5e5e7b6d616b65206f776e20686572657d20645e5e3a2e
-  - 5c636d6d6920636d6d69205c636d7220636d72205c6d73626d204d53424d205c62626f6c642062626f6c64205c636d666920636d6669205c6e5c636d737320636d7373205c636d747420636d7474205c6575726d206575726d205c6f70656e73206f70656e73200d
-  - 5c6f70656e735b5d20726567756c6172205c6f70656e735b625d20626f6c64205c6f70656e735b695d206974616c6963205c6f70656e735b62695d20626f6c642d6974616c69635c6e5c6d617468206d617468207374796c696e670d
-  - 5c73697a655b2e352d2e32355d2066726f6d206c6974746c6520706f6e7920746f7d205c73697a655b312e355d20615c6e206769616e74206c697a6172645c6e5c73697a655b2e2e5d412074616c652066726f6d206e6f626f64795c6e205c73697a655b325d2431327d2e39390d
-  - 5c636f6c6f725b79656c6c6f775d20636f6c6f72205c636f6c6f725b345d206973205c636f6c6f725b6134395d206d79205c636f6c6f725b23343966635d207374796c657d5c746578745b625d2c2062726f210d
-  - 5c62675b62726f776e5d2049206b6e6f777d207b5c62675b79656c6c6f775d5c636f6c6f725b626c61636b5d20736f6d657468696e67205c7662675b677265656e5d5c636f6c6f725b77686974655d7265616c6c797d205c6e206d617474657273205c62675b707572706c655d20696e206c6966652e0d
-  - 5c72686f6c645b355d7b787d3d5c6c686f6c645b355d7b5c726f6f7420615e322b625e327d5c6e5c72686f6c645b355d7b785e327d3d5c6c686f6c645b355d7b615e322b625e327d0d
-  - 5c6d6574615b616c69676e3d6c206b65726e3d2d2e3035206c6561643d32206c6566743d2e352072696768743d2e3520706172613d315d5c6e20544558447261772c206a757374206c696b65206d616e79206f7468657220746578742067656e657261746f722c2069732064657369676e656420666f722072656e646572696e6720736f6d65206b696e64206f66207465787420746f2073686f7720696e20796f757220646973706c61792073637265656e2e5c6e20496e20544558447261772c20686f77657665722c206164647320736f6d652066756e6374696f6e616c69747920746f2072656e64657220616e79206b696e64206f66206d617468656d61746963616c2065787072657373696f6e732074686174206973207573656420696e20766172696f75732061707073206c696b6520656475636174696f6e616c20736f6674776172652c20736369656e74696669632073696d756c6174696f6e732c20616e64206d616e79206d6f72652e5c6e5c6d6574615b616c69676e3d72206c6561643d32206c6566743d2e352072696768743d2e355d5c6e20576974682074686520706f776572206f6620556e697479e2809973206275696c742d696e2055492053797374656d20616e642064796e616d6963207465787420737570706f72742c2067656e65726174696e67206d6174682065787072657373696f6e7320776173206e6576657220736f2065617369657220616e64207365616d6c6573736c79207468616e2065766572210d
-  - 5c7472735b522d32305d20726f746174696e672073747566665c6e205c6d7472735b523230545931395d20666f727d205c6d7472735b522d31305d2066756e0d
-  - 5c6d6574615b666f6e743d3134206c6561643d30206c6566743d302072696768743d30206c696e653d302073706163653d3020706172613d3020616c69676e3d6c5d5c6e204c6f72656d20697073756d20646f6c6f722073697420616d65742c20636f6e7365637465747565722061646970697363696e6720656c69742e204d616563656e617320706f72747469746f7220636f6e677565206d617373612e20467573636520706f73756572652c206d61676e61207365642070756c76696e617220756c747269636965732c207075727573206c6563747573206d616c657375616461206c696265726f2e5c6e2053697420616d657420636f6d6d6f646f206d61676e612065726f7320717569732075726e612e204e756e63207669766572726120696d7065726469657420656e696d2e204675736365206573742e20566976616d757320612074656c6c75732e2050656c6c656e746573717565206861626974616e74206d6f726269207472697374697175652073656e6563747573206574206e65747573206574206d616c6573756164612066616d65732061632074757270697320656765737461732e5c6e2050726f696e207068617265747261206e6f6e756d6d7920706564652e204d6175726973206574206f7263692e2041656e65616e206e6563206c6f72656d2e20496e20706f72747469746f722e20446f6e6563206c616f72656574206e6f6e756d6d792061756775652e2053757370656e6469737365206475692070757275732c207363656c657269737175652061742c2076756c7075746174652076697461652c207072657469756d206d61747469732c206e756e632e5c6e204d61757269732065676574206e657175652061742073656d2076656e656e6174697320656c656966656e642e205574206e6f6e756d6d792e20467573636520616c69717565742070656465206e6f6e20706564652e2053757370656e64697373652064617069627573206c6f72656d2070656c6c656e746573717565206d61676e612e20496e7465676572206e756c6c612e20446f6e656320626c616e6469742066657567696174206c6967756c612e20446f6e65632068656e6472657269742e5c6e2046656c697320657420696d7065726469657420657569736d6f642c20707572757320697073756d207072657469756d206d657475732c20696e206c6163696e6961206e756c6c61206e69736c20656765742073617069656e2e20446f6e65632075742065737420696e206c656374757320636f6e73657175617420636f6e7365717561742e20457469616d2065676574206475692e20416c697175616d206572617420766f6c75747061742e20536564206174206c6f72656d20696e206e756e6320706f727461207472697374697175652e0d
-  - 5c73697a655b325d20436865636b6f7574204c6973745c6e5c6c7461626c655b3131313132305d205c4e616d65202020202020265c416d6f756e74265c517479265c546f74616c207c426f6f6b26243526783426243230207c50656e26243326783526243135207c43726973736f72262434267832262438207c52756c6572262432267836262431325c6e20546f74616c3a202020202020202020202020202020202020202020202024353520202020
-  - 5c636861742068692120492764205c686561727420796f7520616e645c6c6f6f6b757020796f75725c6b65792062757420492063616e2774205c63616c6c20796f75206261636b206174205c74696d652e20736f2c205c77726f6e676d61726b20776f7272792c2069206861766520616e205c696465613a20746f6d6f72726f772c2049276c6c205c666c6967687420746f20796f7572205c706c6163656d61726b2020746f2073656e64206d79205c676966742c205c686561727420616e6420796f7572205c6b65792020736f20796f752063616e205c636f6c6f727b5c736d696c65797d20746f206d652e
+  - "\\frac{fraction}{with line}\\n\\nfrac{fraction}{without line}\\n\\lfrac{left}{fraction}
+    \\rfrac{right}{fraction}\r"
+  - "\\root[root]{standard} \\root[\\lbrace]{generic root}\r"
+  - "\\script^1^2^3_4\\n ^super_sub\\script^super_sub\r"
+  - "{scripts}^^over__under \\under\\over in between}\\n{my way}^^{\\rightarrow} \\hold[3]{\\rightarrow}^^{equals
+    to}\r"
+  - "\\sum^\\infty_{i=0} \\int^123_456 \\vhold[2]{\\rsqbrack}^a_b\r"
+  - "\\not not} \\nnot nnot} \\unot unot} \\n\\onot onot} \\hnot hnot} \\dnot dnot}\r"
+  - "(\\matrix{a&b|c&d})\\times|\\vmatrix{a|c&b|d}|\r"
+  - "\\Leftarrow \\Leftrightarrow \\Rightarrow\\n\\vhold[2]{\\uparrow} x\\hold[3]{\\leftrightarrow}y
+    \\vhold[2]{\\downarrow}\r"
+  - "\\lmoustache\\langle\\llbracket\\{[({\\Hello})]\\}\\rrbracket\\rangle\\rmoustache\r"
+  - a\tilde e\ddot \imath\hat u\tip o\bar v\vec y\grave x\acute b\breve\n   .{abc}\widehat
+    {cdf}\widetilde b^^:{pooq}^^^{make own here} d^^:.
+  - "\\cmmi cmmi \\cmr cmr \\msbm MSBM \\bbold bbold \\cmfi cmfi \\n\\cmss cmss \\cmtt
+    cmtt \\eurm eurm \\opens opens \r"
+  - "\\opens[] regular \\opens[b] bold \\opens[i] italic \\opens[bi] bold-italic\\n\\math
+    math styling\r"
+  - "\\size[.5-.25] from little pony to} \\size[1.5] a\\n giant lizard\\n\\size[..]A
+    tale from nobody\\n \\size[2]$12}.99\r"
+  - "\\color[yellow] color \\color[4] is \\color[a49] my \\color[#49fc] style}\\text[b],
+    bro!\r"
+  - "\\bg[brown] I know} {\\bg[yellow]\\color[black] something \\vbg[green]\\color[white]really}
+    \\n matters \\bg[purple] in life.\r"
+  - "\\rhold[5]{x}=\\lhold[5]{\\root a^2+b^2}\\n\\rhold[5]{x^2}=\\lhold[5]{a^2+b^2}\r"
+  - "\\meta[align=l kern=-.05 lead=2 left=.5 right=.5 para=1]\\n TEXDraw, just like
+    many other text generator, is designed for rendering some kind of text to show
+    in your display screen.\\n In TEXDraw, however, adds some functionality to render
+    any kind of mathematical expressions that is used in various apps like educational
+    software, scientific simulations, and many more.\\n\\meta[align=r lead=2 left=.5
+    right=.5]\\n With the power of Unity\u2019s built-in UI System and dynamic text
+    support, generating math expressions was never so easier and seamlessly than ever!\r"
+  - "\\trs[R-20] rotating stuff\\n \\mtrs[R20TY19] for} \\mtrs[R-10] fun\r"
+  - "\\meta[font=14 lead=0 left=0 right=0 line=0 space=0 para=0 align=l]\\n Lorem
+    ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue
+    massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero.\\n
+    Sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est.
+    Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada
+    fames ac turpis egestas.\\n Proin pharetra nonummy pede. Mauris et orci. Aenean
+    nec lorem. In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque
+    at, vulputate vitae, pretium mattis, nunc.\\n Mauris eget neque at sem venenatis
+    eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque
+    magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit.\\n Felis
+    et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+    Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat.
+    Sed at lorem in nunc porta tristique.\r"
+  - '\size[2] Checkout List\n\ltable[111120] \Name      &\Amount&\Qty&\Total |Book&$5&x4&$20
+    |Pen&$3&x5&$15 |Crissor&$4&x2&$8 |Ruler&$2&x6&$12\n Total:                       $55    '
+  - '\chat hi! I''d \heart you and\lookup your\key but I can''t \call you back at
+    \time. so, \wrongmark worry, i have an \idea: tomorrow, I''ll \flight to your
+    \placemark  to send my \gift, \heart and your \key  so you can \color{\smiley}
+    to me.'
   templateDisplays:
-  - 4672616374696f6e73
-  - 5261646963616c73
-  - 5375622f537570657273637269707473
-  - 4f7665722f556e64657273637269707473
-  - 426967204f70657261746f7273
-  - 496e74657273656374696e67206c696e6573
-  - 4d6174726978
-  - 4172726f7773
-  - 44656c696d6974657273
-  - 416363656e7473
-  - 437573746f6d20466f6e7473
-  - 437573746f6d205374796c65
-  - 437573746f6d2053697a65
-  - 437573746f6d20436f6c6f72
-  - 437573746f6d20486967686c69676874
-  - 437573746f6d20496e64656e746174696f6e
-  - 4d657461
-  - 3344205472616e73666f726d6174696f6e73
-  - 4c6f72656d20497073756d
-  - 5461626c65
-  - 53707269746573
+  - Fractions
+  - Radicals
+  - Sub/Superscripts
+  - Over/Underscripts
+  - Big Operators
+  - Intersecting lines
+  - Matrix
+  - Arrows
+  - Delimiters
+  - Accents
+  - Custom Fonts
+  - Custom Style
+  - Custom Size
+  - Custom Color
+  - Custom Highlight
+  - Custom Indentation
+  - Meta
+  - 3D Transformations
+  - Lorem Ipsum
+  - Table
+  - Sprites
   sizeOps: 14000000190000001e00000028000000320000003c00000050000000
   curSize: 3
   customFont: 15
@@ -681,16 +731,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
   m_Text: 
@@ -721,41 +768,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionTime: 0.1
   useRealtime: 0
-  normal:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  hover:
-    r: 0.9
-    g: 0.9
-    b: 0.9
-    a: 1
-  pressed:
-    r: 0.65
-    g: 0.65
-    b: 0.65
-    a: 1
-  after:
-    r: 0.7
-    g: 0.7
-    b: 1
-    a: 1
+  normal: {r: 1, g: 1, b: 1, a: 1}
+  hover: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  pressed: {r: 0.65, g: 0.65, b: 0.65, a: 1}
+  after: {r: 0.7, g: 0.7, b: 1, a: 1}
   m_OnLinkClicked:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 298026468}
-        m_MethodName: 4f70656e55524c
+        m_MethodName: OpenURL
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 556e697479456e67696e652e4f626a6563742c20556e697479456e67696e65
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: 5445584c696e6b436c69636b4576656e742c20417373656d626c792d4353686172702c2056657273696f6e3d302e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: TEXLinkClickEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &298026469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a110883d68e894bb97334b30c5c13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commands: 5c636d74745c756c696e6b
+  commands: \cmtt\ulink
 --- !u!114 &298026470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -985,19 +1017,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 48657265
+  m_Text: Here
   m_FontIndex: 15
   m_Size: 14
   m_AutoFit: 1
@@ -1785,19 +1814,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 52544c
+  m_Text: RTL
   m_FontIndex: 12
   m_Size: 50
   m_AutoFit: 1
@@ -2448,19 +2474,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2b
+  m_Text: +
   m_FontIndex: -1
   m_Size: 50
   m_AutoFit: 1
@@ -3508,19 +3531,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 4161
+  m_Text: Aa
   m_FontIndex: 15
   m_Size: 50
   m_AutoFit: 1
@@ -4974,19 +4994,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 0.503
+  m_Color: {r: 1, g: 1, b: 1, a: 0.503}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 5c746578745b695d20302e3030206d73
+  m_Text: \text[i] 0.00 ms
   m_FontIndex: 12
   m_Size: 20
   m_AutoFit: 1
@@ -5089,7 +5106,7 @@ Canvas:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1941775732}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
@@ -5098,6 +5115,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5366,19 +5384,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: 556e697479456e67696e652e55492e4d61736b61626c65477261706869632b43756c6c53746174654368616e6765644576656e742c20556e697479456e67696e652e55492c2056657273696f6e3d312e302e302e302c2043756c747572653d6e65757472616c2c205075626c69634b6579546f6b656e3d6e756c6c
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   debugReport: 
-  m_Text: 2d
+  m_Text: '-'
   m_FontIndex: -1
   m_Size: 50
   m_AutoFit: 1

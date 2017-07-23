@@ -11,10 +11,8 @@ public class TextLine : Line {
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Contructor
-	public TextLine(string displayText, string type){
-		RowList = new List<Row>();	
+	public TextLine(string displayText, string type):base(){
 		DisplayText = StringWrapper.HtmlToPlainText(displayText);
-		getLineType (type);
 	}
 	/// <summary>
 	/// Initializes a new instance of the TextLine class with HTMLNode attribute
@@ -24,19 +22,6 @@ public class TextLine : Line {
 		DisplayText = StringWrapper.HtmlToPlainText(line_node.InnerText);
 
 		prefabName = LocationManager.NAME_LATEX_TEXT_LINE;
-	}
-	override public void getLineType(string type_text){
-		switch (type_text) {
-		case "text": 
-			Type = LineType.Text;
-			break;
-		case "post_submit_text": 
-			Type = LineType.PostSubmitText;
-			break;
-		case "incorrect_submit_text": 
-			Type = LineType.IncorrectSubmitText;
-			break;
-		}
 	}
 
 

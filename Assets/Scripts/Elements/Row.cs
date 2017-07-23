@@ -6,11 +6,10 @@ using HtmlAgilityPack;
 public class Row : BaseElement {
 
 	//-------------Common Attributes -------------------
-	public enum RowType {Default,DragSource,HorizontalScroll};
-	public RowType Type{ get; set; }
+	public enum RowType {Default,DragSourceLine,HorizontalScroll};
+	public RowType Type = RowType.Default;
 
 
-	public Paragraph ParaRef;
 	public Paragraph.AlignType RowAlign;
 
 	//List of child cells
@@ -37,17 +36,15 @@ public class Row : BaseElement {
 	/// </summary>
 	public void getRowType(string type_text){
 		maxGridCellWidth = 0;
-		switch (type_text) {
-		case "drag_source_line":
-			Type = RowType.DragSource;
+		Type = (RowType)System.Enum.Parse (typeof(RowType),StringWrapper.ConvertToPascalCase(type_text),true);
+		switch (Type) {
+		case RowType.DragSourceLine:
 			prefabName = LocationManager.NAME_HORI_DRAG_SOURCE_LINE_ROW;
 			break;
-		case "horizontal_scroll":
-			Type = RowType.HorizontalScroll;
+		case RowType.HorizontalScroll:
 			prefabName = LocationManager.NAME_HORIZONTAL_SCROLL_ROW;
 			break;
 		default:
-			Type = RowType.Default;
 			prefabName = LocationManager.NAME_HORIZONTAL_SCROLL_ROW;
 			break;
 		}
@@ -133,6 +130,7 @@ public class Row : BaseElement {
 				}
 				//Populate Child Row nodes inside Cell Node
 //				newCell.parseCell (cell_node);
+				newCell.Type = (Cell.CellType)System.Enum.Parse (typeof(Cell.CellType),StringWrapper.ConvertToPascalCase(cell_type),true);
 				//Add Cell node into CellList
 				newCell.Parent = this;
 				CellList.Add (newCell);
@@ -220,7 +218,7 @@ public class Row : BaseElement {
 			//Updating Column count of Parent Table based on cell
 			updateTableColumn(parentGO);
 			break;
-		case RowType.DragSource:
+		case RowType.DragSourceLine:
 			GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_ROW_TYPE + prefabName)as GameObject;
 			rowGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
 			//making Grid child of ScrollView as parent
@@ -276,7 +274,7 @@ public class Row : BaseElement {
 	override public void updateGOProp(GameObject _elementGO){
 		Debug.Log ("Updating Grid cell width");
 		ElementGO = _elementGO;
-		if (Type == RowType.DragSource) {
+		if (Type == RowType.DragSourceLine) {
 			//making Grid child of ScrollView as parent
 			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (_elementGO, "ScrollView");
 			GameObject gridGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Grid");

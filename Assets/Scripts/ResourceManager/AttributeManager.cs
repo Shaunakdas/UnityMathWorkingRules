@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AttributeManager  {
-
 	public const string BODY_TAG = "body";
 	public const string TAG_BODY = "body",TAG_P = "p",TAG_LINE = "line",TAG_ROW="trow",TAG_CELL = "tcell";
+	public const string ATTR_INTERACTION = "interaction";
 	public const string ATTR_ANSWER = "answer",ATTR_TYPE="type";
 	public const string ATTR_COL_COUNT = "col";
 	//QuestionStep Paragraph
@@ -13,7 +13,7 @@ public class AttributeManager  {
 	//NumberLineDrop Line
 	public const string ATTR_LABEL_COUNT = "labelCount",ATTR_LABEL_INDEX = "labelIndex";
 	//NumberLineDropJump Line
-	public const string ATTR_DROP_START_INDEX="dropStartIndex",ATTR_DROP_COUNT="dropStartIndex",ATTR_JUMP_SIZE="attr_jump_size";
+	public const string ATTR_DROP_START_INDEX="dropStartIndex",ATTR_DROP_COUNT="dropStartIndex",ATTR_JUMP_SIZE="attrJumpSize";
 	//Combination Line 
 	public const string ATTR_OUTPUT_VISIBLE="outputVisible";
 	//DragSourceLine Row 

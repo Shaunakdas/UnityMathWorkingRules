@@ -12,12 +12,6 @@ public class FractionCell : Cell {
 	public FractionCell(string type):base(type){
 	}
 	/// <summary>
-	/// Set Cell Type
-	/// </summary>
-	override public void getCellType(string type_text){
-		Type = CellType.FractionTable;
-	}
-	/// <summary>
 	/// Initializes a new instance of the Cell class with HTMLNode attribute
 	/// </summary>
 	/// <param name="para">Para.</param>

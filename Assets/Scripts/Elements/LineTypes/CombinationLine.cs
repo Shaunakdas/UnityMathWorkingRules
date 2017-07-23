@@ -8,11 +8,9 @@ public class CombinationLine  : Line {
 	public int CorrectAnswer{get; set;}
 //	public List<Row> RowList {get; set;}
 	//Constructor
-	public CombinationLine(string outputVisible, string correctAnswer, string type){
-		RowList = new List<Row>();	
+	public CombinationLine(string outputVisible, string correctAnswer, string type):base(){
 		OutputVisible = (outputVisible=="1")?true : false;
 		CorrectAnswer = int.Parse (correctAnswer);
-		getLineType (type);
 	}
 	/// <summary>
 	/// Initializes a new instance of the CombinationLine class with HTMLNode attribute
@@ -23,18 +21,5 @@ public class CombinationLine  : Line {
 		CorrectAnswer = int.Parse(line_node.Attributes [AttributeManager.ATTR_ANSWER].Value);
 		OutputVisible = (line_node.Attributes [AttributeManager.ATTR_OUTPUT_VISIBLE].Value=="1")?true : false;
 		prefabName = LocationManager.NAME_COMBINATION_LINE;
-	}
-	override public void getLineType(string type_text){
-		switch (type_text) {
-		case "combination_product": 
-			Type = LineType.CombinationProduct;
-			break;
-		case "combination_product_sum": 
-			Type = LineType.CombinationProductSum;
-			break;
-		case "combination_sum": 
-			Type = LineType.CombinationSum;
-			break;
-		}
 	}
 }

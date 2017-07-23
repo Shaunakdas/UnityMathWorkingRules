@@ -8,13 +8,21 @@ public class BaseElement : MonoBehaviour {
 	public string prefabName{get; set;}
 	//Parent BaseElement
 	public BaseElement Parent{get; set;}
-
+	/// <summary>
+	/// Type of interaction in current element
+	/// </summary>
+	public enum Interaction{Drag,Drop,Select,Mixed,Display,Default};
+	public Interaction InteractionType = Interaction.Display;
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	/// <summary>
 	/// Parses the children nodes to create child elements
 	/// </summary>
 	/// <param name="elementNode">Element HTML node.</param>
 	virtual public void parseChildNode(HtmlNode elementNode){
+		HtmlAttribute attr_interact = elementNode.Attributes [AttributeManager.ATTR_INTERACTION];
+		if (attr_interact != null) {
+			InteractionType = (Interaction)System.Enum.Parse (typeof(Interaction),StringWrapper.ConvertToPascalCase(attr_interact.Value),true);
+		}
 	}
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
@@ -59,4 +67,5 @@ public class BaseElement : MonoBehaviour {
 	/// </summary>
 	virtual public void displayElementGO(){
 	}
+
 }

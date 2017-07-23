@@ -24,17 +24,12 @@ public class NumberLineLabelCell : Cell {
 
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
-	/// <summary>
-	/// Set NumberLineLabelCell  Type
-	/// </summary>
-	override public void getCellType(string type_text){
-		switch (type_text) {
-		case "number_line_label": 
-			Type = CellType.NumberLineLabel;
+	public void getLabelType(string type_text){
+		switch (Type) {
+		case CellType.NumberLineLabel: 
 			LineLabel = LabelType.Label;
 			break;
-		case "number_line_label_answer": 
-			Type = CellType.NumberLineLabelAnswer;
+		case CellType.NumberLineLabelAnswer: 
 			LineLabel = LabelType.LabelAnswer;
 			break;
 		}
@@ -47,6 +42,7 @@ public class NumberLineLabelCell : Cell {
 	public NumberLineLabelCell(HtmlNode cell_node):base(cell_node){
 		//		CellList = new List<Cell> ();
 		setDefaultProp ();
+		getLabelType(cell_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 		LabelIndex = int.Parse(cell_node.Attributes [AttributeManager.ATTR_LABEL_INDEX].Value);
 		prefabName = LocationManager.NAME_NUM_LINE_LABEL_CELL;
 		DisplayText = cell_node.InnerText;

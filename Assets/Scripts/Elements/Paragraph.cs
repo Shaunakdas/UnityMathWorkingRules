@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿	using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
@@ -41,14 +41,7 @@ public class Paragraph : BaseElement{
 	/// <param name="correctType">Correct type.</param>
 	public Paragraph(string correctType){
 		ParagraphRef = this;
-		switch (correctType) {
-		case "single_correct": 
-			ParagraphCorrect = CorrectType.SingleCorrect;
-			break;
-		case "multiple_correct": 
-			ParagraphCorrect = CorrectType.MultipleCorrect;
-			break;
-		}
+		ParagraphCorrect = (CorrectType)System.Enum.Parse (typeof(CorrectType),StringWrapper.ConvertToPascalCase(correctType),true);
 	}
 	/// <summary>
 	/// Initializes a new instance of the Paragraph class with HTMLNode attribute
@@ -59,43 +52,51 @@ public class Paragraph : BaseElement{
 		LineList = new List<Line> ();
 		Debug.Log ("Initializing paragraph node of type "+para_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 
+		HtmlAttribute align = para_node.Attributes [AttributeManager.ATTR_ALIGN];
+		HtmlAttribute correctCount = para_node.Attributes [AttributeManager.ATTR_CORRECT_TYPE];
 		switch (para_node.Attributes [AttributeManager.ATTR_TYPE].Value) {
 		case "comprehension": 
 			ParagraphStep = StepType.Comprehension;
 			prefabName = LocationManager.NAME_COMPREHENSION_PARA;
 //			prefabName = LocationManager.NAME_QUESTION_STEP_PARA;
-			switch (para_node.Attributes [AttributeManager.ATTR_ALIGN].Value) {
-			case "horizontal": 
-				ParagraphAlign = AlignType.Horizontal;
-				tableCol = 0;
-				break;
-			case "vertical": 
-				ParagraphAlign = AlignType.Vertical;
-				tableCol = 1;
-				break;
-			}
+//			switch (align.Value) {
+//			case "horizontal": 
+//				ParagraphAlign = AlignType.Horizontal;
+//				tableCol = 0;
+//				break;
+//			case "vertical": 
+//				ParagraphAlign = AlignType.Vertical;
+//				tableCol = 1;
+//				break;
+//			}
+			ParagraphAlign = (AlignType)System.Enum.Parse (typeof(AlignType),StringWrapper.ConvertToPascalCase(align.Value),true);
+			tableCol = (ParagraphAlign == AlignType.Vertical)? 1:0;
+
 			break;
 		case "question_step": 
 			ParagraphStep = StepType.QuestionStep;
 			prefabName = LocationManager.NAME_QUESTION_STEP_PARA;
-			switch (para_node.Attributes [AttributeManager.ATTR_CORRECT_TYPE].Value) {
-			case "single_correct": 
-				ParagraphCorrect = CorrectType.SingleCorrect;
-				break;
-			case "multiple_correct": 
-				ParagraphCorrect = CorrectType.MultipleCorrect;
-				break;
-			}
-			switch (para_node.Attributes [AttributeManager.ATTR_ALIGN].Value) {
-			case "horizontal": 
-				ParagraphAlign = AlignType.Horizontal;
-				tableCol = 0;
-				break;
-			case "vertical": 
-				ParagraphAlign = AlignType.Vertical;
-				tableCol = 1;
-				break;
-			}
+//			switch (para_node.Attributes [AttributeManager.ATTR_CORRECT_TYPE].Value) {
+//			case "single_correct": 
+//				ParagraphCorrect = CorrectType.SingleCorrect;
+//				break;
+//			case "multiple_correct": 
+//				ParagraphCorrect = CorrectType.MultipleCorrect;
+//				break;
+//			}
+			ParagraphCorrect = (CorrectType)System.Enum.Parse (typeof(CorrectType),StringWrapper.ConvertToPascalCase(correctCount.Value),true);
+//			switch (align.Value) {
+//			case "horizontal": 
+//				ParagraphAlign = AlignType.Horizontal;
+//				tableCol = 0;
+//				break;
+//			case "vertical": 
+//				ParagraphAlign = AlignType.Vertical;
+//				tableCol = 1;
+//				break;
+//			}
+			ParagraphAlign = (AlignType)System.Enum.Parse (typeof(AlignType),StringWrapper.ConvertToPascalCase(align.Value),true);
+			tableCol = (ParagraphAlign == AlignType.Vertical)? 1:0;
 			break;
 		}
 		parseChildNode (para_node);
@@ -129,6 +130,9 @@ public class Paragraph : BaseElement{
 					case "table": 
 						newLine = new TableLine (line_node);
 						break;
+					case "range_table": 
+						newLine = new RangeTableLine (line_node);
+						break;
 					case "prime_division": 
 						newLine = new PrimeDivisionLine (line_node);
 						break;
@@ -144,7 +148,7 @@ public class Paragraph : BaseElement{
 					}
 					//Populate Child Row nodes inside Line Node
 //				newLine.parseChildNode (line_node);
-
+					newLine.Type = (Line.LineType)System.Enum.Parse (typeof(Line.LineType),StringWrapper.ConvertToPascalCase(line_type),true);
 					newLine.Parent = this;
 					//Add Line node into LineList
 					LineList.Add (newLine);

@@ -8,10 +8,6 @@ public class DragSourceCell : Cell {
 	//-------------Common Attributes -------------------
 	public enum SeriesType{Integer,Prime};
 	public SeriesType SourceType;
-	//For Table type
-	//	public List<Row> RowList {get; set;}
-	public int ColumnCount {get; set;}
-	public int RowCount {get; set;}
 
 	public delegate void Dragged();
 	public event Dragged DroppedOnSurface;
@@ -40,21 +36,8 @@ public class DragSourceCell : Cell {
 		DisplayText = cell_node.InnerText;
 		prefabName = LocationManager.NAME_DRAG_SOURCE_CELL;
 	}
-	/// <summary>
-	/// Set Cell  Type
-	/// </summary>
-	override public void getCellType(string type_text){
-		if(type_text == "drag_source") Type = CellType.DragSource;
-	}
 	public void getSourceType(string source_type){
-		switch (source_type) {
-		case "integer": 
-			SourceType = SeriesType.Integer;
-			break;
-		case "prime": 
-			SourceType = SeriesType.Prime;
-			break;
-		}
+		SourceType = (SeriesType)System.Enum.Parse (typeof(SeriesType),StringWrapper.ConvertToPascalCase(source_type),true);
 	}
 
 

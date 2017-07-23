@@ -20,18 +20,10 @@ public class TextCell : Cell {
 	public TextCell(HtmlNode cell_node){
 		Debug.Log ("Initializing TextCell node of type "+ cell_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 		DisplayText = StringWrapper.HtmlToPlainText(cell_node.InnerText);
-		getCellType (cell_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 		prefabName = LocationManager.NAME_LATEX_TEXT_CELL;
 		parseChildNode (cell_node);
 
 //		Debug.Log ("Found TextCell node of content"+ DisplayText);
-	}
-	override public void getCellType(string type_text){
-		switch (type_text) {
-		case "text": 
-			Type = CellType.Text;
-			break;
-		}
 	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------

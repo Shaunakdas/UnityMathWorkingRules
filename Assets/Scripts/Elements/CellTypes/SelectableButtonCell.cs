@@ -26,12 +26,6 @@ public class SelectableButtonCell : Cell {
 		prefabName = LocationManager.NAME_SELECT_BTN_CELL;
 		DisplayText = cell_node.InnerText;
 	}
-	/// <summary>
-	/// Set SelectableButtonCell  Type
-	/// </summary>
-	override public void getCellType(string type_text){
-		if(type_text == "selectable_button") Type = CellType.SelectableButton;
-	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public GameObject generateElementGO(GameObject parentGO){

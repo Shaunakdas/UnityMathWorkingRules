@@ -20,13 +20,8 @@ public class Cell : TableLine {
 	}
 	public Cell(string type_text){
 		RowList = new List<Row> ();
-		getCellType (type_text);
 	}
-	/// <summary>
-	/// Set Cell  Type
-	/// </summary>
-	virtual public void getCellType(string type_text){
-	}
+
 	/// <summary>
 	/// Initializes a new instance of the Cell class with HTMLNode attribute
 	/// </summary>
@@ -35,7 +30,6 @@ public class Cell : TableLine {
 		RowList = new List<Row> ();
 		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing Cell node of type "+type_text);
-		getCellType (type_text);
 		parseChildNode (cell_node);
 	}
 	override public void parseChildNode(HtmlNode cell_node){

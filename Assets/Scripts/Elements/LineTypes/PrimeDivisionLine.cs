@@ -12,10 +12,8 @@ public class PrimeDivisionLine : Line {
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
-	public PrimeDivisionLine(string integer, string type){
-		RowList = new List<Row>();
-		TargetInt = int.Parse(integer);
-		getLineType (type);  
+	public PrimeDivisionLine(string integer, string type):base(){
+		TargetInt = int.Parse(integer); 
 	}
 	/// <summary>
 	/// Initializes a new instance of the TableLine class with HTMLNode attribute
@@ -26,13 +24,6 @@ public class PrimeDivisionLine : Line {
 		primeDivision = new PrimeDivision (TargetInt);
 
 		prefabName = LocationManager.NAME_PRIME_DIV_LINE;
-	}
-	override public void getLineType(string type_text){
-		switch (type_text) {
-		case "text": 
-			Type = LineType.PrimeDivision;
-			break;
-		}
 	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------

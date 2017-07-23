@@ -20,9 +20,7 @@ public class TableLine  : Line {
 	public TableLine(){
 	}
 	//Constructor
-	public TableLine(string type){
-		RowList = new List<Row>();
-		getLineType (type);
+	public TableLine(string type):base(){
 	}
 	/// <summary>
 	/// Initializes a new instance of the TableLine class with HTMLNode attribute
@@ -34,13 +32,7 @@ public class TableLine  : Line {
 		if (attr_col != null) {
 			ColumnCount = int.Parse (attr_col.Value);
 		}
-	}
-	override public void getLineType(string type_text){
-		switch (type_text) {
-		case "text": 
-			Type = LineType.Table;
-			break;
-		}
+
 	}
 
 

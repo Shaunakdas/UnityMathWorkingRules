@@ -21,22 +21,8 @@ public class TableCell : Cell {
 		RowList = new List<Row> ();
 		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing TableCell node of type "+type_text);
-		getCellType (type_text);
 		parseChildNode (cell_node);
 		prefabName = LocationManager.NAME_TABLE_CELL;
-	}
-	/// <summary>
-	/// Set Cell Type
-	/// </summary>
-	override public void getCellType(string type_text){
-		switch (type_text) {
-		case "fraction_table": 
-			Type = CellType.FractionTable;
-			break;
-		case "exponent_table": 
-			Type = CellType.ExponentTable;
-			break;
-		}
 	}
 	/// <summary>
 	/// Parses the parseTableCell Node to generate Row nodes

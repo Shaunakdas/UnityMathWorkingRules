@@ -66,19 +66,6 @@ public class DropZoneRowCell : Cell {
 		Touchable = false; Dropable = false;
 	}
 	/// <summary>
-	/// Set Cell  Type
-	/// </summary>
-	new public void getCellType(string type_text){
-		switch (type_text) {
-		case "drop_zone_row": 
-			Type = CellType.DropZoneRow;
-			break;
-		case "drop_zone": 
-			Type = CellType.DropZone;
-			break;
-		}
-	}
-	/// <summary>
 	/// Checking for "Tag" tag and populating CellTag with its value if present
 	/// </summary>
 	/// <param name="cell_node">Cell node.</param>

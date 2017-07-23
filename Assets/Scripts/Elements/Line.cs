@@ -9,7 +9,7 @@ public class Line : BaseElement{
 	//-------------Common Attributes -------------------
 	//What is the broad classification of line types?
 	public enum LineType {
-		Text,PostSubmitText,IncorrectSubmitText,Table,NumberLineDrop,
+		Text,PostSubmitText,IncorrectSubmitText,Table,RangeTable,NumberLineDrop,
 		NumberLineDropJump,NumberLineSelect,PrimeDivision,CombinationProduct,CombinationSum,CombinationProductSum
 	}
 	public LineType Type{ get; set; }
@@ -18,7 +18,7 @@ public class Line : BaseElement{
 	public enum LocationType{
 		Default,Top,Center,Bottom,Left,Right
 	}
-	public LocationType LineLocation { get; set; }
+	public LocationType LineLocation = LocationType.Default;
 
 	//List of child rows
 	public List<Row> RowList {get; set;}
@@ -27,6 +27,7 @@ public class Line : BaseElement{
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Constructor
 	public Line(){
+		RowList = new List<Row>();
 	}
 
 	/// <summary>
@@ -44,35 +45,33 @@ public class Line : BaseElement{
 		}
 	}
 	/// <summary>
-	/// Set Line Type
-	/// </summary>
-	virtual public void getLineType(string type_text){
-		RowList = new List<Row>();
-	}
-	/// <summary>
 	/// Set Location Type
 	/// </summary>
 	public void getLocationType(string type_text){
-		switch (type_text) {
-		case "top": 
-			LineLocation = LocationType.Top;
-			break;
-		case "bottom": 
-			LineLocation = LocationType.Bottom;
-			break;
-		case "center": 
-			LineLocation = LocationType.Center;
-			break;
-		case "left": 
-			LineLocation = LocationType.Left;
-			break;
-		case "right": 
-			LineLocation = LocationType.Right;
-			break;
-		default:
-			LineLocation = LocationType.Default;
-			break;
+//		switch (type_text) {
+//		case "top": 
+//			LineLocation = LocationType.Top;
+//			break;
+//		case "bottom": 
+//			LineLocation = LocationType.Bottom;
+//			break;
+//		case "center": 
+//			LineLocation = LocationType.Center;
+//			break;
+//		case "left": 
+//			LineLocation = LocationType.Left;
+//			break;
+//		case "right": 
+//			LineLocation = LocationType.Right;
+//			break;
+//		default:
+//			LineLocation = LocationType.Default;
+//			break;
+//		}
+		if(type_text != null){
+			LineLocation = (LocationType)System.Enum.Parse (typeof(LocationType),StringWrapper.ConvertToPascalCase(type_text),true);
 		}
+		Debug.Log ("LineLocation TYPE" + LineLocation.ToString());
 	}
 	/// <summary>
 	/// Initializes a new instance of the Line class with HTMLNode attribute
@@ -81,13 +80,14 @@ public class Line : BaseElement{
 	public Line(HtmlNode line_node){
 		RowList = new List<Row>();
 		string type_text = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-		getLineType (type_text);
 		parseChildNode (line_node);
 		if (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE] != null) {
 			getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
 		} else {
-			getLocationType ("");
+			getLocationType (null);
 		}
+		Interaction interactionType = (Interaction)System.Enum.Parse (typeof(Interaction),"drag",true);
+		Debug.Log ("INTERACTION TYPE" + interactionType.ToString());
 	}
 	/// <summary>
 	/// Parses the Line Node to generate Row nodes

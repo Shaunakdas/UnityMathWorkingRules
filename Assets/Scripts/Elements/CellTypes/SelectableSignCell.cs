@@ -22,12 +22,6 @@ public class SelectableSignCell : Cell {
 		TargetSign = (cell_node.Attributes [AttributeManager.ATTR_ANSWER].Value)=="1"? Sign.Positive:Sign.Negative;
 		prefabName = LocationManager.NAME_SELECT_SIGN_CELL;
 	}
-	/// <summary>
-	/// Set SelectableSignCell  Type
-	/// </summary>
-	override public void getCellType(string type_text){
-		if(type_text == "selectable_sign") Type = CellType.SelectableSign;
-	}
 
 
 

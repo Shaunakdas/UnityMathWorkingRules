@@ -22,19 +22,16 @@ public class NumberLineDropLine  : Line {
 	///<summary>
 	/// Constructor for NumberLine and NumberLineDrop
 	/// </summary>
-	public NumberLineDropLine(string labelCount, string type){	
+	public NumberLineDropLine(string labelCount, string type):base(){	
 		LabelCount = int.Parse(labelCount);
-		getLineType (type);
 	}
 
 	///<summary>
 	/// Constructor for NumberLineDropLine based on individual vaues
 	/// </summary>
-	public NumberLineDropLine(string labelCount,string dropStartIndex,string dropCount,string jumpSize, string type){
+	public NumberLineDropLine(string labelCount,string dropStartIndex,string dropCount,string jumpSize, string type):base(){
 		NumberMarkerList = new List<GameObject> ();
-		RowList = new List<Row>();	
 		LabelCount = int.Parse(labelCount);
-		getLineType (type);
 		if (type == "number_line_drop_jump") {
 			//Only for NumberLine Drop Jump
 			DropStartIndex = int.Parse (dropStartIndex);
@@ -61,21 +58,6 @@ public class NumberLineDropLine  : Line {
 		}
 
 		prefabName = LocationManager.NAME_NUM_LINE_DROP_LINE;
-	}
-
-
-	override public void getLineType(string type_text){
-		switch (type_text) {
-		case "number_line_drop": 
-			Type = LineType.NumberLineDrop;
-			break;
-		case "number_line_select": 
-			Type = LineType.NumberLineSelect;
-			break;
-		case "number_line_drop_jump": 
-			Type = LineType.NumberLineDropJump;
-			break;
-		}
 	}
 
 

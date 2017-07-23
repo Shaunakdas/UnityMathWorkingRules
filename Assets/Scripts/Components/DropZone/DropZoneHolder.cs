@@ -196,7 +196,7 @@ public class DropZoneHolder : TargetItemChecker {
 		Debug.Log ("Inside findCorrectDragItem");
 		foreach (Line line in ParagraphRef.LineList) {
 			foreach (Row row in line.RowList) {
-				if (row.Type == Row.RowType.DragSource) {
+				if (row.Type == Row.RowType.DragSourceLine) {
 					foreach (Cell cell in row.CellList) {
 						if (idCheck) {
 							if(cell.ElementGO.GetComponentInChildren<UILabel>().text == TargetTextList[0]){

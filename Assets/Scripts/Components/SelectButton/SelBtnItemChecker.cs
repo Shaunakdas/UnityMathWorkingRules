@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SelBtnItemChecker : MonoBehaviour {
-	public bool correctFlag{get; set;}
-	public bool userInputFlag;
+	public bool correctFlag = false;
+	public bool userInputFlag = false;
 	public GameObject SelBtnHolderGO;
+	public string DisplayText = "";
+	public bool HighlightOnCorrectSelection=true;
+
 
 	public void changeInputFlag(){
 		userInputFlag = !userInputFlag;

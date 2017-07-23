@@ -48,26 +48,6 @@ public class Line : BaseElement{
 	/// Set Location Type
 	/// </summary>
 	public void getLocationType(string type_text){
-//		switch (type_text) {
-//		case "top": 
-//			LineLocation = LocationType.Top;
-//			break;
-//		case "bottom": 
-//			LineLocation = LocationType.Bottom;
-//			break;
-//		case "center": 
-//			LineLocation = LocationType.Center;
-//			break;
-//		case "left": 
-//			LineLocation = LocationType.Left;
-//			break;
-//		case "right": 
-//			LineLocation = LocationType.Right;
-//			break;
-//		default:
-//			LineLocation = LocationType.Default;
-//			break;
-//		}
 		if(type_text != null){
 			LineLocation = (LocationType)System.Enum.Parse (typeof(LocationType),StringWrapper.ConvertToPascalCase(type_text),true);
 		}
@@ -86,8 +66,6 @@ public class Line : BaseElement{
 		} else {
 			getLocationType (null);
 		}
-		Interaction interactionType = (Interaction)System.Enum.Parse (typeof(Interaction),"drag",true);
-		Debug.Log ("INTERACTION TYPE" + interactionType.ToString());
 	}
 	/// <summary>
 	/// Parses the Line Node to generate Row nodes

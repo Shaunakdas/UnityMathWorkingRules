@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RestSharp.Contrib;
 using System.Text.RegularExpressions;
+using HtmlAgilityPack;
 public static class StringWrapper {
 
 	static List<string> oldStringUpper,newStringUpper,oldStringLower ,newStringLower;
@@ -113,10 +114,51 @@ public static class StringWrapper {
 	static public List<string> splitTargetText(string targetText){
 		return targetText.Split (';').ToList ();
 	}
+	static public List<int> splitTargetTextToInt(string targetText){
+		return targetText.Split (';').Select(int.Parse).ToList ();
+	}
 	public static string ConvertToCamelCase(string snakeCase){
 		return snakeCase.Split(new [] {"_"}, System.StringSplitOptions.RemoveEmptyEntries).Select(s => char.ToUpperInvariant(s[0]) + s.Substring(1, s.Length - 1)).Aggregate(string.Empty, (s1, s2) => s1 + s2);
 	}
 	public static string ConvertToPascalCase(string snakeCase){
 		return snakeCase.Split(new [] {"_"}, System.StringSplitOptions.RemoveEmptyEntries).Aggregate(string.Empty, (s1, s2) => s1 + s2);
 	}
+	public static string HtmlAttrValue(HtmlNode _node, string _attr){
+		HtmlAttribute attr_col = _node.Attributes [_attr];
+		if (attr_col != null) {
+			return (attr_col.Value);
+		} else {
+			return null;
+		}
+	}
+	public static int HtmlAttrValueInt(HtmlNode _node, string _attr){
+		HtmlAttribute attr_col = _node.Attributes [_attr];
+		if (attr_col != null) {
+			return int.Parse(attr_col.Value);
+		} else {
+			return 0;
+		}
+	}
+	public static bool HtmlAttrValueBool(HtmlNode _node, string _attr){
+		HtmlAttribute attr_col = _node.Attributes [_attr];
+		if (attr_col != null) {
+			return (attr_col.Value == "0")? false:true;
+		} else {
+			return false;
+		}
+	}
+	public static List<int> generateRandInRange(int start, int end, int count){
+		System.Random rnd = new System.Random();
+		int numbers;
+		List<int> listNumbers = new List<int>();
+		while (listNumbers.Count < count){
+			rnd = new System.Random();
+			numbers = rnd.Next(start+1,end);
+			if(!listNumbers.Contains(numbers)) {
+				listNumbers.Add(numbers);
+			}
+		}
+		return listNumbers;
+	}
+
 }

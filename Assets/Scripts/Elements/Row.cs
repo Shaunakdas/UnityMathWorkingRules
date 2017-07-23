@@ -24,7 +24,7 @@ public class Row : BaseElement {
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
 	public Row(){
-
+		CellList = new List<Cell> ();
 	}
 	public void getAlignType(){
 		RowAlign = Paragraph.ParagraphAlign;

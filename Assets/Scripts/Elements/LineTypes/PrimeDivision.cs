@@ -33,4 +33,32 @@ public class PrimeDivision  {
 		}
 		return dividends;
 	}
+	public static bool isPrime(int number)
+	{
+
+		if (number == 1) return false;
+		if (number == 2) return true;
+
+		for (int i = 2; i <= Mathf.Ceil(Mathf.Sqrt(number)); ++i)  {
+			if (number % i == 0)  return false;
+		}
+
+		return true;
+
+	}
+	public static int gcd(int first , int second){
+		int a = first;
+		int b = second;
+		int t;
+		while (b != 0)
+		{
+			t = b;
+			b = a % b;
+			a = t;
+		}
+		return a;
+	}
+	public static int lcm(int first , int second){
+		return ((first*second)/gcd(first,second));
+	}
 }

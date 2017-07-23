@@ -16,6 +16,8 @@ public class AttributeManager  {
 	public const string ATTR_DROP_START_INDEX="dropStartIndex",ATTR_DROP_COUNT="dropStartIndex",ATTR_JUMP_SIZE="attrJumpSize";
 	//Combination Line 
 	public const string ATTR_OUTPUT_VISIBLE="outputVisible";
+	//RangeTable Line
+	public const string ATTR_COUNT = "count",ATTR_SORT_ORDER = "sortOrder", ATTR_CORRECT_ITEM_TYPE = "correctItemType", ATTR_CORRECT_TARGET = "correctTarget", ATTR_ELIMINATE="eliminate", ATTR_CORRECTION_COUNT = "correctionCount";
 	//DragSourceLine Row 
 	public const string ATTR_START="start",ATTR_END="end",ATTR_SOURCE_TYPE="sourceType";
 	//DropZone Row

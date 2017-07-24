@@ -49,23 +49,23 @@ public class SelBtnHolder : TargetItemChecker {
 	public void checkChildCorrect(){
 		Debug.Log ("checkChildCorrect");
 		//Check for user selected Buttons
-		foreach (GameObject selBtnGO in SelBtnGOList) {
-			
-			SelBtnItemChecker itemChecker = selBtnGO.GetComponent<SelBtnItemChecker> ();
-			Debug.Log (itemChecker.userInputFlag);
-			Debug.Log (itemChecker.correctFlag);
-			if (itemChecker.userInputFlag) {
-				//CheckAnimation if userinputFlag is correct. Wait
-				if (itemChecker.correctFlag) {
-					itemChecker.correctAnim ();
-				} else {
-					itemChecker.incorrectAnim ();
-				}
-			}
-		}
+//		foreach (GameObject selBtnGO in SelBtnGOList) {
+//			
+//			SelBtnItemChecker itemChecker = selBtnGO.GetComponent<SelBtnItemChecker> ();
+//			Debug.Log (itemChecker.userInputFlag);
+//			Debug.Log (itemChecker.correctFlag);
+//			if (itemChecker.userInputFlag) {
+//				//CheckAnimation if userinputFlag is correct. Wait
+//				if (itemChecker.correctFlag) {
+//					itemChecker.correctAnim ();
+//				} else {
+//					itemChecker.incorrectAnim ();
+//				}
+//			}
+//		}
 		correctionAnim ();
-		deactivateAnim ();
-		nextAnimTrigger ();
+//		deactivateAnim ();
+//		nextAnimTrigger ();
 
 	}
 	void Awake(){
@@ -111,7 +111,7 @@ public class SelBtnHolder : TargetItemChecker {
 	override public void correctAnim(){
 		Debug.Log ("DropZoneRowCell CorrectAnim");
 		deactivateAnim ();
-		nextAnimTrigger ();
+//		nextAnimTrigger ();
 	}
 	/// <summary>
 	/// Incorrect animation.
@@ -119,7 +119,7 @@ public class SelBtnHolder : TargetItemChecker {
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim");
 		deactivateAnim ();
-		nextAnimTrigger ();
+//		nextAnimTrigger ();
 	}
 	/// <summary>
 	/// Correction animation.
@@ -127,15 +127,27 @@ public class SelBtnHolder : TargetItemChecker {
 	override public void correctionAnim(){
 		Debug.Log ("DropZoneRowCell CorrectionAnim");
 		//check in not user selected buttons
-		foreach (GameObject selBtnGO in SelBtnGOList) {
-			SelBtnItemChecker itemChecker = selBtnGO.GetComponent<SelBtnItemChecker> ();
-			if ((!itemChecker.userInputFlag)&&(itemChecker.correctFlag)) {
+//		foreach (GameObject selBtnGO in SelBtnGOList) {
+		for (int i=0;i<SelBtnGOList.Count; i++){
+			
+			SelBtnItemChecker itemChecker = SelBtnGOList[i].GetComponent<SelBtnItemChecker> ();
+			EventDelegate _nextEvent = null;
+			if (i == SelBtnGOList.Count - 1)
+				_nextEvent = new EventDelegate(nextAnimTrigger);
+			if (itemChecker.userInputFlag) {
+				//CheckAnimation if userinputFlag is correct. Wait
+				if (itemChecker.correctFlag) {
+					itemChecker.correctAnim (_nextEvent);
+				} else {
+					itemChecker.incorrectAnim (_nextEvent);
+				}
+			} else if (itemChecker.correctFlag) {
 				//Animation for showing the correct options
-				itemChecker.correctionAnim();
+				itemChecker.correctionAnim(_nextEvent);
 			}
 		}
 		deactivateAnim ();
-		nextAnimTrigger ();
+//		nextAnimTrigger ();
 	}
 	override public void nextAnimTrigger(){
 		Debug.Log ("nextAnimTrigger"+nextEvent.ToString());

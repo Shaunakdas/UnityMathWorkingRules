@@ -299,6 +299,13 @@ public class BasicGOOperation : MonoBehaviour{
 			return _elementGO.GetComponentInChildren<UIButton> ();
 		}
 	}
+	static public UISprite getFirstSprite(GameObject _elementGO){
+		if (_elementGO.GetComponent<UISprite> () != null) {
+			return _elementGO.GetComponent<UISprite> ();
+		} else {
+			return _elementGO.GetComponentInChildren<UISprite> ();
+		}
+	}
 }
 
 

@@ -45,6 +45,20 @@ public class AnimationManager : MonoBehaviour {
 	}
 	public void correctLocationAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Location (->Top->Bottom->Mid)X3, Colour(->Green)
+		UISprite elementSprite = _elementGO.GetComponent<UISprite>();
+		elementSprite.color = new Color (0f, 1f, 0f);
+		if (_elementGO.GetComponent<TweenPosition> () == null)
+			_elementGO.AddComponent<TweenPosition> ();
+		TweenPosition _tweenPos = _elementGO.GetComponent<TweenPosition> ();
+		Vector3 currentPos = elementSprite.transform.localPosition;
+		_tweenPos.from = new Vector3(currentPos.x,currentPos.y*1.05f,currentPos.z);
+		_tweenPos.to = new Vector3(currentPos.x,currentPos.y*0.98f,currentPos.z);
+		_tweenPos.animationCurve = new AnimationCurve (
+			new Keyframe (0f, 0f), new Keyframe (0.285f, 2f),  new Keyframe (0.524f, 0.33f),new Keyframe (0.72f, 1.66f),new Keyframe (0.86f, 0.66f), new Keyframe (1f, 1f)
+		);
+		_tweenPos.duration = ANIMATION_DURATION;
+		if (_nextEvent != null)
+			_tweenPos.onFinished.Add (_nextEvent);
 	}
 	public void correctExpandAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Depth(+10), Size(->Screen Size)

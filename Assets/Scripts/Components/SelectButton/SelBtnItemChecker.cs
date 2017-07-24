@@ -40,7 +40,7 @@ public class SelBtnItemChecker : MonoBehaviour {
 	public void correctionAnim(EventDelegate _nextEvent){
 		//Animation for ignoring the correct option
 		Debug.Log("correctionAnim Delegate");
-		animManager.correctAnim (1, gameObject, _nextEvent);
+		animManager.correctAnim (3, gameObject, _nextEvent);
 //			_nextEvent.Execute ();
 	}
 	void Awake(){

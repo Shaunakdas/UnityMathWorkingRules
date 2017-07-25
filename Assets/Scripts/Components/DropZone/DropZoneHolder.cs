@@ -80,15 +80,37 @@ public class DropZoneHolder : TargetItemChecker {
 		
 	}
 	//----------------------Animations ----------------------------
+	public void resultAnim(bool inputCorrect, DropZoneItemChecker itemChecker){
+		EventDelegate nextItemEvent = nextEvent;
+		int itemIndex = TargetOptionCheckerList.IndexOf (itemChecker);
+		if(inputCorrect){
+			itemChecker.correctAnim ();
+		}else{
+			itemChecker.incorrectAnim();
+		}
+		//If DropZone Holder doesn't has pending DropZoneItemChecker
+
+	}
+
 	/// <summary>
 	/// Getting active animation.
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	override public void activateAnim(){
 		Debug.Log ("activateAnim of DropZoneRowCell");
-		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
-			itemColor.enabled = true;
+		List<DropZoneItemChecker> DropZoneItemCheckerList = new List<DropZoneItemChecker> ();
+		foreach(DropZoneItemChecker itemChecker in gameObject.GetComponentsInChildren<DropZoneItemChecker>()){
+			Debug.Log (itemChecker.gameObject.name);
+			DropZoneItemCheckerList.Add (itemChecker); 
 		}
+		for (int i = 0; i < DropZoneItemCheckerList.Count; i++) {
+			EventDelegate nextItemEvent = nextEvent;
+			if (i < DropZoneItemCheckerList.Count - 1)
+				nextItemEvent = new EventDelegate (DropZoneItemCheckerList [i + 1].activateAnim);nextItemEvent.Execute ();Debug.Log (nextItemEvent.target.gameObject.name);
+			
+			DropZoneItemCheckerList[i].nextEvent = nextItemEvent;
+		}
+		DropZoneItemCheckerList [0].activateAnim();
 	}
 	/// <summary>
 	/// Getting active animation.
@@ -96,8 +118,8 @@ public class DropZoneHolder : TargetItemChecker {
 	/// <param name="_elementGO">Element G.</param>
 	override public void deactivateAnim(){
 		Debug.Log ("deactivateAnim of DropZoneRowCell");
-		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
-			itemColor.enabled = false;
+		foreach (DropZoneItemChecker itemChecker in TargetOptionCheckerList) {
+			itemChecker.deactivateAnim ();
 		}
 	}
 	/// <summary>
@@ -137,15 +159,7 @@ public class DropZoneHolder : TargetItemChecker {
 
 		targetCell.dragToDropZone (itemChecker.gameObject);
 	}
-	public void resultAnim(bool inputCorrect, DropZoneItemChecker itemChecker){
-		if(inputCorrect){
-			correctAnim (itemChecker);
-		}else{
-			incorrectAnim(itemChecker);
-		}
-		//If DropZone Holder doesn't has pending DropZoneItemChecker
 
-	}
 	/// <summary>
 	/// Finds the if another DropZoneItemChecker exists in masterList of list of DropZoneItemChecker in current DropZoneHolder
 	/// </summary>

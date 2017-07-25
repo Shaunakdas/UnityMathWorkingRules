@@ -8,8 +8,12 @@ public class DropZoneItemChecker : TargetOptionChecker {
 	public GameObject DropZoneHolderGO;
 	public string filledText{ get; set; }
 	public bool attempted{ get; set; }
+	AnimationManager animManager;
 	void Awake(){
 		ItemTargetType=TargetType.Option;
+		if (gameObject.GetComponent<AnimationManager> () == null)
+			gameObject.AddComponent<AnimationManager> ();
+		animManager = gameObject.GetComponent<AnimationManager> ();
 	}
 	// Use this for initialization
 	void Start () {
@@ -58,12 +62,67 @@ public class DropZoneItemChecker : TargetOptionChecker {
 	/// Getting active animation.
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
+
+	override public void activateAnim(){
+		//Animation for selecting the correct option
+		Debug.Log("activateAnim");
+		base.activateAnim();
+		gameObject.GetComponent<TweenColor>().enabled = true;
+	}
+	override public void activateAnim(EventDelegate _nextEvent){
+		//Animation for selecting the correct option
+		Debug.Log("activateAnim Delegate");
+		base.activateAnim (_nextEvent);
+		if (_nextEvent != null)
+			_nextEvent.Execute ();
+	}
 	override public void deactivateAnim(){
 		Debug.Log ("deactivateAnim of DropZoneRowCell");
-		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
-			itemColor.enabled = false;
-		}
+		base.deactivateAnim();
+		gameObject.GetComponent<TweenColor>().enabled = false;
 	}
-
+	override public void deactivateAnim(EventDelegate _nextEvent){
+		//Animation for selecting the correct option
+		Debug.Log("correctAnim Delegate");
+		base.deactivateAnim (_nextEvent);
+		if (_nextEvent != null)
+			_nextEvent.Execute ();
+	}
+	override public void correctAnim(){
+		//Animation for selecting the correct option
+		Debug.Log("correctAnim");
+		base.correctAnim();
+		animManager.correctAnim (1, gameObject, nextEvent);
+	}
+	override public void correctAnim(EventDelegate _nextEvent){
+		//Animation for selecting the correct option
+		Debug.Log("correctAnim Delegate");
+		base.correctAnim (_nextEvent);
+		animManager.correctAnim (1, gameObject, _nextEvent);
+	}
+	override public void incorrectAnim(){
+		//Animation for selecting the wrong option
+		Debug.Log("incorrectAnim");
+		base.incorrectAnim();
+		animManager.correctAnim (1, gameObject, nextEvent);
+	}
+	override public void incorrectAnim(EventDelegate _nextEvent){
+		//Animation for selecting the wrong option
+		Debug.Log("incorrectAnim Delegate");
+		base.incorrectAnim (_nextEvent);
+		animManager.correctAnim (1, gameObject, _nextEvent);
+	}
+	override public void correctionAnim(){
+		//Animation for ignoring the correct option
+		Debug.Log("correctionAnim");
+		base.correctionAnim();
+	}
+	override public void correctionAnim(EventDelegate _nextEvent){
+		//Animation for ignoring the correct option
+		Debug.Log("correctionAnim Delegate");
+		base.correctionAnim (_nextEvent);
+		animManager.correctAnim (3, gameObject, _nextEvent);
+		//			_nextEvent.Execute ();
+	}
 
 }

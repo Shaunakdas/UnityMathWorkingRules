@@ -62,7 +62,8 @@ public class Row : BaseElement {
 			string type_text = row_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 			Debug.Log ("Initializing Row node of type " + type_text);
 			getRowType (type_text);
-			initDragSourceCellList (row_node);
+			if (Type == RowType.DragSourceLine)
+				initDragSourceCellList (row_node);
 		} else {
 			Debug.Log ("Initializing Row node");
 		}
@@ -143,6 +144,7 @@ public class Row : BaseElement {
 			cell.ParagraphRef = this.ParagraphRef;
 			cell.setChildParagraphRef ();
 		}
+		addToParaDragSourceList ();
 	}
 	public void initDragSourceCellList(HtmlNode row_node){
 		HtmlAttribute attr_tag = row_node.Attributes [AttributeManager.ATTR_START];
@@ -185,6 +187,12 @@ public class Row : BaseElement {
 				}
 				break;
 			}
+		}
+
+	}
+	public void addToParaDragSourceList (){
+		if (Type == RowType.DragSourceLine) {
+			ParagraphRef.DragSourceTableList.Add (Parent as TableLine);
 		}
 	}
 	bool isPrime(int number)

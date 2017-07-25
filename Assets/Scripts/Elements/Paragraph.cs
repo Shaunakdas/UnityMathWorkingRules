@@ -30,6 +30,8 @@ public class Paragraph : BaseElement{
 	//Text to be displayed after completion of paragraph
 	public string postSubmitText{get; set;}
 
+	public List<TableLine> DragSourceTableList = new List<TableLine>();
+
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Contructor
 	public Paragraph(){
@@ -328,14 +330,6 @@ public class Paragraph : BaseElement{
 			LineList[i].hideElementGO ();
 		}
 		LineList[0].displayElementGO ();
-//		if(ParagraphStep == StepType.QuestionStep){
-//			for (int i = 0; i < LineList.Count - 1; i++) {
-//				LineList[i].hideElementGO ();
-//			}
-//			LineList[0].displayElementGO ();
-//		}else{
-//			BasicGOOperation.displayElementGO (ElementGO);
-//		}
 	}
 	/// <summary>
 	/// Sets up first Getting active animation.

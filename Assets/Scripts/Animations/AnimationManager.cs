@@ -26,6 +26,7 @@ public class AnimationManager : MonoBehaviour {
 	}
 	public void correctSizeAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Size (->Small->Big->Normal), Colour(->Green)
+
 		UISprite elementSprite = _elementGO.GetComponent<UISprite>();
 		elementSprite.color = new Color (0f, 1f, 0f);
 		if (_elementGO.GetComponent<TweenScale> () == null)
@@ -37,6 +38,7 @@ public class AnimationManager : MonoBehaviour {
 		);
 		_tweenScale.duration = ANIMATION_DURATION;
 		if (_nextEvent != null)
+//			Debug.Log (_nextEvent.methodName);
 			_tweenScale.onFinished.Add (_nextEvent);
 
 	}

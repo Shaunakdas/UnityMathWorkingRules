@@ -168,10 +168,11 @@ public class Line : BaseElement{
 		if (!lastFlag) {
 			nextEvent = new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO);
 		}
-		displayDragSourceLine ();
+
 		if (ElementGO.GetComponentsInChildren<TargetItemChecker>().Length > 0) {
 			//checking for TargetItemHolder
-			BasicGOOperation.displayElementGOAnim (ElementGO);
+			displayDragSourceLine ();
+			BasicGOOperation.displayElementGOAnim (ElementGO,null);
 			activateItemCheckerListAnim (nextEvent);
 
 		
@@ -179,6 +180,9 @@ public class Line : BaseElement{
 			//checking for UIButton
 			UIButton btn = BasicGOOperation.getFirstButton (ElementGO);
 			EventDelegate.Set (btn.onClick, nextEvent);
+
+		} else if ((this.Type == LineType.Table)&&(ParagraphRef.DragSourceTableList.Contains(this as TableLine))) {
+			nextEvent.Execute ();
 
 		} else {
 			//If no button or TargetItemHolder is present
@@ -192,16 +196,15 @@ public class Line : BaseElement{
 			EventDelegate nextLineEvent = nextEvent;
 			if (i < lineItemCheckerList.Count - 1)
 				nextLineEvent = new EventDelegate (lineItemCheckerList [i + 1].activateAnim);
-			activateItemCheckerAnim (lineItemCheckerList[i],nextLineEvent);
+			lineItemCheckerList [i].nextEvent = nextLineEvent;
 		}
-	}
-	public void activateItemCheckerAnim(TargetItemChecker _itemChecker, EventDelegate _nextEvent){
-		_itemChecker.nextEvent = _nextEvent;
-		_itemChecker.activateAnim ();
+		lineItemCheckerList [0].activateAnim ();
 	}
 	public void displayDragSourceLine(){
 		if (ElementGO.GetComponentInChildren<DropZoneItemChecker> () != null) {
-			
+			foreach (TableLine table in ParagraphRef.DragSourceTableList) {
+				BasicGOOperation.displayElementGOAnim (table.ElementGO,null);
+			}
 		}
 	}
 	 public void displayElementGO(EventDelegate nextAnim){

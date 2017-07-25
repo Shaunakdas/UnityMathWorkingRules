@@ -219,8 +219,15 @@ public class BasicGOOperation : MonoBehaviour{
 		} else {
 			foreach (Transform childTf in ParentGO.transform) {
 				UIWidget childWidget = childTf.gameObject.GetComponent<UIWidget> ();
-				if (childWidget != null){
+				if (childWidget != null) {
 					childWidget.alpha = 0f;
+				} else {
+					foreach (Transform grandChildTf in childTf) {
+						UIWidget grandChildWidget = grandChildTf.gameObject.GetComponent<UIWidget> ();
+						if (grandChildWidget != null) {
+							grandChildWidget.alpha = 0f;
+						}
+					}
 				}
 			}
 		}
@@ -233,18 +240,13 @@ public class BasicGOOperation : MonoBehaviour{
 				UIWidget childWidget = childTf.gameObject.GetComponent<UIWidget> ();
 				if (childWidget != null){
 					childWidget.alpha = 1f;
-				}
-			}
-		}
-	}
-	static public void displayElementGOAnim(GameObject ParentGO){
-		if (ParentGO.GetComponent<UIWidget> () != null) {
-			alphaAnim (ParentGO.GetComponent<UIWidget>(), 0f, 1f);
-		}else {
-			foreach (Transform childTf in ParentGO.transform) {
-				UIWidget childWidget = childTf.gameObject.GetComponent<UIWidget> ();
-				if (childWidget != null){
-					alphaAnim (childWidget, 0f, 1f);
+				} else {
+					foreach (Transform grandChildTf in childTf) {
+						UIWidget grandChildWidget = grandChildTf.gameObject.GetComponent<UIWidget> ();
+						if (grandChildWidget != null) {
+							grandChildWidget.alpha = 1f;
+						}
+					}
 				}
 			}
 		}
@@ -257,29 +259,22 @@ public class BasicGOOperation : MonoBehaviour{
 			//Go through the list of child transforms of ParentGO and start animation if they have UIWidget Component
 			for (int i = 0; i < ParentGO.transform.childCount; i++) {
 				UIWidget childWidget = ParentGO.transform.GetChild (i).GetComponent<UIWidget>();
-				if (childWidget != null){
-					if (i != ParentGO.transform.childCount - 1) {
-						alphaAnim (childWidget, 0f, 1f);
-					} else {
-						alphaAnim (childWidget, 0f, 1f, nextAnim);
+				EventDelegate nextWidgetAnim = null;
+				if (i == ParentGO.transform.childCount - 1) {
+					nextWidgetAnim = nextAnim;
+				}
+				if (childWidget != null) {
+					alphaAnim (childWidget, 0f, 1f, nextWidgetAnim);
+				} else {
+					foreach (Transform grandChildTf in ParentGO.transform.GetChild (i)) {
+						UIWidget grandChildWidget = grandChildTf.gameObject.GetComponent<UIWidget> ();
+						if (grandChildWidget != null) {
+							alphaAnim (grandChildWidget, 0f, 1f, nextWidgetAnim);
+						}
 					}
 				}
 			}
 		}
-	}
-	static public void alphaAnim(UIWidget _elementWidget, float _fromAlpha, float _toAlpha){
-		Debug.Log ("ALPHA ANIM 1"+_elementWidget.gameObject.name+_fromAlpha+_toAlpha);
-		if (_elementWidget.gameObject.GetComponent<TweenAlpha> () == null) {
-			_elementWidget.gameObject.AddComponent<TweenAlpha> ();
-		}
-		TweenAlpha elementTweenAlpha = _elementWidget.gameObject.GetComponent<TweenAlpha> ();
-		if (elementTweenAlpha != null) {
-			elementTweenAlpha.from = _fromAlpha; 
-			elementTweenAlpha.to = _toAlpha; 
-			elementTweenAlpha.duration = 2f;
-			elementTweenAlpha.Play (true);
-		}
-
 	}
 	static public void alphaAnim(UIWidget _elementWidget, float _fromAlpha, float _toAlpha, EventDelegate nextAnim){
 		Debug.Log ("ALPHA ANIM 2"+_elementWidget.gameObject.name+_fromAlpha+_toAlpha);
@@ -291,7 +286,8 @@ public class BasicGOOperation : MonoBehaviour{
 			elementTweenAlpha.from = _fromAlpha; 
 			elementTweenAlpha.to = _toAlpha; 
 			elementTweenAlpha.duration = 2f;
-			elementTweenAlpha.onFinished.Add (nextAnim);
+			if(nextAnim !=null)
+				elementTweenAlpha.onFinished.Add (nextAnim);
 			elementTweenAlpha.Play (true);
 
 		}

@@ -15,6 +15,7 @@ public class DropZoneHolder : TargetItemChecker {
 	/// </summary>
 	public List<List<DropZoneItemChecker>> ItemCheckerMasterList{ get; set; }
 	void Awake(){
+		ItemTargetType=TargetType.Item;
 		multipleHolderCheck = false;
 		ItemCheckerMasterList = new List<List<DropZoneItemChecker>> ();
 	}
@@ -25,7 +26,7 @@ public class DropZoneHolder : TargetItemChecker {
 
 	//----------------------Target Matching and checking mechanism ----------------------------
 	override public void addToTargetList(){
-		Paragraph.targetItemCheckerList.Add (this);
+		Paragraph.targetItemHolderList.Add (this);
 	}
 	public bool checkDropZoneItem(string inputText, DropZoneItemChecker itemChecker){
 		Debug.Log ("Holder: checkDropZoneItem for checking "+inputText);

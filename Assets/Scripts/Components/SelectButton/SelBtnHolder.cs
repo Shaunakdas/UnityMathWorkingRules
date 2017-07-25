@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SelBtnHolder : TargetItemChecker {
-	public List<GameObject> SelBtnGOList;
-	public int correctCount;
+//	public List<GameObject> SelBtnGOList;
+	public int correctCount = 0;
 	public int depth;
 	public void addSelectBtn(GameObject selBtnGO, bool correctFlag){
 		if (correctFlag)
 			correctCount++;
 		depth = selBtnGO.GetComponent<UIWidget> ().depth;
-		Debug.Log (selBtnGO.GetComponent<SelBtnItemChecker>().correctFlag);
-		if(SelBtnGOList.IndexOf(selBtnGO)== -1)
-			SelBtnGOList.Add (selBtnGO);
+		TargetOptionChecker itemChecker = selBtnGO.GetComponent<SelBtnItemChecker> ();
+		if(TargetOptionCheckerList.IndexOf(itemChecker)== -1)
+			TargetOptionCheckerList.Add (itemChecker);
 	}
 	public void setParentCorrectCount(Paragraph para, Line line){
 		if (correctCount > 1) {
@@ -69,8 +69,8 @@ public class SelBtnHolder : TargetItemChecker {
 
 	}
 	void Awake(){
+		ItemTargetType=TargetType.Item;
 		Debug.Log ("Awake of SelBtnHolder called");
-		correctCount = 0;SelBtnGOList = new List<GameObject> ();
 	}
 	// Use this for initialization
 	void Start () {
@@ -82,7 +82,7 @@ public class SelBtnHolder : TargetItemChecker {
 		
 	}
 	override public void addToTargetList(){
-		if(Paragraph.targetItemCheckerList.IndexOf(this) < 0) Paragraph.targetItemCheckerList.Add (this);
+		if(Paragraph.targetItemHolderList.IndexOf(this) < 0) Paragraph.targetItemHolderList.Add (this);
 	}
 	//----------------------Animations ----------------------------
 	/// <summary>
@@ -128,11 +128,11 @@ public class SelBtnHolder : TargetItemChecker {
 		Debug.Log ("DropZoneRowCell CorrectionAnim");
 		//check in not user selected buttons
 //		foreach (GameObject selBtnGO in SelBtnGOList) {
-		for (int i=0;i<SelBtnGOList.Count; i++){
+		for (int i=0;i<TargetOptionCheckerList.Count; i++){
 			
-			SelBtnItemChecker itemChecker = SelBtnGOList[i].GetComponent<SelBtnItemChecker> ();
+			SelBtnItemChecker itemChecker = TargetOptionCheckerList [i] as SelBtnItemChecker;
 			EventDelegate _nextEvent = null;
-			if (i == SelBtnGOList.Count - 1)
+			if (i == TargetOptionCheckerList.Count - 1)
 				_nextEvent = new EventDelegate(nextAnimTrigger);
 			if (itemChecker.userInputFlag) {
 				//CheckAnimation if userinputFlag is correct. Wait

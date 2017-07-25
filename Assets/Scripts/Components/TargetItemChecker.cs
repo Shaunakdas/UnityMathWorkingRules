@@ -2,55 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetItemChecker : MonoBehaviour {
-	public EventDelegate nextEvent;
-	public Paragraph ParagraphRef;
-	// Use this for initialization
-	void Start () {
-		
-	}
+public class TargetItemChecker : TargetOptionChecker {
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	virtual public void addToTargetList(){
-	}
-	//----------------------Animations ----------------------------
-	/// <summary>
-	/// Getting active animation.
-	/// </summary>
-	/// <param name="_elementGO">Element G.</param>
-	virtual public void activateAnim(){
-
-	}
-	/// <summary>
-	/// Getting active animation.
-	/// </summary>
-	/// <param name="_elementGO">Element G.</param>
-	virtual public void deactivateAnim(){
-	}
-	/// <summary>
-	/// Correct animation.
-	/// </summary>
-	virtual public void correctAnim(){
-
-	}
-	/// <summary>
-	/// Incorrect animation.
-	/// </summary>
-	virtual public void incorrectAnim(){
-
-	}
-	/// <summary>
-	/// Correction animation.
-	/// </summary>
-	virtual public void correctionAnim(){
-
-	}
-	/// <summary>
-	/// Triggers the next Animation.
-	/// </summary>
-	virtual public void nextAnimTrigger(){
+	//Holder to hold list of TargetItemChecker
+	public List<TargetOptionChecker> TargetOptionCheckerList = new List<TargetOptionChecker>();
+	void awake(){
+		ItemTargetType=TargetType.Item;
 	}
 }

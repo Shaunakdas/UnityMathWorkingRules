@@ -116,12 +116,17 @@ public class BasicGOOperation : MonoBehaviour{
 	/// Repositions all the table and grid in children GameObjects
 	/// </summary>
 	public static void RepositionChildTables(GameObject GO){
-		foreach (UITable table in GO.GetComponentsInChildren<UITable>()){
-//			Debug.Log ("Repositioning Table" + table.gameObject.name);
+		CheckAndRepositionTable (GO);
+		UITable[] tableArray = GO.GetComponentsInChildren<UITable>();
+		for(int i =0;i<tableArray.Length;i++){
+			UITable table = tableArray[tableArray.Length - 1 - i];
+			Debug.Log ("Repositioning Table" + table.gameObject.name );
 			table.Reposition ();
 		}
-		foreach (UIGrid grid in GO.GetComponentsInChildren<UIGrid>()){
-//			Debug.Log ("Repositioning Table" + grid.gameObject.name);
+		UIGrid[] gridArray = GO.GetComponentsInChildren<UIGrid>();
+		for(int i =0;i<gridArray.Length;i++){
+			UIGrid grid = gridArray[gridArray.Length - 1 - i];
+			Debug.Log ("Repositioning Table" + grid.gameObject.name );
 			grid.Reposition ();
 		}
 	}

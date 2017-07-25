@@ -169,31 +169,35 @@ public class Line : BaseElement{
 			nextEvent = new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO);
 		}
 		displayDragSourceLine ();
-		//checking for TargetItemChecker
 		if (ElementGO.GetComponentsInChildren<TargetItemChecker>().Length > 0) {
+			//checking for TargetItemHolder
 			BasicGOOperation.displayElementGOAnim (ElementGO);
 			activateItemCheckerListAnim (nextEvent);
+
+		
 		} else if (BasicGOOperation.getFirstButton(ElementGO)!=null) {
+			//checking for UIButton
 			UIButton btn = BasicGOOperation.getFirstButton (ElementGO);
 			EventDelegate.Set (btn.onClick, nextEvent);
+
 		} else {
-			//
+			//If no button or TargetItemHolder is present
 			BasicGOOperation.displayElementGOAnim (ElementGO, nextEvent);
 		}
 	}
 	public void activateItemCheckerListAnim(EventDelegate nextEvent){
-		//Going through all targetItemChecker in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
-		for(int i = 0; i < Paragraph.targetItemCheckerList.Count - 1; i++){
-			activateItemCheckerAnim (i,new EventDelegate (Paragraph.targetItemCheckerList [i + 1].activateAnim));
+		//Going through all targetItemHolder in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
+		List<TargetItemChecker> lineItemCheckerList = ElementGO.GetComponentsInChildren<TargetItemChecker>().ToList().FindAll(delegate(TargetItemChecker t) { return t.ItemTargetType == TargetOptionChecker.TargetType.Item; });
+		for(int i = 0; i < lineItemCheckerList.Count; i++){
+			EventDelegate nextLineEvent = nextEvent;
+			if (i < lineItemCheckerList.Count - 1)
+				nextLineEvent = new EventDelegate (lineItemCheckerList [i + 1].activateAnim);
+			activateItemCheckerAnim (lineItemCheckerList[i],nextLineEvent);
 		}
-		activateItemCheckerAnim (Paragraph.targetItemCheckerList.Count - 1,nextEvent);
 	}
-	public void activateItemCheckerAnim(int _lineIndex, EventDelegate _nextEvent){
-		TargetItemChecker itemChecker = Paragraph.targetItemCheckerList [_lineIndex];
-		if (ElementGO.GetComponentsInChildren<TargetItemChecker> ().Contains (itemChecker)) {
-			itemChecker.nextEvent = _nextEvent;
-			itemChecker.activateAnim ();
-		}
+	public void activateItemCheckerAnim(TargetItemChecker _itemChecker, EventDelegate _nextEvent){
+		_itemChecker.nextEvent = _nextEvent;
+		_itemChecker.activateAnim ();
 	}
 	public void displayDragSourceLine(){
 		if (ElementGO.GetComponentInChildren<DropZoneItemChecker> () != null) {

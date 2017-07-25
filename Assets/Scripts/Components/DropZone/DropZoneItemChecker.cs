@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropZoneItemChecker : TargetItemChecker {
+public class DropZoneItemChecker : TargetOptionChecker {
 	public BaseElement element;
 	public bool idCheck{ get; set; }
 	public GameObject DropZoneHolderGO;
 	public string filledText{ get; set; }
 	public bool attempted{ get; set; }
+	void Awake(){
+		ItemTargetType=TargetType.Option;
+	}
 	// Use this for initialization
 	void Start () {
 		idCheck = false;

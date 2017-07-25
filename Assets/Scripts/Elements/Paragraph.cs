@@ -25,7 +25,7 @@ public class Paragraph : BaseElement{
 	public List<Line> LineList{get; set;}
 
 	//List of target BaseElements
-	static public List<TargetItemChecker> targetItemCheckerList{get; set;}
+	static public List<TargetItemChecker> targetItemHolderList{get; set;}
 
 	//Text to be displayed after completion of paragraph
 	public string postSubmitText{get; set;}
@@ -216,7 +216,7 @@ public class Paragraph : BaseElement{
 	/// <param name="ElementGameObject">Element GameObject</param>
 	override public GameObject generateElementGO(GameObject parentGO){
 
-		targetItemCheckerList = new List<TargetItemChecker> ();
+		targetItemHolderList = new List<TargetItemChecker> ();
 		//Setting targetText of child drop zone cell;
 		populateCellTargetText ();
 		GameObject QuestionStepParaPF = Resources.Load (LocationManager.COMPLETE_LOC_PARAGRAPH_TYPE + prefabName)as GameObject;
@@ -247,7 +247,8 @@ public class Paragraph : BaseElement{
 			}
 			if (isCenterContentPresent)
 				resizeCenterContent (CenterContentGO, ParaContentTableGO);
-			BasicGOOperation.CheckAndRepositionTable (ParaContentTableGO);
+//			Debug.Log ("Post Line List Element Generation CheckAndRepositionTable"+);
+			BasicGOOperation.RepositionChildTables (ParaContentTableGO);
 //			setUpChildActiveAnim (targetItemCheckerList);
 
 			if (ParagraphStep == Paragraph.StepType.QuestionStep) {
@@ -340,20 +341,20 @@ public class Paragraph : BaseElement{
 	/// Sets up first Getting active animation.
 	/// </summary>
 	/// <param name="_targetItemCheckerList">Target item checker list.</param>
-	public void setUpChildActiveAnim(List<TargetItemChecker> _targetItemCheckerList){
-		Debug.Log ("setUpChildActiveAnim"+_targetItemCheckerList.Count.ToString());
-		if (_targetItemCheckerList.Count > 0)
-			_targetItemCheckerList [0].activateAnim ();
+	public void setUpChildActiveAnim(List<TargetItemChecker> _targetItemHolderList){
+		Debug.Log ("setUpChildActiveAnim"+_targetItemHolderList.Count.ToString());
+		if (_targetItemHolderList.Count > 0)
+			_targetItemHolderList [0].activateAnim ();
 	}
 	/// <summary>
 	/// Sets up the next target trigger
 	/// </summary>
 	/// <param name="itemChecker">Item checker.</param>
-	 public void nextTargetTrigger(TargetItemChecker itemChecker){
-		Debug.Log (targetItemCheckerList.Count);
-		int currentCounter = targetItemCheckerList.IndexOf (itemChecker);
-		if (currentCounter < targetItemCheckerList.Count-1) {
-			targetItemCheckerList [currentCounter + 1].activateAnim ();
+	public void nextTargetTrigger(TargetItemChecker itemHolder){
+		Debug.Log (targetItemHolderList.Count);
+		int currentCounter = targetItemHolderList.IndexOf (itemHolder);
+		if (currentCounter < targetItemHolderList.Count-1) {
+			targetItemHolderList [currentCounter + 1].activateAnim ();
 		} else {
 			finishQuestionStep ();
 		}

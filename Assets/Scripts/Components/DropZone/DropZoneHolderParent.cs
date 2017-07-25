@@ -28,6 +28,7 @@ public class DropZoneHolderParent : TargetItemChecker {
 		}
 	}
 	void Awake(){
+		ItemTargetType=TargetType.HolderParent;
 		dropZoneHolderList = new List<GameObject> ();
 	}
 	// Use this for initialization
@@ -40,7 +41,7 @@ public class DropZoneHolderParent : TargetItemChecker {
 		
 	}
 	override public void addToTargetList(){
-		Paragraph.targetItemCheckerList.Add (this);
+		Paragraph.targetItemHolderList.Add (this);
 	}
 	//----------------------Animations ----------------------------
 	/// <summary>

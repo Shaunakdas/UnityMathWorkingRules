@@ -214,7 +214,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1656673570579812}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.500004, y: -17.999996, z: 0}
+  m_LocalPosition: {x: 6.499998, y: -17.999989, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4071000202639370}
@@ -253,7 +253,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1536790987380846}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.999996, y: 24.999987, z: 0}
+  m_LocalPosition: {x: -11.000002, y: 25.00001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4784227450867696}
@@ -574,8 +574,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05b1aae174d04aa9b13e1d4d97d36ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemAttemptState: 0
+  nextEvent:
+    mTarget: {fileID: 0}
+    mMethodName: 
+    mParameters: []
+    oneShot: 0
+  ParagraphRef: {fileID: 0}
+  TimerAnimGO: {fileID: 0}
+  ItemTargetType: 0
+  correctFlag: 0
   userInputFlag: 0
   SelBtnHolderGO: {fileID: 0}
+  DisplayText: 
+  HighlightOnCorrectSelection: 1
 --- !u!114 &114663691786097678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -681,7 +693,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 48
   mHeight: 88
-  mDepth: 1
+  mDepth: 4
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -784,13 +796,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 1992285895780536}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  hover: {r: 0.29803923, g: 0.49411768, b: 0.8000001, a: 1}
   pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   duration: 0.2
   dragHighlight: 0
-  hoverSprite: Flat
-  pressedSprite: Button
+  hoverSprite: 
+  pressedSprite: Glow - Inner
   disabledSprite: Flat
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}

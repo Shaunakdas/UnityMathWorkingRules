@@ -7,7 +7,7 @@ public class TargetOptionChecker : MonoBehaviour {
 	public AttemptState itemAttemptState = AttemptState.Unseen;
 	public EventDelegate nextEvent;
 	public Paragraph ParagraphRef;
-
+	public GameObject TimerAnimGO = null;
 	public enum TargetType{Option,Item,Holder,HolderParent}
 	public TargetType ItemTargetType=TargetType.Option;
 	// Use this for initialization
@@ -23,9 +23,6 @@ public class TargetOptionChecker : MonoBehaviour {
 		itemAttemptState = AttemptState.Unseen;
 	}
 	//----------------------Animations ----------------------------
-	virtual public void trial(){
-		Debug.Log ("trial"+gameObject.name);
-	}
 	/// <summary>
 	/// Getting active animation.
 	/// </summary>
@@ -36,6 +33,14 @@ public class TargetOptionChecker : MonoBehaviour {
 	virtual public void activateAnimWithDelegate(EventDelegate _nextEvent){
 		itemAttemptState = AttemptState.Activated;
 	}
+
+	/// <summary>
+	/// Start Item Timer.
+	/// </summary>
+	/// <param name="_elementGO">Element G.</param>
+	virtual public void startTimerAnim(){
+	}
+
 	/// <summary>
 	/// Getting active animation.
 	/// </summary>

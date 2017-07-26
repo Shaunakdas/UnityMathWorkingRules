@@ -104,7 +104,7 @@ public class SelectableButtonCell : Cell {
 	}
 	public  SelBtnItemChecker updateItemChecker(GameObject _elementGO, bool _correctBool, GameObject _lineElementGO){
 		SelBtnItemChecker itemChecker= _elementGO.GetComponent<SelBtnItemChecker> ();
-		Debug.Log (_correctBool);
+//		Debug.Log (_correctBool);
 		itemChecker.correctFlag = _correctBool;itemChecker.SelBtnHolderGO = _lineElementGO;
 		//Adding SelBtrnGolder script to parent TableLine
 		if (_lineElementGO.GetComponent<SelBtnHolder>() == null)

@@ -54,7 +54,11 @@ public class DropZoneItemChecker : TargetOptionChecker {
 
 	// Update is called once per frame
 	void Update () {
-
+		if ((TimerAnimGO != null) && (TimerAnimGO.activeSelf)) {
+			if (itemAttemptState != AttemptState.Activated) {
+				NGUITools.Destroy (TimerAnimGO);
+			}
+		}
 	}
 	//----------------------Animations ----------------------------
 	/// <summary>
@@ -65,66 +69,49 @@ public class DropZoneItemChecker : TargetOptionChecker {
 	override public void activateAnim(){
 		//Animation for selecting the correct option
 		Debug.Log("activateAnim");
-		base.activateAnim();
-		gameObject.GetComponent<TweenColor>().enabled = true;
+		if (itemAttemptState != AttemptState.Activated) {
+			base.activateAnim ();
+			gameObject.GetComponent<TweenColor> ().enabled = true;
+			startTimerAnim ();
+		}
 	}
-	override public void activateAnimWithDelegate(EventDelegate _nextEvent){
-		//Animation for selecting the correct option
-		Debug.Log("activateAnim Delegate");
-		base.activateAnimWithDelegate (_nextEvent);
-		if (_nextEvent != null)
-			_nextEvent.Execute ();
+	override public void startTimerAnim(){
+		//Start Item Timer
+		if (itemAttemptState == AttemptState.Activated) {
+			TimerAnimGO = animManager.startTimerAnim(1,DropZoneHolderGO,new EventDelegate(correctionAnim),true);
+		}
+
 	}
 	override public void deactivateAnim(){
 		Debug.Log ("deactivateAnim of DropZoneRowCell");
 		base.deactivateAnim();
 		gameObject.GetComponent<TweenColor>().enabled = false;
 	}
-	override public void deactivateAnimWithDelegate(EventDelegate _nextEvent){
-		//Animation for selecting the correct option
-		Debug.Log("correctAnim Delegate");
-		base.deactivateAnimWithDelegate (_nextEvent);
-		if (_nextEvent != null)
-			_nextEvent.Execute ();
-	}
 	override public void correctAnim(){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim");
-		base.correctAnim();
-		deactivateAnim ();
-		animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem>().gameObject, nextEvent);
-	}
-	override public void correctAnimWithDelegate(EventDelegate _nextEvent){
-		//Animation for selecting the correct option
-		Debug.Log("correctAnim Delegate");
-		base.correctAnimWithDelegate (_nextEvent);
-		animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem>().gameObject, _nextEvent);
+		if (itemAttemptState == AttemptState.Attempted) {
+			base.correctAnim ();
+			deactivateAnim ();
+			animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem> ().gameObject, nextEvent);
+		}
 	}
 	override public void incorrectAnim(){
 		//Animation for selecting the wrong option
 		Debug.Log("incorrectAnim");
-		base.incorrectAnim();
-		deactivateAnim ();
-		animManager.incorrectAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem>().gameObject, new EventDelegate(correctionAnim),true);
-	}
-	override public void incorrectAnimWithDelegate(EventDelegate _nextEvent){
-		//Animation for selecting the wrong option
-		Debug.Log("incorrectAnim Delegate");
-		base.incorrectAnimWithDelegate (_nextEvent);
-		animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem>().gameObject, _nextEvent);
+		if (itemAttemptState == AttemptState.Attempted) {
+			base.incorrectAnim ();
+			animManager.incorrectAnim (2, gameObject, new EventDelegate (correctionAnim), true);
+		}
 	}
 	override public void correctionAnim(){
 		//Animation for ignoring the correct option
-		Debug.Log("correctionAnim");
-		base.correctionAnim();
-		DropZoneHolderGO.GetComponent<DropZoneHolder> ().correctionAnim (this, nextEvent);
-	}
-	override public void correctionAnimWithDelegate(EventDelegate _nextEvent){
-		//Animation for ignoring the correct option
-		Debug.Log("correctionAnim Delegate");
-		base.correctionAnimWithDelegate (_nextEvent);
-		animManager.correctAnim (3, gameObject, _nextEvent);
-		//			_nextEvent.Execute ();
+		Debug.Log("correctionAnim"+itemAttemptState.ToString());
+
+		if ((itemAttemptState == AttemptState.Activated)||(itemAttemptState == AttemptState.Checked)) {
+			base.correctionAnim ();
+			DropZoneHolderGO.GetComponent<DropZoneHolder> ().correctionAnim (this, nextEvent);
+		}
 	}
 
 }

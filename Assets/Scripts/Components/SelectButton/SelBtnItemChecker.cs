@@ -15,63 +15,65 @@ public class SelBtnItemChecker : TargetOptionChecker {
 		SelBtnHolderGO.GetComponent<SelBtnHolder> ().optionSelected ();
 	}
 	override public void activateAnim(){
-		//Animation for selecting the correct option
-		Debug.Log("correctAnim");
-		base.activateAnim();
+		//Animation for activate select button option
+		Debug.Log ("activateAnim");
+		if (itemAttemptState != AttemptState.Activated) {
+			base.activateAnim ();
+		}
 	}
-	override public void activateAnimWithDelegate(EventDelegate _nextEvent){
-		//Animation for selecting the correct option
-		Debug.Log("correctAnim Delegate");
-		base.activateAnimWithDelegate (_nextEvent);
-		if (_nextEvent != null)
-			_nextEvent.Execute ();
-	}
+//	override public void activateAnimWithDelegate(EventDelegate _nextEvent){
+//		//Animation for selecting the correct option
+//		Debug.Log("activateAnim Delegate");
+//		if (itemAttemptState != AttemptState.Activated) {
+//			base.activateAnimWithDelegate ();
+//			if (_nextEvent != null)
+//				_nextEvent.Execute ();
+//		}
+//	}
 	override public void deactivateAnim(){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim");
 		base.deactivateAnim();
 	}
-	override public void deactivateAnimWithDelegate(EventDelegate _nextEvent){
-		//Animation for selecting the correct option
-		Debug.Log("correctAnim Delegate");
-		base.deactivateAnimWithDelegate (_nextEvent);
-		if (_nextEvent != null)
-			_nextEvent.Execute ();
-	}
+//	override public void deactivateAnimWithDelegate(EventDelegate _nextEvent){
+//		//Animation for selecting the correct option
+//		Debug.Log("correctAnim Delegate");
+//		base.deactivateAnimWithDelegate (_nextEvent);
+//		if (_nextEvent != null)
+//			_nextEvent.Execute ();
+//	}
 	override public void correctAnim(){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim");
 		base.correctAnim();
+		animManager.correctAnim (1, gameObject, nextEvent);
 	}
-	override public void correctAnimWithDelegate(EventDelegate _nextEvent){
-		//Animation for selecting the correct option
-		Debug.Log("correctAnim Delegate");
-		base.correctAnimWithDelegate (_nextEvent);
-		if (_nextEvent != null)
-			_nextEvent.Execute ();
-	}
+//	override public void correctAnimWithDelegate(EventDelegate _nextEvent){
+//		//Animation for selecting the correct option
+//		Debug.Log("correctAnim Delegate");
+//		base.correctAnimWithDelegate (_nextEvent);
+//		if (_nextEvent != null)
+//			_nextEvent.Execute ();
+//	}
 	override public void incorrectAnim(){
 		//Animation for selecting the wrong option
 		Debug.Log("incorrectAnim");
 		base.incorrectAnim();
+		animManager.incorrectAnim (1, gameObject, nextEvent,false);
 	}
-	override public void incorrectAnimWithDelegate(EventDelegate _nextEvent){
-		//Animation for selecting the wrong option
-		Debug.Log("incorrectAnim Delegate");
-		base.incorrectAnimWithDelegate (_nextEvent);
-		animManager.correctAnim (1, gameObject, _nextEvent);
-	}
+//	override public void incorrectAnimWithDelegate(EventDelegate _nextEvent){
+//		//Animation for selecting the wrong option
+//		Debug.Log("incorrectAnim Delegate");
+//		base.incorrectAnimWithDelegate (_nextEvent);
+//		animManager.correctAnim (1, gameObject, _nextEvent);
+//	}
 	override public void correctionAnim(){
 		//Animation for ignoring the correct option
 		Debug.Log("correctionAnim");
-		base.correctionAnim();
-	}
-	override public void correctionAnimWithDelegate(EventDelegate _nextEvent){
-		//Animation for ignoring the correct option
-		Debug.Log("correctionAnim Delegate");
-		base.correctionAnimWithDelegate (_nextEvent);
-		animManager.correctAnim (3, gameObject, _nextEvent);
-//			_nextEvent.Execute ();
+		if ((itemAttemptState == AttemptState.Activated) || (itemAttemptState == AttemptState.Checked)) {
+			base.correctionAnim ();
+			animManager.correctAnim (1, gameObject, nextEvent);
+		}
 	}
 	void Awake(){
 		ItemTargetType=TargetType.Option;

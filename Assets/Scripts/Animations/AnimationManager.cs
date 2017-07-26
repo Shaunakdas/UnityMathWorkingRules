@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationManager : MonoBehaviour {
-	const float ANIMATION_DURATION = 1f;
+	const float ANIMATION_DURATION = 3f;
+	const float TIMER_ANIM_DURATION = 10f;
+	const float TIMER_WARNING_DELAY = 7f;
 	public void correctAnim(int _id, GameObject _elementGO, EventDelegate _nextEvent){
 		switch (_id) {
 		case 1:
@@ -26,7 +28,7 @@ public class AnimationManager : MonoBehaviour {
 	}
 	public void correctSizeAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Size (->Small->Big->Normal), Colour(->Green)
-		Debug.Log("correctAnim 1: Size (->Small->Big->Normal), Colour(->Green) ");
+		Debug.Log("correctAnim 1: Size (->Small->Big->Normal), Colour(->Green) "+(_nextEvent==null));
 		UISprite elementSprite = _elementGO.GetComponent<UISprite>();
 		elementSprite.color = new Color (0f, 1f, 0f);
 		if (_elementGO.GetComponent<TweenScale> () == null)
@@ -38,7 +40,7 @@ public class AnimationManager : MonoBehaviour {
 		);
 		_tweenScale.duration = ANIMATION_DURATION;
 		if (_nextEvent != null)
-//			Debug.Log (_nextEvent.methodName);
+			Debug.Log (_nextEvent.methodName);
 			_tweenScale.onFinished.Add (_nextEvent);
 
 	}
@@ -100,7 +102,7 @@ public class AnimationManager : MonoBehaviour {
 		if (_elementGO.GetComponent<TweenScale> () == null)
 			_elementGO.AddComponent<TweenScale> ();
 		TweenScale _tweenScale = _elementGO.GetComponent<TweenScale> ();
-		 _tweenScale.to.x = (elementSprite.transform.localScale.x*1.2f);
+		 _tweenScale.to.x = (elementSprite.transform.localScale.x*1.4f);
 		_tweenScale.animationCurve = new AnimationCurve (
 			new Keyframe (0f, 0f), new Keyframe (0.5f, 1.2f),  new Keyframe (0.75f, 0.8f), new Keyframe (1f, 1f)
 		);
@@ -114,6 +116,23 @@ public class AnimationManager : MonoBehaviour {
 	public void incorrectLocationAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
 		//Location (->Left->Right->Mid)X3 , Timer decreased by zooming into decrease sector of circle
 		Debug.Log("incorrectAnim 2: Location (->Left->Right->Mid)X3 ");
+		UISprite elementSprite = _elementGO.GetComponent<UISprite>();
+//		elementSprite.color = new Color (0f, 1f, 0f);
+		if (_elementGO.GetComponent<TweenPosition> () == null)
+			_elementGO.AddComponent<TweenPosition> ();
+		TweenPosition _tweenPos = _elementGO.GetComponent<TweenPosition> ();
+		Vector3 currentPos = elementSprite.transform.localPosition;
+		_tweenPos.from = new Vector3(currentPos.x*6f,currentPos.y,currentPos.z);
+		_tweenPos.to = new Vector3(currentPos.x*1f,currentPos.y,currentPos.z);
+		_tweenPos.animationCurve = new AnimationCurve (
+			new Keyframe (0f, 0f), new Keyframe (0.285f, 2f),  new Keyframe (0.524f, 0.33f),new Keyframe (0.72f, 1.66f),new Keyframe (0.86f, 0.66f), new Keyframe (1f, 1f)
+		);
+		_tweenPos.duration = ANIMATION_DURATION;
+		if((delete != null)&&delete){
+			EventDelegate.Set(_tweenPos.onFinished, delegate{ NGUITools.Destroy(_elementGO.GetComponentInChildren<CustomDragDropItem>().gameObject); });
+		}
+		if (_nextEvent != null)
+			_tweenPos.onFinished.Add (_nextEvent);
 	}
 	public void incorrectCrossAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
 		//Duplicate Sprite of same size Size(-> 1.2X), Colour Red, Cross(Center on Top)
@@ -161,8 +180,50 @@ public class AnimationManager : MonoBehaviour {
 		//
 	}
 
-	public void deleteGameObject(){
+	public GameObject startTimerAnim(int _id, GameObject _elementGO, EventDelegate _nextEvent, bool warning){
+		GameObject TimerAnimGO = null;
+		switch (_id) {
+		case 1:
+			TimerAnimGO = startBackgroundTimerAnim (_elementGO,_nextEvent, warning);
+			break;
+		case 2:
+//			correctionBackgroundAnim (_elementGO,_nextEvent);
+			break;
+		case 3:
+//			correctionTextOnTopAnim (_elementGO,_nextEvent);
+			break;
+		case 4:
+//			correctionDragAnim(_elementGO,_nextEvent);
+			break;
 
+		}
+		return TimerAnimGO;
+	}
+	public GameObject startBackgroundTimerAnim( GameObject _elementGO, EventDelegate _nextEvent,bool warning){
+		GameObject BGAnimPF = Resources.Load (LocationManager.COMPLETE_LOC_ANIM_TYPE + LocationManager.NAME_BG_TIMER_ANIM)as GameObject;
+		GameObject BGAnimGO = BasicGOOperation.InstantiateNGUIGO (BGAnimPF, _elementGO.transform);
+		//Setting size
+
+		BGAnimGO.GetComponent<UIWidget>().width = (int)NGUITools.screenSize.x;
+		BGAnimGO.GetComponent<UIWidget> ().height = (int)BasicGOOperation.ElementSize (_elementGO).y;
+		BGAnimGO.GetComponent<TweenFill> ().duration = TIMER_ANIM_DURATION;
+		if (warning)
+			startBackgroundWarningAnim (BGAnimGO);
+		if (_nextEvent != null)
+			BGAnimGO.GetComponent<TweenFill> ().onFinished.Add (_nextEvent);
+
+		Debug.Log(BGAnimGO.transform.position.x/BasicGOOperation.scale.x);
+		Debug.Log(BGAnimGO.transform.localPosition);
+		Vector3 currPos =  BGAnimGO.transform.position; 
+		BGAnimGO.transform.position = new Vector3 (0f,currPos.y,0f);
+		return BGAnimGO;
+	}
+	public void startBackgroundWarningAnim( GameObject _backgroundGO){
+		//starting warning Anim
+		TweenAlpha bgAlpha= _backgroundGO.GetComponent<TweenAlpha> ();
+		bgAlpha.duration = 1f;
+		bgAlpha.delay = TIMER_WARNING_DELAY;
+		bgAlpha.PlayForward ();
 	}
 	// Use this for initialization
 	void Start () {

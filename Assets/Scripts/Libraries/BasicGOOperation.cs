@@ -120,13 +120,13 @@ public class BasicGOOperation : MonoBehaviour{
 		UITable[] tableArray = GO.GetComponentsInChildren<UITable>();
 		for(int i =0;i<tableArray.Length;i++){
 			UITable table = tableArray[tableArray.Length - 1 - i];
-			Debug.Log ("Repositioning Table" + table.gameObject.name );
+//			Debug.Log ("Repositioning Table" + table.gameObject.name );
 			table.Reposition ();
 		}
 		UIGrid[] gridArray = GO.GetComponentsInChildren<UIGrid>();
 		for(int i =0;i<gridArray.Length;i++){
 			UIGrid grid = gridArray[gridArray.Length - 1 - i];
-			Debug.Log ("Repositioning Table" + grid.gameObject.name );
+//			Debug.Log ("Repositioning Table" + grid.gameObject.name );
 			grid.Reposition ();
 		}
 	}
@@ -213,7 +213,7 @@ public class BasicGOOperation : MonoBehaviour{
 		}
 	}
 	static public void hideElementGO(GameObject ParentGO){
-		Debug.Log ("HIDE ELEMENTGO"+ParentGO);
+//		Debug.Log ("HIDE ELEMENTGO"+ParentGO);
 		if (ParentGO.GetComponent<UIWidget> () != null) {
 			ParentGO.GetComponent<UIWidget> ().alpha = 0f;
 		} else {
@@ -277,7 +277,7 @@ public class BasicGOOperation : MonoBehaviour{
 		}
 	}
 	static public void alphaAnim(UIWidget _elementWidget, float _fromAlpha, float _toAlpha, EventDelegate nextAnim){
-		Debug.Log ("ALPHA ANIM 2"+_elementWidget.gameObject.name+_fromAlpha+_toAlpha);
+//		Debug.Log ("ALPHA ANIM 2"+_elementWidget.gameObject.name+_fromAlpha+_toAlpha);
 		if (_elementWidget.gameObject.GetComponent<TweenAlpha> () == null) {
 			_elementWidget.gameObject.AddComponent<TweenAlpha> ();
 		}

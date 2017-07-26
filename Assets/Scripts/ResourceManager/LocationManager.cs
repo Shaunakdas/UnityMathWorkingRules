@@ -76,5 +76,9 @@ public class LocationManager {
 	public const string NAME_EMPTY_CONTAINER = "EmptyContainer";
 	public const string NAME_START_WORKING_RULE_BTN = "StartWorkingRuleBtnPF";
 	public const string NAME_POST_SUBMIT_TABLE = "PostSubmitTablePF";
-
+	//Anim Types Location
+	public const string LOC_ANIM_TYPE = "AnimTypes/";
+	public const string COMPLETE_LOC_ANIM_TYPE = LOC_PREFAB_TYPE+LOC_ELEMENT_TYPE+LOC_ANIM_TYPE;
+	//Animas 
+	public const string NAME_BG_TIMER_ANIM = "BGTimerAnimPF";
 }

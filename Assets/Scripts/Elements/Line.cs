@@ -89,14 +89,30 @@ public class Line : BaseElement{
 	}
 
 	override public int siblingIndex(){
-		int index = 0;
-		Paragraph para = (Parent as Paragraph);
-		for (int i = 0; i < para.LineList.Count; i++) {
-			if (para.LineList [i].ElementGO == this.ElementGO) {
+		int index=0;
+		List<Line> lineList = (Parent as Paragraph).LineList;
+		Debug.Log (lineList.Count);
+		for (int i =0; i< lineList.Count ; i++){
+			Debug.Log (lineList[i].GetType());
+			Debug.Log (index + "index");
+			if (lineList [i].ElementGO == ElementGO) {
+				Debug.Log (i + "yayy");
 				index = i;
 			}
 		}
+		Debug.Log (index + "final");
 		return index;
+	}
+	public bool lastSibling(){
+		int index = 0;
+		Paragraph para = (Parent as Paragraph);
+		int dragLineCount = para.DragSourceTableList.Count;
+		Debug.Log (siblingIndex ().ToString()+para.LineList.Count.ToString()+dragLineCount.ToString());
+		if (siblingIndex () == para.LineList.Count - 1 - dragLineCount) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
@@ -163,14 +179,19 @@ public class Line : BaseElement{
 		BasicGOOperation.hideElementGO (ElementGO);
 	}
 	override public void displayElementGO(){
-		bool lastFlag = (siblingIndex () == ParagraphRef.LineList.Count-1);
 		EventDelegate nextEvent = new EventDelegate (ParagraphRef.finishQuestionStep);
-		if (!lastFlag) {
+		if (!lastSibling()) {
 			nextEvent = new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO);
 		}
+		Debug.Log ("NEXT EVENT"+ElementGO.name+this.siblingIndex ().ToString()+this.lastSibling().ToString());
+		if (nextEvent.target != null) {
+			Debug.Log (nextEvent.target.name);
+		}
 
+		//Check for Interaction elements in Line ElementGO
 		if (ElementGO.GetComponentsInChildren<TargetItemChecker>().Length > 0) {
 			//checking for TargetItemHolder
+			Debug.Log ("Element Display Anim:Checking for Target Item Checker");
 			displayDragSourceLine ();
 			BasicGOOperation.displayElementGOAnim (ElementGO,null);
 			activateItemCheckerListAnim (nextEvent);
@@ -178,14 +199,18 @@ public class Line : BaseElement{
 		
 		} else if (BasicGOOperation.getFirstButton(ElementGO)!=null) {
 			//checking for UIButton
+			Debug.Log ("Element Display Anim:Checking for UIButton");
 			UIButton btn = BasicGOOperation.getFirstButton (ElementGO);
 			EventDelegate.Set (btn.onClick, nextEvent);
 
 		} else if ((this.Type == LineType.Table)&&(ParagraphRef.DragSourceTableList.Contains(this as TableLine))) {
+			//Checking for DragSourceLine Table
+			Debug.Log ("Element Display Anim:Checking for DragSourceLine Table");
 			nextEvent.Execute ();
 
 		} else {
-			//If no button or TargetItemHolder is present
+			Debug.Log ("Element Display Anim: No Interaction Element is present");
+			//If no interaction element is present
 			BasicGOOperation.displayElementGOAnim (ElementGO, nextEvent);
 		}
 	}

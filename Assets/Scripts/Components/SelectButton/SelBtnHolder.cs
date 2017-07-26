@@ -129,21 +129,25 @@ public class SelBtnHolder : TargetItemChecker {
 		//check in not user selected buttons
 //		foreach (GameObject selBtnGO in SelBtnGOList) {
 		for (int i=0;i<TargetOptionCheckerList.Count; i++){
-			
 			SelBtnItemChecker itemChecker = TargetOptionCheckerList [i] as SelBtnItemChecker;
+			itemChecker.itemAttemptState = AttemptState.Attempted;
 			EventDelegate _nextEvent = null;
 			if (i == TargetOptionCheckerList.Count - 1)
 				_nextEvent = new EventDelegate(nextAnimTrigger);
 			if (itemChecker.userInputFlag) {
 				//CheckAnimation if userinputFlag is correct. Wait
 				if (itemChecker.correctFlag) {
-					itemChecker.correctAnimWithDelegate (_nextEvent);
+					itemChecker.nextEvent = _nextEvent;itemChecker.correctAnim ();
+//					itemChecker.correctAnimWithDelegate (_nextEvent);
 				} else {
-					itemChecker.incorrectAnimWithDelegate (_nextEvent);
+					itemChecker.nextEvent = _nextEvent;itemChecker.incorrectAnim ();
+//					itemChecker.incorrectAnimWithDelegate (_nextEvent);
 				}
 			} else if (itemChecker.correctFlag) {
+				itemChecker.itemAttemptState = AttemptState.Checked;
 				//Animation for showing the correct options
-				itemChecker.correctionAnimWithDelegate(_nextEvent);
+				itemChecker.nextEvent = _nextEvent;itemChecker.correctionAnim ();
+//				itemChecker.correctionAnimWithDelegate(_nextEvent);
 			}
 		}
 		deactivateAnim ();

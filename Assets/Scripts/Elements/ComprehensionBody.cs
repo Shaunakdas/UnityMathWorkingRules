@@ -115,7 +115,7 @@ public class ComprehensionBody : BaseElement {
 		GameObject ParaCounterTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaCounterTable");
 		foreach (Transform paraCounterTf in ParaCounterTableGO.transform) {
 			Color counterColor = paraCounterTf.gameObject.GetComponent<UISprite> ().color;
-			Debug.Log ("color of Counter Sprite"+counterColor.a.ToString());
+//			Debug.Log ("color of Counter Sprite"+counterColor.a.ToString());
 			if (paraCounterTf.GetSiblingIndex() != CurrentParaCounter - 1) {
 				counterColor.a = 0.5f;
 			} else {

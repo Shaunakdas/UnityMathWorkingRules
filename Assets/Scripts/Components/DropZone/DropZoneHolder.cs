@@ -81,6 +81,7 @@ public class DropZoneHolder : TargetItemChecker {
 	}
 	//----------------------Animations ----------------------------
 	public void resultAnim(bool inputCorrect, DropZoneItemChecker itemChecker){
+		itemChecker.itemAttemptState = AttemptState.Attempted;
 		EventDelegate nextItemEvent = nextEvent;
 		int itemIndex = TargetOptionCheckerList.IndexOf (itemChecker);
 		if(inputCorrect){
@@ -130,8 +131,8 @@ public class DropZoneHolder : TargetItemChecker {
 	}
 	public void correctAnim(DropZoneItemChecker itemChecker){
 		Debug.Log ("DropZoneRowCell CorrectAnim");
-		if (!nextItemChecker (itemChecker))
-			nextTargetTrigger ();
+//		if (!nextItemChecker (itemChecker))
+//			nextTargetTrigger ();
 	}
 	/// <summary>
 	/// Incorrect animation.
@@ -152,20 +153,20 @@ public class DropZoneHolder : TargetItemChecker {
 	public void correctionAnim(DropZoneItemChecker itemChecker){
 		Debug.Log ("DropZoneRowCell correctionAnim");
 		DragSourceCell targetCell = findCorrectDragItem(itemChecker);
-		targetCell.DroppedOnSurface += delegate {
-			if (!nextItemChecker (itemChecker))
-				nextTargetTrigger ();
-		};
+//		targetCell.DroppedOnSurface += delegate {
+//			if (!nextItemChecker (itemChecker))
+//				nextTargetTrigger ();
+//		};
 
 		targetCell.dragToDropZone (itemChecker.gameObject,null);
 	}
 	public void correctionAnim(DropZoneItemChecker itemChecker,EventDelegate _nextEvent){
 		Debug.Log ("DropZoneRowCell correctionAnim");
 		DragSourceCell targetCell = findCorrectDragItem(itemChecker);
-		targetCell.DroppedOnSurface += delegate {
-			if (!nextItemChecker (itemChecker))
-				nextTargetTrigger ();
-		};
+//		targetCell.DroppedOnSurface += delegate {
+//			if (!nextItemChecker (itemChecker))
+//				nextTargetTrigger ();
+//		};
 
 		targetCell.dragToDropZone (itemChecker.gameObject,_nextEvent);
 	}

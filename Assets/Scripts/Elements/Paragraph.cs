@@ -32,6 +32,8 @@ public class Paragraph : BaseElement{
 
 	public List<TableLine> DragSourceTableList = new List<TableLine>();
 
+	public int correctAnswerCount = 0;
+
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Contructor
 	public Paragraph(){
@@ -231,6 +233,7 @@ public class Paragraph : BaseElement{
 			//Adding QuestionStepParaPF to the root GameObject
 			GameObject QuestionStepParaGO = BasicGOOperation.InstantiateNGUIGO(QuestionStepParaPF,parentGO.transform);
 			ElementGO = QuestionStepParaGO;
+			//Setting height of Paragraph ElementGO
 			ParaContentTableGO = BasicGOOperation.getChildGameObject (QuestionStepParaGO, "ParaContentTable");
 			ParaContentTableGO.GetComponent<UITable> ().columns = tableCol;
 			//Checking for Center Content Scroll View
@@ -250,6 +253,7 @@ public class Paragraph : BaseElement{
 			if (isCenterContentPresent)
 				resizeCenterContent (CenterContentGO, ParaContentTableGO);
 //			Debug.Log ("Post Line List Element Generation CheckAndRepositionTable"+);
+			updateGOProp(ElementGO);
 			BasicGOOperation.RepositionChildTables (ParaContentTableGO);
 //			setUpChildActiveAnim (targetItemCheckerList);
 
@@ -259,6 +263,11 @@ public class Paragraph : BaseElement{
 			}
 		}
 		return ParaContentTableGO;
+	}
+	override public void updateGOProp(GameObject _elementGO){
+		if (ParagraphStep == Paragraph.StepType.Comprehension) {
+			ScreenManager.SetAsScreenSize (ElementGO);
+		}
 	}
 	/// <summary>
 	/// Resizes the content of the Center Scroll View.

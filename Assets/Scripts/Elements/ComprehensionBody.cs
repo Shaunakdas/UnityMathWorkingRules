@@ -10,6 +10,7 @@ public class ComprehensionBody : BaseElement {
 	public List<Paragraph> ParagraphList{get; set;}
 	public int CurrentParaCounter{ get; set; }
 	public Paragraph comprehensionParaElem;
+	public ScoreManager scoreMan;
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Contructor
 	public ComprehensionBody(){
@@ -23,6 +24,7 @@ public class ComprehensionBody : BaseElement {
 
 		prefabName = LocationManager.NAME_COMPREHENSION_BODY;
 		parseChildNode (body_node);
+		scoreMan = new ScoreManager ();
 	}
 
 	/// <summary>
@@ -55,6 +57,7 @@ public class ComprehensionBody : BaseElement {
 
 		GameObject ComprehensionBodyPF = Resources.Load (LocationManager.COMPLETE_LOC_BODY_TYPE + prefabName)as GameObject;
 		ElementGO = BasicGOOperation.InstantiateNGUIGO(ComprehensionBodyPF,parentGO.transform);
+		updateSize (ElementGO);
 		if(true){
 //			Paragraph is of type QuestionStep
 			int StepCounter =1;
@@ -75,13 +78,30 @@ public class ComprehensionBody : BaseElement {
 
 			}
 			ParaCounterTableGO.transform.SetAsLastSibling ();
+
+			//ScoreTable
+			scoreMan.init(ParagraphList.Count);
+			updateGOProp(ElementGO);
 			BasicGOOperation.RepositionChildTables (ElementGO);
 //			setUpChildActiveAnim (targetItemCheckerList);
 		}
 		return ElementGO;
 	}
-
-
+	override public void updateGOProp(GameObject _elementGO){
+		//Setting ParaCounterTable as screen bottom
+		GameObject ParaTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaTable");
+		ScreenManager.SetTableAsScreenBottom (ParaTableGO);
+	}
+	public void updateSize(GameObject _elementGO){
+		ScreenManager.SetAsScreenSize (_elementGO); setRootSize (_elementGO);
+	}
+	public void setRootSize(GameObject _elementGO){
+		UIRoot Root = ElementGO.GetComponentInParent<UIRoot> (); 
+		Root.manualHeight = Screen.height; Root.manualWidth = Screen.width; 
+	}
+	public void setScale(){
+		BasicGOOperation.scale = ElementGO.GetComponentInParent<UIRoot> ().transform.localScale;
+	}
 	//----------------------Animations ----------------------------
 	public bool checkForNextPara(){
 		return (CurrentParaCounter  < (ParagraphList.Count-1));

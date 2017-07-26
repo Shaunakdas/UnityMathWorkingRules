@@ -95,6 +95,9 @@ public class SelBtnHolder : TargetItemChecker {
 			itemColor.enabled = true;
 		}
 	}
+	override public void startTimerAnim (){
+		
+	}
 	/// <summary>
 	/// Getting active animation.
 	/// </summary>

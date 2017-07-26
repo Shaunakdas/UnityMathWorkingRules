@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b3a3e243718f940c0bff507c8022f9b8
-timeCreated: 1498550233
+timeCreated: 1501087631
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -73,6 +73,7 @@ TextureImporter:
     21300132: White1x_66
     21300134: White1x_67
     21300136: White1x_68
+    21300138: White1x_69
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -135,6 +136,14 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -147,9 +156,17 @@ TextureImporter:
         width: 50
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -10, y: 20}
+        - {x: -25, y: 3}
+        - {x: -25, y: -5}
+        - {x: -15, y: -20}
+        - {x: 6, y: -20}
+        - {x: 25, y: -12}
+        - {x: 25, y: 12}
+        - {x: -1, y: 20}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_1
@@ -160,9 +177,17 @@ TextureImporter:
         width: 51
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -8.5, y: 20}
+        - {x: -25.5, y: 14}
+        - {x: -25.5, y: -13}
+        - {x: -2.5, y: -20}
+        - {x: 12.5, y: -20}
+        - {x: 25.5, y: -5}
+        - {x: 25.5, y: 4}
+        - {x: 15.5, y: 20}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_2
@@ -173,9 +198,17 @@ TextureImporter:
         width: 39
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -4.5, y: 25.5}
+        - {x: -19.5, y: 15.5}
+        - {x: -19.5, y: -6.5}
+        - {x: -11.5, y: -25.5}
+        - {x: 11.5, y: -25.5}
+        - {x: 19.5, y: 1.5}
+        - {x: 19.5, y: 9.5}
+        - {x: 3.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_3
@@ -186,9 +219,17 @@ TextureImporter:
         width: 40
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -12, y: 25.5}
+        - {x: -20, y: -0.5}
+        - {x: -20, y: -8.5}
+        - {x: -3, y: -25.5}
+        - {x: 4, y: -25.5}
+        - {x: 20, y: -15.5}
+        - {x: 20, y: 15.5}
+        - {x: 17, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_4
@@ -199,9 +240,15 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -25.5, y: 25.5}
+        - {x: -25.5, y: -10.5}
+        - {x: -10.5, y: -25.5}
+        - {x: 25.5, y: -25.5}
+        - {x: 25.5, y: 12.5}
+        - {x: 19.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_5
@@ -212,9 +259,16 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -15.5, y: 25.5}
+        - {x: -25.5, y: 0.5}
+        - {x: -25.5, y: -20.5}
+        - {x: -19.5, y: -25.5}
+        - {x: -1.5, y: -25.5}
+        - {x: 25.5, y: -14.5}
+        - {x: 25.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_6
@@ -225,9 +279,16 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -25.5, y: 25.5}
+        - {x: -25.5, y: -14.5}
+        - {x: 4.5, y: -25.5}
+        - {x: 12.5, y: -25.5}
+        - {x: 25.5, y: -12.5}
+        - {x: 25.5, y: -5.5}
+        - {x: 10.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_7
@@ -238,9 +299,16 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -2.5, y: 25.5}
+        - {x: -25.5, y: 16.5}
+        - {x: -25.5, y: -25.5}
+        - {x: 14.5, y: -25.5}
+        - {x: 25.5, y: 5.5}
+        - {x: 25.5, y: 14.5}
+        - {x: 19.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_8
@@ -251,9 +319,15 @@ TextureImporter:
         width: 50
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -20, y: 25.5}
+        - {x: -25, y: 17.5}
+        - {x: -25, y: -25.5}
+        - {x: 25, y: -25.5}
+        - {x: 25, y: 19.5}
+        - {x: 17, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_9
@@ -264,9 +338,17 @@ TextureImporter:
         width: 61
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 5.5, y: 25.5}
+        - {x: -30.5, y: 4.5}
+        - {x: -30.5, y: -6.5}
+        - {x: -12.5, y: -25.5}
+        - {x: -3.5, y: -25.5}
+        - {x: 30.5, y: 9.5}
+        - {x: 30.5, y: 16.5}
+        - {x: 21.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_10
@@ -277,9 +359,15 @@ TextureImporter:
         width: 76
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -32, y: 25.5}
+        - {x: -38, y: 8.5}
+        - {x: -38, y: -25.5}
+        - {x: 38, y: -25.5}
+        - {x: 38, y: 6.5}
+        - {x: 5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_11
@@ -290,9 +378,25 @@ TextureImporter:
         width: 76
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -4, y: 25.5}
+        - {x: -5, y: 24.5}
+        - {x: -37, y: 6.5}
+        - {x: -38, y: 5.5}
+        - {x: -38, y: -25.5}
+        - {x: 38, y: -25.5}
+        - {x: 38, y: 6.5}
+        - {x: 5, y: 25.5}
+      - - {x: 10, y: -10.5}
+        - {x: 11, y: -9.5}
+        - {x: 12, y: -10.5}
+        - {x: 12, y: -11.5}
+      - - {x: 26, y: -9.5}
+        - {x: 27, y: -9.5}
+        - {x: 28, y: -11.5}
+        - {x: 26, y: -11.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_12
@@ -303,9 +407,17 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -4.5, y: 25.5}
+        - {x: -25.5, y: 8.5}
+        - {x: -25.5, y: -17.5}
+        - {x: -23.5, y: -25.5}
+        - {x: 23.5, y: -25.5}
+        - {x: 25.5, y: -15.5}
+        - {x: 25.5, y: 9.5}
+        - {x: 3.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_13
@@ -316,9 +428,15 @@ TextureImporter:
         width: 51
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -9.5, y: 14}
+        - {x: -25.5, y: -9}
+        - {x: -25.5, y: -14}
+        - {x: 25.5, y: -14}
+        - {x: 25.5, y: -4}
+        - {x: 3.5, y: 14}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_14
@@ -329,9 +447,15 @@ TextureImporter:
         width: 51
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -25.5, y: 14}
+        - {x: -25.5, y: 9}
+        - {x: -3.5, y: -14}
+        - {x: 3.5, y: -14}
+        - {x: 25.5, y: 9}
+        - {x: 25.5, y: 14}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_15
@@ -342,9 +466,13 @@ TextureImporter:
         width: 13
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6.5, y: 25.5}
+        - {x: -6.5, y: -25.5}
+        - {x: 6.5, y: -25.5}
+        - {x: 6.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_16
@@ -355,9 +483,13 @@ TextureImporter:
         width: 14
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -7, y: 25.5}
+        - {x: -7, y: -25.5}
+        - {x: 7, y: -25.5}
+        - {x: 7, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_17
@@ -368,9 +500,13 @@ TextureImporter:
         width: 41
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -20.5, y: 25.5}
+        - {x: -20.5, y: -25.5}
+        - {x: 20.5, y: -25.5}
+        - {x: 20.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_18
@@ -381,9 +517,16 @@ TextureImporter:
         width: 40
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 20, y: 25.5}
+        - {x: -20, y: 25.5}
+        - {x: -20, y: -25.5}
+        - {x: -6, y: -25.5}
+        - {x: -5, y: -24.5}
+        - {x: 6, y: -25.5}
+        - {x: 20, y: -25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_19
@@ -394,9 +537,15 @@ TextureImporter:
         width: 76
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -15, y: 25.5}
+        - {x: -38, y: 2.5}
+        - {x: -38, y: -25.5}
+        - {x: 38, y: -25.5}
+        - {x: 38, y: 2.5}
+        - {x: 15, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_20
@@ -407,9 +556,17 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -14.5, y: 25.5}
+        - {x: -25.5, y: 20.5}
+        - {x: -25.5, y: -18.5}
+        - {x: -16.5, y: -25.5}
+        - {x: 22.5, y: -25.5}
+        - {x: 25.5, y: -15.5}
+        - {x: 25.5, y: 20.5}
+        - {x: 21.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_21
@@ -420,9 +577,17 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -16.5, y: 25.5}
+        - {x: -25.5, y: 21.5}
+        - {x: -25.5, y: -22.5}
+        - {x: -24.5, y: -25.5}
+        - {x: 16.5, y: -25.5}
+        - {x: 25.5, y: -19.5}
+        - {x: 25.5, y: 21.5}
+        - {x: 21.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_22
@@ -433,9 +598,17 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -15.5, y: 25.5}
+        - {x: -25.5, y: 20.5}
+        - {x: -25.5, y: -22.5}
+        - {x: -22.5, y: -25.5}
+        - {x: 23.5, y: -25.5}
+        - {x: 25.5, y: -22.5}
+        - {x: 25.5, y: 18.5}
+        - {x: 23.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_23
@@ -446,9 +619,17 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -17.5, y: 25.5}
+        - {x: -25.5, y: 23.5}
+        - {x: -25.5, y: -24.5}
+        - {x: -19.5, y: -25.5}
+        - {x: 18.5, y: -25.5}
+        - {x: 25.5, y: -17.5}
+        - {x: 25.5, y: 16.5}
+        - {x: 18.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_24
@@ -459,9 +640,15 @@ TextureImporter:
         width: 33
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 5.5, y: 25.5}
+        - {x: -16.5, y: 3.5}
+        - {x: -16.5, y: -3.5}
+        - {x: 5.5, y: -25.5}
+        - {x: 16.5, y: -25.5}
+        - {x: 16.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_25
@@ -472,9 +659,19 @@ TextureImporter:
         width: 17
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -8.5, y: 25.5}
+        - {x: -8.5, y: -25.5}
+        - {x: 8.5, y: -25.5}
+        - {x: 8.5, y: 25.5}
+      - - {x: -8.5, y: 13.5}
+        - {x: -8.5, y: -13.5}
+        - {x: -3.5, y: -13.5}
+        - {x: -1.5, y: -11.5}
+        - {x: -1.5, y: 11.5}
+        - {x: -3.5, y: 13.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_26
@@ -485,9 +682,19 @@ TextureImporter:
         width: 18
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -9, y: 25.5}
+        - {x: -9, y: -25.5}
+        - {x: 9, y: -25.5}
+        - {x: 9, y: 25.5}
+      - - {x: 1, y: 11.5}
+        - {x: 1, y: -11.5}
+        - {x: 3, y: -13.5}
+        - {x: 9, y: -13.5}
+        - {x: 9, y: 13.5}
+        - {x: 3, y: 13.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_27
@@ -498,9 +705,15 @@ TextureImporter:
         width: 34
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -17, y: 25.5}
+        - {x: -17, y: -25.5}
+        - {x: -5, y: -25.5}
+        - {x: 17, y: -7.5}
+        - {x: 17, y: 3.5}
+        - {x: 2, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_28
@@ -511,9 +724,16 @@ TextureImporter:
         width: 30
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -15, y: 25.5}
+        - {x: -15, y: -21.5}
+        - {x: -7, y: -25.5}
+        - {x: 9, y: -25.5}
+        - {x: 15, y: -17.5}
+        - {x: 15, y: 22.5}
+        - {x: 10, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_29
@@ -524,9 +744,16 @@ TextureImporter:
         width: 23
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -10.5, y: 25.5}
+        - {x: -11.5, y: 18.5}
+        - {x: -11.5, y: -23.5}
+        - {x: -6.5, y: -25.5}
+        - {x: 8.5, y: -25.5}
+        - {x: 11.5, y: -21.5}
+        - {x: 11.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_30
@@ -537,9 +764,19 @@ TextureImporter:
         width: 66
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -25, y: 25.5}
+        - {x: -33, y: 20.5}
+        - {x: -33, y: -25.5}
+        - {x: 33, y: -25.5}
+        - {x: 33, y: 24.5}
+        - {x: 26, y: 25.5}
+      - - {x: -7, y: 4.5}
+        - {x: -3, y: 5.5}
+        - {x: 10, y: -0.5}
+        - {x: 5, y: -12.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_31
@@ -550,9 +787,53 @@ TextureImporter:
         width: 66
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -33, y: 25.5}
+        - {x: -33, y: -25.5}
+        - {x: 33, y: -25.5}
+        - {x: 33, y: 25.5}
+      - - {x: -26, y: -17.5}
+        - {x: -21, y: -17.5}
+        - {x: -21, y: -19.5}
+        - {x: -26, y: -19.5}
+      - - {x: -11, y: -17.5}
+        - {x: -5, y: -17.5}
+        - {x: -5, y: -19.5}
+        - {x: -11, y: -19.5}
+      - - {x: 5, y: -17.5}
+        - {x: 11, y: -17.5}
+        - {x: 11, y: -19.5}
+        - {x: 5, y: -19.5}
+      - - {x: 21, y: -17.5}
+        - {x: 27, y: -17.5}
+        - {x: 27, y: -19.5}
+        - {x: 21, y: -19.5}
+      - - {x: -26, y: 7.5}
+        - {x: -8, y: 7.5}
+        - {x: -8, y: -7.5}
+        - {x: -26, y: -7.5}
+      - - {x: 9, y: -0.5}
+        - {x: 9, y: 1.5}
+        - {x: 1, y: -8.5}
+        - {x: 2, y: -8.5}
+      - - {x: -26, y: 19.5}
+        - {x: -21, y: 19.5}
+        - {x: -21, y: 17.5}
+        - {x: -26, y: 17.5}
+      - - {x: -11, y: 19.5}
+        - {x: -5, y: 19.5}
+        - {x: -5, y: 17.5}
+        - {x: -11, y: 17.5}
+      - - {x: 5, y: 19.5}
+        - {x: 11, y: 19.5}
+        - {x: 11, y: 17.5}
+        - {x: 5, y: 17.5}
+      - - {x: 21, y: 19.5}
+        - {x: 27, y: 19.5}
+        - {x: 27, y: 17.5}
+        - {x: 21, y: 17.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_32
@@ -563,9 +844,22 @@ TextureImporter:
         width: 39
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 14.5, y: 14.5}
+        - {x: 15.5, y: 17.5}
+        - {x: 15.5, y: 25.5}
+        - {x: -16.5, y: 25.5}
+        - {x: -19.5, y: 13.5}
+        - {x: -19.5, y: -25.5}
+        - {x: 19.5, y: -25.5}
+        - {x: 19.5, y: 10.5}
+        - {x: -8.5, y: 10.5}
+      - - {x: 0.5, y: -16.5}
+        - {x: -2.5, y: -13.5}
+        - {x: -0.5, y: -18.5}
+        - {x: 0.5, y: -18.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_33
@@ -576,9 +870,23 @@ TextureImporter:
         width: 39
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -16.5, y: 25.5}
+        - {x: -19.5, y: 17.5}
+        - {x: -19.5, y: -25.5}
+        - {x: 19.5, y: -25.5}
+        - {x: 19.5, y: 16.5}
+        - {x: 16.5, y: 25.5}
+      - - {x: 0.5, y: -16.5}
+        - {x: -2.5, y: -13.5}
+        - {x: -0.5, y: -18.5}
+        - {x: 0.5, y: -18.5}
+      - - {x: -7.5, y: 19.5}
+        - {x: 7.5, y: 19.5}
+        - {x: 7.5, y: 11.5}
+        - {x: -7.5, y: 11.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_34
@@ -589,9 +897,27 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -25.5, y: 25.5}
+        - {x: -25.5, y: -11.5}
+        - {x: -20.5, y: -25.5}
+        - {x: 18.5, y: -25.5}
+        - {x: 25.5, y: -22.5}
+        - {x: 25.5, y: 25.5}
+      - - {x: -10.5, y: -3.5}
+        - {x: -3.5, y: 10.5}
+        - {x: 5.5, y: 9.5}
+        - {x: 5.5, y: -10.5}
+      - - {x: -2.5, y: 8.5}
+        - {x: -8.5, y: 6.5}
+        - {x: -8.5, y: -4.5}
+        - {x: -5.5, y: -8.5}
+        - {x: 4.5, y: -8.5}
+        - {x: 8.5, y: -6.5}
+        - {x: 8.5, y: 5.5}
+        - {x: 6.5, y: 8.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_35
@@ -602,9 +928,13 @@ TextureImporter:
         width: 13
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6.5, y: 7}
+        - {x: -6.5, y: -7}
+        - {x: 6.5, y: -7}
+        - {x: 6.5, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_36
@@ -615,9 +945,13 @@ TextureImporter:
         width: 14
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -7, y: 7}
+        - {x: -7, y: -7}
+        - {x: 7, y: -7}
+        - {x: 7, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_37
@@ -628,9 +962,13 @@ TextureImporter:
         width: 13
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6.5, y: 7}
+        - {x: -6.5, y: -7}
+        - {x: 6.5, y: -7}
+        - {x: 6.5, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_38
@@ -641,9 +979,13 @@ TextureImporter:
         width: 51
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -25.5, y: 7}
+        - {x: -25.5, y: -7}
+        - {x: 25.5, y: -7}
+        - {x: 25.5, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_39
@@ -654,9 +996,13 @@ TextureImporter:
         width: 14
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -7, y: 7}
+        - {x: -7, y: -7}
+        - {x: 7, y: -7}
+        - {x: 7, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_40
@@ -667,9 +1013,13 @@ TextureImporter:
         width: 36
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -18, y: 7}
+        - {x: -18, y: -7}
+        - {x: 18, y: -7}
+        - {x: 18, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_41
@@ -680,9 +1030,13 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -25.5, y: 25.5}
+        - {x: -25.5, y: -25.5}
+        - {x: 25.5, y: -25.5}
+        - {x: 25.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_42
@@ -693,9 +1047,15 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -8.5, y: 25.5}
+        - {x: -25.5, y: 20.5}
+        - {x: -25.5, y: -13.5}
+        - {x: -0.5, y: -25.5}
+        - {x: 25.5, y: -25.5}
+        - {x: 25.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_43
@@ -706,9 +1066,16 @@ TextureImporter:
         width: 11
         height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -4.5, y: 5.5}
+        - {x: -5.5, y: 4.5}
+        - {x: -5.5, y: -4.5}
+        - {x: -4.5, y: -5.5}
+        - {x: 4.5, y: -5.5}
+        - {x: 5.5, y: -4.5}
+        - {x: 5.5, y: 5.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_44
@@ -719,9 +1086,13 @@ TextureImporter:
         width: 13
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6.5, y: 18.5}
+        - {x: -6.5, y: -18.5}
+        - {x: 6.5, y: -18.5}
+        - {x: 6.5, y: 18.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_45
@@ -732,9 +1103,17 @@ TextureImporter:
         width: 33
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -14.5, y: 19.5}
+        - {x: -16.5, y: 14.5}
+        - {x: -16.5, y: -15.5}
+        - {x: -14.5, y: -19.5}
+        - {x: 5.5, y: -19.5}
+        - {x: 16.5, y: -10.5}
+        - {x: 16.5, y: 16.5}
+        - {x: 15.5, y: 19.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_46
@@ -745,9 +1124,18 @@ TextureImporter:
         width: 50
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 5, y: 25.5}
+        - {x: -12, y: 25.5}
+        - {x: -25, y: 15.5}
+        - {x: -25, y: -7.5}
+        - {x: -20, y: -25.5}
+        - {x: 24, y: -25.5}
+        - {x: 25, y: -23.5}
+        - {x: 25, y: 11.5}
+        - {x: 20, y: 15.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_47
@@ -758,9 +1146,13 @@ TextureImporter:
         width: 13
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6.5, y: 7}
+        - {x: -6.5, y: -7}
+        - {x: 6.5, y: -7}
+        - {x: 6.5, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_48
@@ -771,9 +1163,13 @@ TextureImporter:
         width: 14
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -7, y: 7}
+        - {x: -7, y: -7}
+        - {x: 7, y: -7}
+        - {x: 7, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_49
@@ -784,9 +1180,13 @@ TextureImporter:
         width: 13
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6.5, y: 7}
+        - {x: -6.5, y: -7}
+        - {x: 6.5, y: -7}
+        - {x: 6.5, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_50
@@ -797,9 +1197,13 @@ TextureImporter:
         width: 51
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -25.5, y: 7}
+        - {x: -25.5, y: -7}
+        - {x: 25.5, y: -7}
+        - {x: 25.5, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_51
@@ -810,9 +1214,13 @@ TextureImporter:
         width: 14
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -7, y: 7}
+        - {x: -7, y: -7}
+        - {x: 7, y: -7}
+        - {x: 7, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_52
@@ -823,9 +1231,13 @@ TextureImporter:
         width: 36
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -18, y: 7}
+        - {x: -18, y: -7}
+        - {x: 18, y: -7}
+        - {x: 18, y: 7}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_53
@@ -836,9 +1248,14 @@ TextureImporter:
         width: 19
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -9.5, y: 18}
+        - {x: -9.5, y: -18}
+        - {x: 9.5, y: -18}
+        - {x: 9.5, y: -5}
+        - {x: 7.5, y: 18}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_54
@@ -849,9 +1266,13 @@ TextureImporter:
         width: 13
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6.5, y: 7.5}
+        - {x: -6.5, y: -7.5}
+        - {x: 6.5, y: -7.5}
+        - {x: 6.5, y: 7.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_55
@@ -862,9 +1283,13 @@ TextureImporter:
         width: 14
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -7, y: 7.5}
+        - {x: -7, y: -7.5}
+        - {x: 7, y: -7.5}
+        - {x: 7, y: 7.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_56
@@ -875,9 +1300,13 @@ TextureImporter:
         width: 13
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6.5, y: 7.5}
+        - {x: -6.5, y: -7.5}
+        - {x: 6.5, y: -7.5}
+        - {x: 6.5, y: 7.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_57
@@ -888,9 +1317,13 @@ TextureImporter:
         width: 51
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -25.5, y: 7.5}
+        - {x: -25.5, y: -7.5}
+        - {x: 25.5, y: -7.5}
+        - {x: 25.5, y: 7.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_58
@@ -901,9 +1334,13 @@ TextureImporter:
         width: 14
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -7, y: 7.5}
+        - {x: -7, y: -7.5}
+        - {x: 7, y: -7.5}
+        - {x: 7, y: 7.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_59
@@ -914,9 +1351,13 @@ TextureImporter:
         width: 36
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -18, y: 7.5}
+        - {x: -18, y: -7.5}
+        - {x: 18, y: -7.5}
+        - {x: 18, y: 7.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_60
@@ -927,9 +1368,13 @@ TextureImporter:
         width: 13
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -6.5, y: 5}
+        - {x: -6.5, y: -5}
+        - {x: 6.5, y: -5}
+        - {x: 6.5, y: 5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_61
@@ -940,9 +1385,13 @@ TextureImporter:
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -4, y: 4}
+        - {x: -4, y: -4}
+        - {x: 4, y: -4}
+        - {x: 4, y: 4}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_62
@@ -953,9 +1402,16 @@ TextureImporter:
         width: 30
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -15, y: 6.5}
+        - {x: -15, y: -6.5}
+        - {x: 9, y: -25.5}
+        - {x: 15, y: -25.5}
+        - {x: 15, y: 25.5}
+        - {x: 10, y: 25.5}
+        - {x: 3, y: 22.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_63
@@ -966,9 +1422,17 @@ TextureImporter:
         width: 11
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 4.5, y: 13}
+        - {x: -1.5, y: 18}
+        - {x: -5.5, y: 18}
+        - {x: -5.5, y: -18}
+        - {x: -1.5, y: -18}
+        - {x: 4.5, y: -13}
+        - {x: 5.5, y: -10}
+        - {x: 5.5, y: 10}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_64
@@ -979,9 +1443,16 @@ TextureImporter:
         width: 30
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -15, y: 6.5}
+        - {x: -15, y: -6.5}
+        - {x: 9, y: -25.5}
+        - {x: 15, y: -25.5}
+        - {x: 15, y: 25.5}
+        - {x: 11, y: 25.5}
+        - {x: -5, y: 17.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_65
@@ -992,9 +1463,16 @@ TextureImporter:
         width: 27
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -13.5, y: 3.5}
+        - {x: -13.5, y: -4.5}
+        - {x: 8.5, y: -25.5}
+        - {x: 13.5, y: -25.5}
+        - {x: 13.5, y: 25.5}
+        - {x: 9.5, y: 25.5}
+        - {x: -6.5, y: 17.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_66
@@ -1005,9 +1483,16 @@ TextureImporter:
         width: 28
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -14, y: 25.5}
+        - {x: -14, y: -25.5}
+        - {x: -7, y: -25.5}
+        - {x: 13, y: -15.5}
+        - {x: 14, y: -8.5}
+        - {x: 14, y: 3.5}
+        - {x: -9, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_67
@@ -1018,9 +1503,17 @@ TextureImporter:
         width: 51
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -23.5, y: 25.5}
+        - {x: -25.5, y: 18.5}
+        - {x: -25.5, y: -21.5}
+        - {x: -22.5, y: -25.5}
+        - {x: 20.5, y: -25.5}
+        - {x: 25.5, y: -20.5}
+        - {x: 25.5, y: 17.5}
+        - {x: 23.5, y: 25.5}
       tessellationDetail: 0
     - serializedVersion: 2
       name: White1x_68
@@ -1029,6 +1522,26 @@ TextureImporter:
         x: 245
         y: 0
         width: 51
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.5, y: 25.5}
+        - {x: -25.5, y: 17.5}
+        - {x: -25.5, y: -25.5}
+        - {x: 19.5, y: -25.5}
+        - {x: 25.5, y: -22.5}
+        - {x: 25.5, y: 16.5}
+        - {x: 14.5, y: 25.5}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: White1x_69
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 209
+        width: 38
         height: 51
       alignment: 0
       pivot: {x: 0, y: 0}

@@ -137,13 +137,13 @@ public class SelBtnHolder : TargetItemChecker {
 			if (itemChecker.userInputFlag) {
 				//CheckAnimation if userinputFlag is correct. Wait
 				if (itemChecker.correctFlag) {
-					itemChecker.correctAnim (_nextEvent);
+					itemChecker.correctAnimWithDelegate (_nextEvent);
 				} else {
-					itemChecker.incorrectAnim (_nextEvent);
+					itemChecker.incorrectAnimWithDelegate (_nextEvent);
 				}
 			} else if (itemChecker.correctFlag) {
 				//Animation for showing the correct options
-				itemChecker.correctionAnim(_nextEvent);
+				itemChecker.correctionAnimWithDelegate(_nextEvent);
 			}
 		}
 		deactivateAnim ();

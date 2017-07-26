@@ -66,7 +66,7 @@ public class DragSourceCell : Cell {
 	public GameObject ScrollPanelGO(){
 		return ElementGO.transform.parent.parent.gameObject;
 	}
-	public void dragToDropZone(GameObject DropZoneHolderGO){
+	public void dragToDropZone(GameObject DropZoneHolderGO, EventDelegate _nextEvent){
 		Debug.Log ("Correct DragItem location "+BasicGOOperation.NGUIPosition(ElementGO.transform).x);
 		Vector3 posDiff = BasicGOOperation.NGUIPosition (DropZoneHolderGO.transform) - BasicGOOperation.NGUIPosition (ElementGO.transform);
 		//Dragging ScrollView to put correct drag item just below dropzone
@@ -87,6 +87,8 @@ public class DragSourceCell : Cell {
 				ElementCloneGO.GetComponent<CustomDragDropItem>().StopDragging(DropZoneHolderGO);
 				if (DroppedOnSurface != null)
 					DroppedOnSurface();
+				if(_nextEvent != null)
+					_nextEvent.Execute();
 			};
 //			verticalDragAnim(ElementGO,DropZoneHolderGO);
 		};

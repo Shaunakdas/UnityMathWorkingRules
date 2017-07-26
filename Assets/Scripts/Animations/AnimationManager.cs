@@ -26,7 +26,7 @@ public class AnimationManager : MonoBehaviour {
 	}
 	public void correctSizeAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Size (->Small->Big->Normal), Colour(->Green)
-
+		Debug.Log("correctAnim 1: Size (->Small->Big->Normal), Colour(->Green) ");
 		UISprite elementSprite = _elementGO.GetComponent<UISprite>();
 		elementSprite.color = new Color (0f, 1f, 0f);
 		if (_elementGO.GetComponent<TweenScale> () == null)
@@ -44,9 +44,11 @@ public class AnimationManager : MonoBehaviour {
 	}
 	public void correctBlastAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Blast Circular, Camera bobble
+		Debug.Log("correctAnim 2:  ");
 	}
 	public void correctLocationAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Location (->Top->Bottom->Mid)X3, Colour(->Green)
+		Debug.Log("correctAnim 3: Location (->Top->Bottom->Mid)X3, Colour(->Green) ");
 		UISprite elementSprite = _elementGO.GetComponent<UISprite>();
 		elementSprite.color = new Color (0f, 1f, 0f);
 		if (_elementGO.GetComponent<TweenPosition> () == null)
@@ -64,33 +66,35 @@ public class AnimationManager : MonoBehaviour {
 	}
 	public void correctExpandAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Depth(+10), Size(->Screen Size)
+		Debug.Log("correctAnim 4: Depth(+10), Size(->Screen Size) ");
 	}
 	public void correctTickOnTopAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Tick Mark on Top Size(0.5->1)
+		Debug.Log("correctAnim 5: Tick Mark on Top Size(0.5->1) ");
 	}
 
-	public void incorrectAnim(int _id, GameObject _elementGO, EventDelegate _nextEvent){
+	public void incorrectAnim(int _id, GameObject _elementGO, EventDelegate _nextEvent, bool delete){
 		switch (_id) {
 		case 1:
-			incorrectSizeAnim (_elementGO,_nextEvent);
+			incorrectSizeAnim (_elementGO,_nextEvent,delete);
 			break;
 		case 2:
-			incorrectLocationAnim (_elementGO,_nextEvent);
+			incorrectLocationAnim (_elementGO,_nextEvent,delete);
 			break;
 		case 3:
-			incorrectCrossAnim (_elementGO,_nextEvent);
+			incorrectCrossAnim (_elementGO,_nextEvent,delete);
 			break;
 		case 4:
-			incorrectExpandAnim(_elementGO,_nextEvent);
+			incorrectExpandAnim(_elementGO,_nextEvent,delete);
 			break;
 		case 5:
-			incorrectCrossOnTopAnim (_elementGO, _nextEvent);
+			incorrectCrossOnTopAnim (_elementGO, _nextEvent,delete);
 			break;
-
 		}
 	}
-	public void incorrectSizeAnim(GameObject _elementGO, EventDelegate _nextEvent){
+	public void incorrectSizeAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
 		//Size (->Big), Colour(->Red)
+		Debug.Log("incorrectAnim 1: Size (->Big), Colour(->Red) ");
 		UISprite elementSprite = _elementGO.GetComponent<UISprite>();
 		elementSprite.color = new Color (1f, 0f, 0f);
 		if (_elementGO.GetComponent<TweenScale> () == null)
@@ -101,20 +105,27 @@ public class AnimationManager : MonoBehaviour {
 			new Keyframe (0f, 0f), new Keyframe (0.5f, 1.2f),  new Keyframe (0.75f, 0.8f), new Keyframe (1f, 1f)
 		);
 		_tweenScale.duration = ANIMATION_DURATION;
+		if((delete != null)&&delete){
+			EventDelegate.Set(_tweenScale.onFinished, delegate{ NGUITools.Destroy(_elementGO); });
+		}
 		if (_nextEvent != null)
 			_tweenScale.onFinished.Add (_nextEvent);
 	}
-	public void incorrectLocationAnim(GameObject _elementGO, EventDelegate _nextEvent){
+	public void incorrectLocationAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
 		//Location (->Left->Right->Mid)X3 , Timer decreased by zooming into decrease sector of circle
+		Debug.Log("incorrectAnim 2: Location (->Left->Right->Mid)X3 ");
 	}
-	public void incorrectCrossAnim(GameObject _elementGO, EventDelegate _nextEvent){
+	public void incorrectCrossAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
 		//Duplicate Sprite of same size Size(-> 1.2X), Colour Red, Cross(Center on Top)
+		Debug.Log("incorrectAnim 3: Duplicate Sprite of same size Size(-> 1.2X), Colour Red, Cross(Center on Top) ");
 	}
-	public void incorrectExpandAnim(GameObject _elementGO, EventDelegate _nextEvent){
+	public void incorrectExpandAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
 		//Text cutthrough
+		Debug.Log("incorrectAnim 4: Text cutthrough ");
 	}
-	public void incorrectCrossOnTopAnim(GameObject _elementGO, EventDelegate _nextEvent){
+	public void incorrectCrossOnTopAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
 		//Cross Mark on Top Size(0.5->1)
+		Debug.Log("incorrectAnim 5: Cross Mark on Top Size(0.5->1) ");
 	}
 
 	public void correctionAnim(int _id, GameObject _elementGO, EventDelegate _nextEvent){
@@ -136,15 +147,22 @@ public class AnimationManager : MonoBehaviour {
 	}
 	public void correctionWaitAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Wait(2 sec)
+		Debug.Log("correctionAnim 1: Wait(2 sec) ");
 	}
 	public void correctionBackgroundAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Text(->Correct) Colour(->Blue)
+		Debug.Log("correctionAnim 2: Text(->Correct) Colour(->Blue) ");
 	}
 	public void correctionTextOnTopAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//CorrectText shown on Top of incorrect text
+		Debug.Log("correctionAnim 1: CorrectText shown on Top of incorrect text ");
 	}
 	public void correctionDragAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//
+	}
+
+	public void deleteGameObject(){
+
 	}
 	// Use this for initialization
 	void Start () {

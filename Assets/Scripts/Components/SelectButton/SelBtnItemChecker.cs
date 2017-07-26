@@ -19,10 +19,10 @@ public class SelBtnItemChecker : TargetOptionChecker {
 		Debug.Log("correctAnim");
 		base.activateAnim();
 	}
-	override public void activateAnim(EventDelegate _nextEvent){
+	override public void activateAnimWithDelegate(EventDelegate _nextEvent){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim Delegate");
-		base.activateAnim (_nextEvent);
+		base.activateAnimWithDelegate (_nextEvent);
 		if (_nextEvent != null)
 			_nextEvent.Execute ();
 	}
@@ -31,10 +31,10 @@ public class SelBtnItemChecker : TargetOptionChecker {
 		Debug.Log("correctAnim");
 		base.deactivateAnim();
 	}
-	override public void deactivateAnim(EventDelegate _nextEvent){
+	override public void deactivateAnimWithDelegate(EventDelegate _nextEvent){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim Delegate");
-		base.deactivateAnim (_nextEvent);
+		base.deactivateAnimWithDelegate (_nextEvent);
 		if (_nextEvent != null)
 			_nextEvent.Execute ();
 	}
@@ -43,10 +43,10 @@ public class SelBtnItemChecker : TargetOptionChecker {
 		Debug.Log("correctAnim");
 		base.correctAnim();
 	}
-	override public void correctAnim(EventDelegate _nextEvent){
+	override public void correctAnimWithDelegate(EventDelegate _nextEvent){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim Delegate");
-		base.correctAnim (_nextEvent);
+		base.correctAnimWithDelegate (_nextEvent);
 		if (_nextEvent != null)
 			_nextEvent.Execute ();
 	}
@@ -55,10 +55,10 @@ public class SelBtnItemChecker : TargetOptionChecker {
 		Debug.Log("incorrectAnim");
 		base.incorrectAnim();
 	}
-	override public void incorrectAnim(EventDelegate _nextEvent){
+	override public void incorrectAnimWithDelegate(EventDelegate _nextEvent){
 		//Animation for selecting the wrong option
 		Debug.Log("incorrectAnim Delegate");
-		base.incorrectAnim (_nextEvent);
+		base.incorrectAnimWithDelegate (_nextEvent);
 		animManager.correctAnim (1, gameObject, _nextEvent);
 	}
 	override public void correctionAnim(){
@@ -66,10 +66,10 @@ public class SelBtnItemChecker : TargetOptionChecker {
 		Debug.Log("correctionAnim");
 		base.correctionAnim();
 	}
-	override public void correctionAnim(EventDelegate _nextEvent){
+	override public void correctionAnimWithDelegate(EventDelegate _nextEvent){
 		//Animation for ignoring the correct option
 		Debug.Log("correctionAnim Delegate");
-		base.correctionAnim (_nextEvent);
+		base.correctionAnimWithDelegate (_nextEvent);
 		animManager.correctAnim (3, gameObject, _nextEvent);
 //			_nextEvent.Execute ();
 	}

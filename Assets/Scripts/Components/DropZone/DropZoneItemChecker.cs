@@ -57,7 +57,6 @@ public class DropZoneItemChecker : TargetOptionChecker {
 
 	}
 	//----------------------Animations ----------------------------
-
 	/// <summary>
 	/// Getting active animation.
 	/// </summary>
@@ -69,10 +68,10 @@ public class DropZoneItemChecker : TargetOptionChecker {
 		base.activateAnim();
 		gameObject.GetComponent<TweenColor>().enabled = true;
 	}
-	override public void activateAnim(EventDelegate _nextEvent){
+	override public void activateAnimWithDelegate(EventDelegate _nextEvent){
 		//Animation for selecting the correct option
 		Debug.Log("activateAnim Delegate");
-		base.activateAnim (_nextEvent);
+		base.activateAnimWithDelegate (_nextEvent);
 		if (_nextEvent != null)
 			_nextEvent.Execute ();
 	}
@@ -81,10 +80,10 @@ public class DropZoneItemChecker : TargetOptionChecker {
 		base.deactivateAnim();
 		gameObject.GetComponent<TweenColor>().enabled = false;
 	}
-	override public void deactivateAnim(EventDelegate _nextEvent){
+	override public void deactivateAnimWithDelegate(EventDelegate _nextEvent){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim Delegate");
-		base.deactivateAnim (_nextEvent);
+		base.deactivateAnimWithDelegate (_nextEvent);
 		if (_nextEvent != null)
 			_nextEvent.Execute ();
 	}
@@ -92,35 +91,38 @@ public class DropZoneItemChecker : TargetOptionChecker {
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim");
 		base.correctAnim();
-		animManager.correctAnim (1, gameObject, nextEvent);
+		deactivateAnim ();
+		animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem>().gameObject, nextEvent);
 	}
-	override public void correctAnim(EventDelegate _nextEvent){
+	override public void correctAnimWithDelegate(EventDelegate _nextEvent){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim Delegate");
-		base.correctAnim (_nextEvent);
-		animManager.correctAnim (1, gameObject, _nextEvent);
+		base.correctAnimWithDelegate (_nextEvent);
+		animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem>().gameObject, _nextEvent);
 	}
 	override public void incorrectAnim(){
 		//Animation for selecting the wrong option
 		Debug.Log("incorrectAnim");
 		base.incorrectAnim();
-		animManager.correctAnim (1, gameObject, nextEvent);
+		deactivateAnim ();
+		animManager.incorrectAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem>().gameObject, new EventDelegate(correctionAnim),true);
 	}
-	override public void incorrectAnim(EventDelegate _nextEvent){
+	override public void incorrectAnimWithDelegate(EventDelegate _nextEvent){
 		//Animation for selecting the wrong option
 		Debug.Log("incorrectAnim Delegate");
-		base.incorrectAnim (_nextEvent);
-		animManager.correctAnim (1, gameObject, _nextEvent);
+		base.incorrectAnimWithDelegate (_nextEvent);
+		animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem>().gameObject, _nextEvent);
 	}
 	override public void correctionAnim(){
 		//Animation for ignoring the correct option
 		Debug.Log("correctionAnim");
 		base.correctionAnim();
+		DropZoneHolderGO.GetComponent<DropZoneHolder> ().correctionAnim (this, nextEvent);
 	}
-	override public void correctionAnim(EventDelegate _nextEvent){
+	override public void correctionAnimWithDelegate(EventDelegate _nextEvent){
 		//Animation for ignoring the correct option
 		Debug.Log("correctionAnim Delegate");
-		base.correctionAnim (_nextEvent);
+		base.correctionAnimWithDelegate (_nextEvent);
 		animManager.correctAnim (3, gameObject, _nextEvent);
 		//			_nextEvent.Execute ();
 	}

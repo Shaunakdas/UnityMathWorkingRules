@@ -105,9 +105,9 @@ public class DropZoneHolder : TargetItemChecker {
 		}
 		for (int i = 0; i < DropZoneItemCheckerList.Count; i++) {
 			EventDelegate nextItemEvent = nextEvent;
-			if (i < DropZoneItemCheckerList.Count - 1)
-				nextItemEvent = new EventDelegate (DropZoneItemCheckerList [i + 1].activateAnim);nextItemEvent.Execute ();Debug.Log (nextItemEvent.target.gameObject.name);
-			
+			if (i < DropZoneItemCheckerList.Count - 1) {
+				nextItemEvent = new EventDelegate (DropZoneItemCheckerList [i + 1].activateAnim);
+			}
 			DropZoneItemCheckerList[i].nextEvent = nextItemEvent;
 		}
 		DropZoneItemCheckerList [0].activateAnim();
@@ -157,7 +157,17 @@ public class DropZoneHolder : TargetItemChecker {
 				nextTargetTrigger ();
 		};
 
-		targetCell.dragToDropZone (itemChecker.gameObject);
+		targetCell.dragToDropZone (itemChecker.gameObject,null);
+	}
+	public void correctionAnim(DropZoneItemChecker itemChecker,EventDelegate _nextEvent){
+		Debug.Log ("DropZoneRowCell correctionAnim");
+		DragSourceCell targetCell = findCorrectDragItem(itemChecker);
+		targetCell.DroppedOnSurface += delegate {
+			if (!nextItemChecker (itemChecker))
+				nextTargetTrigger ();
+		};
+
+		targetCell.dragToDropZone (itemChecker.gameObject,_nextEvent);
 	}
 
 	/// <summary>

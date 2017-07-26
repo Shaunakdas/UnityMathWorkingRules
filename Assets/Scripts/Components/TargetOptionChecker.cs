@@ -23,6 +23,9 @@ public class TargetOptionChecker : MonoBehaviour {
 		itemAttemptState = AttemptState.Unseen;
 	}
 	//----------------------Animations ----------------------------
+	virtual public void trial(){
+		Debug.Log ("trial"+gameObject.name);
+	}
 	/// <summary>
 	/// Getting active animation.
 	/// </summary>
@@ -30,7 +33,7 @@ public class TargetOptionChecker : MonoBehaviour {
 	virtual public void activateAnim(){
 		itemAttemptState = AttemptState.Activated;
 	}
-	virtual public void activateAnim(EventDelegate _nextEvent){
+	virtual public void activateAnimWithDelegate(EventDelegate _nextEvent){
 		itemAttemptState = AttemptState.Activated;
 	}
 	/// <summary>
@@ -40,7 +43,7 @@ public class TargetOptionChecker : MonoBehaviour {
 	virtual public void deactivateAnim(){
 		itemAttemptState = AttemptState.Deactivated;
 	}
-	virtual public void deactivateAnim(EventDelegate _nextEvent){
+	virtual public void deactivateAnimWithDelegate(EventDelegate _nextEvent){
 		itemAttemptState = AttemptState.Deactivated;
 	}
 	/// <summary>
@@ -49,7 +52,7 @@ public class TargetOptionChecker : MonoBehaviour {
 	virtual public void correctAnim(){
 		itemAttemptState = AttemptState.Checked;
 	}
-	virtual public void correctAnim(EventDelegate _nextEvent){
+	virtual public void correctAnimWithDelegate(EventDelegate _nextEvent){
 		itemAttemptState = AttemptState.Checked;
 	}
 	/// <summary>
@@ -58,7 +61,7 @@ public class TargetOptionChecker : MonoBehaviour {
 	virtual public void incorrectAnim(){
 		itemAttemptState = AttemptState.Checked;
 	}
-	virtual public void incorrectAnim(EventDelegate _nextEvent){
+	virtual public void incorrectAnimWithDelegate(EventDelegate _nextEvent){
 		itemAttemptState = AttemptState.Checked;
 	}
 	/// <summary>
@@ -67,7 +70,7 @@ public class TargetOptionChecker : MonoBehaviour {
 	virtual public void correctionAnim(){
 		itemAttemptState = AttemptState.Corrected;
 	}
-	virtual public void correctionAnim(EventDelegate _nextEvent){
+	virtual public void correctionAnimWithDelegate(EventDelegate _nextEvent){
 		itemAttemptState = AttemptState.Corrected;
 	}
 	/// <summary>

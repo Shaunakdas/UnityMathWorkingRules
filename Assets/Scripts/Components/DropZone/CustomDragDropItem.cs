@@ -157,7 +157,7 @@ public class CustomDragDropItem : UIDragDropItem {
 			Debug.Log ("Correct Answer");
 			surface.GetComponent<UIDragDropContainer> ().enabled = false;
 		} else {
-			NGUITools.Destroy (gameObject);
+//			NGUITools.Destroy (gameObject);
 			Debug.Log ("Incorrect Answer");
 		}
 		// We're now done

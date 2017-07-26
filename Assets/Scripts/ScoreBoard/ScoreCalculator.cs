@@ -7,7 +7,7 @@ public class ScoreCalculator  {
 	public const float MIN_ITEM_TIME = 0.33f;
 	public const float MAX_ITEM_TIME = 0.66f;
 	public float maxItemScore=0f,minItemScore=0f;
-	public enum Result{Correct,Incorrect,Seen,Timeout}
+
 
 	public ScoreCalculator(){
 	}
@@ -16,17 +16,17 @@ public class ScoreCalculator  {
 		maxItemScore = MAX_SCORE_VALUE / _questionCount;
 		minItemScore = maxItemScore / 3;
 	}
-	public float itemScore(Result _itemResult, float _timeTaken){
+	public float itemScore(ScoreManager.Result _itemResult, float _timeTaken){
 		float _itemScore = 0f;
 //		float maxScore = maxItemScore,minScore = minItemScore,maxTime = MAX_ITEM_TIME,minTime = MIN_ITEM_TIME;
 		switch (_itemResult) {
-		case Result.Correct:
+		case ScoreManager.Result.Correct:
 			_itemScore = correctScoreFormula( _timeTaken, MIN_ITEM_TIME, MAX_ITEM_TIME, minItemScore, maxItemScore);
 			break;
-		case Result.Incorrect:
+		case ScoreManager.Result.Incorrect:
 			_itemScore = 0f;
 			break;
-		case Result.Timeout:
+		case ScoreManager.Result.Timeout:
 			_itemScore = 0f;
 			break;
 		}

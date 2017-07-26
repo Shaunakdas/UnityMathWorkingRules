@@ -79,6 +79,14 @@ public class LocationManager {
 	//Anim Types Location
 	public const string LOC_ANIM_TYPE = "AnimTypes/";
 	public const string COMPLETE_LOC_ANIM_TYPE = LOC_PREFAB_TYPE+LOC_ELEMENT_TYPE+LOC_ANIM_TYPE;
-	//Animas 
+	//Anims 
 	public const string NAME_BG_TIMER_ANIM = "BGTimerAnimPF";
+
+	//Score Types Location
+	public const string LOC_SCORE_TYPE = "AnimTypes/";
+	public const string COMPLETE_LOC_SCORE_TYPE = LOC_PREFAB_TYPE+LOC_ELEMENT_TYPE+LOC_SCORE_TYPE;
+	//ScoreTypes 
+	public const string NAME_SCORE_BOARD = "ScoreBoard";
+	public const string NAME_LIVE_STAR = "LiveStarPF";
+	public const string NAME_TIMER_DISPLAY = "TimerDisplayPF";
 }

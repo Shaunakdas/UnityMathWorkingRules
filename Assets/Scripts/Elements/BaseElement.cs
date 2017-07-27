@@ -8,6 +8,7 @@ public class BaseElement : MonoBehaviour {
 	public string prefabName{get; set;}
 	//Parent BaseElement
 	public BaseElement Parent{get; set;}
+	public BaseElement CurrentChild{get; set;}
 	/// <summary>
 	/// Type of interaction in current element
 	/// </summary>
@@ -29,6 +30,13 @@ public class BaseElement : MonoBehaviour {
 	/// The element game object.
 	/// </summary>
 	public GameObject ElementGO;
+	/// <summary>
+	/// Sets the current child.
+	/// </summary>
+	/// <param name="_childElement">Child element.</param>
+	virtual public void setCurrentChild(BaseElement _childElement){
+		CurrentChild = _childElement;
+	}
 	/// <summary>
 	/// Initiates the GameObject Default properties based on its corresponding class attribute
 	/// </summary>

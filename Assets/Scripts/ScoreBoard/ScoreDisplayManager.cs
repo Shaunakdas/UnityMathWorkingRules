@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ScoreDisplayManager : MonoBehaviour {
 	public GameObject ScoreCounterGO, LiveCounterGO, TimerGO;
-
+	//Display Values
+	public float currentScore = 0f;
+	public float timePending = 0f;
+	public int livesPending = 0;
 	public void updateScore(int scoreDelta){
 		//Add/Subtract Score
 	}

@@ -24,6 +24,8 @@ public class Paragraph : BaseElement{
 	//List of child Line elements
 	public List<Line> LineList{get; set;}
 
+
+	//-----------------Animation Attributes --------------
 	//List of target BaseElements
 	static public List<TargetItemChecker> targetItemHolderList{get; set;}
 
@@ -32,11 +34,15 @@ public class Paragraph : BaseElement{
 
 	public List<TableLine> DragSourceTableList = new List<TableLine>();
 
-	public int correctAnswerCount = 0;
+	//------------------Analytics Attributes------------------
+
+	public ScoreSettings scoreSettings;
+
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Contructor
 	public Paragraph(){
+		scoreSettings = new ScoreSettings (this);
 	}
 
 	/// <summary>
@@ -44,6 +50,7 @@ public class Paragraph : BaseElement{
 	/// </summary>
 	/// <param name="correctType">Correct type.</param>
 	public Paragraph(string correctType){
+		scoreSettings = new ScoreSettings (this);
 		ParagraphRef = this;
 		ParagraphCorrect = (CorrectType)System.Enum.Parse (typeof(CorrectType),StringWrapper.ConvertToPascalCase(correctType),true);
 	}
@@ -53,6 +60,7 @@ public class Paragraph : BaseElement{
 	/// <param name="para"></param>
 	public Paragraph(HtmlNode para_node){
 		ParagraphRef = this;
+		scoreSettings = new ScoreSettings (this);
 		LineList = new List<Line> ();
 		Debug.Log ("Initializing paragraph node of type "+para_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 
@@ -62,43 +70,13 @@ public class Paragraph : BaseElement{
 		case "comprehension": 
 			ParagraphStep = StepType.Comprehension;
 			prefabName = LocationManager.NAME_COMPREHENSION_PARA;
-//			prefabName = LocationManager.NAME_QUESTION_STEP_PARA;
-//			switch (align.Value) {
-//			case "horizontal": 
-//				ParagraphAlign = AlignType.Horizontal;
-//				tableCol = 0;
-//				break;
-//			case "vertical": 
-//				ParagraphAlign = AlignType.Vertical;
-//				tableCol = 1;
-//				break;
-//			}
 			ParagraphAlign = (AlignType)System.Enum.Parse (typeof(AlignType),StringWrapper.ConvertToPascalCase(align.Value),true);
 			tableCol = (ParagraphAlign == AlignType.Vertical)? 1:0;
-
 			break;
 		case "question_step": 
 			ParagraphStep = StepType.QuestionStep;
 			prefabName = LocationManager.NAME_QUESTION_STEP_PARA;
-//			switch (para_node.Attributes [AttributeManager.ATTR_CORRECT_TYPE].Value) {
-//			case "single_correct": 
-//				ParagraphCorrect = CorrectType.SingleCorrect;
-//				break;
-//			case "multiple_correct": 
-//				ParagraphCorrect = CorrectType.MultipleCorrect;
-//				break;
-//			}
 			ParagraphCorrect = (CorrectType)System.Enum.Parse (typeof(CorrectType),StringWrapper.ConvertToPascalCase(correctCount.Value),true);
-//			switch (align.Value) {
-//			case "horizontal": 
-//				ParagraphAlign = AlignType.Horizontal;
-//				tableCol = 0;
-//				break;
-//			case "vertical": 
-//				ParagraphAlign = AlignType.Vertical;
-//				tableCol = 1;
-//				break;
-//			}
 			ParagraphAlign = (AlignType)System.Enum.Parse (typeof(AlignType),StringWrapper.ConvertToPascalCase(align.Value),true);
 			tableCol = (ParagraphAlign == AlignType.Vertical)? 1:0;
 			break;
@@ -213,6 +191,8 @@ public class Paragraph : BaseElement{
 	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
+
+
 	/// <summary>
 	/// Generates the corresponding GameObject
 	/// </summary>
@@ -233,6 +213,7 @@ public class Paragraph : BaseElement{
 			//Adding QuestionStepParaPF to the root GameObject
 			GameObject QuestionStepParaGO = BasicGOOperation.InstantiateNGUIGO(QuestionStepParaPF,parentGO.transform);
 			ElementGO = QuestionStepParaGO;
+			initGOProp (ElementGO);
 			//Setting height of Paragraph ElementGO
 			ParaContentTableGO = BasicGOOperation.getChildGameObject (QuestionStepParaGO, "ParaContentTable");
 			ParaContentTableGO.GetComponent<UITable> ().columns = tableCol;
@@ -263,6 +244,11 @@ public class Paragraph : BaseElement{
 			}
 		}
 		return ParaContentTableGO;
+	}
+	override public void initGOProp(GameObject _elementGO){
+		if(ParagraphStep == Paragraph.StepType.QuestionStep){
+			Parent.setCurrentChild (this);
+		}
 	}
 	override public void updateGOProp(GameObject _elementGO){
 		if (ParagraphStep == Paragraph.StepType.Comprehension) {

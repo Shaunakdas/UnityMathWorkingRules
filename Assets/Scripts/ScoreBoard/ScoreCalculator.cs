@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ScoreCalculator  {
 	public const int MAX_SCORE_VALUE = 3000,MIN_SCORE_VALUE = 1000;
-	public const float MIN_ITEM_TIME = 0.33f;
-	public const float MAX_ITEM_TIME = 0.66f;
-	public float maxItemScore=0f,minItemScore=0f;
+	public const float MIN_ITEM_TIME = 0.33f, MAX_ITEM_TIME = 0.66f;
+	public const int MAX_PARA_LIVES = 3;
+	public float maxItemScore=0f,minItemScore=0f,maxParaScore=0f,minParaScore=0f;
 
 
 	public ScoreCalculator(){
@@ -32,7 +32,7 @@ public class ScoreCalculator  {
 		}
 		return _itemScore;
 	}
-	public float correctScoreFormula(float _timeTaken, float _minTime, float _maxTime, float _minScore, float _maxScore){
+	public static float correctScoreFormula(float _timeTaken, float _minTime, float _maxTime, float _minScore, float _maxScore){
 		return _maxScore - ((_timeTaken - _minTime) * (_maxScore - _minScore) / (_maxTime - _minTime));
 	}
 

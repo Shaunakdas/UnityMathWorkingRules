@@ -120,7 +120,16 @@ public class DropZoneRowCell : Cell {
 		}
 		return _targetTextList;
 	}
-
+	//Analytics and setting ParagraphRef
+	override public void  setChildParagraphRef(){
+		foreach (string targetText in TargetTextList) {
+			if (idPresent) {
+				ParagraphRef.scoreSettings.maxCorrectCount += 1;
+			} else {
+				ParagraphRef.scoreSettings.maxCorrectCount += targetText.ToCharArray ().Count();
+			}
+		}
+	}
 	//-------------Based on Element Attributes, creating GameObject -------------------
 
 	override public GameObject generateElementGO(GameObject parentGO){

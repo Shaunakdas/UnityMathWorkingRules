@@ -32,6 +32,12 @@ public class SelectableButtonCell : Cell {
 		DisplayText = cell_node.InnerText;
 	}
 
+	//Analytics and setting ParagraphRef
+	override public void  setChildParagraphRef(){
+		if(correctFlag){
+			ParagraphRef.scoreSettings.maxCorrectCount += 1;
+		}
+	}
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public GameObject generateElementGO(GameObject parentGO){
 		getAlignType ();

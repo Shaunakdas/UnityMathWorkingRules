@@ -55,7 +55,6 @@ public class Row : BaseElement {
 	/// <param name="para">Para.</param>
 	public Row(HtmlNode row_node){
 		maxGridCellWidth = 0;
-		Type = RowType.Default;
 		CellList = new List<Cell> ();
 		HtmlAttribute attr_tag = row_node.Attributes [AttributeManager.ATTR_TYPE];
 		if (attr_tag != null) {

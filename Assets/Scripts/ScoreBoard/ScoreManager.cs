@@ -14,28 +14,39 @@ public class ScoreManager  {
 	public Paragraph currentPara;
 	public ComprehensionBody parentBody;
 
-	public float currentScore = 0f;
-	public int livesPending = 0;
 
 	public ScoreCalculator scoreCalc;
 
 	public GameObject ElementGO;
 	public string prefabName;
 
+
+
+
 	//-------------Constructor and Calculation -------------------
 	public ScoreManager(){
 		scoreCalc = new ScoreCalculator ();
 		prefabName = LocationManager.NAME_SCORE_BOARD;
 	}
-	public void init(int paraCount){
+	public void init(ComprehensionBody _body){
 		//		scoreCalc.maxIt
+		parentBody = _body;
+	}
+	public void setCurrentPara(Paragraph _para){
+		currentPara = _para; 
 	}
 	public float calcMaxTotalScore(){
-		return 0f;
+		return (float) ScoreCalculator.MAX_SCORE_VALUE;
 	}
 
 	public float calcMaxParaScore(int paraCount, float maxTotalSocre){
-		return maxTotalSocre / paraCount;
+		scoreCalc.maxParaScore = maxTotalSocre / paraCount;
+		return scoreCalc.maxParaScore;
+	}
+
+	public float calcMaxItemScore(int targetCount, float maxParaScore){
+		scoreCalc.maxItemScore = maxParaScore / targetCount;
+		return scoreCalc.maxItemScore;
 	}
 
 	public void calcTotalTimeAllotted(){
@@ -45,17 +56,49 @@ public class ScoreManager  {
 	public void calcParaTimeAllotted(){
 
 	}
+	public void setupScoreSettings(List<Paragraph> _paraList){
+		foreach (Paragraph para in _paraList) {
+			ScoreSettings settings = para.scoreSettings;
+			//Maximum Score
+			settings.maxParaScore = scoreCalc.maxParaScore;
+			settings.maxItemScore = scoreCalc.maxParaScore/settings.maxCorrectCount;
+			//Maximum Time
+			settings.maxItemTimeAllotted = ScoreCalculator.MAX_ITEM_TIME; settings.minItemTimeAllotted = ScoreCalculator.MAX_ITEM_TIME;
+			settings.maxParaTimeAllotted = settings.maxCorrectCount * settings.maxItemTimeAllotted;
+			//Maximum Lives
+			settings.maxParaLives = ScoreCalculator.MAX_PARA_LIVES;
+		}
+	}
 	//-------------Generate ElementGO -------------------
 	public void generateElementGO(GameObject _parentGO){
 		GameObject ScoreBoardPF = Resources.Load (LocationManager.COMPLETE_LOC_SCORE_TYPE + prefabName)as GameObject;
 		ElementGO = BasicGOOperation.InstantiateNGUIGO(ScoreBoardPF,_parentGO.transform);
-		ScreenManager.SetAsScreenTop (ElementGO);
+		initGOProp (ElementGO);
+		setupScoreDisplay(ElementGO,currentPara);
+		updateGOProp (ElementGO);
+		BasicGOOperation.RepositionChildTables (ElementGO);
 	}
+	public void initGOProp(GameObject _elementGO){
 
+	}
+	public void setupScoreDisplay(GameObject _elementGO,Paragraph _para){
+		ScoreDisplayManager scoreDisplay = _elementGO.GetComponent<ScoreDisplayManager> ();
+		scoreDisplay.livesPending = _para.scoreSettings.maxParaLives; 
+		scoreDisplay.timePending = _para.scoreSettings.maxParaTimeAllotted;
+	}
+	public void updateGOProp(GameObject _elementGO){
+		ScreenManager.SetAsScreenTop (_elementGO);
+		
+	}
 	//-------------Animations -------------------
 	public void correctAnim(float _timeTaken){
 		float deltaScore = scoreCalc.itemScore (Result.Correct, _timeTaken);
 		ElementGO.GetComponent<ScoreDisplayManager> ().updateScore ((int)deltaScore);
+	}
+	public void correctAnim(int _attemptScore){
+		if (_attemptScore != 0) {
+			ElementGO.GetComponent<ScoreDisplayManager> ().updateScore (_attemptScore);
+		}
 	}
 	public void incorrectAnim(){
 		ElementGO.GetComponent<ScoreDisplayManager> ().updateLives (-1);

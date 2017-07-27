@@ -184,7 +184,7 @@ public class AnimationManager : MonoBehaviour {
 		GameObject TimerAnimGO = null;
 		switch (_id) {
 		case 1:
-			TimerAnimGO = startBackgroundTimerAnim (_elementGO,_nextEvent, warning);
+//			TimerAnimGO = startBackgroundTimerAnim (_elementGO,_nextEvent, warning);
 			break;
 		case 2:
 //			correctionBackgroundAnim (_elementGO,_nextEvent);

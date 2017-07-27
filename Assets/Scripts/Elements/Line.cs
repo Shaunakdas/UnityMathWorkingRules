@@ -179,6 +179,9 @@ public class Line : BaseElement{
 		BasicGOOperation.hideElementGO (ElementGO);
 	}
 	override public void displayElementGO(){
+		Parent.setCurrentChild (this);
+
+		//Setting Next Event Delegate
 		EventDelegate nextEvent = new EventDelegate (ParagraphRef.finishQuestionStep);
 		if (!lastSibling()) {
 			nextEvent = new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO);

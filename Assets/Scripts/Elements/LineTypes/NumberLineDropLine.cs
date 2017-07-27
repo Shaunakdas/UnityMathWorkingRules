@@ -123,6 +123,9 @@ public class NumberLineDropLine  : Line {
 	public void addDefaultItemsToBigMarker(){
 //		GameObject selectBtnPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
 		GameObject itemGO=null;int index=0;
+		//In order to track target Cell
+		Row row = new Row ();
+
 		foreach (GameObject numberMarkerItem in NumberMarkerList){
 			if (displayNumber) numberMarkerItem.GetComponentInChildren<TEXDrawNGUI> ().text = ( index).ToString() ;
 			//To access DropZoneRowCell methods
@@ -136,6 +139,7 @@ public class NumberLineDropLine  : Line {
 				itemGO.GetComponentInChildren<UISprite> ().height = itemGO.GetComponentInChildren<UISprite> ().height - 20;
 				DropZoneRowCell dropZoneRowCell = new DropZoneRowCell (this.ParagraphRef);
 				dropZoneRowCell.addDropZoneHolder (ElementGO, itemGO);
+				row.CellList.Add (dropCell);
 				//Set target text
 				break;
 			case LineType.NumberLineSelect:
@@ -146,11 +150,14 @@ public class NumberLineDropLine  : Line {
 				selectCell.updateTableCol (itemGO, 0);
 				selectCell.updateTextSize (itemGO, 40);
 				selectCell.resizeToFit (itemGO);
+				row.CellList.Add (selectCell);
 				break;
 			case LineType.NumberLineDropJump:
 				itemGO = dropCell.generateDropZoneHolderGO (numberMarkerItem,StringWrapper.splitTargetText (""), false);
+				row.CellList.Add (dropCell);
 				break;
 			}
+			RowList.Add (row);
 			itemGO.transform.localPosition = new Vector3 (-60f, 0f,0f);
 			index++;
 		}

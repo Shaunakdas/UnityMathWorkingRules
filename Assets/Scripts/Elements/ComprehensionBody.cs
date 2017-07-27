@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
+using System.Linq;
 
 public class ComprehensionBody : BaseElement {
 	//-------------Common Attributes -------------------
@@ -57,7 +58,7 @@ public class ComprehensionBody : BaseElement {
 
 		GameObject ComprehensionBodyPF = Resources.Load (LocationManager.COMPLETE_LOC_BODY_TYPE + prefabName)as GameObject;
 		ElementGO = BasicGOOperation.InstantiateNGUIGO(ComprehensionBodyPF,parentGO.transform);
-		updateSize (ElementGO);
+		initGOProp (ElementGO);
 		if(true){
 //			Paragraph is of type QuestionStep
 			int StepCounter =1;
@@ -80,27 +81,42 @@ public class ComprehensionBody : BaseElement {
 			ParaCounterTableGO.transform.SetAsLastSibling ();
 
 			//ScoreTable
-			scoreMan.init(ParagraphList.Count);
+			scoreMan.init(this);
 			updateGOProp(ElementGO);
 			BasicGOOperation.RepositionChildTables (ElementGO);
 //			setUpChildActiveAnim (targetItemCheckerList);
 		}
 		return ElementGO;
 	}
+	override public void initGOProp (GameObject _elementGO){
+		//Setting Background Size
+		ScreenManager.SetAsScreenSize (_elementGO); setRootSize (_elementGO);
+		//Setting ScoreManager Values
+		setupScoreSettings();
+		Paragraph firstStepPata = ParagraphList.Where(s => s.ParagraphStep == Paragraph.StepType.QuestionStep).ElementAt(0);
+		//Setting MaxParaScore
+		scoreMan.currentPara = firstStepPata;
+	}
 	override public void updateGOProp(GameObject _elementGO){
 		//Setting ParaCounterTable as screen bottom
 		GameObject ParaTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaTable");
 		ScreenManager.SetTableAsScreenBottom (ParaTableGO);
 	}
-	public void updateSize(GameObject _elementGO){
-		ScreenManager.SetAsScreenSize (_elementGO); setRootSize (_elementGO);
+	public override void setCurrentChild (BaseElement _childElement)
+	{
+		base.setCurrentChild (_childElement);
+		scoreMan.setCurrentPara(CurrentChild as Paragraph);
 	}
 	public void setRootSize(GameObject _elementGO){
 		UIRoot Root = ElementGO.GetComponentInParent<UIRoot> (); 
 		Root.manualHeight = Screen.height; Root.manualWidth = Screen.width; 
 	}
-	public void setScale(){
-		BasicGOOperation.scale = ElementGO.GetComponentInParent<UIRoot> ().transform.localScale;
+	//----------------------Analytics ----------------------------
+	public void setupScoreSettings(){
+		scoreMan.setupScoreSettings (ParagraphList);
+	}
+	public void setCurrentScoreSettings(Paragraph para){
+
 	}
 	//----------------------Animations ----------------------------
 	public bool checkForNextPara(){

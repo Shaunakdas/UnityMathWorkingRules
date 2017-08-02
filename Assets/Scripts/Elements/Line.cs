@@ -192,7 +192,7 @@ public class Line : BaseElement{
 		}
 
 		//Check for Interaction elements in Line ElementGO
-		if (ElementGO.GetComponentsInChildren<TargetItemChecker>().Length > 0) {
+		if (ElementGO.GetComponentsInChildren<QuestionChecker>().Length > 0) {
 			//checking for TargetItemHolder
 			Debug.Log ("Element Display Anim:Checking for Target Item Checker");
 			displayDragSourceLine ();
@@ -218,7 +218,7 @@ public class Line : BaseElement{
 	}
 	public void activateItemCheckerListAnim(EventDelegate nextEvent){
 		//Going through all targetItemHolder in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
-		List<TargetItemChecker> lineItemCheckerList = ElementGO.GetComponentsInChildren<TargetItemChecker>().ToList().FindAll(delegate(TargetItemChecker t) { return t.ItemTargetType == TargetOptionChecker.TargetType.Item; });
+		List<QuestionChecker> lineItemCheckerList = ElementGO.GetComponentsInChildren<QuestionChecker>().ToList().FindAll(delegate(QuestionChecker t) { return t.ItemTargetType == OptionChecker.TargetType.Question; });
 		for(int i = 0; i < lineItemCheckerList.Count; i++){
 			EventDelegate nextLineEvent = nextEvent;
 			if (i < lineItemCheckerList.Count - 1)
@@ -228,7 +228,7 @@ public class Line : BaseElement{
 		lineItemCheckerList [0].activateAnim ();
 	}
 	public void displayDragSourceLine(){
-		if (ElementGO.GetComponentInChildren<DropZoneItemChecker> () != null) {
+		if (ElementGO.GetComponentInChildren<DropZoneOptionChecker> () != null) {
 			foreach (TableLine table in ParagraphRef.DragSourceTableList) {
 				BasicGOOperation.displayElementGOAnim (table.ElementGO,null);
 			}

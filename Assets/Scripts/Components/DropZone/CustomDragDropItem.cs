@@ -165,7 +165,7 @@ public class CustomDragDropItem : UIDragDropItem {
 	}
 	public bool notifySurface(GameObject surface){
 		Debug.Log ("Name of surface"+surface.name);
-		DropZoneItemChecker itemChecker = surface.GetComponent<DropZoneItemChecker> ();
+		DropZoneOptionChecker itemChecker = surface.GetComponent<DropZoneOptionChecker> ();
 		if (itemChecker != null) {
 			Debug.Log ("notifySurface text "+this.gameObject.GetComponentInChildren<UILabel> ().text);
 			Debug.Log ("surface name "+surface.name);

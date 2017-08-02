@@ -27,7 +27,7 @@ public class Paragraph : BaseElement{
 
 	//-----------------Animation Attributes --------------
 	//List of target BaseElements
-	static public List<TargetItemChecker> targetItemHolderList{get; set;}
+	static public List<QuestionChecker> targetItemHolderList{get; set;}
 
 	//Text to be displayed after completion of paragraph
 	public string postSubmitText{get; set;}
@@ -200,7 +200,7 @@ public class Paragraph : BaseElement{
 	/// <param name="ElementGameObject">Element GameObject</param>
 	override public GameObject generateElementGO(GameObject parentGO){
 
-		targetItemHolderList = new List<TargetItemChecker> ();
+		targetItemHolderList = new List<QuestionChecker> ();
 		//Setting targetText of child drop zone cell;
 		populateCellTargetText ();
 		GameObject QuestionStepParaPF = Resources.Load (LocationManager.COMPLETE_LOC_PARAGRAPH_TYPE + prefabName)as GameObject;
@@ -330,7 +330,7 @@ public class Paragraph : BaseElement{
 	/// Sets up first Getting active animation.
 	/// </summary>
 	/// <param name="_targetItemCheckerList">Target item checker list.</param>
-	public void setUpChildActiveAnim(List<TargetItemChecker> _targetItemHolderList){
+	public void setUpChildActiveAnim(List<QuestionChecker> _targetItemHolderList){
 		Debug.Log ("setUpChildActiveAnim"+_targetItemHolderList.Count.ToString());
 		if (_targetItemHolderList.Count > 0)
 			_targetItemHolderList [0].activateAnim ();
@@ -339,7 +339,7 @@ public class Paragraph : BaseElement{
 	/// Sets up the next target trigger
 	/// </summary>
 	/// <param name="itemChecker">Item checker.</param>
-	public void nextTargetTrigger(TargetItemChecker itemHolder){
+	public void nextTargetTrigger(QuestionChecker itemHolder){
 		Debug.Log (targetItemHolderList.Count);
 		int currentCounter = targetItemHolderList.IndexOf (itemHolder);
 		if (currentCounter < targetItemHolderList.Count-1) {

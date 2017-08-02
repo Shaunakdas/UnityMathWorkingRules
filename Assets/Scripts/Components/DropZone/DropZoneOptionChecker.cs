@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropZoneItemChecker : TargetOptionChecker {
+public class DropZoneOptionChecker : OptionChecker {
 	public BaseElement element;
 	public bool idCheck{ get; set; }
 	public GameObject DropZoneHolderGO;
@@ -41,7 +41,7 @@ public class DropZoneItemChecker : TargetOptionChecker {
 		foreach (Transform childTransform in gameObject.transform.parent) {
 			if (childTransform.gameObject != gameObject) {
 				//Getting char of sibling dropzone
-				string childFilledText = childTransform.gameObject.GetComponent<DropZoneItemChecker> ().filledText;
+				string childFilledText = childTransform.gameObject.GetComponent<DropZoneOptionChecker> ().filledText;
 				textToCheck += (childFilledText != null) ? childFilledText : " ";
 			} else {
 				//Getting char of current dropzone

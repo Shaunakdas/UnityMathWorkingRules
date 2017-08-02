@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetOptionChecker : MonoBehaviour {
+public class OptionChecker : MonoBehaviour {
 	public enum AttemptState{Unseen,Seen,Activated,Attempted,Checked,Corrected,Deactivated}
 	public AttemptState itemAttemptState = AttemptState.Unseen;
 	public EventDelegate nextEvent;
 	public Paragraph ParagraphRef;
 	public GameObject TimerAnimGO = null;
-	public enum TargetType{Option,Item,Holder,HolderParent}
+	public enum TargetType{Option,Question,Holder,HolderParent}
 	public TargetType ItemTargetType=TargetType.Option;
 	// Use this for initialization
 	void Start () {

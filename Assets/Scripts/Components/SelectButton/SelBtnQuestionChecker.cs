@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelBtnHolder : TargetItemChecker {
+public class SelBtnQuestionChecker : QuestionChecker {
 //	public List<GameObject> SelBtnGOList;
 	public int correctCount = 0;
 	public int depth;
@@ -10,7 +10,7 @@ public class SelBtnHolder : TargetItemChecker {
 		if (correctFlag)
 			correctCount++;
 		depth = selBtnGO.GetComponent<UIWidget> ().depth;
-		TargetOptionChecker itemChecker = selBtnGO.GetComponent<SelBtnItemChecker> ();
+		OptionChecker itemChecker = selBtnGO.GetComponent<SelBtnOptionChecker> ();
 		if(TargetOptionCheckerList.IndexOf(itemChecker)== -1)
 			TargetOptionCheckerList.Add (itemChecker);
 	}
@@ -69,7 +69,7 @@ public class SelBtnHolder : TargetItemChecker {
 
 	}
 	void Awake(){
-		ItemTargetType=TargetType.Item;
+		ItemTargetType=TargetType.Question;
 		Debug.Log ("Awake of SelBtnHolder called");
 	}
 	// Use this for initialization
@@ -132,7 +132,7 @@ public class SelBtnHolder : TargetItemChecker {
 		//check in not user selected buttons
 //		foreach (GameObject selBtnGO in SelBtnGOList) {
 		for (int i=0;i<TargetOptionCheckerList.Count; i++){
-			SelBtnItemChecker itemChecker = TargetOptionCheckerList [i] as SelBtnItemChecker;
+			SelBtnOptionChecker itemChecker = TargetOptionCheckerList [i] as SelBtnOptionChecker;
 			itemChecker.itemAttemptState = AttemptState.Attempted;
 			EventDelegate _nextEvent = null;
 			if (i == TargetOptionCheckerList.Count - 1)

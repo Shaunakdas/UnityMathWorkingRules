@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropZoneHolderParent : TargetItemChecker {
+public class DropZoneHolderParent : QuestionChecker {
 	public BaseElement Element;
 	List<GameObject> dropZoneHolderList;
 	public void addDropZoneHolder(GameObject dropZoneHolderGO){

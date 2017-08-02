@@ -40,7 +40,7 @@ public class TableLine  : Line {
 	override public void updateGOProp(GameObject ElementGO){
 		Debug.Log ("COLUMN_COUNT"+ColumnCount);
 		ElementGO.GetComponent<UITable> ().columns = ColumnCount;
-		SelBtnHolder selBtnHolder = ElementGO.GetComponent<SelBtnHolder> ();
+		SelBtnQuestionChecker selBtnHolder = ElementGO.GetComponent<SelBtnQuestionChecker> ();
 
 		if (selBtnHolder != null) {
 			selBtnHolder.ParagraphRef = this.ParagraphRef;
@@ -54,7 +54,7 @@ public class TableLine  : Line {
 	public void updateSelBtnHolder(GameObject _selBtnGO,bool _selBtnBool){
 		SelBtnFlag = true;
 
-		ElementGO.AddComponent<SelBtnHolder> (); SelBtnHolder holderScript = ElementGO.GetComponent<SelBtnHolder> ();
+		ElementGO.AddComponent<SelBtnQuestionChecker> (); SelBtnQuestionChecker holderScript = ElementGO.GetComponent<SelBtnQuestionChecker> ();
 		holderScript.ParagraphRef = this.ParagraphRef;
 		holderScript.addToTargetList ();
 		holderScript.addSelectBtn (_selBtnGO, _selBtnBool);

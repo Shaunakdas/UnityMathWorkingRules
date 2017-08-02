@@ -205,7 +205,7 @@ public class NumberLineDropLine  : Line {
 			case LineType.NumberLineSelect:
 				//				GameObject selBtnGO = BasicGOOperation.getChildGameObject (itemGO ,LocationManager.NAME_SELECT_BTN_CELL);
 				//				SelectableButtonCell.updateText (selBtnGO, text);
-				SelBtnItemChecker itemChecker = itemGO.GetComponentInChildren<SelBtnItemChecker> ();
+				SelBtnOptionChecker itemChecker = itemGO.GetComponentInChildren<SelBtnOptionChecker> ();
 				SelectableButtonCell selectBtnCell = new SelectableButtonCell ();
 				//To access SelectableButtonCell methods
 				SelectableButtonCell selectCell = new SelectableButtonCell ();

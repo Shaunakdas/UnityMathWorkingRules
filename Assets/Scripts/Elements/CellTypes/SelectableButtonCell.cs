@@ -43,7 +43,7 @@ public class SelectableButtonCell : Cell {
 		getAlignType ();
 		ElementGO =  generateSelBtnCellGO (parentGO, DisplayText);
 		Debug.Log (Parent.Parent.GetType ().ToString ());
-		SelBtnItemChecker itemChecker = updateItemChecker (ElementGO, correctFlag, Parent.Parent as Line);
+		SelBtnOptionChecker itemChecker = updateItemChecker (ElementGO, correctFlag, Parent.Parent as Line);
 		Debug.Log(itemChecker.correctFlag);
 		return ElementGO;
 	}
@@ -59,7 +59,7 @@ public class SelectableButtonCell : Cell {
 		//		Debug.Log ("Updating Text of Cell" + DisplayText);
 		updateSelectBtnGO(ElementGO, DisplayText);
 		//Init Select Item Checker
-		SelBtnItemChecker itemChecker = updateItemChecker (ElementGO, correctFlag, Parent.Parent as Line);
+		SelBtnOptionChecker itemChecker = updateItemChecker (ElementGO, correctFlag, Parent.Parent as Line);
 	}
 
 
@@ -72,7 +72,7 @@ public class SelectableButtonCell : Cell {
 		//Setting width based on text width
 		resizeToFit(ElementGO);
 		GameObject checkBoxGO = BasicGOOperation.getChildGameObject (TableGO, "CheckBox");
-		SelBtnItemChecker itemChecker = ElementGO.GetComponent<SelBtnItemChecker> ();
+		SelBtnOptionChecker itemChecker = ElementGO.GetComponent<SelBtnOptionChecker> ();
 		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { updateCheckBox(checkBoxGO);itemChecker.changeInputFlag(); });
 	}
 	public  void updateCheckBox(GameObject checkBoxGO){
@@ -105,16 +105,16 @@ public class SelectableButtonCell : Cell {
 	}
 
 	//-------------Static methods to create/update GameObject components for Correct/Incorrect Check-------------------
-	public SelBtnItemChecker updateItemChecker(GameObject _elementGO, bool _correctBool, Line line){
-		SelBtnItemChecker itemChecker= _elementGO.GetComponent<SelBtnItemChecker> ();
+	public SelBtnOptionChecker updateItemChecker(GameObject _elementGO, bool _correctBool, Line line){
+		SelBtnOptionChecker itemChecker= _elementGO.GetComponent<SelBtnOptionChecker> ();
 		//		Debug.Log (_correctBool);
 		itemChecker.correctFlag = _correctBool;itemChecker.SelBtnHolderGO = line.ElementGO;
 		//Adding SelBtrnGolder script to parent TableLine
-		if (line.ElementGO.GetComponent<SelBtnHolder>() == null)
-			line.ElementGO.AddComponent<SelBtnHolder>();
-		line.ElementGO.GetComponent<SelBtnHolder>().addSelectBtn (_elementGO, _correctBool);
-		line.ElementGO.GetComponent<SelBtnHolder>().addToTargetList ();
-		line.ElementGO.GetComponent<SelBtnHolder> ().ParagraphRef = this.ParagraphRef;
+		if (line.ElementGO.GetComponent<SelBtnQuestionChecker>() == null)
+			line.ElementGO.AddComponent<SelBtnQuestionChecker>();
+		line.ElementGO.GetComponent<SelBtnQuestionChecker>().addSelectBtn (_elementGO, _correctBool);
+		line.ElementGO.GetComponent<SelBtnQuestionChecker>().addToTargetList ();
+		line.ElementGO.GetComponent<SelBtnQuestionChecker> ().ParagraphRef = this.ParagraphRef;
 
 		return itemChecker;
 	}

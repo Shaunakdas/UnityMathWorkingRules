@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropZoneHolder : TargetItemChecker {
+public class DropZoneHolder : QuestionChecker {
 
 	//----------------------Common attributes ----------------------------
 	public bool idCheck{ get; set; }
@@ -13,11 +13,11 @@ public class DropZoneHolder : TargetItemChecker {
 	/// <summary>
 	/// list of list of DropZoneItemChecker for managing animatiojn after user input. 
 	/// </summary>
-	public List<List<DropZoneItemChecker>> ItemCheckerMasterList{ get; set; }
+	public List<List<DropZoneOptionChecker>> ItemCheckerMasterList{ get; set; }
 	void Awake(){
-		ItemTargetType=TargetType.Item;
+		ItemTargetType=TargetType.Question;
 		multipleHolderCheck = false;
-		ItemCheckerMasterList = new List<List<DropZoneItemChecker>> ();
+		ItemCheckerMasterList = new List<List<DropZoneOptionChecker>> ();
 	}
 	// Use this for initialization
 	void Start () {
@@ -28,7 +28,7 @@ public class DropZoneHolder : TargetItemChecker {
 	override public void addToTargetList(){
 		Paragraph.targetItemHolderList.Add (this);
 	}
-	public bool checkDropZoneItem(string inputText, DropZoneItemChecker itemChecker){
+	public bool checkDropZoneItem(string inputText, DropZoneOptionChecker itemChecker){
 		Debug.Log ("Holder: checkDropZoneItem for checking "+inputText);
 		bool inputCorrect = false;
 		if (idCheck) {
@@ -80,7 +80,7 @@ public class DropZoneHolder : TargetItemChecker {
 		
 	}
 	//----------------------Animations ----------------------------
-	public void resultAnim(bool inputCorrect, DropZoneItemChecker itemChecker){
+	public void resultAnim(bool inputCorrect, DropZoneOptionChecker itemChecker){
 		itemChecker.itemAttemptState = AttemptState.Attempted;
 		EventDelegate nextItemEvent = nextEvent;
 		int itemIndex = TargetOptionCheckerList.IndexOf (itemChecker);
@@ -99,8 +99,8 @@ public class DropZoneHolder : TargetItemChecker {
 	/// <param name="_elementGO">Element G.</param>
 	override public void activateAnim(){
 		Debug.Log ("activateAnim of DropZoneRowCell");
-		List<DropZoneItemChecker> DropZoneItemCheckerList = new List<DropZoneItemChecker> ();
-		foreach(DropZoneItemChecker itemChecker in gameObject.GetComponentsInChildren<DropZoneItemChecker>()){
+		List<DropZoneOptionChecker> DropZoneItemCheckerList = new List<DropZoneOptionChecker> ();
+		foreach(DropZoneOptionChecker itemChecker in gameObject.GetComponentsInChildren<DropZoneOptionChecker>()){
 			Debug.Log (itemChecker.gameObject.name);
 			DropZoneItemCheckerList.Add (itemChecker); 
 		}
@@ -119,7 +119,7 @@ public class DropZoneHolder : TargetItemChecker {
 	/// <param name="_elementGO">Element G.</param>
 	override public void deactivateAnim(){
 		Debug.Log ("deactivateAnim of DropZoneRowCell");
-		foreach (DropZoneItemChecker itemChecker in TargetOptionCheckerList) {
+		foreach (DropZoneOptionChecker itemChecker in TargetOptionCheckerList) {
 			itemChecker.deactivateAnim ();
 		}
 	}
@@ -129,7 +129,7 @@ public class DropZoneHolder : TargetItemChecker {
 	override public void correctAnim(){
 		Debug.Log ("DropZoneRowCell CorrectAnim");
 	}
-	public void correctAnim(DropZoneItemChecker itemChecker){
+	public void correctAnim(DropZoneOptionChecker itemChecker){
 		Debug.Log ("DropZoneRowCell CorrectAnim");
 //		if (!nextItemChecker (itemChecker))
 //			nextTargetTrigger ();
@@ -140,7 +140,7 @@ public class DropZoneHolder : TargetItemChecker {
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim"+ParagraphRef.ElementGO.name);
 	}
-	public void incorrectAnim(DropZoneItemChecker itemChecker){
+	public void incorrectAnim(DropZoneOptionChecker itemChecker){
 		Debug.Log ("DropZoneRowCell InCorrectAnim"+ParagraphRef.ElementGO.name);
 		correctionAnim (itemChecker);
 	}
@@ -150,7 +150,7 @@ public class DropZoneHolder : TargetItemChecker {
 	override public void correctionAnim(){
 		Debug.Log ("DropZoneRowCell correctionAnim");
 	}
-	public void correctionAnim(DropZoneItemChecker itemChecker){
+	public void correctionAnim(DropZoneOptionChecker itemChecker){
 		Debug.Log ("DropZoneRowCell correctionAnim");
 		DragSourceCell targetCell = findCorrectDragItem(itemChecker);
 //		targetCell.DroppedOnSurface += delegate {
@@ -160,14 +160,14 @@ public class DropZoneHolder : TargetItemChecker {
 
 		targetCell.dragToDropZone (itemChecker.gameObject,null);
 	}
-	public void correctionAnim(DropZoneItemChecker itemChecker,EventDelegate _nextEvent){
+	public void correctionAnim(DropZoneOptionChecker itemChecker,EventDelegate _nextEvent){
 		Debug.Log ("DropZoneRowCell correctionAnim");
 		DragSourceCell targetCell = findCorrectDragItem(itemChecker);
 //		targetCell.DroppedOnSurface += delegate {
 //			if (!nextItemChecker (itemChecker))
 //				nextTargetTrigger ();
 //		};
-
+		Debug.Log(targetCell.ElementGO.name);
 		targetCell.dragToDropZone (itemChecker.gameObject,_nextEvent);
 	}
 
@@ -176,11 +176,11 @@ public class DropZoneHolder : TargetItemChecker {
 	/// </summary>
 	/// <returns><c>true</c>, if item checker was nexted, <c>false</c> otherwise.</returns>
 	/// <param name="_attemptedItemChecker">Attempted item checker.</param>
-	public bool nextItemChecker(DropZoneItemChecker _attemptedItemChecker){
+	public bool nextItemChecker(DropZoneOptionChecker _attemptedItemChecker){
 		bool nextFound = false;
-		List<DropZoneItemChecker> attemptedItemCheckerList = new List<DropZoneItemChecker>();
-		foreach (List<DropZoneItemChecker> itemCheckerList in ItemCheckerMasterList) {
-			foreach(DropZoneItemChecker itemChecker in itemCheckerList){
+		List<DropZoneOptionChecker> attemptedItemCheckerList = new List<DropZoneOptionChecker>();
+		foreach (List<DropZoneOptionChecker> itemCheckerList in ItemCheckerMasterList) {
+			foreach(DropZoneOptionChecker itemChecker in itemCheckerList){
 				if (_attemptedItemChecker == itemChecker) {
 					attemptedItemCheckerList = itemCheckerList;
 				}
@@ -216,7 +216,7 @@ public class DropZoneHolder : TargetItemChecker {
 	/// </summary>
 	/// <returns>The correct drag item.</returns>
 	/// <param name="dropZoneItem">Drop zone item</param>
-	public DragSourceCell findCorrectDragItem(DropZoneItemChecker dropZoneItem){
+	public DragSourceCell findCorrectDragItem(DropZoneOptionChecker dropZoneItem){
 		//Find the target drag cell
 		DragSourceCell targetCell;
 		Debug.Log ("Inside findCorrectDragItem");

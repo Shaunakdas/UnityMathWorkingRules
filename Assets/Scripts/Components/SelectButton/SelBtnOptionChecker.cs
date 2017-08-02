@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelBtnItemChecker : TargetOptionChecker {
+public class SelBtnOptionChecker : OptionChecker {
 	public bool correctFlag = false;
 	public bool userInputFlag = false;
 	public GameObject SelBtnHolderGO;
@@ -12,7 +12,7 @@ public class SelBtnItemChecker : TargetOptionChecker {
 
 	public void changeInputFlag(){
 		userInputFlag = !userInputFlag;
-		SelBtnHolderGO.GetComponent<SelBtnHolder> ().optionSelected ();
+		SelBtnHolderGO.GetComponent<SelBtnQuestionChecker> ().optionSelected ();
 	}
 	override public void activateAnim(){
 		//Animation for activate select button option

@@ -307,6 +307,51 @@ public class BasicGOOperation : MonoBehaviour{
 			return _elementGO.GetComponentInChildren<UISprite> ();
 		}
 	}
+	public static Paragraph getParagraphRef(BaseElement _element){
+		Paragraph para = null;
+		if(_element.GetType() != typeof(ComprehensionBody)){
+			if (_element.GetType () == typeof(Paragraph)) {
+				return _element as Paragraph;
+			} else {
+				return _element.ParagraphRef;
+			}
+		}
+		return para;
+	}
+	public static Line getMasterLineRef(BaseElement _element){
+		Line _elementLine = null;
+		Paragraph para = getParagraphRef(_element);
+		if ((_element.GetType () == typeof(Line)) && (_element.GetType () != typeof(Cell))) {
+			return _element as Line;
+		} else if (_element.GetType () == typeof(Row)){
+			if (para.LineList.Contains (_element.Parent as Line)) {
+				return _element.Parent as Line;
+			} else if (para.LineList.Contains (_element.Parent.Parent.Parent as Line)) {
+				return _element.Parent.Parent.Parent as Line;
+			}
+		} else if (_element.GetType () == typeof(Cell)){
+			if (para.LineList.Contains (_element.Parent.Parent as Line)) {
+				return _element.Parent.Parent as Line;
+			} else if (para.LineList.Contains (_element.Parent.Parent.Parent.Parent as Line)) {
+				return _element.Parent.Parent.Parent.Parent as Line;
+			}
+		}
+		return _elementLine;
+	}
+	public static Row getMasterRowRef(BaseElement _element){
+		Row _elementRow = null;
+		Line line =  getMasterLineRef(_element);
+		if (_element.GetType () == typeof(Row))  {
+			return _element as Row;
+		} else if (_element.GetType () == typeof(Cell)){
+			if (line.RowList.Contains (_element.Parent as Row)) {
+				return _element.Parent as Row;
+			} else if (line.RowList.Contains (_element.Parent.Parent.Parent as Row)) {
+				return _element.Parent.Parent.Parent as Row;
+			}
+		} 
+		return _elementRow;
+	}
 }
 
 

@@ -11,8 +11,8 @@ public class SelBtnQuestionChecker : QuestionChecker {
 			correctCount++;
 		depth = selBtnGO.GetComponent<UIWidget> ().depth;
 		OptionChecker itemChecker = selBtnGO.GetComponent<SelBtnOptionChecker> ();
-		if(TargetOptionCheckerList.IndexOf(itemChecker)== -1)
-			TargetOptionCheckerList.Add (itemChecker);
+		if(ChildList.IndexOf(itemChecker)== -1)
+			ChildList.Add (itemChecker);
 	}
 	public void setParentCorrectCount(Paragraph para, Line line){
 		if (correctCount > 1) {
@@ -81,8 +81,8 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	void Update () {
 		
 	}
-	override public void addToTargetList(){
-		if(Paragraph.targetItemHolderList.IndexOf(this) < 0) Paragraph.targetItemHolderList.Add (this);
+	override public void addToQuestionList(){
+		if(Paragraph.QuestionList.IndexOf(this) < 0) Paragraph.QuestionList.Add (this);
 	}
 	//----------------------Animations ----------------------------
 	/// <summary>
@@ -131,11 +131,11 @@ public class SelBtnQuestionChecker : QuestionChecker {
 		Debug.Log ("DropZoneRowCell CorrectionAnim");
 		//check in not user selected buttons
 //		foreach (GameObject selBtnGO in SelBtnGOList) {
-		for (int i=0;i<TargetOptionCheckerList.Count; i++){
-			SelBtnOptionChecker itemChecker = TargetOptionCheckerList [i] as SelBtnOptionChecker;
+		for (int i=0;i<ChildList.Count; i++){
+			SelBtnOptionChecker itemChecker = ChildList [i] as SelBtnOptionChecker;
 			itemChecker.itemAttemptState = AttemptState.Attempted;
 			EventDelegate _nextEvent = null;
-			if (i == TargetOptionCheckerList.Count - 1)
+			if (i == ChildList.Count - 1)
 				_nextEvent = new EventDelegate(nextAnimTrigger);
 			if (itemChecker.userInputFlag) {
 				//CheckAnimation if userinputFlag is correct. Wait

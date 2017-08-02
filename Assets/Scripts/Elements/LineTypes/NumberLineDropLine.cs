@@ -199,7 +199,7 @@ public class NumberLineDropLine  : Line {
 			case LineType.NumberLineDrop:
 
 				itemGO.GetComponentInChildren<DropZoneHolder> ().TargetTextList = StringWrapper.splitTargetText (text); 
-				itemGO.GetComponentInChildren<DropZoneHolder> ().ParagraphRef = this.ParagraphRef;
+				itemGO.GetComponentInChildren<DropZoneHolder> ().ContainerElem = this;
 				//Set target text
 				break;
 			case LineType.NumberLineSelect:

@@ -43,7 +43,7 @@ public class TableLine  : Line {
 		SelBtnQuestionChecker selBtnHolder = ElementGO.GetComponent<SelBtnQuestionChecker> ();
 
 		if (selBtnHolder != null) {
-			selBtnHolder.ParagraphRef = this.ParagraphRef;
+			selBtnHolder.ContainerElem = this;
 			selBtnHolder.setParentCorrectCount (Parent as Paragraph, this);
 		}
 		BasicGOOperation.CheckAndRepositionTable (ElementGO);
@@ -55,8 +55,8 @@ public class TableLine  : Line {
 		SelBtnFlag = true;
 
 		ElementGO.AddComponent<SelBtnQuestionChecker> (); SelBtnQuestionChecker holderScript = ElementGO.GetComponent<SelBtnQuestionChecker> ();
-		holderScript.ParagraphRef = this.ParagraphRef;
-		holderScript.addToTargetList ();
+		holderScript.ContainerElem = this;
+		holderScript.addToQuestionList ();
 		holderScript.addSelectBtn (_selBtnGO, _selBtnBool);
 		//Changing Paragraph's correctType
 		holderScript.setParentCorrectCount(Parent as Paragraph,this);

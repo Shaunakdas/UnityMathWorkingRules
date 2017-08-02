@@ -23,7 +23,7 @@ public class Line : BaseElement{
 	//List of child rows
 	public List<Row> RowList {get; set;}
 
-
+	public List<QuestionChecker> QuestionList;
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Constructor
 	public Line(){
@@ -193,11 +193,11 @@ public class Line : BaseElement{
 
 		//Check for Interaction elements in Line ElementGO
 		if (ElementGO.GetComponentsInChildren<QuestionChecker>().Length > 0) {
-			//checking for TargetItemHolder
-			Debug.Log ("Element Display Anim:Checking for Target Item Checker");
+			//checking for QuestonCheckers
+			Debug.Log ("Element Display Anim:Checking for Questions");
 			displayDragSourceLine ();
 			BasicGOOperation.displayElementGOAnim (ElementGO,null);
-			activateItemCheckerListAnim (nextEvent);
+			activateQuestionListAnim (nextEvent);
 
 		
 		} else if (BasicGOOperation.getFirstButton(ElementGO)!=null) {
@@ -216,16 +216,16 @@ public class Line : BaseElement{
 			BasicGOOperation.displayElementGOAnim (ElementGO, nextEvent);
 		}
 	}
-	public void activateItemCheckerListAnim(EventDelegate nextEvent){
-		//Going through all targetItemHolder in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
-		List<QuestionChecker> lineItemCheckerList = ElementGO.GetComponentsInChildren<QuestionChecker>().ToList().FindAll(delegate(QuestionChecker t) { return t.ItemTargetType == OptionChecker.TargetType.Question; });
-		for(int i = 0; i < lineItemCheckerList.Count; i++){
+	public void activateQuestionListAnim(EventDelegate nextEvent){
+		//Going through all questionHolders in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
+		List<QuestionChecker> lineQuestionList = ElementGO.GetComponentsInChildren<QuestionChecker>().ToList().FindAll(delegate(QuestionChecker t) { return t.ItemTargetType == OptionChecker.TargetType.Question; });
+		for(int i = 0; i < lineQuestionList.Count; i++){
 			EventDelegate nextLineEvent = nextEvent;
-			if (i < lineItemCheckerList.Count - 1)
-				nextLineEvent = new EventDelegate (lineItemCheckerList [i + 1].activateAnim);
-			lineItemCheckerList [i].nextEvent = nextLineEvent;
+			if (i < lineQuestionList.Count - 1)
+				nextLineEvent = new EventDelegate (lineQuestionList [i + 1].activateAnim);
+			lineQuestionList [i].nextEvent = nextLineEvent;
 		}
-		lineItemCheckerList [0].activateAnim ();
+		lineQuestionList [0].activateAnim ();
 	}
 	public void displayDragSourceLine(){
 		if (ElementGO.GetComponentInChildren<DropZoneOptionChecker> () != null) {

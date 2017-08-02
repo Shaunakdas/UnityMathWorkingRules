@@ -6,10 +6,14 @@ public class OptionChecker : MonoBehaviour {
 	public enum AttemptState{Unseen,Seen,Activated,Attempted,Checked,Corrected,Deactivated}
 	public AttemptState itemAttemptState = AttemptState.Unseen;
 	public EventDelegate nextEvent;
-	public Paragraph ParagraphRef;
+//	public Paragraph ParagraphRef;
+	public BaseElement ContainerElem;
 	public GameObject TimerAnimGO = null;
 	public enum TargetType{Option,Question,Holder,HolderParent}
 	public TargetType ItemTargetType=TargetType.Option;
+
+
+	public List<OptionChecker> ChildList = new List<OptionChecker>();
 	// Use this for initialization
 	void Start () {
 		
@@ -19,7 +23,7 @@ public class OptionChecker : MonoBehaviour {
 	void Update () {
 		
 	}
-	virtual public void addToTargetList(){
+	virtual public void addToQuestionList(){
 		itemAttemptState = AttemptState.Unseen;
 	}
 	//----------------------Animations ----------------------------

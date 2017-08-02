@@ -147,10 +147,10 @@ public class DropZoneRowCell : Cell {
 		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPF, parentGO.transform);
 
 		DropZoneHolder dropZoneHolder = holderGO.GetComponent<DropZoneHolder> ();
-		dropZoneHolder.ParagraphRef = this.ParagraphRef;
+		dropZoneHolder.ContainerElem = this;
 		dropZoneHolder.TargetTextList = _targetTextList;
 		dropZoneHolder.idCheck = idPresent;
-		dropZoneHolder.addToTargetList ();
+		dropZoneHolder.addToQuestionList ();
 
 		generateDropZoneItemList (_targetTextList, dropZoneTablePF, holderGO);
 		BasicGOOperation.CheckAndRepositionTable (holderGO);
@@ -228,19 +228,19 @@ public class DropZoneRowCell : Cell {
 		GameObject tableItemGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableItemprefab, parentGO.transform);
 		tableItemGO.GetComponent<DropZoneOptionChecker> ().idCheck = (idPresent!=null)?idPresent:false;
 		tableItemGO.GetComponent<DropZoneOptionChecker> ().DropZoneHolderGO = parentGO.transform.parent.parent.gameObject;
-		tableItemGO.GetComponent<DropZoneOptionChecker>().ParagraphRef = this.ParagraphRef;
+		tableItemGO.GetComponent<DropZoneOptionChecker>().ContainerElem = this;
 		return tableItemGO;
 	}
 	public void addDropZoneHolder(GameObject parentGO,GameObject dropZoneHolderGO){
 		dropZoneHolderGO.GetComponent<DropZoneHolder> ().holderListParentGO = parentGO;
 
 		Debug.Log ("PARAGRAPH_REF 1"+ParagraphRef.ElementGO.name);
-		dropZoneHolderGO.GetComponent<DropZoneHolder> ().ParagraphRef = this.ParagraphRef;
+		dropZoneHolderGO.GetComponent<DropZoneHolder> ().ContainerElem = this;
 		if (parentGO.GetComponent<DropZoneHolderParent>() == null)
 			parentGO.AddComponent<DropZoneHolderParent> ();
-		parentGO.GetComponent<DropZoneHolderParent> ().ParagraphRef = this.ParagraphRef;
+		parentGO.GetComponent<DropZoneHolderParent> ().ContainerElem = this;
 		parentGO.GetComponent<DropZoneHolderParent> ().addDropZoneHolder (dropZoneHolderGO);
-		parentGO.GetComponent<DropZoneHolderParent> ().addToTargetList ();
+		parentGO.GetComponent<DropZoneHolderParent> ().addToQuestionList ();
 	}
 
 	//-------------Animations-------------------

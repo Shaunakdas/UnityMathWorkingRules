@@ -25,8 +25,8 @@ public class DropZoneHolder : QuestionChecker {
 	}
 
 	//----------------------Target Matching and checking mechanism ----------------------------
-	override public void addToTargetList(){
-		Paragraph.targetItemHolderList.Add (this);
+	override public void addToQuestionList(){
+		Paragraph.QuestionList.Add (this);
 	}
 	public bool checkDropZoneItem(string inputText, DropZoneOptionChecker itemChecker){
 		Debug.Log ("Holder: checkDropZoneItem for checking "+inputText);
@@ -83,7 +83,7 @@ public class DropZoneHolder : QuestionChecker {
 	public void resultAnim(bool inputCorrect, DropZoneOptionChecker itemChecker){
 		itemChecker.itemAttemptState = AttemptState.Attempted;
 		EventDelegate nextItemEvent = nextEvent;
-		int itemIndex = TargetOptionCheckerList.IndexOf (itemChecker);
+		int itemIndex = ChildList.IndexOf (itemChecker);
 		if(inputCorrect){
 			itemChecker.correctAnim ();
 		}else{
@@ -119,7 +119,7 @@ public class DropZoneHolder : QuestionChecker {
 	/// <param name="_elementGO">Element G.</param>
 	override public void deactivateAnim(){
 		Debug.Log ("deactivateAnim of DropZoneRowCell");
-		foreach (DropZoneOptionChecker itemChecker in TargetOptionCheckerList) {
+		foreach (DropZoneOptionChecker itemChecker in ChildList) {
 			itemChecker.deactivateAnim ();
 		}
 	}
@@ -138,10 +138,10 @@ public class DropZoneHolder : QuestionChecker {
 	/// Incorrect animation.
 	/// </summary>
 	override public void incorrectAnim(){
-		Debug.Log ("DropZoneRowCell InCorrectAnim"+ParagraphRef.ElementGO.name);
+		Debug.Log ("DropZoneRowCell InCorrectAnim"+ContainerElem.ParagraphRef.ElementGO.name);
 	}
 	public void incorrectAnim(DropZoneOptionChecker itemChecker){
-		Debug.Log ("DropZoneRowCell InCorrectAnim"+ParagraphRef.ElementGO.name);
+		Debug.Log ("DropZoneRowCell InCorrectAnim"+ContainerElem.ParagraphRef.ElementGO.name);
 		correctionAnim (itemChecker);
 	}
 	/// <summary>
@@ -202,13 +202,13 @@ public class DropZoneHolder : QuestionChecker {
 	public void nextTargetTrigger(){
 
 		Debug.Log ("TargetPending"+TargetPending);
-		ParagraphRef.nextTargetTrigger (this);
+		ContainerElem.ParagraphRef.nextTargetTrigger (this);
 
 	}
 	public void nextTargetTrigger(DragSourceCell dragCell){
 		
 		Debug.Log ("TargetPending"+TargetPending);
-		ParagraphRef.nextTargetTrigger (this);
+		ContainerElem.ParagraphRef.nextTargetTrigger (this);
 
 	}
 	/// <summary>
@@ -220,7 +220,7 @@ public class DropZoneHolder : QuestionChecker {
 		//Find the target drag cell
 		DragSourceCell targetCell;
 		Debug.Log ("Inside findCorrectDragItem");
-		foreach (Line line in ParagraphRef.LineList) {
+		foreach (Line line in ContainerElem.ParagraphRef.LineList) {
 			foreach (Row row in line.RowList) {
 				if (row.Type == Row.RowType.DragSourceLine) {
 					foreach (Cell cell in row.CellList) {

@@ -210,7 +210,6 @@ public class Line : BaseElement{
 			//Checking for DragSourceLine Table
 			Debug.Log ("Element Display Anim:Checking for DragSourceLine Table");
 			nextEvent.Execute ();
-
 		} else {
 			Debug.Log ("Element Display Anim: No Interaction Element is present");
 			//If no interaction element is present

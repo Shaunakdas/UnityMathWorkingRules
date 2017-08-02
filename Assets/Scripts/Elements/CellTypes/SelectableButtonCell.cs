@@ -106,18 +106,15 @@ public class SelectableButtonCell : Cell {
 
 	//-------------Static methods to create/update GameObject components for Correct/Incorrect Check-------------------
 	public SelBtnItemChecker updateItemChecker(GameObject _elementGO, bool _correctBool, Line line){
-		return updateItemChecker (_elementGO, _correctBool, line.ElementGO);
-	}
-	public  SelBtnItemChecker updateItemChecker(GameObject _elementGO, bool _correctBool, GameObject _lineElementGO){
 		SelBtnItemChecker itemChecker= _elementGO.GetComponent<SelBtnItemChecker> ();
-//		Debug.Log (_correctBool);
-		itemChecker.correctFlag = _correctBool;itemChecker.SelBtnHolderGO = _lineElementGO;
+		//		Debug.Log (_correctBool);
+		itemChecker.correctFlag = _correctBool;itemChecker.SelBtnHolderGO = line.ElementGO;
 		//Adding SelBtrnGolder script to parent TableLine
-		if (_lineElementGO.GetComponent<SelBtnHolder>() == null)
-			_lineElementGO.AddComponent<SelBtnHolder>();
-		_lineElementGO.GetComponent<SelBtnHolder>().addSelectBtn (_elementGO, _correctBool);
-		_lineElementGO.GetComponent<SelBtnHolder>().addToTargetList ();
-		_lineElementGO.GetComponent<SelBtnHolder> ().ParagraphRef = this.ParagraphRef;
+		if (line.ElementGO.GetComponent<SelBtnHolder>() == null)
+			line.ElementGO.AddComponent<SelBtnHolder>();
+		line.ElementGO.GetComponent<SelBtnHolder>().addSelectBtn (_elementGO, _correctBool);
+		line.ElementGO.GetComponent<SelBtnHolder>().addToTargetList ();
+		line.ElementGO.GetComponent<SelBtnHolder> ().ParagraphRef = this.ParagraphRef;
 
 		return itemChecker;
 	}

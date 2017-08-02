@@ -209,7 +209,7 @@ public class NumberLineDropLine  : Line {
 				SelectableButtonCell selectBtnCell = new SelectableButtonCell ();
 				//To access SelectableButtonCell methods
 				SelectableButtonCell selectCell = new SelectableButtonCell ();
-				selectCell.updateItemChecker (itemChecker.gameObject, true, ElementGO);
+				selectCell.updateItemChecker (itemChecker.gameObject, true, this);
 
 				break;
 			case LineType.NumberLineDropJump:

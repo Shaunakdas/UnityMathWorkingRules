@@ -138,12 +138,13 @@ public class DropZoneRowCell : Cell {
 		//_elementGO add to list of aniamtion
 		return _elementGO;
 	}
+
 	public GameObject generateDropZoneHolderGO(GameObject parentGO, List<string> _targetTextList, bool idPresent){
 		Debug.Log ("DROP_ZONE_HOLDER CREATED"+parentGO.name);
-		GameObject dropZoneHolderPrefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_HOLDER_CELL)as GameObject;
-		GameObject dropZoneTableprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_CELL)as GameObject;
+		GameObject dropZoneHolderPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_HOLDER_CELL)as GameObject;
+		GameObject dropZoneTablePF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_CELL)as GameObject;
 
-		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPrefab, parentGO.transform);
+		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPF, parentGO.transform);
 
 		DropZoneHolder dropZoneHolder = holderGO.GetComponent<DropZoneHolder> ();
 		dropZoneHolder.ParagraphRef = this.ParagraphRef;
@@ -151,56 +152,68 @@ public class DropZoneRowCell : Cell {
 		dropZoneHolder.idCheck = idPresent;
 		dropZoneHolder.addToTargetList ();
 
+		generateDropZoneItemList (_targetTextList, dropZoneTablePF, holderGO);
+		BasicGOOperation.CheckAndRepositionTable (holderGO);
+		return holderGO;
+	}
 
-		Debug.Log ("TargetText list"+_targetTextList.Count+idPresent);
+	//Generating List of DropZone Items
+	void generateDropZoneItemList(List<string> _targetTextList,GameObject _dropZoneTablePF,GameObject _dropZoneHolderGO){
 		foreach (string targetText in _targetTextList){
-			Debug.Log ("TargetText"+targetText.ToString());
 
 			//Initing List of DropZoneItemChecker to then add to ItemCheckerMasterList of DropZoneHolder
 			List<DropZoneItemChecker> itemCheckerList =  new List<DropZoneItemChecker>();
 
-			GameObject backgroundGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableprefab, holderGO.transform);
-			Debug.Log ("backgroundGO "+backgroundGO.name.ToString());
-
-			int tableWidth = 0;
+			GameObject backgroundGO = BasicGOOperation.InstantiateNGUIGO (_dropZoneTablePF, _dropZoneHolderGO.transform);
 			GameObject tableGO = BasicGOOperation.getChildGameObject (backgroundGO, "Table");
+			int tableWidth = 0;
 			if (idPresent) {
-				//id attribute is present. So there is no need to divide drop zone into individual item
-				GameObject tableItemGO =  initDropZoneTableItem(tableGO,idPresent);
-				itemCheckerList.Add (tableItemGO.GetComponent<DropZoneItemChecker>());
-//				tableItemGO.GetComponent<DropZoneItemChecker>().element = this;
-				int contentWidth = targetText.ToCharArray ().Length * 30;
-				tableItemGO.GetComponent<UISprite> ().width = contentWidth;
-				tableWidth = contentWidth+10;
+				tableWidth = dropZoneIdItemLength(targetText,tableGO,itemCheckerList);
 			} else {
-				foreach (char targetChar in targetText.ToCharArray().ToList()) {
-					tableWidth += 50 + 5;
-					if (targetChar == '+' || targetChar == '-') {
-						//To access DropZoneRowCell methods
-						SelectableButtonCell selectCell = new SelectableButtonCell ();
-						GameObject signBtnGO = selectCell.generateSelBtnCellGO (tableGO, "-");
-					} else {
-						GameObject tableItemGO = initDropZoneTableItem (tableGO, idPresent);
-						itemCheckerList.Add (tableItemGO.GetComponent<DropZoneItemChecker>());
-//						tableItemGO.GetComponent<DropZoneItemChecker>().element = this;
-					}
-				}
+				tableWidth = dropZoneValueItemLength(targetText,tableGO,itemCheckerList);
 			}
+			backgroundGO.GetComponent<UISprite>().width = tableWidth;
 
 			//Adding itemCheckerList to ItemCheckerMasterList of DropZoneHolderGO
-			tableGO.transform.parent.parent.gameObject.GetComponent<DropZoneHolder>().ItemCheckerMasterList.Add(itemCheckerList); 
+			_dropZoneHolderGO.gameObject.GetComponent<DropZoneHolder>().ItemCheckerMasterList.Add(itemCheckerList); 
 
-//			BasicGOOperation.ResizeToFitChildGO (backgroundGO);
-			backgroundGO.GetComponent<UISprite>().width = tableWidth;
-			//			updateGOProp (backgroundGO);
 			BasicGOOperation.CheckAndRepositionTable (tableGO);
 		}
-		BasicGOOperation.CheckAndRepositionTable (holderGO);
-		return holderGO;
+	}
+
+	//Generating DropZone Items referenced using id
+	int dropZoneIdItemLength(string _targetText,GameObject _tableGO,List<DropZoneItemChecker> _questionList){
+		//id attribute is present. So there is no need to divide drop zone into individual item
+		//Generating DropZoneItem
+		GameObject tableItemGO =  initDropZoneTableItem(_tableGO,true);
+		_questionList.Add (tableItemGO.GetComponent<DropZoneItemChecker>());
+		//Calculating Length of DropZoneItem
+		int contentWidth = _targetText.ToCharArray ().Length * 30;
+		tableItemGO.GetComponent<UISprite> ().width = contentWidth;
+		return contentWidth+10;
+	}
+
+	//Generating DropZone Items referenced using value
+	int dropZoneValueItemLength(string _targetText,GameObject _tableGO,List<DropZoneItemChecker> _questionList){
+		int tableWidth = 0;
+		//id attribute is not present. So we have to divide drop zone into individual item
+		foreach (char targetChar in _targetText.ToCharArray().ToList()) {
+			//Calculating Length of DropZoneItem
+			tableWidth += 50 + 5;
+			if (targetChar == '+' || targetChar == '-') {
+				SelectableButtonCell selectCell = new SelectableButtonCell ();
+				GameObject signBtnGO = selectCell.generateSelBtnCellGO (_tableGO, "-");
+			} else {
+				//Generating DropZoneItem
+				GameObject tableItemGO = initDropZoneTableItem (_tableGO, false);
+				_questionList.Add (tableItemGO.GetComponent<DropZoneItemChecker>());
+			}
+		}
+		return tableWidth;
 	}
 	override public void updateGOProp(GameObject _elementGO){
 		Debug.Log ("Updating Properties of Drop Zone Cell");
-		float cellWidth = _elementGO.GetComponent<UISprite> ().localSize.x;
+//		float cellWidth = _elementGO.GetComponent<UISprite> ().localSize.x;
 		if (TargetText != null) { 
 			Debug.Log ("Updating Target Text of Drop Zone Cell" + TargetText + Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText) + 40f).ToString());
 			_elementGO.GetComponent<UISprite>().width =  (int)Mathf.Max (70f, BasicGOOperation.getNGUITextSize (TargetText)	);

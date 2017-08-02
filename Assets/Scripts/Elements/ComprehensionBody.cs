@@ -26,6 +26,8 @@ public class ComprehensionBody : BaseElement {
 		prefabName = LocationManager.NAME_COMPREHENSION_BODY;
 		parseChildNode (body_node);
 		scoreMan = new ScoreManager ();
+
+		UserAction.MasterEntity = generateTargetTree ();
 	}
 
 	/// <summary>
@@ -46,6 +48,37 @@ public class ComprehensionBody : BaseElement {
 
 			}
 		}
+	}
+	public TargetEntity generateTargetTree(){
+		TargetEntity entity = new TargetEntity(this.GetType().ToString(),0);
+
+		//Adding Paragraphs
+		foreach (Paragraph para in ParagraphList) {
+			TargetEntity paraEntity = new TargetEntity(para.GetType ().ToString (), para.AnalyticsId);
+
+			//Adding Lines
+			foreach (Line line in para.LineList) {
+				TargetEntity lineEntity = new TargetEntity(line.GetType ().ToString (), line.AnalyticsId);
+
+				//Adding Questions
+				foreach (QuestionChecker ques in line.QuestionList) {
+					TargetEntity quesEntity = new TargetEntity(ques.GetType ().ToString (), ques.AnalyticsId);
+
+					//Adding Options
+					foreach (OptionChecker option in ques.ChildList) {
+						TargetEntity optionEntity = new TargetEntity(option.GetType ().ToString (), option.AnalyticsId);
+						quesEntity.ChildEntityList.Add (optionEntity);
+					}
+
+					lineEntity.ChildEntityList.Add (quesEntity);
+				}
+
+				paraEntity.ChildEntityList.Add (lineEntity);
+			}
+
+			entity.ChildEntityList.Add (paraEntity);
+		}
+		return entity;
 	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------

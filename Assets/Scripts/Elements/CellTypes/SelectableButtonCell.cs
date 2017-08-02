@@ -108,13 +108,15 @@ public class SelectableButtonCell : Cell {
 	public SelBtnOptionChecker updateItemChecker(GameObject _elementGO, bool _correctBool, Line line){
 		SelBtnOptionChecker option= _elementGO.GetComponent<SelBtnOptionChecker> ();
 		//		Debug.Log (_correctBool);
-		option.correctFlag = _correctBool;option.SelBtnHolderGO = line.ElementGO;
+		option.correctFlag = _correctBool;
 		//Adding SelBtrnGolder script to parent TableLine
 		if (line.ElementGO.GetComponent<SelBtnQuestionChecker>() == null)
 			line.ElementGO.AddComponent<SelBtnQuestionChecker>();
-		line.ElementGO.GetComponent<SelBtnQuestionChecker>().addSelectBtn (_elementGO, _correctBool);
-		line.ElementGO.GetComponent<SelBtnQuestionChecker>().addToQuestionList ();
-		line.ElementGO.GetComponent<SelBtnQuestionChecker> ().ContainerElem = this;
+		SelBtnQuestionChecker quesChecker = line.ElementGO.GetComponent<SelBtnQuestionChecker> ();
+		option.ParentChecker = quesChecker;
+		quesChecker.addSelectBtn (_elementGO, _correctBool);
+		quesChecker.addToQuestionList ();
+		quesChecker.ContainerElem = this;
 
 		return option;
 	}

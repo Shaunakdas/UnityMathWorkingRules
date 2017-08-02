@@ -14,6 +14,7 @@ public class BaseElement : MonoBehaviour {
 	/// </summary>
 	public enum Interaction{Drag,Drop,Select,Mixed,Display,Default};
 	public Interaction InteractionType = Interaction.Display;
+
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	/// <summary>
 	/// Parses the children nodes to create child elements
@@ -25,6 +26,25 @@ public class BaseElement : MonoBehaviour {
 			InteractionType = (Interaction)System.Enum.Parse (typeof(Interaction),StringWrapper.ConvertToPascalCase(attr_interact.Value),true);
 		}
 	}
+	/// <summary>
+	/// Find SiblingIndex in UIElement structure
+	/// </summary>
+	virtual public int siblingIndex(){
+		return 0;
+	}
+	virtual public void setChildParagraphRef(){
+	}
+	//-------------Based on Element sibling index, setting AnalyticsId -------------------
+	public int AnalyticsId = 0;
+	public void setAnalyticsIdFromAttr(HtmlNode elem_node){
+		HtmlAttribute analyticsIdAttr = elem_node.Attributes [AttributeManager.ATTR_ANALYTICS_ID];
+		if (analyticsIdAttr != null) {
+			AnalyticsId = int.Parse(analyticsIdAttr.Value);
+		}
+	}
+	virtual public void setChildAnalyticsId(){
+	}
+
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
 	/// The element game object.
@@ -43,12 +63,7 @@ public class BaseElement : MonoBehaviour {
 	/// <param name="ElementGO">Element GameObject</param>
 	virtual public void initGOProp(GameObject ElementGO){
 	}
-	/// <summary>
-	/// Find SiblingIndex in UIElement structure
-	/// </summary>
-	virtual public int siblingIndex(){
-		return 0;
-	}
+
 	/// <summary>
 	/// Generates the Element GameObject
 	/// </summary>
@@ -62,9 +77,8 @@ public class BaseElement : MonoBehaviour {
 	/// </summary>
 	virtual public void updateGOProp(GameObject ElementGO){
 	}
-	virtual public void setChildParagraphRef(){
 
-	}
+	//-------------For Animations -------------------
 	/// <summary>
 	/// Hides the element GameObject.
 	/// </summary>

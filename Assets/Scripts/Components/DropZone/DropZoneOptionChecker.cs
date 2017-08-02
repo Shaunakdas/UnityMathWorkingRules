@@ -5,7 +5,7 @@ using UnityEngine;
 public class DropZoneOptionChecker : OptionChecker {
 	public BaseElement element;
 	public bool idCheck{ get; set; }
-	public GameObject DropZoneHolderGO;
+//	public GameObject DropZoneHolderGO;
 	public string filledText{ get; set; }
 	public bool attempted{ get; set; }
 	AnimationManager animManager;
@@ -25,11 +25,11 @@ public class DropZoneOptionChecker : OptionChecker {
 		attempted = true;
 		Debug.Log ("checkDropZoneItem for checking "+text);
 		if (idCheck) {
-			if (DropZoneHolderGO.GetComponent<DropZoneHolder> ().checkDropZoneItem (text,this)) {
+			if ((ParentChecker as DropZoneHolder).checkDropZoneItem (text,this)) {
 				filledText = text;return true;
 			}
 		} else {
-			if (DropZoneHolderGO.GetComponent<DropZoneHolder> ().checkDropZoneItem (compositeText(text),this)) {
+			if ((ParentChecker as DropZoneHolder).checkDropZoneItem (compositeText(text),this)) {
 				filledText = text;return true;
 			}
 		}
@@ -78,7 +78,7 @@ public class DropZoneOptionChecker : OptionChecker {
 	override public void startTimerAnim(){
 		//Start Item Timer
 		if (itemAttemptState == AttemptState.Activated) {
-			TimerAnimGO = animManager.startTimerAnim(1,DropZoneHolderGO,new EventDelegate(correctionAnim),true);
+			TimerAnimGO = animManager.startTimerAnim(1,ParentChecker.gameObject,new EventDelegate(correctionAnim),true);
 		}
 
 	}
@@ -110,7 +110,7 @@ public class DropZoneOptionChecker : OptionChecker {
 
 		if ((itemAttemptState == AttemptState.Activated)||(itemAttemptState == AttemptState.Checked)) {
 			base.correctionAnim ();
-			DropZoneHolderGO.GetComponent<DropZoneHolder> ().correctionAnim (this, nextEvent);
+			(ParentChecker as DropZoneHolder).correctionAnim (this, nextEvent);
 		}
 	}
 

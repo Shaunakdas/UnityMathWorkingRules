@@ -67,6 +67,7 @@ public class Row : BaseElement {
 			Debug.Log ("Initializing Row node");
 		}
 
+		setAnalyticsIdFromAttr (row_node);
 		parseChildNode (row_node);
 	}
 
@@ -144,6 +145,14 @@ public class Row : BaseElement {
 			cell.setChildParagraphRef ();
 		}
 		addToParaDragSourceList ();
+	}
+	override public void  setChildAnalyticsId(){
+		int index = 0;
+		foreach (Cell cell in CellList) {
+			cell.AnalyticsId = index;
+			cell.setChildAnalyticsId ();
+			index++;
+		}
 	}
 	public void initDragSourceCellList(HtmlNode row_node){
 		HtmlAttribute attr_tag = row_node.Attributes [AttributeManager.ATTR_START];

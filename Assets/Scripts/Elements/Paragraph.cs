@@ -81,8 +81,13 @@ public class Paragraph : BaseElement{
 			tableCol = (ParagraphAlign == AlignType.Vertical)? 1:0;
 			break;
 		}
+		setAnalyticsIdFromAttr (para_node);
+		//Traversing through Child Element - 1
 		parseChildNode (para_node);
+		//Traversing through Child Element - 2
 		setChildParagraphRef ();
+		//Traversing through Child Element - 3
+		setChildAnalyticsId ();
 	}
 	/// <summary>
 	/// Parses the Paragraph Node to generate Line nodes
@@ -143,6 +148,14 @@ public class Paragraph : BaseElement{
 		foreach (Line line in LineList) {
 			line.ParagraphRef = this.ParagraphRef;
 			line.setChildParagraphRef ();
+		}
+	}
+	override public void  setChildAnalyticsId(){
+		int index = 0;
+		foreach (Line line in LineList) {
+			line.AnalyticsId = index;
+			line.setChildAnalyticsId ();
+			index++;
 		}
 	}
 	/// <summary>

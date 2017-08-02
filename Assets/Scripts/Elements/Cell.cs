@@ -30,6 +30,8 @@ public class Cell : TableLine {
 		RowList = new List<Row> ();
 		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing Cell node of type "+type_text);
+
+		setAnalyticsIdFromAttr (cell_node);
 		parseChildNode (cell_node);
 	}
 	override public void parseChildNode(HtmlNode cell_node){

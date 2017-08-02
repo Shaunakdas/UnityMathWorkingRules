@@ -5,14 +5,14 @@ using UnityEngine;
 public class SelBtnOptionChecker : OptionChecker {
 	public bool correctFlag = false;
 	public bool userInputFlag = false;
-	public GameObject SelBtnHolderGO;
+//	public GameObject SelBtnHolderGO;
 	public string DisplayText = "";
 	public bool HighlightOnCorrectSelection = true;
 	AnimationManager animManager;
 
 	public void changeInputFlag(){
 		userInputFlag = !userInputFlag;
-		SelBtnHolderGO.GetComponent<SelBtnQuestionChecker> ().optionSelected ();
+		(ParentChecker as SelBtnQuestionChecker).optionSelected ();
 	}
 	override public void activateAnim(){
 		//Animation for activate select button option

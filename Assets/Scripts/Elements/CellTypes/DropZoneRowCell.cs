@@ -227,7 +227,7 @@ public class DropZoneRowCell : Cell {
 		GameObject dropZoneTableItemprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_ITEM_CELL)as GameObject;
 		GameObject tableItemGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableItemprefab, parentGO.transform);
 		tableItemGO.GetComponent<DropZoneOptionChecker> ().idCheck = (idPresent!=null)?idPresent:false;
-		tableItemGO.GetComponent<DropZoneOptionChecker> ().DropZoneHolderGO = parentGO.transform.parent.parent.gameObject;
+		tableItemGO.GetComponent<DropZoneOptionChecker> ().ParentChecker = parentGO.transform.parent.parent.GetComponent<DropZoneHolder>();
 		tableItemGO.GetComponent<DropZoneOptionChecker>().ContainerElem = this;
 		return tableItemGO;
 	}

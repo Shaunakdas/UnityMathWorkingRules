@@ -60,6 +60,8 @@ public class Line : BaseElement{
 	public Line(HtmlNode line_node){
 		RowList = new List<Row>();
 		string type_text = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
+
+		setAnalyticsIdFromAttr (line_node);
 		parseChildNode (line_node);
 		if (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE] != null) {
 			getLocationType (line_node.Attributes [AttributeManager.ATTR_LOCATION_TYPE].Value);
@@ -85,6 +87,14 @@ public class Line : BaseElement{
 		foreach (Row row in RowList) {
 			row.ParagraphRef = this.ParagraphRef;
 			row.setChildParagraphRef ();
+		}
+	}
+	override public void setChildAnalyticsId(){
+		int index = 0;
+		foreach (Row row in RowList) {
+			row.AnalyticsId = index;
+			row.setChildAnalyticsId ();
+			index++;
 		}
 	}
 

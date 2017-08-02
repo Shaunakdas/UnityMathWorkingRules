@@ -12,7 +12,9 @@ public class OptionChecker : MonoBehaviour {
 	public enum TargetType{Option,Question,Holder,HolderParent}
 	public TargetType ItemTargetType=TargetType.Option;
 
+	public int AnalyticsId = 0;
 
+	public OptionChecker ParentChecker;
 	public List<OptionChecker> ChildList = new List<OptionChecker>();
 	// Use this for initialization
 	void Start () {

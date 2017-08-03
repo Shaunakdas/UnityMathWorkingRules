@@ -25,11 +25,11 @@ public class DropZoneOptionChecker : OptionChecker {
 		attempted = true;
 		Debug.Log ("checkDropZoneItem for checking "+text);
 		if (idCheck) {
-			if ((ParentChecker as DropZoneHolder).checkDropZoneItem (text,this)) {
+			if ((ParentChecker.ParentChecker as DropZoneHolder).checkDropZoneItem (text,this)) {
 				filledText = text;return true;
 			}
 		} else {
-			if ((ParentChecker as DropZoneHolder).checkDropZoneItem (compositeText(text),this)) {
+			if ((ParentChecker.ParentChecker as DropZoneHolder).checkDropZoneItem (compositeText(text),this)) {
 				filledText = text;return true;
 			}
 		}
@@ -110,7 +110,7 @@ public class DropZoneOptionChecker : OptionChecker {
 
 		if ((itemAttemptState == AttemptState.Activated)||(itemAttemptState == AttemptState.Checked)) {
 			base.correctionAnim ();
-			(ParentChecker as DropZoneHolder).correctionAnim (this, nextEvent);
+			(ParentChecker.ParentChecker as DropZoneHolder).correctionAnim (this, nextEvent);
 		}
 	}
 

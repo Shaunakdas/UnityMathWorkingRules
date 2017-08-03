@@ -141,47 +141,42 @@ public class DropZoneRowCell : Cell {
 
 	public GameObject generateDropZoneHolderGO(GameObject parentGO, List<string> _targetTextList, bool idPresent){
 		Debug.Log ("DROP_ZONE_HOLDER CREATED"+parentGO.name);
-		GameObject dropZoneHolderPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_HOLDER_CELL)as GameObject;
-		GameObject dropZoneTablePF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_CELL)as GameObject;
 
-		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPF, parentGO.transform);
+		DropZoneHolder dropZoneholder = initDropZoneHolder (parentGO, _targetTextList, idPresent);
 
-		DropZoneHolder dropZoneholder = initDropZoneHolder (holderGO, _targetTextList, idPresent);
-
-		generateDropZoneOptionList (_targetTextList, dropZoneTablePF, holderGO);
-		BasicGOOperation.CheckAndRepositionTable (holderGO);
-		return holderGO;
+		generateDropZoneOptionList (dropZoneholder,_targetTextList);
+		BasicGOOperation.CheckAndRepositionTable (dropZoneholder.gameObject);
+		return dropZoneholder.gameObject;
 	}
 
 	//Generating List of DropZone Items
-	void generateDropZoneOptionList(List<string> _targetTextList,GameObject _dropZoneTablePF,GameObject _dropZoneHolderGO){
+	void generateDropZoneOptionList(DropZoneHolder _dropZoneholder,List<string> _targetTextList){
 		foreach (string targetText in _targetTextList){
-
 			//Initing List of DropZoneItemChecker to then add to ItemCheckerMasterList of DropZoneHolder
 			List<DropZoneOptionChecker> itemCheckerList =  new List<DropZoneOptionChecker>();
 
-			GameObject backgroundGO = BasicGOOperation.InstantiateNGUIGO (_dropZoneTablePF, _dropZoneHolderGO.transform);
-			GameObject tableGO = BasicGOOperation.getChildGameObject (backgroundGO, "Table");
+			DropZoneQuestionChecker dropZoneQuestion = initDropZoneQuestion(_dropZoneholder);
 			int tableWidth = 0;
 			if (idPresent) {
-				tableWidth = dropZoneIdOptionLength(targetText,tableGO,itemCheckerList);
+				tableWidth = dropZoneIdOptionLength(targetText,dropZoneQuestion,itemCheckerList);
 			} else {
-				tableWidth = dropZoneValueOptionLength(targetText,tableGO,itemCheckerList);
+				tableWidth = dropZoneValueOptionLength(targetText,dropZoneQuestion,itemCheckerList);
 			}
-			backgroundGO.GetComponent<UISprite>().width = tableWidth;
+			dropZoneQuestion.gameObject.GetComponent<UISprite>().width = tableWidth;
 
 			//Adding itemCheckerList to ItemCheckerMasterList of DropZoneHolderGO
-			_dropZoneHolderGO.gameObject.GetComponent<DropZoneHolder>().ItemCheckerMasterList.Add(itemCheckerList); 
+			_dropZoneholder.ItemCheckerMasterList.Add(itemCheckerList); 
 
+			GameObject tableGO = BasicGOOperation.getChildGameObject (dropZoneQuestion.gameObject, "Table");
 			BasicGOOperation.CheckAndRepositionTable (tableGO);
 		}
 	}
 
 	//Generating DropZone Items referenced using id
-	int dropZoneIdOptionLength(string _targetText,GameObject _tableGO,List<DropZoneOptionChecker> _questionList){
+	int dropZoneIdOptionLength(string _targetText,DropZoneQuestionChecker _question,List<DropZoneOptionChecker> _questionList){
 		//id attribute is present. So there is no need to divide drop zone into individual item
 		//Generating DropZone Option
-		DropZoneOptionChecker option =  initDropZoneOption(_tableGO,true);
+		DropZoneOptionChecker option =  initDropZoneOption(_question,true);
 		_questionList.Add (option);
 		//Calculating Length of DropZone Option
 		int contentWidth = _targetText.ToCharArray ().Length * 30;
@@ -190,7 +185,7 @@ public class DropZoneRowCell : Cell {
 	}
 
 	//Generating DropZone Items referenced using value
-	int dropZoneValueOptionLength(string _targetText,GameObject _tableGO,List<DropZoneOptionChecker> _questionList){
+	int dropZoneValueOptionLength(string _targetText,DropZoneQuestionChecker _question,List<DropZoneOptionChecker> _questionList){
 		int tableWidth = 0;
 		//id attribute is not present. So we have to divide drop zone into individual item
 		foreach (char targetChar in _targetText.ToCharArray().ToList()) {
@@ -198,10 +193,11 @@ public class DropZoneRowCell : Cell {
 			tableWidth += 50 + 5;
 			if (targetChar == '+' || targetChar == '-') {
 				SelectableButtonCell selectCell = new SelectableButtonCell ();
-				GameObject signBtnGO = selectCell.generateSelBtnCellGO (_tableGO, "-");
+				GameObject tableGO = BasicGOOperation.getChildGameObject (_question.gameObject, "Table");
+				GameObject signBtnGO = selectCell.generateSelBtnCellGO (tableGO, "-");
 			} else {
 				//Generating DropZone Option
-				DropZoneOptionChecker option = initDropZoneOption (_tableGO, false);
+				DropZoneOptionChecker option = initDropZoneOption (_question, false);
 				_questionList.Add (option);
 			}
 		}
@@ -218,26 +214,45 @@ public class DropZoneRowCell : Cell {
 
 
 	//-------------Static methods to create/update GameObject components for Correct/Incorrect Check-------------------
-	DropZoneOptionChecker initDropZoneOption(GameObject parentGO, bool idPresent){
-		GameObject dropZoneTableItemprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_ITEM_CELL)as GameObject;
-		GameObject tableItemGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableItemprefab, parentGO.transform);
-		DropZoneOptionChecker option = tableItemGO.GetComponent<DropZoneOptionChecker> ();
-		//Reference Variables
-		option.addParentChecker(parentGO.transform.parent.parent.GetComponent<DropZoneHolder>());
-		option.ContainerElem = this;
-		//Dropzone Specific Variables
-		option.idCheck = (idPresent!=null)?idPresent:false;
-		return option;
-	}
-	DropZoneHolder initDropZoneHolder(GameObject holderGO, List<string> _targetTextList,bool _idPresent){
+	//Creating Drop Zone Holder
+	DropZoneHolder initDropZoneHolder(GameObject parentGO, List<string> _targetTextList,bool _idPresent){
+		GameObject dropZoneHolderPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_HOLDER_CELL)as GameObject;
+		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPF, parentGO.transform);
+
 		DropZoneHolder holder = holderGO.GetComponent<DropZoneHolder> ();
 		//Reference Variables
 		holder.ContainerElem = this;
-		holder.addToMasterLine ();
 		//DropZone specific Variables
 		holder.TargetTextList = _targetTextList;
 		holder.idCheck = _idPresent;
 		return holder;
+	}
+	//Creating Drop Zone Questions
+	DropZoneQuestionChecker initDropZoneQuestion(DropZoneHolder holder){
+		GameObject dropZoneTablePF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_CELL)as GameObject;
+		GameObject questionGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTablePF, holder.gameObject.transform);
+
+		DropZoneQuestionChecker question = questionGO.GetComponent<DropZoneQuestionChecker> ();
+		//Reference Variables
+		question.addParentChecker(holder);
+		question.ContainerElem = this;
+		question.addToMasterLine ();
+		return question;
+	}
+
+	//Creating Drop Zone Options
+	DropZoneOptionChecker initDropZoneOption(DropZoneQuestionChecker question, bool idPresent){
+		GameObject dropZoneOptionPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_OPTION_CELL)as GameObject;
+		GameObject tableGO = BasicGOOperation.getChildGameObject (question.gameObject, "Table");
+		GameObject optionGO = BasicGOOperation.InstantiateNGUIGO (dropZoneOptionPF, tableGO.transform);
+
+		DropZoneOptionChecker option = optionGO.GetComponent<DropZoneOptionChecker> ();
+		//Reference Variables
+		option.addParentChecker( question);
+		option.ContainerElem = this;
+		//Dropzone Specific Variables
+		option.idCheck = (idPresent!=null)?idPresent:false;
+		return option;
 	}
 	public void addDropZoneHolder(GameObject parentGO,GameObject dropZoneHolderGO){
 		dropZoneHolderGO.GetComponent<DropZoneHolder> ().holderListParentGO = parentGO;

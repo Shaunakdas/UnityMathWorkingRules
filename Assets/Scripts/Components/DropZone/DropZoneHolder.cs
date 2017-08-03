@@ -15,7 +15,7 @@ public class DropZoneHolder : QuestionChecker {
 	/// </summary>
 	public List<List<DropZoneOptionChecker>> ItemCheckerMasterList{ get; set; }
 	void Awake(){
-		ItemTargetType=TargetType.Question;
+		ItemTargetType=TargetType.Holder;
 		multipleHolderCheck = false;
 		ItemCheckerMasterList = new List<List<DropZoneOptionChecker>> ();
 	}

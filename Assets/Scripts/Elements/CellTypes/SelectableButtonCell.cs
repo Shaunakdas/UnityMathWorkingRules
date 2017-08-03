@@ -113,7 +113,9 @@ public class SelectableButtonCell : Cell {
 		SelBtnQuestionChecker question = line.ElementGO.GetComponent<SelBtnQuestionChecker> ();
 
 		//SelBtn Specific Variables of option
-		option.correctFlag = _correctBool;
+		if (_correctBool != null) {
+			option.correctFlag = _correctBool;
+		}
 		//Ref Variables of Option
 		option.addParentChecker(question); option.ContainerElem = this;
 

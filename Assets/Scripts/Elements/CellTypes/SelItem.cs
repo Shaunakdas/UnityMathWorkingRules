@@ -7,6 +7,7 @@ public class SelItem  {
 	public bool userInputFlag = false;
 	public string DisplayText = "";
 	public bool HighlightOnCorrectSelection=true;
+	public SelectableButtonCell SelCell;
 	public SelItem(){
 	}
 }

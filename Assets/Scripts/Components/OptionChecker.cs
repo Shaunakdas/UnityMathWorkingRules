@@ -30,6 +30,13 @@ public class OptionChecker : MonoBehaviour {
 		ParentChecker = _parentChecker;
 		ParentChecker.ChildList.Add (this);
 	}
+	virtual public void setChildAnalyticsId(){
+		int optionIndex = 1;
+		foreach (OptionChecker option in ChildList) {
+			option.AnalyticsId = optionIndex;
+			optionIndex++;
+		}
+	}
 	//----------------------Animations ----------------------------
 	/// <summary>
 	/// Getting active animation.

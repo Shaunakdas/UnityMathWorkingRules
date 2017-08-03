@@ -27,7 +27,7 @@ public class ComprehensionBody : BaseElement {
 		parseChildNode (body_node);
 		scoreMan = new ScoreManager ();
 
-//		UserAction.MasterEntity = generateTargetTree ();
+
 	}
 
 	/// <summary>
@@ -50,7 +50,7 @@ public class ComprehensionBody : BaseElement {
 		}
 	}
 	public TargetEntity generateTargetTree(){
-		TargetEntity entity = new TargetEntity(this.GetType().ToString(),0);
+		TargetEntity entity = new TargetEntity(this.GetType().ToString(),1);
 
 		//Adding Paragraphs
 		foreach (Paragraph para in ParagraphList) {
@@ -116,6 +116,8 @@ public class ComprehensionBody : BaseElement {
 			//ScoreTable
 			scoreMan.init(this);
 			updateGOProp(ElementGO);
+			setChildAnalyticsId ();
+			UserAction.MasterEntity = generateTargetTree ();
 			BasicGOOperation.RepositionChildTables (ElementGO);
 //			setUpChildActiveAnim (targetItemCheckerList);
 		}
@@ -134,6 +136,13 @@ public class ComprehensionBody : BaseElement {
 		//Setting ParaCounterTable as screen bottom
 		GameObject ParaTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaTable");
 		ScreenManager.SetTableAsScreenBottom (ParaTableGO);
+	}
+	override public void  setChildAnalyticsId(){
+		int index = 1;
+		foreach (Paragraph para in ParagraphList) {
+			para.AnalyticsId = index;
+			index++;
+		}
 	}
 	public override void setCurrentChild (BaseElement _childElement)
 	{

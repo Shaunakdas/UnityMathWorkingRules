@@ -8,7 +8,7 @@ public class TargetEntity {
 
 	public int EntityId = 0;
 
-	public List<TargetEntity> ChildEntityList;
+	public List<TargetEntity> ChildEntityList = new List<TargetEntity>();
 
 	public TargetEntity(){
 	}

@@ -86,8 +86,6 @@ public class Paragraph : BaseElement{
 		parseChildNode (para_node);
 		//Traversing through Child Element - 2
 		setChildParagraphRef ();
-		//Traversing through Child Element - 3
-		setChildAnalyticsId ();
 	}
 	/// <summary>
 	/// Parses the Paragraph Node to generate Line nodes
@@ -148,14 +146,6 @@ public class Paragraph : BaseElement{
 		foreach (Line line in LineList) {
 			line.ParagraphRef = this.ParagraphRef;
 			line.setChildParagraphRef ();
-		}
-	}
-	override public void  setChildAnalyticsId(){
-		int index = 0;
-		foreach (Line line in LineList) {
-			line.AnalyticsId = index;
-			line.setChildAnalyticsId ();
-			index++;
 		}
 	}
 	/// <summary>
@@ -256,6 +246,10 @@ public class Paragraph : BaseElement{
 				displayElementGO ();
 			}
 		}
+
+		//Traversing through Child Element - 3
+		setChildAnalyticsId ();
+		UserAction.AddParaChild( getParaChild(this));
 		return ParaContentTableGO;
 	}
 	override public void initGOProp(GameObject _elementGO){
@@ -327,6 +321,42 @@ public class Paragraph : BaseElement{
 			GameObject StartWorkingRuleBtn = BasicGOOperation.InstantiateNGUIGO(StartWorkingRuleBtnPF,LineTableGO.transform);
 			EventDelegate.Set(StartWorkingRuleBtn.GetComponentInChildren<UIButton>().onClick, delegate() { (this.Parent as ComprehensionBody).nextParaTrigger(); });
 		}
+	}
+
+	override public void  setChildAnalyticsId(){
+		int index = 1;
+		foreach (Line line in LineList) {
+			line.AnalyticsId = index;
+			line.setChildAnalyticsId ();
+			index++;
+		}
+	}
+
+	public TargetEntity getParaChild(Paragraph para){
+		TargetEntity paraEntity = new TargetEntity("Paragraph", para.AnalyticsId);
+
+		//Adding Lines
+		foreach (Line line in para.LineList) {
+			TargetEntity lineEntity = new TargetEntity("Line", line.AnalyticsId);
+			Debug.Log ("Line"+line.AnalyticsId.ToString());
+			//Adding Questions
+			foreach (QuestionChecker ques in line.QuestionList) {
+				TargetEntity quesEntity = new TargetEntity("Question", ques.AnalyticsId);
+				Debug.Log ("Question"+ques.AnalyticsId.ToString());
+				//Adding Options
+				foreach (OptionChecker option in ques.ChildList) {
+					TargetEntity optionEntity = new TargetEntity("Option", option.AnalyticsId);
+					quesEntity.ChildEntityList.Add (optionEntity);
+					Debug.Log ("Option"+option.AnalyticsId.ToString());
+				}
+
+				lineEntity.ChildEntityList.Add (quesEntity);
+			}
+
+			paraEntity.ChildEntityList.Add (lineEntity);
+		}
+
+		return paraEntity;
 	}
 	//----------------------Animations ----------------------------
 	override public void hideElementGO(){

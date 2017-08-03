@@ -7,8 +7,9 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	public int correctCount = 0;
 	public int depth;
 	public void addSelectBtn(GameObject selBtnGO, bool correctFlag){
-		if (correctFlag)
+		if ((correctFlag != null) && correctFlag) {
 			correctCount++;
+		}
 		depth = selBtnGO.GetComponent<UIWidget> ().depth;
 		OptionChecker itemChecker = selBtnGO.GetComponent<SelBtnOptionChecker> ();
 		if(ChildList.IndexOf(itemChecker)== -1)

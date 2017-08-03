@@ -53,15 +53,6 @@ public class RangeTableLine  : TableLine {
 		generateSelItemList ();
 		generateRowList (line_node);
 	}
-	public void generateRowList(HtmlNode line_node){
-		base.parseChildNode(line_node);
-		//Adding a row
-		Row row = new Row ();
-		row.Parent = this;
-		//Adding cells to row
-		row.CellList = generateSelBtnList(SelItemList,row);
-		RowList.Add(row);
-	}
 	public void generateSelItemList(){
 		//Range coverage
 		SelItemList = generateRangeContent(rangeStart,rangeEnd,rangeCount,sortOrder);
@@ -125,14 +116,31 @@ public class RangeTableLine  : TableLine {
 		}
 		return _selItemList;
 	}
+	public void generateRowList(HtmlNode line_node){
+		base.parseChildNode(line_node);
+		//Adding a row
+		Row row = new Row ();
+		row.Parent = this;
+		//Adding cells to row
+		row.CellList = generateSelBtnList(SelItemList,row);
+		RowList.Add(row);
+	}
 	public List<Cell> generateSelBtnList(List<SelItem> _selItemList, Row row){
 		List<Cell> selBtnList = new List<Cell>();
 		for (int i = 0; i < _selItemList.Count; i++) {
 			SelectableButtonCell selBtnCell = new SelectableButtonCell (_selItemList[i]);
+//			selBtnCell.updateItemChecker (selBtnCell.ElementGO, null, this);
+			_selItemList[i].SelCell = selBtnCell;
 			selBtnCell.Parent = row;
 			selBtnList.Add (selBtnCell);
 		}
 		return selBtnList;
+	}
+	override public void setupQuestionRef(){
+		for (int i = 0; i < SelItemList.Count; i++) {
+			SelectableButtonCell selBtnCell = SelItemList [i].SelCell;
+			selBtnCell.updateItemChecker (selBtnCell.ElementGO, SelItemList [i].correctFlag, this);
+		}
 	}
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	override public void updateGOProp(GameObject _elementGO){

@@ -89,14 +89,6 @@ public class Line : BaseElement{
 			row.setChildParagraphRef ();
 		}
 	}
-	override public void setChildAnalyticsId(){
-		int index = 0;
-		foreach (Row row in RowList) {
-			row.AnalyticsId = index;
-			row.setChildAnalyticsId ();
-			index++;
-		}
-	}
 
 	override public int siblingIndex(){
 		int index=0;
@@ -176,6 +168,7 @@ public class Line : BaseElement{
 			row.generateElementGO (lineGO);
 		}
 		updateGOProp (lineGO);
+		setupQuestionRef ();
 		BasicGOOperation.CheckAndRepositionTable (lineGO);
 		BasicGOOperation.CheckAndRepositionTable (CenterContentGO);
 		return lineGO;
@@ -183,6 +176,21 @@ public class Line : BaseElement{
 	override public void updateGOProp(GameObject _elementGO){
 		Debug.Log ("Updating table of"+_elementGO.name);
 		BasicGOOperation.CheckAndRepositionTable (_elementGO);
+	}
+	override public void setChildAnalyticsId(){
+		int index = 1;
+		foreach (Row row in RowList) {
+			row.AnalyticsId = index;
+			row.setChildAnalyticsId ();
+			index++;
+		}
+		int quesIndex = 1;
+		foreach (QuestionChecker question in QuestionList) {
+			question.AnalyticsId = quesIndex;
+			question.setChildAnalyticsId ();
+			quesIndex++;
+		}
+
 	}
 	//----------------------Animations ----------------------------
 	override public void hideElementGO(){
@@ -202,7 +210,7 @@ public class Line : BaseElement{
 		}
 
 		//Check for Interaction elements in Line ElementGO
-		if (ElementGO.GetComponentsInChildren<QuestionChecker>().Length > 0) {
+		if (QuestionList.Count > 0) {
 			//checking for QuestonCheckers
 			Debug.Log ("Element Display Anim:Checking for Questions");
 			displayDragSourceLine ();
@@ -228,14 +236,13 @@ public class Line : BaseElement{
 	}
 	public void activateQuestionListAnim(EventDelegate nextEvent){
 		//Going through all questionHolders in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
-		List<QuestionChecker> lineQuestionList = ElementGO.GetComponentsInChildren<QuestionChecker>().ToList().FindAll(delegate(QuestionChecker t) { return t.ItemTargetType == OptionChecker.TargetType.Question; });
-		for(int i = 0; i < lineQuestionList.Count; i++){
+		for(int i = 0; i < QuestionList.Count; i++){
 			EventDelegate nextLineEvent = nextEvent;
-			if (i < lineQuestionList.Count - 1)
-				nextLineEvent = new EventDelegate (lineQuestionList [i + 1].activateAnim);
-			lineQuestionList [i].nextEvent = nextLineEvent;
+			if (i < QuestionList.Count - 1)
+				nextLineEvent = new EventDelegate (QuestionList [i + 1].activateAnim);
+			QuestionList [i].nextEvent = nextLineEvent;
 		}
-		lineQuestionList [0].activateAnim ();
+		QuestionList [0].activateAnim ();
 	}
 	public void displayDragSourceLine(){
 		if (ElementGO.GetComponentInChildren<DropZoneOptionChecker> () != null) {

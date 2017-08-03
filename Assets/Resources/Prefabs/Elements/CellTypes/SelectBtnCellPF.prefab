@@ -571,21 +571,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1992285895780536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05b1aae174d04aa9b13e1d4d97d36ea, type: 3}
+  m_Script: {fileID: 11500000, guid: b86a2b10afc104c5f81ef9a347662dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemAttemptState: 0
+  ItemTargetType: 0
   nextEvent:
     mTarget: {fileID: 0}
     mMethodName: 
     mParameters: []
     oneShot: 0
-  ParagraphRef: {fileID: 0}
   TimerAnimGO: {fileID: 0}
-  ItemTargetType: 0
+  AnalyticsId: 0
+  ContainerElem: {fileID: 0}
+  ParentChecker: {fileID: 0}
+  ChildList: []
   correctFlag: 0
   userInputFlag: 0
-  SelBtnHolderGO: {fileID: 0}
   DisplayText: 
   HighlightOnCorrectSelection: 1
 --- !u!114 &114663691786097678

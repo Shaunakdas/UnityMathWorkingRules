@@ -42,8 +42,6 @@ public class BaseElement : MonoBehaviour {
 			AnalyticsId = int.Parse(analyticsIdAttr.Value);
 		}
 	}
-	virtual public void setChildAnalyticsId(){
-	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
@@ -78,6 +76,11 @@ public class BaseElement : MonoBehaviour {
 	virtual public void updateGOProp(GameObject ElementGO){
 	}
 
+	virtual public void setChildAnalyticsId(){
+	}
+
+	virtual public void setupQuestionRef(){
+	}
 	//-------------For Animations -------------------
 	/// <summary>
 	/// Hides the element GameObject.

@@ -11,4 +11,14 @@ public static class UserAction {
 		AnalyticsTracker.addEvent(_target,_targetId,_event,_time); 
 		EventList.Add( new AnalyticsEvent(_target,_targetId,_event,_time)); 
 	}
+	public static void AddParaChild(TargetEntity paraEntity){
+		foreach (TargetEntity childEntity in MasterEntity.ChildEntityList) {
+			if(childEntity.EntityType == TargetEntity.Type.Paragraph){
+				if (childEntity.EntityId == paraEntity.EntityId) {
+					childEntity.ChildEntityList = paraEntity.ChildEntityList;
+				}
+			}
+
+		}
+	}
 }

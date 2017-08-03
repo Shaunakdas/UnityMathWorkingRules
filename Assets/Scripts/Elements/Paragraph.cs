@@ -27,7 +27,7 @@ public class Paragraph : BaseElement{
 
 	//-----------------Animation Attributes --------------
 	//List of questions
-	static public List<QuestionChecker> QuestionList{get; set;}
+//	static public List<QuestionChecker> QuestionList{get; set;}
 
 	//Text to be displayed after completion of paragraph
 	public string postSubmitText{get; set;}
@@ -213,7 +213,7 @@ public class Paragraph : BaseElement{
 	/// <param name="ElementGameObject">Element GameObject</param>
 	override public GameObject generateElementGO(GameObject parentGO){
 
-		QuestionList = new List<QuestionChecker> ();
+//		QuestionList = new List<QuestionChecker> ();
 		//Setting targetText of child drop zone cell;
 		populateCellTargetText ();
 		GameObject QuestionStepParaPF = Resources.Load (LocationManager.COMPLETE_LOC_PARAGRAPH_TYPE + prefabName)as GameObject;
@@ -343,24 +343,24 @@ public class Paragraph : BaseElement{
 	/// Sets up first Getting active animation.
 	/// </summary>
 	/// <param name="_questionList">Question list.</param>
-	public void setUpChildActiveAnim(List<QuestionChecker> _questionList){
-		Debug.Log ("setUpChildActiveAnim"+_questionList.Count.ToString());
-		if (_questionList.Count > 0)
-			_questionList [0].activateAnim ();
-	}
+//	public void setUpChildActiveAnim(List<QuestionChecker> _questionList){
+//		Debug.Log ("setUpChildActiveAnim"+_questionList.Count.ToString());
+//		if (_questionList.Count > 0)
+//			_questionList [0].activateAnim ();
+//	}
 	/// <summary>
 	/// Sets up the next target trigger
 	/// </summary>
 	/// <param name="questionChecker">Question checker.</param>
-	public void nextTargetTrigger(QuestionChecker questionChecker){
-		Debug.Log (QuestionList.Count);
-		int currentCounter = QuestionList.IndexOf (questionChecker);
-		if (currentCounter < QuestionList.Count-1) {
-			QuestionList [currentCounter + 1].activateAnim ();
-		} else {
-			finishQuestionStep ();
-		}
-	}
+//	public void nextTargetTrigger(QuestionChecker questionChecker){
+//		Debug.Log (QuestionList.Count);
+//		int currentCounter = QuestionList.IndexOf (questionChecker);
+//		if (currentCounter < QuestionList.Count-1) {
+//			QuestionList [currentCounter + 1].activateAnim ();
+//		} else {
+//			finishQuestionStep ();
+//		}
+//	}
 	/// <summary>
 	/// Finishes the question step.
 	/// </summary>

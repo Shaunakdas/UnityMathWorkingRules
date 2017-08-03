@@ -27,7 +27,7 @@ public class ComprehensionBody : BaseElement {
 		parseChildNode (body_node);
 		scoreMan = new ScoreManager ();
 
-		UserAction.MasterEntity = generateTargetTree ();
+//		UserAction.MasterEntity = generateTargetTree ();
 	}
 
 	/// <summary>
@@ -54,19 +54,19 @@ public class ComprehensionBody : BaseElement {
 
 		//Adding Paragraphs
 		foreach (Paragraph para in ParagraphList) {
-			TargetEntity paraEntity = new TargetEntity(para.GetType ().ToString (), para.AnalyticsId);
+			TargetEntity paraEntity = new TargetEntity("Paragraph", para.AnalyticsId);
 
 			//Adding Lines
 			foreach (Line line in para.LineList) {
-				TargetEntity lineEntity = new TargetEntity(line.GetType ().ToString (), line.AnalyticsId);
+				TargetEntity lineEntity = new TargetEntity("Line", line.AnalyticsId);
 
 				//Adding Questions
 				foreach (QuestionChecker ques in line.QuestionList) {
-					TargetEntity quesEntity = new TargetEntity(ques.GetType ().ToString (), ques.AnalyticsId);
+					TargetEntity quesEntity = new TargetEntity("Question", ques.AnalyticsId);
 
 					//Adding Options
 					foreach (OptionChecker option in ques.ChildList) {
-						TargetEntity optionEntity = new TargetEntity(option.GetType ().ToString (), option.AnalyticsId);
+						TargetEntity optionEntity = new TargetEntity("Option", option.AnalyticsId);
 						quesEntity.ChildEntityList.Add (optionEntity);
 					}
 

@@ -5,15 +5,16 @@ using UnityEngine;
 public class OptionChecker : MonoBehaviour {
 	public enum AttemptState{Unseen,Seen,Activated,Attempted,Checked,Corrected,Deactivated}
 	public AttemptState itemAttemptState = AttemptState.Unseen;
-	public EventDelegate nextEvent;
-//	public Paragraph ParagraphRef;
-	public BaseElement ContainerElem;
-	public GameObject TimerAnimGO = null;
 	public enum TargetType{Option,Question,Holder,HolderParent}
 	public TargetType ItemTargetType=TargetType.Option;
 
-	public int AnalyticsId = 0;
+	//Animation Variables
+	public EventDelegate nextEvent;
+	public GameObject TimerAnimGO = null;
 
+	//Reference Variables
+	public int AnalyticsId = 0;
+	public BaseElement ContainerElem;
 	public OptionChecker ParentChecker;
 	public List<OptionChecker> ChildList = new List<OptionChecker>();
 	// Use this for initialization
@@ -25,8 +26,9 @@ public class OptionChecker : MonoBehaviour {
 	void Update () {
 		
 	}
-	virtual public void addToQuestionList(){
-		itemAttemptState = AttemptState.Unseen;
+	virtual public void addParentChecker(OptionChecker _parentChecker){
+		ParentChecker = _parentChecker;
+		ParentChecker.ChildList.Add (this);
 	}
 	//----------------------Animations ----------------------------
 	/// <summary>

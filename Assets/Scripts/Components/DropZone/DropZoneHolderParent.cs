@@ -40,9 +40,6 @@ public class DropZoneHolderParent : QuestionChecker {
 	void Update () {
 		
 	}
-	override public void addToQuestionList(){
-		Paragraph.QuestionList.Add (this);
-	}
 	//----------------------Animations ----------------------------
 	/// <summary>
 	/// Getting active animation.
@@ -71,7 +68,7 @@ public class DropZoneHolderParent : QuestionChecker {
 		Debug.Log ("DropZoneRowCell CorrectAnim");
 		deactivateAnim ();
 		//Empty Paragraph Obje ct to access Paragraph methods
-		ContainerElem.ParagraphRef.nextTargetTrigger (this);
+//		ContainerElem.ParagraphRef.nextTargetTrigger (this);
 	}
 	/// <summary>
 	/// Incorrect animation.
@@ -79,6 +76,6 @@ public class DropZoneHolderParent : QuestionChecker {
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim");
 		deactivateAnim ();
-		ContainerElem.ParagraphRef.nextTargetTrigger (this);
+//		ContainerElem.ParagraphRef.nextTargetTrigger (this);
 	}
 }

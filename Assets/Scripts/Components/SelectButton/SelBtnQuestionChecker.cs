@@ -81,9 +81,6 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	void Update () {
 		
 	}
-	override public void addToQuestionList(){
-		if(Paragraph.QuestionList.IndexOf(this) < 0) Paragraph.QuestionList.Add (this);
-	}
 	//----------------------Animations ----------------------------
 	/// <summary>
 	/// Getting active animation.

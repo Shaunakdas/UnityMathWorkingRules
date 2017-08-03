@@ -146,19 +146,15 @@ public class DropZoneRowCell : Cell {
 
 		GameObject holderGO = BasicGOOperation.InstantiateNGUIGO (dropZoneHolderPF, parentGO.transform);
 
-		DropZoneHolder dropZoneHolder = holderGO.GetComponent<DropZoneHolder> ();
-		dropZoneHolder.ContainerElem = this;
-		dropZoneHolder.TargetTextList = _targetTextList;
-		dropZoneHolder.idCheck = idPresent;
-		dropZoneHolder.addToQuestionList ();
+		DropZoneHolder dropZoneholder = initDropZoneHolder (holderGO, _targetTextList, idPresent);
 
-		generateDropZoneItemList (_targetTextList, dropZoneTablePF, holderGO);
+		generateDropZoneOptionList (_targetTextList, dropZoneTablePF, holderGO);
 		BasicGOOperation.CheckAndRepositionTable (holderGO);
 		return holderGO;
 	}
 
 	//Generating List of DropZone Items
-	void generateDropZoneItemList(List<string> _targetTextList,GameObject _dropZoneTablePF,GameObject _dropZoneHolderGO){
+	void generateDropZoneOptionList(List<string> _targetTextList,GameObject _dropZoneTablePF,GameObject _dropZoneHolderGO){
 		foreach (string targetText in _targetTextList){
 
 			//Initing List of DropZoneItemChecker to then add to ItemCheckerMasterList of DropZoneHolder
@@ -168,9 +164,9 @@ public class DropZoneRowCell : Cell {
 			GameObject tableGO = BasicGOOperation.getChildGameObject (backgroundGO, "Table");
 			int tableWidth = 0;
 			if (idPresent) {
-				tableWidth = dropZoneIdItemLength(targetText,tableGO,itemCheckerList);
+				tableWidth = dropZoneIdOptionLength(targetText,tableGO,itemCheckerList);
 			} else {
-				tableWidth = dropZoneValueItemLength(targetText,tableGO,itemCheckerList);
+				tableWidth = dropZoneValueOptionLength(targetText,tableGO,itemCheckerList);
 			}
 			backgroundGO.GetComponent<UISprite>().width = tableWidth;
 
@@ -182,19 +178,19 @@ public class DropZoneRowCell : Cell {
 	}
 
 	//Generating DropZone Items referenced using id
-	int dropZoneIdItemLength(string _targetText,GameObject _tableGO,List<DropZoneOptionChecker> _questionList){
+	int dropZoneIdOptionLength(string _targetText,GameObject _tableGO,List<DropZoneOptionChecker> _questionList){
 		//id attribute is present. So there is no need to divide drop zone into individual item
-		//Generating DropZoneItem
-		GameObject tableItemGO =  initDropZoneTableItem(_tableGO,true);
-		_questionList.Add (tableItemGO.GetComponent<DropZoneOptionChecker>());
-		//Calculating Length of DropZoneItem
+		//Generating DropZone Option
+		DropZoneOptionChecker option =  initDropZoneOption(_tableGO,true);
+		_questionList.Add (option);
+		//Calculating Length of DropZone Option
 		int contentWidth = _targetText.ToCharArray ().Length * 30;
-		tableItemGO.GetComponent<UISprite> ().width = contentWidth;
+		option.gameObject.GetComponent<UISprite> ().width = contentWidth;
 		return contentWidth+10;
 	}
 
 	//Generating DropZone Items referenced using value
-	int dropZoneValueItemLength(string _targetText,GameObject _tableGO,List<DropZoneOptionChecker> _questionList){
+	int dropZoneValueOptionLength(string _targetText,GameObject _tableGO,List<DropZoneOptionChecker> _questionList){
 		int tableWidth = 0;
 		//id attribute is not present. So we have to divide drop zone into individual item
 		foreach (char targetChar in _targetText.ToCharArray().ToList()) {
@@ -204,10 +200,9 @@ public class DropZoneRowCell : Cell {
 				SelectableButtonCell selectCell = new SelectableButtonCell ();
 				GameObject signBtnGO = selectCell.generateSelBtnCellGO (_tableGO, "-");
 			} else {
-				//Generating DropZoneItem
-				Debug.Log("_tableGO"+_tableGO.name);
-				GameObject tableItemGO = initDropZoneTableItem (_tableGO, false);
-				_questionList.Add (tableItemGO.GetComponent<DropZoneOptionChecker>());
+				//Generating DropZone Option
+				DropZoneOptionChecker option = initDropZoneOption (_tableGO, false);
+				_questionList.Add (option);
 			}
 		}
 		return tableWidth;
@@ -223,13 +218,26 @@ public class DropZoneRowCell : Cell {
 
 
 	//-------------Static methods to create/update GameObject components for Correct/Incorrect Check-------------------
-	public GameObject initDropZoneTableItem(GameObject parentGO, bool idPresent){
+	DropZoneOptionChecker initDropZoneOption(GameObject parentGO, bool idPresent){
 		GameObject dropZoneTableItemprefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_TABLE_ITEM_CELL)as GameObject;
 		GameObject tableItemGO = BasicGOOperation.InstantiateNGUIGO (dropZoneTableItemprefab, parentGO.transform);
-		tableItemGO.GetComponent<DropZoneOptionChecker> ().idCheck = (idPresent!=null)?idPresent:false;
-		tableItemGO.GetComponent<DropZoneOptionChecker> ().ParentChecker = parentGO.transform.parent.parent.GetComponent<DropZoneHolder>();
-		tableItemGO.GetComponent<DropZoneOptionChecker>().ContainerElem = this;
-		return tableItemGO;
+		DropZoneOptionChecker option = tableItemGO.GetComponent<DropZoneOptionChecker> ();
+		//Reference Variables
+		option.addParentChecker(parentGO.transform.parent.parent.GetComponent<DropZoneHolder>());
+		option.ContainerElem = this;
+		//Dropzone Specific Variables
+		option.idCheck = (idPresent!=null)?idPresent:false;
+		return option;
+	}
+	DropZoneHolder initDropZoneHolder(GameObject holderGO, List<string> _targetTextList,bool _idPresent){
+		DropZoneHolder holder = holderGO.GetComponent<DropZoneHolder> ();
+		//Reference Variables
+		holder.ContainerElem = this;
+		holder.addToMasterLine ();
+		//DropZone specific Variables
+		holder.TargetTextList = _targetTextList;
+		holder.idCheck = _idPresent;
+		return holder;
 	}
 	public void addDropZoneHolder(GameObject parentGO,GameObject dropZoneHolderGO){
 		dropZoneHolderGO.GetComponent<DropZoneHolder> ().holderListParentGO = parentGO;
@@ -240,7 +248,7 @@ public class DropZoneRowCell : Cell {
 			parentGO.AddComponent<DropZoneHolderParent> ();
 		parentGO.GetComponent<DropZoneHolderParent> ().ContainerElem = this;
 		parentGO.GetComponent<DropZoneHolderParent> ().addDropZoneHolder (dropZoneHolderGO);
-		parentGO.GetComponent<DropZoneHolderParent> ().addToQuestionList ();
+		parentGO.GetComponent<DropZoneHolderParent> ().addToMasterLine ();
 	}
 
 	//-------------Animations-------------------

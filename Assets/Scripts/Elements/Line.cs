@@ -23,7 +23,7 @@ public class Line : BaseElement{
 	//List of child rows
 	public List<Row> RowList {get; set;}
 
-	public List<QuestionChecker> QuestionList;
+	public List<QuestionChecker> QuestionList = new List<QuestionChecker>();
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Constructor
 	public Line(){

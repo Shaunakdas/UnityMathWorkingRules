@@ -54,12 +54,15 @@ public class TableLine  : Line {
 	public void updateSelBtnHolder(GameObject _selBtnGO,bool _selBtnBool){
 		SelBtnFlag = true;
 
-		ElementGO.AddComponent<SelBtnQuestionChecker> (); SelBtnQuestionChecker holderScript = ElementGO.GetComponent<SelBtnQuestionChecker> ();
-		holderScript.ContainerElem = this;
-		holderScript.addToQuestionList ();
-		holderScript.addSelectBtn (_selBtnGO, _selBtnBool);
+		ElementGO.AddComponent<SelBtnQuestionChecker> (); 
+		SelBtnQuestionChecker question = ElementGO.GetComponent<SelBtnQuestionChecker> ();
+		//Ref Variables
+		question.ContainerElem = this;
+		question.addToMasterLine (this);
+		//Seltn Specific Variables
+		question.addSelectBtn (_selBtnGO, _selBtnBool);
 		//Changing Paragraph's correctType
-		holderScript.setParentCorrectCount(Parent as Paragraph,this);
+		question.setParentCorrectCount(Parent as Paragraph,this);
 	}
 	public GameObject addSubmitBtnGO(){
 		return null;

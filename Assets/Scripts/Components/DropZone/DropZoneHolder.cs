@@ -25,9 +25,6 @@ public class DropZoneHolder : QuestionChecker {
 	}
 
 	//----------------------Target Matching and checking mechanism ----------------------------
-	override public void addToQuestionList(){
-		Paragraph.QuestionList.Add (this);
-	}
 	public bool checkDropZoneItem(string inputText, DropZoneOptionChecker itemChecker){
 		Debug.Log ("Holder: checkDropZoneItem for checking "+inputText);
 		bool inputCorrect = false;
@@ -202,13 +199,13 @@ public class DropZoneHolder : QuestionChecker {
 	public void nextTargetTrigger(){
 
 		Debug.Log ("TargetPending"+TargetPending);
-		ContainerElem.ParagraphRef.nextTargetTrigger (this);
+//		ContainerElem.ParagraphRef.nextTargetTrigger (this);
 
 	}
 	public void nextTargetTrigger(DragSourceCell dragCell){
 		
 		Debug.Log ("TargetPending"+TargetPending);
-		ContainerElem.ParagraphRef.nextTargetTrigger (this);
+//		ContainerElem.ParagraphRef.nextTargetTrigger (this);
 
 	}
 	/// <summary>

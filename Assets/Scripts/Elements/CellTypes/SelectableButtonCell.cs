@@ -107,16 +107,22 @@ public class SelectableButtonCell : Cell {
 	//-------------Static methods to create/update GameObject components for Correct/Incorrect Check-------------------
 	public SelBtnOptionChecker updateItemChecker(GameObject _elementGO, bool _correctBool, Line line){
 		SelBtnOptionChecker option= _elementGO.GetComponent<SelBtnOptionChecker> ();
-		//		Debug.Log (_correctBool);
-		option.correctFlag = _correctBool;
 		//Adding SelBtrnGolder script to parent TableLine
 		if (line.ElementGO.GetComponent<SelBtnQuestionChecker>() == null)
 			line.ElementGO.AddComponent<SelBtnQuestionChecker>();
-		SelBtnQuestionChecker quesChecker = line.ElementGO.GetComponent<SelBtnQuestionChecker> ();
-		option.ParentChecker = quesChecker;
-		quesChecker.addSelectBtn (_elementGO, _correctBool);
-		quesChecker.addToQuestionList ();
-		quesChecker.ContainerElem = this;
+		SelBtnQuestionChecker question = line.ElementGO.GetComponent<SelBtnQuestionChecker> ();
+
+		//SelBtn Specific Variables of option
+		option.correctFlag = _correctBool;
+		//Ref Variables of Option
+		option.addParentChecker(question); option.ContainerElem = this;
+
+		//SelBtn Specific Variables of question
+		question.addSelectBtn (_elementGO, _correctBool);
+
+		//Ref Variables Of Question
+		question.ContainerElem = line;
+		question.addToMasterLine (line);
 
 		return option;
 	}

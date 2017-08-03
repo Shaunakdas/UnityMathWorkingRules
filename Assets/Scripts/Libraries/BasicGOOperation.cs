@@ -310,7 +310,7 @@ public class BasicGOOperation : MonoBehaviour{
 	public static Paragraph getParagraphRef(BaseElement _element){
 		Paragraph para = null;
 		if(_element.GetType() != typeof(ComprehensionBody)){
-			if (_element.GetType () == typeof(Paragraph)) {
+			if (_element.GetType ().IsSubclassOf(typeof(Paragraph))) {
 				return _element as Paragraph;
 			} else {
 				return _element.ParagraphRef;
@@ -321,15 +321,19 @@ public class BasicGOOperation : MonoBehaviour{
 	public static Line getMasterLineRef(BaseElement _element){
 		Line _elementLine = null;
 		Paragraph para = getParagraphRef(_element);
-		if ((_element.GetType () == typeof(Line)) && (_element.GetType () != typeof(Cell))) {
+//		Debug.Log (para.GetType ());
+//		Debug.Log ("Line Check" + (_element.GetType ().IsSubclassOf(typeof(Line))));
+//		Debug.Log ("Row Check" + (_element.GetType ().IsSubclassOf(typeof(Row))));
+//		Debug.Log ("Cell Check" + (_element.GetType ().IsSubclassOf(typeof(Cell))));
+		if ((_element.GetType ().IsSubclassOf(typeof(Line))) && (!_element.GetType ().IsSubclassOf(typeof(Cell)))) {
 			return _element as Line;
-		} else if (_element.GetType () == typeof(Row)){
+		} else if (_element.GetType ().IsSubclassOf(typeof(Row))){
 			if (para.LineList.Contains (_element.Parent as Line)) {
 				return _element.Parent as Line;
 			} else if (para.LineList.Contains (_element.Parent.Parent.Parent as Line)) {
 				return _element.Parent.Parent.Parent as Line;
 			}
-		} else if (_element.GetType () == typeof(Cell)){
+		} else if (_element.GetType ().IsSubclassOf(typeof(Cell))){
 			if (para.LineList.Contains (_element.Parent.Parent as Line)) {
 				return _element.Parent.Parent as Line;
 			} else if (para.LineList.Contains (_element.Parent.Parent.Parent.Parent as Line)) {
@@ -341,9 +345,9 @@ public class BasicGOOperation : MonoBehaviour{
 	public static Row getMasterRowRef(BaseElement _element){
 		Row _elementRow = null;
 		Line line =  getMasterLineRef(_element);
-		if (_element.GetType () == typeof(Row))  {
+		if (_element.GetType ().IsSubclassOf(typeof(Row)))  {
 			return _element as Row;
-		} else if (_element.GetType () == typeof(Cell)){
+		} else if (_element.GetType ().IsSubclassOf(typeof(Cell))){
 			if (line.RowList.Contains (_element.Parent as Row)) {
 				return _element.Parent as Row;
 			} else if (line.RowList.Contains (_element.Parent.Parent.Parent as Row)) {

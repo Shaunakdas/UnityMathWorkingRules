@@ -210,6 +210,7 @@ public class Line : BaseElement{
 			if (htmlNode.Attributes [AttributeManager.MAX_QUES_SCORE] != null) {
 				List<float> maxQuesScoreList = htmlNode.Attributes [AttributeManager.MAX_QUES_SCORE].Value.Split (';').ToList ().Select (s => float.Parse (s)).ToList ();
 				for (int i = 0; i < QuestionList.Count; i++) {
+					Debug.Log ("NOT NULLLLLL");
 					QuestionList [i].scoreTracker.maxScore = repeatIfRequired (maxQuesScoreList, QuestionList.Count) [i];
 				}
 			} 

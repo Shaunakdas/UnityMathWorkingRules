@@ -40,24 +40,25 @@ public class QuestionChecker : OptionChecker {
 		}
 	}
 	void setupDefaultScoreValues (){
-		if (scoreTracker.maxScore == null) { scoreTracker.maxScore = ScoreCalculator.DEFAULT_MAX_QUES_SCORE; }
-		if (scoreTracker.minScore == null) { scoreTracker.maxScore = ScoreCalculator.DEFAULT_MIN_QUES_SCORE; }
-		if (scoreTracker.maxTime == null) { scoreTracker.maxScore = ScoreCalculator.DEFAULT_MAX_QUES_TIME; }
-		if (scoreTracker.idealTime == null) { scoreTracker.maxScore = ScoreCalculator.DEFAULT_IDEAL_QUES_TIME; }
-		if (scoreTracker.scoreWeightage == null) { scoreTracker.maxScore = ScoreCalculator.DEFAULT_SCORE_WEIGHTAGE; }
+		if (scoreTracker.maxScore == 0f) { scoreTracker.maxScore = ScoreCalculator.DEFAULT_MAX_QUES_SCORE; }
+		if (scoreTracker.minScore == 0) { scoreTracker.minScore = ScoreCalculator.DEFAULT_MIN_QUES_SCORE; }
+		if (scoreTracker.maxTime == 0) { scoreTracker.maxTime = ScoreCalculator.DEFAULT_MAX_QUES_TIME; }
+		if (scoreTracker.idealTime == 0) { scoreTracker.idealTime = ScoreCalculator.DEFAULT_IDEAL_QUES_TIME; }
+		if (scoreTracker.scoreWeightage == 0) { scoreTracker.scoreWeightage = ScoreCalculator.DEFAULT_SCORE_WEIGHTAGE; }
 	}
 	override public void  setupScoreValues(){
+		Debug.Log ("SCORETRACKER.MAXSCORE" + scoreTracker.maxScore);
 		//Setting maxScore/minScore based on scoreWeightages
 		float sumOfScoreWeightages = ContainerElem.ParagraphRef.scoreTracker.childScoreWeightageSum;
-		if (sumOfScoreWeightages == null) {
-			sumOfScoreWeightages = 0;
+		if (sumOfScoreWeightages == 0) {
 			foreach (Line line in ContainerElem.ParagraphRef.LineList) {
 				foreach (QuestionChecker ques in line.QuestionList) {
 					sumOfScoreWeightages += ques.scoreTracker.scoreWeightage;
 				}
 			}
 		} 
-
+		scoreTracker.maxScore = ContainerElem.ParagraphRef.scoreTracker.maxScore / sumOfScoreWeightages;
+		scoreTracker.minScore = ContainerElem.ParagraphRef.scoreTracker.minScore / sumOfScoreWeightages;
 		//Setting scoreTracker of options by diving equally
 		foreach (OptionChecker option in ChildList) {
 			option.scoreTracker.maxScore = scoreTracker.maxScore / ChildList.Count;

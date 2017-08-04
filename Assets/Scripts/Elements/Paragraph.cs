@@ -250,6 +250,8 @@ public class Paragraph : BaseElement{
 		//Traversing through Child Element - 3
 		setChildAnalyticsId ();
 		UserAction.AddParaChild( getParaChild(this));
+		//Traversing through Child Element - 4
+		setChildScoreValues ();
 		return ParaContentTableGO;
 	}
 	override public void initGOProp(GameObject _elementGO){

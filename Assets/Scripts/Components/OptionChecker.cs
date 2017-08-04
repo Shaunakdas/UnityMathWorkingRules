@@ -52,6 +52,7 @@ public class OptionChecker : MonoBehaviour {
 	/// <param name="_elementGO">Element G.</param>
 	virtual public void activateAnim(){
 		ItemAttemptState = AttemptState.Activated;
+		scoreTracker.startTimestamp = System.DateTime.Now;
 	}
 	virtual public void activateAnimWithDelegate(EventDelegate _nextEvent){
 		ItemAttemptState = AttemptState.Activated;
@@ -63,13 +64,18 @@ public class OptionChecker : MonoBehaviour {
 	/// <param name="_elementGO">Element G.</param>
 	virtual public void startTimerAnim(){
 	}
-
+	virtual public void attemptEvent(){
+		ItemAttemptState = AttemptState.Attempted;
+		scoreTracker.attemptTimestamp = System.DateTime.Now;
+		scoreTracker.attemptTime = scoreTracker.attemptTimestamp - scoreTracker.startTimestamp;
+	}
 	/// <summary>
 	/// Getting active animation.
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	virtual public void deactivateAnim(){
 		ItemAttemptState = AttemptState.Deactivated;
+		scoreTracker.endTimestamp = System.DateTime.Now;
 	}
 	virtual public void deactivateAnimWithDelegate(EventDelegate _nextEvent){
 		ItemAttemptState = AttemptState.Deactivated;

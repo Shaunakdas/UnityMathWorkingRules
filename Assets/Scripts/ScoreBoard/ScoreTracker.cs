@@ -12,8 +12,9 @@ public class ScoreTracker {
 	//Max Time Variables
 	public float idealTime,maxTime;
 	//Attempt Time Variables
-	public System.DateTime attemptTime;
+	public System.TimeSpan attemptTime;
 	public System.DateTime startTimestamp,attemptTimestamp,endTimestamp;
+
 	//Attempt Status
 	public OptionChecker.AttemptState state;
 	//Reference

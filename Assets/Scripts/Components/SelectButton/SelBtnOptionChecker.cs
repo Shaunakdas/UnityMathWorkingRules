@@ -11,6 +11,7 @@ public class SelBtnOptionChecker : OptionChecker {
 	AnimationManager animManager;
 
 	public void changeInputFlag(){
+		attemptEvent ();
 		userInputFlag = !userInputFlag;
 		(ParentChecker as SelBtnQuestionChecker).optionSelected ();
 	}

@@ -131,7 +131,6 @@ public class SelBtnQuestionChecker : QuestionChecker {
 //		foreach (GameObject selBtnGO in SelBtnGOList) {
 		for (int i=0;i<ChildList.Count; i++){
 			SelBtnOptionChecker itemChecker = ChildList [i] as SelBtnOptionChecker;
-			itemChecker.ItemAttemptState = AttemptState.Attempted;
 			EventDelegate _nextEvent = null;
 			if (i == ChildList.Count - 1)
 				_nextEvent = new EventDelegate(nextAnimTrigger);

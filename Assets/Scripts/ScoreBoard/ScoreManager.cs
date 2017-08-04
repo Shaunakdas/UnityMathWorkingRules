@@ -36,7 +36,8 @@ public class ScoreManager  {
 		currentPara = _para; 
 	}
 	public float calcMaxTotalScore(){
-		return (float) ScoreCalculator.MAX_SCORE_VALUE;
+//		return (float) ScoreCalculator.MaxTotalScore;
+		return 0f;
 	}
 
 	public float calcMaxParaScore(int paraCount, float maxTotalSocre){
@@ -63,10 +64,10 @@ public class ScoreManager  {
 			settings.maxParaScore = scoreCalc.maxParaScore;
 			settings.maxItemScore = scoreCalc.maxParaScore/settings.maxCorrectCount;
 			//Maximum Time
-			settings.maxItemTimeAllotted = ScoreCalculator.MAX_ITEM_TIME; settings.minItemTimeAllotted = ScoreCalculator.MAX_ITEM_TIME;
+//			settings.maxItemTimeAllotted = ScoreCalculator.MaxQuestionTime; settings.minItemTimeAllotted = ScoreCalculator.MaxQuestionTime;
 			settings.maxParaTimeAllotted = settings.maxCorrectCount * settings.maxItemTimeAllotted;
 			//Maximum Lives
-			settings.maxParaLives = ScoreCalculator.MAX_PARA_LIVES;
+//			settings.maxParaLives = ScoreCalculator.MaxTotalLives;
 		}
 	}
 	//-------------Generate ElementGO -------------------

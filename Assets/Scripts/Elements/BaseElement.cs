@@ -6,6 +6,7 @@ public class BaseElement : MonoBehaviour {
 	//-------------Common Attributes -------------------
 	public Paragraph ParagraphRef;
 	public string prefabName{get; set;}
+	public HtmlNode htmlNode;
 	//Parent BaseElement
 	public BaseElement Parent{get; set;}
 	public BaseElement CurrentChild{get; set;}
@@ -15,6 +16,7 @@ public class BaseElement : MonoBehaviour {
 	public enum Interaction{Drag,Drop,Select,Mixed,Display,Default};
 	public Interaction InteractionType = Interaction.Display;
 
+	public ScoreTracker scoreTracker = new ScoreTracker();
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	/// <summary>
 	/// Parses the children nodes to create child elements
@@ -78,7 +80,10 @@ public class BaseElement : MonoBehaviour {
 
 	virtual public void setChildAnalyticsId(){
 	}
-
+	virtual public void setChildScoreValues(){
+	}
+	virtual public void setupScoreValues(){
+	}
 	virtual public void setupQuestionRef(){
 	}
 	//-------------For Animations -------------------

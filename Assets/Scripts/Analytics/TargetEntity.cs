@@ -16,4 +16,8 @@ public class TargetEntity {
 		EntityType = (Type)System.Enum.Parse (typeof(Type),_elementType,true);
 		EntityId = _entityId;
 	}
+
+	public TargetEntity(string _elementType){
+		EntityType = (Type)System.Enum.Parse (typeof(Type),_elementType,true);
+	}
 }

@@ -131,7 +131,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 //		foreach (GameObject selBtnGO in SelBtnGOList) {
 		for (int i=0;i<ChildList.Count; i++){
 			SelBtnOptionChecker itemChecker = ChildList [i] as SelBtnOptionChecker;
-			itemChecker.itemAttemptState = AttemptState.Attempted;
+			itemChecker.ItemAttemptState = AttemptState.Attempted;
 			EventDelegate _nextEvent = null;
 			if (i == ChildList.Count - 1)
 				_nextEvent = new EventDelegate(nextAnimTrigger);
@@ -145,7 +145,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 //					itemChecker.incorrectAnimWithDelegate (_nextEvent);
 				}
 			} else if (itemChecker.correctFlag) {
-				itemChecker.itemAttemptState = AttemptState.Checked;
+				itemChecker.ItemAttemptState = AttemptState.Checked;
 				//Animation for showing the correct options
 				itemChecker.nextEvent = _nextEvent;itemChecker.correctionAnim ();
 //				itemChecker.correctionAnimWithDelegate(_nextEvent);

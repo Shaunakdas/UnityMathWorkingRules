@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreCalculator  {
-	public const int MAX_SCORE_VALUE = 3000,MIN_SCORE_VALUE = 1000;
-	public const float MIN_ITEM_TIME = 0.33f, MAX_ITEM_TIME = 0.66f;
-	public const int MAX_PARA_LIVES = 3;
+	public const float DEFAULT_MAX_SCORE=3000f,DEFAULT_MIN_SCORE=3000f,DEFAULT_MAX_QUES_SCORE=1000f,DEFAULT_MIN_QUES_SCORE=1000f,DEFAULT_MAX_OPTION_SCORE=1000f,DEFAULT_MIN_OPTION_SCORE=1000f;
+	public const float DEFAULT_SCORE_WEIGHTAGE=1f;
+	//Time Tracking
+	public const float DEFAULT_MAX_TIME=10f,DEFAULT_IDEAL_TIME=10f,DEFAULT_MAX_QUES_TIME=10f,DEFAULT_IDEAL_QUES_TIME=10f,DEFAULT_MAX_OPTION_TIME=10f,DEFAULT_IDEAL_OPTION_TIME=10f;
+
+	public int MaxTotalScore = 3000,MinTotalScore = 1000;
+
+	public int MaxTotalLives = 3;
 	public float maxItemScore=0f,minItemScore=0f,maxParaScore=0f,minParaScore=0f;
 
+	//Time Calculations
+	public float MinQuestionTime = 0.33f, MaxQuestionTime = 0.66f, MinOptionTime = 0.66f, MaxOptionTime = 0.66f;
+	public float DragGraceTime = 0.1f;
 
 	public ScoreCalculator(){
 	}
 
 	public void generateAttrs(int _questionCount){
-		maxItemScore = MAX_SCORE_VALUE / _questionCount;
+		maxItemScore = MaxTotalScore / _questionCount;
 		minItemScore = maxItemScore / 3;
 	}
 	public float itemScore(ScoreManager.Result _itemResult, float _timeTaken){
@@ -21,7 +29,7 @@ public class ScoreCalculator  {
 //		float maxScore = maxItemScore,minScore = minItemScore,maxTime = MAX_ITEM_TIME,minTime = MIN_ITEM_TIME;
 		switch (_itemResult) {
 		case ScoreManager.Result.Correct:
-			_itemScore = correctScoreFormula( _timeTaken, MIN_ITEM_TIME, MAX_ITEM_TIME, minItemScore, maxItemScore);
+			_itemScore = correctScoreFormula( _timeTaken, MinQuestionTime, MaxQuestionTime, minItemScore, maxItemScore);
 			break;
 		case ScoreManager.Result.Incorrect:
 			_itemScore = 0f;

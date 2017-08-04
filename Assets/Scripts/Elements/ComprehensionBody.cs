@@ -21,6 +21,7 @@ public class ComprehensionBody : BaseElement {
 	/// </summary>
 	/// <param name="para"></param>
 	public ComprehensionBody(HtmlNode body_node){
+		htmlNode = body_node;
 		ParagraphList = new List<Paragraph> ();
 
 		prefabName = LocationManager.NAME_COMPREHENSION_BODY;
@@ -118,6 +119,7 @@ public class ComprehensionBody : BaseElement {
 			updateGOProp(ElementGO);
 			setChildAnalyticsId ();
 			UserAction.MasterEntity = generateTargetTree ();
+			setChildScoreValues ();
 			BasicGOOperation.RepositionChildTables (ElementGO);
 //			setUpChildActiveAnim (targetItemCheckerList);
 		}
@@ -152,6 +154,24 @@ public class ComprehensionBody : BaseElement {
 	public void setRootSize(GameObject _elementGO){
 		UIRoot Root = ElementGO.GetComponentInParent<UIRoot> (); 
 		Root.manualHeight = Screen.height; Root.manualWidth = Screen.width; 
+	}
+	//----------------------Score Values ----------------------------
+	override public void  setChildScoreValues(){
+		setupScoreValues ();
+	}
+	override public void setupScoreValues(){
+		if (htmlNode != null) {
+			if (htmlNode.Attributes [AttributeManager.MAX_SCORE] == null) {
+				scoreTracker.maxScore = ScoreCalculator.DEFAULT_MAX_SCORE;
+			} else {
+				scoreTracker.maxScore = float.Parse(htmlNode.Attributes [AttributeManager.MAX_SCORE].Value);
+			}
+			if (htmlNode.Attributes [AttributeManager.MIN_SCORE] == null) {
+				scoreTracker.maxScore = ScoreCalculator.DEFAULT_MIN_SCORE;
+			} else {
+				scoreTracker.maxScore = float.Parse(htmlNode.Attributes [AttributeManager.MAX_SCORE].Value);
+			}
+		}
 	}
 	//----------------------Analytics ----------------------------
 	public void setupScoreSettings(){

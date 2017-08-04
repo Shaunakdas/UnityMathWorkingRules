@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4289550785305062}
   - component: {fileID: 114395334242785822}
+  - component: {fileID: 114069138473110048}
   m_Layer: 8
   m_Name: DropZoneTableCellPF
   m_TagString: Untagged
@@ -70,6 +71,29 @@ Transform:
   m_Father: {fileID: 4289550785305062}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114069138473110048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767236711004486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b29963b4b674fd7bacc1078bcabb3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemAttemptState: 0
+  ItemTargetType: 0
+  nextEvent:
+    mTarget: {fileID: 0}
+    mMethodName: 
+    mParameters: []
+    oneShot: 0
+  TimerAnimGO: {fileID: 0}
+  AnalyticsId: 0
+  ContainerElem: {fileID: 0}
+  ParentChecker: {fileID: 0}
+  ChildList: []
 --- !u!114 &114395334242785822
 MonoBehaviour:
   m_ObjectHideFlags: 1

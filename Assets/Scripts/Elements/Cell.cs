@@ -27,7 +27,7 @@ public class Cell : TableLine {
 	/// </summary>
 	/// <param name="para">Para.</param>
 	public Cell(HtmlNode cell_node){
-		RowList = new List<Row> ();
+		RowList = new List<Row> ();htmlNode = cell_node;
 		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 		Debug.Log ("Initializing Cell node of type "+type_text);
 
@@ -67,5 +67,13 @@ public class Cell : TableLine {
 	}
 	override public void updateGOProp(GameObject ElementGO){
 		//		Debug.Log ("Updating Text of Cell");
+	}
+
+	//----------------------Score Values ----------------------------
+	override public void  setChildScoreValues(){
+		setupScoreValues ();
+		foreach (QuestionChecker ques in QuestionList) {
+			ques.setChildScoreValues ();
+		}
 	}
 }

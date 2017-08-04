@@ -78,7 +78,7 @@ public class DropZoneHolder : QuestionChecker {
 	}
 	//----------------------Animations ----------------------------
 	public void resultAnim(bool inputCorrect, DropZoneOptionChecker itemChecker){
-		itemChecker.itemAttemptState = AttemptState.Attempted;
+		itemChecker.ItemAttemptState = AttemptState.Attempted;
 		EventDelegate nextItemEvent = nextEvent;
 		int itemIndex = ChildList.IndexOf (itemChecker);
 		if(inputCorrect){

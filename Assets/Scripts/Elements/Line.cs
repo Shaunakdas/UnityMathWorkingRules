@@ -24,6 +24,9 @@ public class Line : BaseElement{
 	public List<Row> RowList {get; set;}
 
 	public List<QuestionChecker> QuestionList = new List<QuestionChecker>();
+
+	//Score Variables
+	public List<ScoreTracker> QuesScoreList = new List<ScoreTracker>();
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Constructor
 	public Line(){
@@ -58,7 +61,7 @@ public class Line : BaseElement{
 	/// </summary>
 	/// <param name="para">Para.</param>
 	public Line(HtmlNode line_node){
-		RowList = new List<Row>();
+		RowList = new List<Row>();htmlNode = line_node;
 		string type_text = line_node.Attributes [AttributeManager.ATTR_TYPE].Value;
 
 		setAnalyticsIdFromAttr (line_node);
@@ -89,7 +92,6 @@ public class Line : BaseElement{
 			row.setChildParagraphRef ();
 		}
 	}
-
 	override public int siblingIndex(){
 		int index=0;
 		List<Line> lineList = (Parent as Paragraph).LineList;
@@ -191,6 +193,62 @@ public class Line : BaseElement{
 			quesIndex++;
 		}
 
+	}
+
+	//----------------------Score Values ----------------------------
+	override public void  setChildScoreValues(){
+		setupScoreValues ();
+		foreach (Row row in RowList) {
+			row.setChildScoreValues ();
+		}
+	}
+	//Setting up default score values
+	override public void setupScoreValues(){
+		if (htmlNode != null) {
+			QuesScoreList = new List<ScoreTracker> (QuestionList.Count); 
+			//maxQuestionScore
+			if (htmlNode.Attributes [AttributeManager.MAX_QUES_SCORE] != null) {
+				List<float> maxQuesScoreList = htmlNode.Attributes [AttributeManager.MAX_QUES_SCORE].Value.Split (';').ToList ().Select (s => float.Parse (s)).ToList ();
+				for (int i = 0; i < QuestionList.Count; i++) {
+					QuestionList [i].scoreTracker.maxScore = repeatIfRequired (maxQuesScoreList, QuestionList.Count) [i];
+				}
+			} 
+			//minQuestionScore
+			if (htmlNode.Attributes [AttributeManager.MIN_QUES_SCORE] != null) {
+				List<float> minQuesScoreList = htmlNode.Attributes [AttributeManager.MIN_QUES_SCORE].Value.Split (';').ToList ().Select (s => float.Parse (s)).ToList ();
+				for (int i = 0; i < QuestionList.Count; i++) {
+					QuestionList [i].scoreTracker.minScore = repeatIfRequired (minQuesScoreList, QuestionList.Count) [i];
+				}
+			} 
+			//scoreWeightage
+			if (htmlNode.Attributes [AttributeManager.SCORE_WEIGHTAGE] != null) {
+				List<float> scoreWeightageList = htmlNode.Attributes [AttributeManager.SCORE_WEIGHTAGE].Value.Split (';').ToList ().Select (s => float.Parse (s)).ToList ();
+				for (int i = 0; i < QuestionList.Count; i++) {
+					QuestionList [i].scoreTracker.scoreWeightage = repeatIfRequired (scoreWeightageList, QuestionList.Count) [i];
+				}
+			} 
+			//maxQuesTime
+			if (htmlNode.Attributes [AttributeManager.MAX_QUES_TIME] != null) {
+				List<float> maxQuesTimeList = htmlNode.Attributes [AttributeManager.MAX_QUES_TIME].Value.Split (';').ToList ().Select (s => float.Parse (s)).ToList ();
+				for (int i = 0; i < QuestionList.Count; i++) {
+					QuestionList [i].scoreTracker.maxTime = repeatIfRequired (maxQuesTimeList, QuestionList.Count) [i];
+				}
+			} 
+			//maxQuestionScore
+			if (htmlNode.Attributes [AttributeManager.IDEAL_QUES_TIME] != null) {
+				List<float> idealQuesTimeList = htmlNode.Attributes [AttributeManager.IDEAL_QUES_TIME].Value.Split (';').ToList ().Select (s => float.Parse (s)).ToList ();
+				for (int i = 0; i < QuestionList.Count; i++) {
+					QuestionList [i].scoreTracker.idealTime = repeatIfRequired (idealQuesTimeList, QuestionList.Count) [i];
+				}
+			} 
+		}
+	}
+	List<float> repeatIfRequired(List<float> fromList, int count){
+		List<float> toList = fromList;
+		if (fromList.Count == 1) {
+			toList = Enumerable.Repeat(fromList[0], count).ToList(); 
+		}
+		return toList;
 	}
 	//----------------------Animations ----------------------------
 	override public void hideElementGO(){

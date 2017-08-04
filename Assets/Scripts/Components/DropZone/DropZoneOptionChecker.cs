@@ -55,7 +55,7 @@ public class DropZoneOptionChecker : OptionChecker {
 	// Update is called once per frame
 	void Update () {
 		if ((TimerAnimGO != null) && (TimerAnimGO.activeSelf)) {
-			if (itemAttemptState != AttemptState.Activated) {
+			if (ItemAttemptState != AttemptState.Activated) {
 				NGUITools.Destroy (TimerAnimGO);
 			}
 		}
@@ -69,7 +69,7 @@ public class DropZoneOptionChecker : OptionChecker {
 	override public void activateAnim(){
 		//Animation for selecting the correct option
 		Debug.Log("activateAnim");
-		if (itemAttemptState != AttemptState.Activated) {
+		if (ItemAttemptState != AttemptState.Activated) {
 			base.activateAnim ();
 			gameObject.GetComponent<TweenColor> ().enabled = true;
 			startTimerAnim ();
@@ -77,7 +77,7 @@ public class DropZoneOptionChecker : OptionChecker {
 	}
 	override public void startTimerAnim(){
 		//Start Item Timer
-		if (itemAttemptState == AttemptState.Activated) {
+		if (ItemAttemptState == AttemptState.Activated) {
 			TimerAnimGO = animManager.startTimerAnim(1,ParentChecker.gameObject,new EventDelegate(correctionAnim),true);
 		}
 
@@ -90,7 +90,7 @@ public class DropZoneOptionChecker : OptionChecker {
 	override public void correctAnim(){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim");
-		if (itemAttemptState == AttemptState.Attempted) {
+		if (ItemAttemptState == AttemptState.Attempted) {
 			base.correctAnim ();
 			deactivateAnim ();
 			animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem> ().gameObject, nextEvent);
@@ -99,16 +99,16 @@ public class DropZoneOptionChecker : OptionChecker {
 	override public void incorrectAnim(){
 		//Animation for selecting the wrong option
 		Debug.Log("incorrectAnim");
-		if (itemAttemptState == AttemptState.Attempted) {
+		if (ItemAttemptState == AttemptState.Attempted) {
 			base.incorrectAnim ();
 			animManager.incorrectAnim (2, gameObject, new EventDelegate (correctionAnim), true);
 		}
 	}
 	override public void correctionAnim(){
 		//Animation for ignoring the correct option
-		Debug.Log("correctionAnim"+itemAttemptState.ToString());
+		Debug.Log("correctionAnim"+ItemAttemptState.ToString());
 
-		if ((itemAttemptState == AttemptState.Activated)||(itemAttemptState == AttemptState.Checked)) {
+		if ((ItemAttemptState == AttemptState.Activated)||(ItemAttemptState == AttemptState.Checked)) {
 			base.correctionAnim ();
 			(ParentChecker.ParentChecker as DropZoneHolder).correctionAnim (this, nextEvent);
 		}

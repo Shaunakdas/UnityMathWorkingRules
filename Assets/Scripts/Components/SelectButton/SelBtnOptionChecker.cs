@@ -17,7 +17,7 @@ public class SelBtnOptionChecker : OptionChecker {
 	override public void activateAnim(){
 		//Animation for activate select button option
 		Debug.Log ("activateAnim");
-		if (itemAttemptState != AttemptState.Activated) {
+		if (ItemAttemptState != AttemptState.Activated) {
 			base.activateAnim ();
 		}
 	}
@@ -70,7 +70,7 @@ public class SelBtnOptionChecker : OptionChecker {
 	override public void correctionAnim(){
 		//Animation for ignoring the correct option
 		Debug.Log("correctionAnim");
-		if ((itemAttemptState == AttemptState.Activated) || (itemAttemptState == AttemptState.Checked)) {
+		if ((ItemAttemptState == AttemptState.Activated) || (ItemAttemptState == AttemptState.Checked)) {
 			base.correctionAnim ();
 			animManager.correctAnim (1, gameObject, nextEvent);
 		}

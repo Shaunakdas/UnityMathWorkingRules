@@ -140,17 +140,14 @@ public class DropZoneRowCell : Cell {
 	}
 
 	public GameObject generateDropZoneHolderGO(GameObject parentGO, List<string> _targetTextList, bool idPresent){
-		Debug.Log ("DROP_ZONE_HOLDER CREATED"+parentGO.name);
-
 		DropZoneHolder dropZoneholder = initDropZoneHolder (parentGO, _targetTextList, idPresent);
-
-		generateDropZoneOptionList (dropZoneholder,_targetTextList);
+		generateDropZoneQuestionList (dropZoneholder,_targetTextList);
 		BasicGOOperation.CheckAndRepositionTable (dropZoneholder.gameObject);
 		return dropZoneholder.gameObject;
 	}
 
 	//Generating List of DropZone Items
-	void generateDropZoneOptionList(DropZoneHolder _dropZoneholder,List<string> _targetTextList){
+	void generateDropZoneQuestionList(DropZoneHolder _dropZoneholder,List<string> _targetTextList){
 		foreach (string targetText in _targetTextList){
 			//Initing List of DropZoneItemChecker to then add to ItemCheckerMasterList of DropZoneHolder
 			List<DropZoneOptionChecker> itemCheckerList =  new List<DropZoneOptionChecker>();

@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class OptionChecker : MonoBehaviour {
 	public enum AttemptState{Unseen,Seen,Activated,Attempted,Checked,Corrected,Deactivated}
-	public AttemptState itemAttemptState = AttemptState.Unseen;
+	//Target Text
+	AttemptState _itemAttemptState= AttemptState.Unseen;
+	public AttemptState ItemAttemptState{ 
+		get { return _itemAttemptState; }
+		set { _itemAttemptState = value; scoreTracker.state = value; }
+	}
 	public enum TargetType{Option,Question,Holder,HolderParent}
 	public TargetType ItemTargetType=TargetType.Option;
 
@@ -17,6 +22,9 @@ public class OptionChecker : MonoBehaviour {
 	public BaseElement ContainerElem;
 	public OptionChecker ParentChecker;
 	public List<OptionChecker> ChildList = new List<OptionChecker>();
+
+	//Score Variables
+	public ScoreTracker scoreTracker = new ScoreTracker();
 	// Use this for initialization
 	void Start () {
 		
@@ -43,10 +51,10 @@ public class OptionChecker : MonoBehaviour {
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	virtual public void activateAnim(){
-		itemAttemptState = AttemptState.Activated;
+		ItemAttemptState = AttemptState.Activated;
 	}
 	virtual public void activateAnimWithDelegate(EventDelegate _nextEvent){
-		itemAttemptState = AttemptState.Activated;
+		ItemAttemptState = AttemptState.Activated;
 	}
 
 	/// <summary>
@@ -61,41 +69,51 @@ public class OptionChecker : MonoBehaviour {
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	virtual public void deactivateAnim(){
-		itemAttemptState = AttemptState.Deactivated;
+		ItemAttemptState = AttemptState.Deactivated;
 	}
 	virtual public void deactivateAnimWithDelegate(EventDelegate _nextEvent){
-		itemAttemptState = AttemptState.Deactivated;
+		ItemAttemptState = AttemptState.Deactivated;
 	}
 	/// <summary>
 	/// Correct animation.
 	/// </summary>
 	virtual public void correctAnim(){
-		itemAttemptState = AttemptState.Checked;
+		ItemAttemptState = AttemptState.Checked;
 	}
 	virtual public void correctAnimWithDelegate(EventDelegate _nextEvent){
-		itemAttemptState = AttemptState.Checked;
+		ItemAttemptState = AttemptState.Checked;
 	}
 	/// <summary>
 	/// Incorrect animation.
 	/// </summary>
 	virtual public void incorrectAnim(){
-		itemAttemptState = AttemptState.Checked;
+		ItemAttemptState = AttemptState.Checked;
 	}
 	virtual public void incorrectAnimWithDelegate(EventDelegate _nextEvent){
-		itemAttemptState = AttemptState.Checked;
+		ItemAttemptState = AttemptState.Checked;
 	}
 	/// <summary>
 	/// Correction animation.
 	/// </summary>
 	virtual public void correctionAnim(){
-		itemAttemptState = AttemptState.Corrected;
+		ItemAttemptState = AttemptState.Corrected;
 	}
 	virtual public void correctionAnimWithDelegate(EventDelegate _nextEvent){
-		itemAttemptState = AttemptState.Corrected;
+		ItemAttemptState = AttemptState.Corrected;
 	}
 	/// <summary>
 	/// Triggers the next Animation.
 	/// </summary>
 	virtual public void nextAnimTrigger(){
+	}
+
+
+	//----------------------Score Values ----------------------------
+
+	virtual public void setChildScoreValues(){
+		setupScoreValues ();
+	}
+
+	virtual public void setupScoreValues(){
 	}
 }

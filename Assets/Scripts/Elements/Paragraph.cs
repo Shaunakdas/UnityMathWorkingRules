@@ -59,7 +59,7 @@ public class Paragraph : BaseElement{
 	/// </summary>
 	/// <param name="para"></param>
 	public Paragraph(HtmlNode para_node){
-		ParagraphRef = this;
+		ParagraphRef = this;htmlNode = para_node;
 		scoreSettings = new ScoreSettings (this);
 		LineList = new List<Line> ();
 		Debug.Log ("Initializing paragraph node of type "+para_node.Attributes [AttributeManager.ATTR_TYPE].Value);
@@ -332,6 +332,28 @@ public class Paragraph : BaseElement{
 		}
 	}
 
+	//----------------------Score Values ----------------------------
+	override public void  setChildScoreValues(){
+		setupScoreValues ();
+		foreach (Line line in LineList) {
+			line.setChildScoreValues ();
+		}
+	}
+	override public void setupScoreValues(){
+		if (htmlNode != null) {
+			if (htmlNode.Attributes [AttributeManager.MAX_SCORE] == null) {
+				scoreTracker.maxScore = (Parent as ComprehensionBody).scoreTracker.maxScore / (Parent as ComprehensionBody).ParagraphList.Count;
+			} else {
+				scoreTracker.maxScore = float.Parse(htmlNode.Attributes [AttributeManager.MAX_SCORE].Value);
+			}
+			if (htmlNode.Attributes [AttributeManager.MIN_SCORE] == null) {
+				scoreTracker.maxScore = (Parent as ComprehensionBody).scoreTracker.maxScore / (Parent as ComprehensionBody).ParagraphList.Count;
+			} else {
+				scoreTracker.maxScore = float.Parse(htmlNode.Attributes [AttributeManager.MAX_SCORE].Value);
+			}
+		}
+	}
+	//---------------------- Analytics----------------------------
 	public TargetEntity getParaChild(Paragraph para){
 		TargetEntity paraEntity = new TargetEntity("Paragraph", para.AnalyticsId);
 

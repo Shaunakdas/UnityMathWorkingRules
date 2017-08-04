@@ -54,6 +54,7 @@ public class Row : BaseElement {
 	/// </summary>
 	/// <param name="para">Para.</param>
 	public Row(HtmlNode row_node){
+		htmlNode = row_node;
 		maxGridCellWidth = 0;
 		CellList = new List<Cell> ();
 		HtmlAttribute attr_tag = row_node.Attributes [AttributeManager.ATTR_TYPE];
@@ -220,6 +221,12 @@ public class Row : BaseElement {
 		return 0;
 	}
 
+	//----------------------Score Values ----------------------------
+	override public void  setChildScoreValues(){
+		foreach (Cell cell in CellList) {
+			cell.setChildScoreValues ();
+		}
+	}
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	/// <summary>
 	/// Generates the Element GameObjects.

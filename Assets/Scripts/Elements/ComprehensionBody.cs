@@ -132,7 +132,7 @@ public class ComprehensionBody : BaseElement {
 		setupScoreSettings();
 		Paragraph firstStepPata = ParagraphList.Where(s => s.ParagraphStep == Paragraph.StepType.QuestionStep).ElementAt(0);
 		//Setting MaxParaScore
-		scoreMan.currentPara = firstStepPata;
+		scoreMan.ParagraphRef = firstStepPata;
 	}
 	override public void updateGOProp(GameObject _elementGO){
 		//Setting ParaCounterTable as screen bottom
@@ -162,14 +162,19 @@ public class ComprehensionBody : BaseElement {
 	override public void setupScoreValues(){
 		if (htmlNode != null) {
 			if (htmlNode.Attributes [AttributeManager.MAX_SCORE] == null) {
-				scoreTracker.maxScore = ScoreCalculator.DEFAULT_MAX_SCORE;
+				scoreTracker.maxScore = ScoreDefaults.DEFAULT_MAX_SCORE;
 			} else {
 				scoreTracker.maxScore = float.Parse(htmlNode.Attributes [AttributeManager.MAX_SCORE].Value);
 			}
 			if (htmlNode.Attributes [AttributeManager.MIN_SCORE] == null) {
-				scoreTracker.maxScore = ScoreCalculator.DEFAULT_MIN_SCORE;
+				scoreTracker.maxScore = ScoreDefaults.DEFAULT_MIN_SCORE;
 			} else {
 				scoreTracker.maxScore = float.Parse(htmlNode.Attributes [AttributeManager.MAX_SCORE].Value);
+			}
+			if (htmlNode.Attributes [AttributeManager.MAX_LIVES] == null) {
+				scoreTracker.maxLives = ScoreDefaults.DEFAULT_MAX_LIVES;
+			} else {
+				scoreTracker.maxLives = int.Parse(htmlNode.Attributes [AttributeManager.MAX_LIVES].Value);
 			}
 		}
 	}

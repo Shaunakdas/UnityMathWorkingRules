@@ -40,11 +40,11 @@ public class QuestionChecker : OptionChecker {
 		}
 	}
 	void setupDefaultScoreValues (){
-		if (scoreTracker.maxScore == 0f) { scoreTracker.maxScore = ScoreCalculator.DEFAULT_MAX_QUES_SCORE; }
-		if (scoreTracker.minScore == 0) { scoreTracker.minScore = ScoreCalculator.DEFAULT_MIN_QUES_SCORE; }
-		if (scoreTracker.maxTime == 0) { scoreTracker.maxTime = ScoreCalculator.DEFAULT_MAX_QUES_TIME; }
-		if (scoreTracker.idealTime == 0) { scoreTracker.idealTime = ScoreCalculator.DEFAULT_IDEAL_QUES_TIME; }
-		if (scoreTracker.scoreWeightage == 0) { scoreTracker.scoreWeightage = ScoreCalculator.DEFAULT_SCORE_WEIGHTAGE; }
+		if (scoreTracker.maxScore == 0f) { scoreTracker.maxScore = ScoreDefaults.DEFAULT_MAX_QUES_SCORE; }
+		if (scoreTracker.minScore == 0) { scoreTracker.minScore = ScoreDefaults.DEFAULT_MIN_QUES_SCORE; }
+		if (scoreTracker.maxTime == 0) { scoreTracker.maxTime = ScoreDefaults.DEFAULT_MAX_QUES_TIME; }
+		if (scoreTracker.idealTime == 0) { scoreTracker.idealTime = ScoreDefaults.DEFAULT_IDEAL_QUES_TIME; }
+		if (scoreTracker.scoreWeightage == 0) { scoreTracker.scoreWeightage = ScoreDefaults.DEFAULT_SCORE_WEIGHTAGE; }
 	}
 	override public void  setupScoreValues(){
 		Debug.Log ("SCORETRACKER.MAXSCORE" + scoreTracker.maxScore);

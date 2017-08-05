@@ -7,6 +7,8 @@ public class ScoreTracker {
 	//Max Score Variables
 	public float maxScore,minScore;
 	public float scoreWeightage=1,childScoreWeightageSum=0;
+
+	public int maxLives;
 	//Attempt Score Variables
 	public float attemptScore;
 	//Max Time Variables
@@ -23,44 +25,11 @@ public class ScoreTracker {
 
 	public ScoreTracker(){
 	}
-	//-------------Setters and Getters -------------------
-	public void setMaxScore(HtmlNode node,string attr){
-		if (node.Attributes [attr] != null) {
-			maxScore = float.Parse(node.Attributes [attr].Value);
-		} 
+	public float calcScore (float timeTaken){
+		return ScoreDefaults.correctScoreFormula (timeTaken, idealTime, maxTime, minScore, maxScore);
 	}
-	public void updateMaxScore(float value){
-		if (maxScore == null) {
-			maxScore = value;
-		} 
-	}
-	public void setMinScore(HtmlNode node,string attr){
-		if (node.Attributes [attr] != null) {
-			minScore = float.Parse(node.Attributes [attr].Value);
-		} 
-	}
-	public void updateMinScore(float value){
-		if (minScore == null) {
-			minScore = value;
-		} 
-	}
-	public void setScoreWeightage(HtmlNode node,string attr){
-		if (node.Attributes [attr] != null) {
-			scoreWeightage = float.Parse(node.Attributes [attr].Value);
-		} 
-	}
-	public void setIdealTime(HtmlNode node,string attr,float defaultValue){
-		if (node.Attributes [attr] != null) {
-			idealTime = float.Parse (node.Attributes [attr].Value);
-		} else {
-			idealTime = defaultValue;
-		}
-	}
-	public void setMaxTime(HtmlNode node,string attr,float defaultValue){
-		if (node.Attributes [attr] != null) {
-			maxTime = float.Parse(node.Attributes [attr].Value);
-		}  else {
-			maxTime = defaultValue;
-		}
+
+	public void notifyScoreDisplay (float timeTaken, Paragraph para){
+		
 	}
 }

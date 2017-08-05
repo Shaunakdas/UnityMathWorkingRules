@@ -24,7 +24,7 @@ public class ScoreSettings {
 		//		float maxScore = maxItemScore,minScore = minItemScore,maxTime = MAX_ITEM_TIME,minTime = MIN_ITEM_TIME;
 		switch (_itemResult) {
 		case ScoreManager.Result.Correct:
-			_itemScore = ScoreCalculator.correctScoreFormula( _timeTaken, minItemTimeAllotted, maxItemTimeAllotted, minItemScore, maxItemScore);
+			_itemScore = ScoreDefaults.correctScoreFormula( _timeTaken, minItemTimeAllotted, maxItemTimeAllotted, minItemScore, maxItemScore);
 			break;
 		case ScoreManager.Result.Incorrect:
 			_itemScore = 0f;

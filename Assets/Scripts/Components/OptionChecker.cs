@@ -68,7 +68,7 @@ public class OptionChecker : MonoBehaviour {
 		ItemAttemptState = AttemptState.Attempted;
 		scoreTracker.attemptTimestamp = System.DateTime.Now;
 		scoreTracker.attemptTime = scoreTracker.attemptTimestamp - scoreTracker.startTimestamp;
-		Debug.Log ("scoreTracker.maxScore"+scoreTracker.maxScore+ContainerElem.scoreTracker.maxScore+ContainerElem.ParagraphRef.Parent.scoreTracker.maxScore);
+		Debug.Log ("scoreTracker.maxScore"+scoreTracker.maxScore+scoreTracker.attemptTime.ToString());
 	}
 	/// <summary>
 	/// Getting active animation.

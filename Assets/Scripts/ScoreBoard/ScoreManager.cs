@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreManager  {
+public class ScoreManager:BaseElement  {
 	//-------------Common Attributes -------------------
 
 	public const int PARA_LIVE_COUNT = 3;
@@ -11,21 +11,18 @@ public class ScoreManager  {
 	public const bool SCORE_DISPLAY = true;
 
 	public enum Result{Correct,Incorrect,Seen,Timeout}
-	public Paragraph currentPara;
 	public ComprehensionBody parentBody;
 
 
-	public ScoreCalculator scoreCalc;
+//	public ScoreDefaults scoreCalc;
 
-	public GameObject ElementGO;
-	public string prefabName;
-
-
+	public ScoreDisplayManager scoreDisplay;
+	public int difficultyLevel = 1;
+	public int resultStar = 0;
 
 
 	//-------------Constructor and Calculation -------------------
 	public ScoreManager(){
-		scoreCalc = new ScoreCalculator ();
 		prefabName = LocationManager.NAME_SCORE_BOARD;
 	}
 	public void init(ComprehensionBody _body){
@@ -33,21 +30,11 @@ public class ScoreManager  {
 		parentBody = _body;
 	}
 	public void setCurrentPara(Paragraph _para){
-		currentPara = _para; 
+		ParagraphRef = _para; 
 	}
 	public float calcMaxTotalScore(){
 //		return (float) ScoreCalculator.MaxTotalScore;
 		return 0f;
-	}
-
-	public float calcMaxParaScore(int paraCount, float maxTotalSocre){
-		scoreCalc.maxParaScore = maxTotalSocre / paraCount;
-		return scoreCalc.maxParaScore;
-	}
-
-	public float calcMaxItemScore(int targetCount, float maxParaScore){
-		scoreCalc.maxItemScore = maxParaScore / targetCount;
-		return scoreCalc.maxItemScore;
 	}
 
 	public void calcTotalTimeAllotted(){
@@ -60,9 +47,6 @@ public class ScoreManager  {
 	public void setupScoreSettings(List<Paragraph> _paraList){
 		foreach (Paragraph para in _paraList) {
 			ScoreSettings settings = para.scoreSettings;
-			//Maximum Score
-			settings.maxParaScore = scoreCalc.maxParaScore;
-			settings.maxItemScore = scoreCalc.maxParaScore/settings.maxCorrectCount;
 			//Maximum Time
 //			settings.maxItemTimeAllotted = ScoreCalculator.MaxQuestionTime; settings.minItemTimeAllotted = ScoreCalculator.MaxQuestionTime;
 			settings.maxParaTimeAllotted = settings.maxCorrectCount * settings.maxItemTimeAllotted;
@@ -75,7 +59,7 @@ public class ScoreManager  {
 		GameObject ScoreBoardPF = Resources.Load (LocationManager.COMPLETE_LOC_SCORE_TYPE + prefabName)as GameObject;
 		ElementGO = BasicGOOperation.InstantiateNGUIGO(ScoreBoardPF,_parentGO.transform);
 		initGOProp (ElementGO);
-		setupScoreDisplay(ElementGO,currentPara);
+		setupScoreDisplay(ElementGO,ParagraphRef);
 		updateGOProp (ElementGO);
 		BasicGOOperation.RepositionChildTables (ElementGO);
 	}
@@ -93,7 +77,8 @@ public class ScoreManager  {
 	}
 	//-------------Animations -------------------
 	public void correctAnim(float _timeTaken){
-		float deltaScore = scoreCalc.itemScore (Result.Correct, _timeTaken);
+//		float deltaScore = scoreCalc.itemScore (Result.Correct, _timeTaken);
+		float deltaScore = 0f;
 		ElementGO.GetComponent<ScoreDisplayManager> ().updateScore ((int)deltaScore);
 	}
 	public void correctAnim(int _attemptScore){

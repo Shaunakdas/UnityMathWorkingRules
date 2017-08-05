@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreCalculator  {
+public class ScoreDefaults  {
 	public const float DEFAULT_MAX_SCORE=3000f,DEFAULT_MIN_SCORE=3000f,DEFAULT_MAX_QUES_SCORE=1000f,DEFAULT_MIN_QUES_SCORE=1000f,DEFAULT_MAX_OPTION_SCORE=1000f,DEFAULT_MIN_OPTION_SCORE=1000f;
 	public const float DEFAULT_SCORE_WEIGHTAGE=1f;
 	//Time Tracking
 	public const float DEFAULT_MAX_TIME=10f,DEFAULT_IDEAL_TIME=10f,DEFAULT_MAX_QUES_TIME=10f,DEFAULT_IDEAL_QUES_TIME=10f,DEFAULT_MAX_OPTION_TIME=10f,DEFAULT_IDEAL_OPTION_TIME=10f;
-
+	//Live Tracking
+	public const int DEFAULT_MAX_LIVES=6;
 	public int MaxTotalScore = 3000,MinTotalScore = 1000;
 
 	public int MaxTotalLives = 3;
@@ -17,7 +18,7 @@ public class ScoreCalculator  {
 	public float MinQuestionTime = 0.33f, MaxQuestionTime = 0.66f, MinOptionTime = 0.66f, MaxOptionTime = 0.66f;
 	public float DragGraceTime = 0.1f;
 
-	public ScoreCalculator(){
+	public ScoreDefaults(){
 	}
 
 	public void generateAttrs(int _questionCount){

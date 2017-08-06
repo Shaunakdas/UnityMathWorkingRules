@@ -21,6 +21,7 @@ public class DropZoneQuestionChecker : QuestionChecker {
 	/// <param name="_elementGO">Element G.</param>
 	override public void activateAnim(){
 		Debug.Log ("activateAnim of DropZoneRowCell");
+		base.activateAnim ();
 		for (int i = 0; i < ChildList.Count; i++) {
 			EventDelegate nextItemEvent = nextEvent;
 			if (i < ChildList.Count - 1) {
@@ -35,6 +36,7 @@ public class DropZoneQuestionChecker : QuestionChecker {
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	override public void deactivateAnim(){
+		base.deactivateAnim ();
 		Debug.Log ("deactivateAnim of DropZoneRowCell");
 		foreach (DropZoneOptionChecker itemChecker in ChildList) {
 			itemChecker.deactivateAnim ();

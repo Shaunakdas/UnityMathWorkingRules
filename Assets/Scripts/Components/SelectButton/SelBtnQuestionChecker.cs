@@ -88,6 +88,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	override public void activateAnim(){
+		base.activateAnim ();
 		Debug.Log ("getActiveAnim of DropZoneRowCell");
 		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
 			itemColor.enabled = true;
@@ -101,6 +102,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	override public void deactivateAnim(){
+		base.deactivateAnim ();
 		Debug.Log ("getActiveAnim of DropZoneRowCell");
 		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
 			itemColor.enabled = false;
@@ -110,6 +112,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	/// Correct animation.
 	/// </summary>
 	override public void correctAnim(){
+		base.correctAnim ();
 		Debug.Log ("DropZoneRowCell CorrectAnim");
 		deactivateAnim ();
 //		nextAnimTrigger ();
@@ -118,6 +121,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	/// Incorrect animation.
 	/// </summary>
 	override public void incorrectAnim(){
+		base.incorrectAnim ();
 		Debug.Log ("DropZoneRowCell InCorrectAnim");
 		deactivateAnim ();
 //		nextAnimTrigger ();
@@ -126,6 +130,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	/// Correction animation.
 	/// </summary>
 	override public void correctionAnim(){
+		base.correctionAnim ();
 		Debug.Log ("DropZoneRowCell CorrectionAnim");
 		//check in not user selected buttons
 //		foreach (GameObject selBtnGO in SelBtnGOList) {

@@ -175,7 +175,7 @@ public class Line : BaseElement{
 		BasicGOOperation.CheckAndRepositionTable (CenterContentGO);
 		return lineGO;
 	}
-	override public void updateGOProp(GameObject _elementGO){
+	override protected void updateGOProp(GameObject _elementGO){
 		Debug.Log ("Updating table of"+_elementGO.name);
 		BasicGOOperation.CheckAndRepositionTable (_elementGO);
 	}
@@ -197,13 +197,16 @@ public class Line : BaseElement{
 
 	//----------------------Score Values ----------------------------
 	override public void  setChildScoreValues(){
+
+		setupDefaultScoreValues ();
+		adjustForWeightage();
 		setupScoreValues ();
 		foreach (Row row in RowList) {
 			row.setChildScoreValues ();
 		}
 	}
 	//Setting up default score values
-	override public void setupScoreValues(){
+	override protected void setupScoreValues(){
 		if (htmlNode != null) {
 			QuesScoreList = new List<ScoreTracker> (QuestionList.Count); 
 			//maxQuestionScore

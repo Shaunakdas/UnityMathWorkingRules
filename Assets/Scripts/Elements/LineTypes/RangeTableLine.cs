@@ -143,7 +143,7 @@ public class RangeTableLine  : TableLine {
 		}
 	}
 	//-------------Based on Element Attributes, creating GameObject -------------------
-	override public void updateGOProp(GameObject _elementGO){
+	override protected void updateGOProp(GameObject _elementGO){
 		base.updateGOProp(_elementGO);
 	}
 

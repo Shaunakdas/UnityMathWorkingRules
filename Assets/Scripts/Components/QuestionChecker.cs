@@ -32,22 +32,14 @@ public class QuestionChecker : OptionChecker {
 
 	//----------------------Score Values ----------------------------
 
-	override public void  setChildScoreValues(){
-		setupDefaultScoreValues ();
-		setupScoreValues ();
-		foreach (OptionChecker option in ChildList) {
-			option.setChildScoreValues ();
-		}
-	}
-	void setupDefaultScoreValues (){
-		if (scoreTracker.maxScore == 0f) { scoreTracker.maxScore = ScoreDefaults.DEFAULT_MAX_QUES_SCORE; }
+	override protected void setupDefaultScoreValues (){
+		if (scoreTracker.maxScore == 0) { scoreTracker.maxScore = ScoreDefaults.DEFAULT_MAX_QUES_SCORE; }
 		if (scoreTracker.minScore == 0) { scoreTracker.minScore = ScoreDefaults.DEFAULT_MIN_QUES_SCORE; }
 		if (scoreTracker.maxTime == 0) { scoreTracker.maxTime = ScoreDefaults.DEFAULT_MAX_QUES_TIME; }
 		if (scoreTracker.idealTime == 0) { scoreTracker.idealTime = ScoreDefaults.DEFAULT_IDEAL_QUES_TIME; }
 		if (scoreTracker.scoreWeightage == 0) { scoreTracker.scoreWeightage = ScoreDefaults.DEFAULT_SCORE_WEIGHTAGE; }
 	}
-	override public void  setupScoreValues(){
-		Debug.Log ("SCORETRACKER.MAXSCORE" + scoreTracker.maxScore);
+	override protected void adjustForWeightage(){
 		//Setting maxScore/minScore based on scoreWeightages
 		float sumOfScoreWeightages = ContainerElem.ParagraphRef.scoreTracker.childScoreWeightageSum;
 		if (sumOfScoreWeightages == 0) {
@@ -57,8 +49,11 @@ public class QuestionChecker : OptionChecker {
 				}
 			}
 		} 
-		scoreTracker.maxScore = ContainerElem.ParagraphRef.scoreTracker.maxScore / sumOfScoreWeightages;
-		scoreTracker.minScore = ContainerElem.ParagraphRef.scoreTracker.minScore / sumOfScoreWeightages;
+		scoreTracker.maxScore = scoreTracker.scoreWeightage*(ContainerElem.ParagraphRef.scoreTracker.maxScore / sumOfScoreWeightages);
+		scoreTracker.minScore = scoreTracker.scoreWeightage*(ContainerElem.ParagraphRef.scoreTracker.minScore / sumOfScoreWeightages);
+	}
+	override protected void  setupScoreValues(){
+
 		//Setting scoreTracker of options by diving equally
 		foreach (OptionChecker option in ChildList) {
 			option.scoreTracker.maxScore = scoreTracker.maxScore / ChildList.Count;
@@ -66,5 +61,10 @@ public class QuestionChecker : OptionChecker {
 			option.scoreTracker.maxTime = scoreTracker.maxTime / ChildList.Count;
 			option.scoreTracker.idealTime = scoreTracker.idealTime / ChildList.Count;
 		}
+	}
+
+	//----------------------Animation ----------------------------
+	public void optionAttemptTracker(OptionChecker option){
+
 	}
 }

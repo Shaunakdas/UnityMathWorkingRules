@@ -63,12 +63,12 @@ public class NumberLineDropLine  : Line {
 
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
-	override public void initGOProp(GameObject elementGO){
+	override protected void initGOProp(GameObject elementGO){
 		ElementGO = elementGO;
 		GameObject numberLineGrid = BasicGOOperation.getChildGameObject (ElementGO, "NumberLineGrid");
 		initNumberLineGO (numberLineGrid);
 	}
-	override public void updateGOProp(GameObject elementGO){
+	override protected void updateGOProp(GameObject elementGO){
 	}
 	/// <summary>
 	/// Sets dimensions of numberLineGrid based on calculation of NumberLine Class

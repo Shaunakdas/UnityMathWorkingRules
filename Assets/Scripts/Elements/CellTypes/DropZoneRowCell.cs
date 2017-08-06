@@ -69,7 +69,7 @@ public class DropZoneRowCell : Cell {
 	/// Checking for "Tag" tag and populating CellTag with its value if present
 	/// </summary>
 	/// <param name="cell_node">Cell node.</param>
-	public void checkForTargetTag(HtmlNode cell_node){
+	void checkForTargetTag(HtmlNode cell_node){
 		HtmlAttribute attr_tag = cell_node.Attributes [AttributeManager.ATTR_TAG];
 		if (attr_tag != null) {
 			CellTag =  (attr_tag.Value);
@@ -80,13 +80,13 @@ public class DropZoneRowCell : Cell {
 	/// Checking for Id tag and populating TargetIdList with its value if present
 	/// </summary>
 	/// <param name="cell_node">Cell node.</param>
-	public void checkForTargetId(HtmlNode cell_node){
+	void checkForTargetId(HtmlNode cell_node){
 		HtmlAttribute attr_id = cell_node.Attributes [AttributeManager.ATTR_ID];
 		if (attr_id != null) {
 			generateTargetIdList (attr_id.Value);
 		}
 	}
-	public void generateTargetIdList(string targetId){
+	void generateTargetIdList(string targetId){
 		//If id tag is present. user should be able to drop an element.
 		Touchable = true;Dropable = true;
 		//If id=''. user should be able to drop an element but the element will jump back.
@@ -101,13 +101,13 @@ public class DropZoneRowCell : Cell {
 	/// Checking for Answer tag and populating TargetTextList with its value if present
 	/// </summary>
 	/// <param name="cell_node">Cell node.</param>
-	public void checkForTargetText(HtmlNode cell_node){
+	void checkForTargetText(HtmlNode cell_node){
 		HtmlAttribute attr_answer = cell_node.Attributes [AttributeManager.ATTR_ANSWER];
 		if (attr_answer != null) {
 			generateTargetTextList (attr_answer.Value);
 		}
 	}
-	public List<string> generateTargetTextList(string targetText){
+	List<string> generateTargetTextList(string targetText){
 		Debug.Log ("generateTargetTextList");
 		List<string> _targetTextList = new List<string> ();
 		//If answer tag is present. user should be able to drop an element.
@@ -124,9 +124,9 @@ public class DropZoneRowCell : Cell {
 	override public void  setChildParagraphRef(){
 		foreach (string targetText in TargetTextList) {
 			if (idPresent) {
-				ParagraphRef.scoreSettings.maxCorrectCount += 1;
+				ParagraphRef.scoreTracker.childCorrectCount += 1;
 			} else {
-				ParagraphRef.scoreSettings.maxCorrectCount += targetText.ToCharArray ().Count();
+				ParagraphRef.scoreTracker.childCorrectCount += targetText.ToCharArray ().Count();
 			}
 		}
 	}
@@ -200,7 +200,7 @@ public class DropZoneRowCell : Cell {
 		}
 		return tableWidth;
 	}
-	override public void updateGOProp(GameObject _elementGO){
+	override protected void updateGOProp(GameObject _elementGO){
 		Debug.Log ("Updating Properties of Drop Zone Cell");
 //		float cellWidth = _elementGO.GetComponent<UISprite> ().localSize.x;
 		if (TargetText != null) { 

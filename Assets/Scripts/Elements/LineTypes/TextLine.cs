@@ -32,7 +32,7 @@ public class TextLine : Line {
 			ElementGO.GetComponent<UILabel> ().alpha = 0f;
 		return ElementGO;
 	}
-	override public void updateGOProp(GameObject ElementGO){
+	override protected void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 //		ElementGO.GetComponent<UILabel> ().text = DisplayText;
 		BasicGOOperation.setText(ElementGO,DisplayText);

@@ -27,7 +27,7 @@ public class PrimeDivisionLine : Line {
 	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
-	override public void initGOProp(GameObject elementGO){
+	override protected void initGOProp(GameObject elementGO){
 		ElementGO = elementGO;
 		GameObject primeDivisionGrid = BasicGOOperation.getChildGameObject (ElementGO, "PrimeDivisionGrid");
 		initPrimeDivLineGameObject (primeDivisionGrid);

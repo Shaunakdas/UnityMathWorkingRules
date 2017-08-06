@@ -26,7 +26,7 @@ public class ComprehensionBody : BaseElement {
 
 		prefabName = LocationManager.NAME_COMPREHENSION_BODY;
 		parseChildNode (body_node);
-		scoreMan = new ScoreManager ();
+		scoreMan = new ScoreManager (this);
 
 
 	}
@@ -115,7 +115,7 @@ public class ComprehensionBody : BaseElement {
 			ParaCounterTableGO.transform.SetAsLastSibling ();
 
 			//ScoreTable
-			scoreMan.init(this);
+			scoreMan.generateElementGO(ElementGO);
 			updateGOProp(ElementGO);
 			setChildAnalyticsId ();
 			UserAction.MasterEntity = generateTargetTree ();
@@ -125,7 +125,7 @@ public class ComprehensionBody : BaseElement {
 		}
 		return ElementGO;
 	}
-	override public void initGOProp (GameObject _elementGO){
+	override protected void initGOProp (GameObject _elementGO){
 		//Setting Background Size
 		ScreenManager.SetAsScreenSize (_elementGO); setRootSize (_elementGO);
 		//Setting ScoreManager Values
@@ -134,7 +134,7 @@ public class ComprehensionBody : BaseElement {
 		//Setting MaxParaScore
 		scoreMan.ParagraphRef = firstStepPata;
 	}
-	override public void updateGOProp(GameObject _elementGO){
+	override protected void updateGOProp(GameObject _elementGO){
 		//Setting ParaCounterTable as screen bottom
 		GameObject ParaTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaTable");
 		ScreenManager.SetTableAsScreenBottom (ParaTableGO);
@@ -146,11 +146,6 @@ public class ComprehensionBody : BaseElement {
 			index++;
 		}
 	}
-	public override void setCurrentChild (BaseElement _childElement)
-	{
-		base.setCurrentChild (_childElement);
-		scoreMan.setCurrentPara(CurrentChild as Paragraph);
-	}
 	public void setRootSize(GameObject _elementGO){
 		UIRoot Root = ElementGO.GetComponentInParent<UIRoot> (); 
 		Root.manualHeight = Screen.height; Root.manualWidth = Screen.width; 
@@ -159,7 +154,7 @@ public class ComprehensionBody : BaseElement {
 	override public void  setChildScoreValues(){
 		setupScoreValues ();
 	}
-	override public void setupScoreValues(){
+	override protected void setupScoreValues(){
 		if (htmlNode != null) {
 			if (htmlNode.Attributes [AttributeManager.MAX_SCORE] == null) {
 				scoreTracker.maxScore = ScoreDefaults.DEFAULT_MAX_SCORE;
@@ -176,11 +171,18 @@ public class ComprehensionBody : BaseElement {
 			} else {
 				scoreTracker.maxLives = int.Parse(htmlNode.Attributes [AttributeManager.MAX_LIVES].Value);
 			}
+			if (htmlNode.Attributes [AttributeManager.TIME_ALLOTTED] == null) {
+				scoreTracker.timeAllotted = ScoreDefaults.DEFAULT_TIME_ALLOTTED;
+			} else {
+				scoreTracker.timeAllotted = float.Parse(htmlNode.Attributes [AttributeManager.TIME_ALLOTTED].Value);
+			}
 		}
+		scoreMan.setupTimer (scoreTracker.timeAllotted);
+		scoreMan.setupLives (scoreTracker.maxLives);
 	}
 	//----------------------Analytics ----------------------------
 	public void setupScoreSettings(){
-		scoreMan.setupScoreSettings (ParagraphList);
+//		scoreMan.setupScoreSettings (ParagraphList);
 	}
 	public void setCurrentScoreSettings(Paragraph para){
 
@@ -189,17 +191,20 @@ public class ComprehensionBody : BaseElement {
 	public bool checkForNextPara(){
 		return (CurrentParaCounter  < (ParagraphList.Count-1));
 	}
+	//Needs Refactoring
 	public void nextParaTrigger(){
 		if (CurrentParaCounter > 0) {
 			ParagraphList [CurrentParaCounter].ElementGO.SetActive (false);
 		}
 		setQuesVisibility (false);
-		if (checkForNextPara()) {
-			Paragraph nextPara = ParagraphList [CurrentParaCounter+1];
+		if (checkForNextPara ()) {
+			Paragraph nextPara = ParagraphList [CurrentParaCounter + 1];
 			nextPara.generateElementGO (BasicGOOperation.getChildGameObject (ElementGO, "ParaTable"));
 			GameObject ParaCounterTableGO = BasicGOOperation.getChildGameObject (BasicGOOperation.getChildGameObject (ElementGO, "ParaTable"), "ParaCounterTable");
 			ParaCounterTableGO.transform.SetAsLastSibling ();
 			NGUITools.FindInParents<UIRoot> (ElementGO).gameObject.GetComponent<HTMLParserTest> ().RepositionAfterEndOfFrame ();
+		} else {
+			postEntityOps ();
 		}
 		CurrentParaCounter++;
 		changeParaCounterTableDisplay (CurrentParaCounter);
@@ -226,5 +231,22 @@ public class ComprehensionBody : BaseElement {
 			}
 			paraCounterTf.gameObject.GetComponent<UISprite> ().color = counterColor;
 		}
+	}
+	//-------------Post Entity -------------------
+	override public void postEntityOps(){
+		postScoreCalc ();
+		postStarCalc ();
+		postDiffLevelCalc ();
+	}
+	protected void postScoreCalc(){
+		foreach (Paragraph para in ParagraphList) {
+			scoreTracker.attemptScore += para.scoreTracker.attemptScore;
+		}
+	}
+	protected void postStarCalc(){
+		scoreTracker.attemptStar = ScoreDefaults.starFormula (scoreTracker.attemptScore, scoreTracker.maxScore);
+	}
+	protected void postDiffLevelCalc(){
+		scoreTracker.nextDiffLevel = ScoreDefaults.diffLevelFormula (scoreTracker.currentDiffLevel, scoreTracker.attemptStar);
 	}
 }

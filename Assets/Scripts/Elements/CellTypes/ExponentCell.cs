@@ -54,7 +54,7 @@ public class ExponentCell : Cell {
 		BasicGOOperation.CheckAndRepositionTable (cellGO);
 		return cellGO;
 	}
-	override public void updateGOProp(GameObject cellGO){
+	override protected void updateGOProp(GameObject cellGO){
 		BasicGOOperation.CheckAndRepositionTable (cellGO);
 		//Getting maximum height of sibling gameobjects.
 		float maxSiblingHeight=0f;

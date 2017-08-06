@@ -294,7 +294,7 @@ public class Row : BaseElement {
 			} 
 		}
 	}
-	override public void updateGOProp(GameObject _elementGO){
+	override protected void updateGOProp(GameObject _elementGO){
 		Debug.Log ("Updating Grid cell width");
 		ElementGO = _elementGO;
 		if (Type == RowType.DragSourceLine) {

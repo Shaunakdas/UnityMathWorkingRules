@@ -33,7 +33,7 @@ public class AttributeManager  {
 	public const string MAX_SCORE="maxScore",MIN_SCORE="minScore",MAX_QUES_SCORE="maxQuesScore",MIN_QUES_SCORE="minQuesScore",MAX_OPTION_SCORE="maxOptionScore",MIN_OPTION_SCORE="minOptionScore";
 	public const string SCORE_WEIGHTAGE="scoreWeightage";
 	//Time Tracking
-	public const string MAX_TIME="maxTime",IDEAL_TIME="idealTime",MAX_QUES_TIME="maxQuesTime",IDEAL_QUES_TIME="idealQuesTime",MAX_OPTION_TIME="maxOptionTime",IDEAL_OPTION_TIME="idealOptionTime";
+	public const string MAX_TIME="maxTime",IDEAL_TIME="idealTime",MAX_QUES_TIME="maxQuesTime",IDEAL_QUES_TIME="idealQuesTime",MAX_OPTION_TIME="maxOptionTime",IDEAL_OPTION_TIME="idealOptionTime",TIME_ALLOTTED="timeAllotted";
 	//Live Tracking
 	public const string MAX_LIVES="maxLives";
 }

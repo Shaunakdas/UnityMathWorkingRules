@@ -61,7 +61,7 @@ public class BaseElement : MonoBehaviour {
 	/// Initiates the GameObject Default properties based on its corresponding class attribute
 	/// </summary>
 	/// <param name="ElementGO">Element GameObject</param>
-	virtual public void initGOProp(GameObject ElementGO){
+	virtual protected void initGOProp(GameObject ElementGO){
 	}
 
 	/// <summary>
@@ -69,20 +69,31 @@ public class BaseElement : MonoBehaviour {
 	/// </summary>
 	/// <returns>The element Gameobject</returns>
 	/// <param name="ElementGameObject">Element GameObject</param>
-	virtual public GameObject generateElementGO(GameObject ElementGameObject){
-		return ElementGameObject;
+	virtual public GameObject generateElementGO(GameObject _elementGO){
+		initGOProp (_elementGO);
+		updateGOProp (_elementGO);
+		ElementGO = _elementGO;
+		return _elementGO;
 	}
 	/// <summary>
 	/// Updates the GameObject properties based on its child values
 	/// </summary>
-	virtual public void updateGOProp(GameObject ElementGO){
+	virtual protected void updateGOProp(GameObject ElementGO){
 	}
-
+	//-------------For Animations -------------------
 	virtual public void setChildAnalyticsId(){
 	}
+	//-------------For Score Values -------------------
 	virtual public void setChildScoreValues(){
+		setupDefaultScoreValues ();
+		adjustForWeightage();
+		setupScoreValues ();
 	}
-	virtual public void setupScoreValues(){
+	virtual protected void setupDefaultScoreValues(){
+	}
+	virtual protected void adjustForWeightage(){
+	}
+	virtual protected void setupScoreValues(){
 	}
 	virtual public void setupQuestionRef(){
 	}
@@ -98,4 +109,17 @@ public class BaseElement : MonoBehaviour {
 	virtual public void displayElementGO(){
 	}
 
+
+	//-------------Post Entity -------------------
+	virtual public void postEntityOps(){
+		postScoreCalc ();
+		postStarCalc ();
+		postDiffLevelCalc ();
+	}
+	protected void postScoreCalc(){
+	}
+	protected void postStarCalc(){
+	}
+	protected void postDiffLevelCalc(){
+	}
 }

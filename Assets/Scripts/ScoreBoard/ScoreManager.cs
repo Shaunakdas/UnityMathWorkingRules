@@ -15,7 +15,6 @@ public class ScoreManager:BaseElement  {
 
 
 //	public ScoreDefaults scoreCalc;
-
 	public ScoreDisplayManager scoreDisplay;
 	public int difficultyLevel = 1;
 	public int resultStar = 0;
@@ -25,56 +24,64 @@ public class ScoreManager:BaseElement  {
 	public ScoreManager(){
 		prefabName = LocationManager.NAME_SCORE_BOARD;
 	}
-	public void init(ComprehensionBody _body){
+	public ScoreManager(ComprehensionBody _body){
+		prefabName = LocationManager.NAME_SCORE_BOARD;
+		parentBody = _body;
+	}
+	 void init(ComprehensionBody _body){
 		//		scoreCalc.maxIt
 		parentBody = _body;
 	}
-	public void setCurrentPara(Paragraph _para){
+	 void setCurrentPara(Paragraph _para){
 		ParagraphRef = _para; 
 	}
-	public float calcMaxTotalScore(){
+	 float calcMaxTotalScore(){
 //		return (float) ScoreCalculator.MaxTotalScore;
 		return 0f;
 	}
 
-	public void calcTotalTimeAllotted(){
+	 void calcTotalTimeAllotted(){
 		
 	}
 
-	public void calcParaTimeAllotted(){
+	 void calcParaTimeAllotted(){
 
 	}
-	public void setupScoreSettings(List<Paragraph> _paraList){
-		foreach (Paragraph para in _paraList) {
-			ScoreSettings settings = para.scoreSettings;
-			//Maximum Time
-//			settings.maxItemTimeAllotted = ScoreCalculator.MaxQuestionTime; settings.minItemTimeAllotted = ScoreCalculator.MaxQuestionTime;
-			settings.maxParaTimeAllotted = settings.maxCorrectCount * settings.maxItemTimeAllotted;
-			//Maximum Lives
-//			settings.maxParaLives = ScoreCalculator.MaxTotalLives;
-		}
-	}
 	//-------------Generate ElementGO -------------------
-	public void generateElementGO(GameObject _parentGO){
+	override public GameObject generateElementGO(GameObject _parentGO){
 		GameObject ScoreBoardPF = Resources.Load (LocationManager.COMPLETE_LOC_SCORE_TYPE + prefabName)as GameObject;
 		ElementGO = BasicGOOperation.InstantiateNGUIGO(ScoreBoardPF,_parentGO.transform);
 		initGOProp (ElementGO);
-		setupScoreDisplay(ElementGO,ParagraphRef);
+		setupScoreDisplay(ElementGO);
 		updateGOProp (ElementGO);
 		BasicGOOperation.RepositionChildTables (ElementGO);
+		return ElementGO;
 	}
-	public void initGOProp(GameObject _elementGO){
+	override protected void initGOProp(GameObject _elementGO){
 
 	}
-	public void setupScoreDisplay(GameObject _elementGO,Paragraph _para){
-		ScoreDisplayManager scoreDisplay = _elementGO.GetComponent<ScoreDisplayManager> ();
-		scoreDisplay.livesPending = _para.scoreSettings.maxParaLives; 
-		scoreDisplay.timePending = _para.scoreSettings.maxParaTimeAllotted;
-	}
-	public void updateGOProp(GameObject _elementGO){
+	override protected void updateGOProp(GameObject _elementGO){
+		setupScoreDisplay(_elementGO);
 		ScreenManager.SetAsScreenTop (_elementGO);
 		
 	}
+	void setupScoreDisplay(GameObject _elementGO){
+		scoreDisplay = _elementGO.GetComponent<ScoreDisplayManager> ();
+	}
+	//-------------Score Display Changes -------------------
+	public void setupTimer(float _startTime){
+		scoreDisplay.setupTimer (_startTime);
+	}
+	public void updateScore(float _deltaScore){
+		scoreDisplay.updateScore (_deltaScore);
+	}
+	public void setupLives(int _deltaLives){
+		scoreDisplay.setupLives (_deltaLives);
+	}
+	public void updateLives(int _deltaLives){
+		scoreDisplay.updateLives (_deltaLives);
+	}
+
 	//-------------Animations -------------------
 	public void correctAnim(float _timeTaken){
 //		float deltaScore = scoreCalc.itemScore (Result.Correct, _timeTaken);
@@ -89,4 +96,5 @@ public class ScoreManager:BaseElement  {
 	public void incorrectAnim(){
 		ElementGO.GetComponent<ScoreDisplayManager> ().updateLives (-1);
 	}
+
 }

@@ -65,7 +65,7 @@ public class Cell : TableLine {
 		BasicGOOperation.CheckAndRepositionTable (cellGO);
 		return cellGO;
 	}
-	override public void updateGOProp(GameObject ElementGO){
+	override protected void updateGOProp(GameObject ElementGO){
 		//		Debug.Log ("Updating Text of Cell");
 	}
 

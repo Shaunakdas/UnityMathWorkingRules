@@ -34,15 +34,12 @@ public class Paragraph : BaseElement{
 
 	public List<TableLine> DragSourceTableList = new List<TableLine>();
 
-	//------------------Analytics Attributes------------------
 
-	public ScoreSettings scoreSettings;
 
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Empty Contructor
 	public Paragraph(){
-		scoreSettings = new ScoreSettings (this);
 	}
 
 	/// <summary>
@@ -50,7 +47,6 @@ public class Paragraph : BaseElement{
 	/// </summary>
 	/// <param name="correctType">Correct type.</param>
 	public Paragraph(string correctType){
-		scoreSettings = new ScoreSettings (this);
 		ParagraphRef = this;
 		ParagraphCorrect = (CorrectType)System.Enum.Parse (typeof(CorrectType),StringWrapper.ConvertToPascalCase(correctType),true);
 	}
@@ -60,7 +56,6 @@ public class Paragraph : BaseElement{
 	/// <param name="para"></param>
 	public Paragraph(HtmlNode para_node){
 		ParagraphRef = this;htmlNode = para_node;
-		scoreSettings = new ScoreSettings (this);
 		LineList = new List<Line> ();
 		Debug.Log ("Initializing paragraph node of type "+para_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 
@@ -254,12 +249,12 @@ public class Paragraph : BaseElement{
 		setChildScoreValues ();
 		return ParaContentTableGO;
 	}
-	override public void initGOProp(GameObject _elementGO){
+	override protected void initGOProp(GameObject _elementGO){
 		if(ParagraphStep == Paragraph.StepType.QuestionStep){
 			Parent.setCurrentChild (this);
 		}
 	}
-	override public void updateGOProp(GameObject _elementGO){
+	override protected void updateGOProp(GameObject _elementGO){
 		if (ParagraphStep == Paragraph.StepType.Comprehension) {
 			ScreenManager.SetAsScreenSize (ElementGO);
 		}
@@ -336,13 +331,20 @@ public class Paragraph : BaseElement{
 
 	//----------------------Score Values ----------------------------
 	override public void  setChildScoreValues(){
+		setupDefaultScoreValues ();
+		adjustForWeightage();
 		setupScoreValues ();
 		foreach (Line line in LineList) {
 			line.setChildScoreValues ();
 		}
 	}
-	override public void setupScoreValues(){
+	override protected void setupDefaultScoreValues(){
+		
 		if (htmlNode != null) {
+			//scoreWeightage
+			if (htmlNode.Attributes [AttributeManager.SCORE_WEIGHTAGE] != null) {
+				scoreTracker.scoreWeightage = int.Parse(htmlNode.Attributes [AttributeManager.SCORE_WEIGHTAGE].Value);
+			} 
 			if (htmlNode.Attributes [AttributeManager.MAX_SCORE] == null) {
 				scoreTracker.maxScore = (Parent as ComprehensionBody).scoreTracker.maxScore / (Parent as ComprehensionBody).ParagraphList.Count;
 			} else {
@@ -354,6 +356,18 @@ public class Paragraph : BaseElement{
 				scoreTracker.maxScore = float.Parse(htmlNode.Attributes [AttributeManager.MAX_SCORE].Value);
 			}
 		}
+	}
+	override protected void adjustForWeightage(){
+		//Setting maxScore/minScore based on scoreWeightages
+		ComprehensionBody body = (Parent as ComprehensionBody);
+		float sumOfScoreWeightages = body.scoreTracker.childScoreWeightageSum;
+		if (sumOfScoreWeightages == 0) {
+			foreach (Paragraph para in body.ParagraphList) {
+				sumOfScoreWeightages += para.scoreTracker.scoreWeightage;
+			}
+		} 
+		scoreTracker.maxScore = scoreTracker.scoreWeightage*(body.scoreTracker.maxScore / sumOfScoreWeightages);
+		scoreTracker.minScore = scoreTracker.scoreWeightage*(body.scoreTracker.minScore / sumOfScoreWeightages);
 	}
 	//---------------------- Analytics----------------------------
 	public TargetEntity getParaChild(Paragraph para){
@@ -422,18 +436,26 @@ public class Paragraph : BaseElement{
 		Debug.Log ("QuestionStep finished");
 		GameObject ParaContentTable = BasicGOOperation.getChildGameObject (ElementGO, "ParaContentTable");
 		ParaContentTable.SetActive (false);
-		setupPostSubmitTable ();
+		postEntityOps ();
 	}
-	/// <summary>
-	/// Sets up the post submit table.
-	/// </summary>
-	public void setupPostSubmitTable(){
+
+	//-------------Post Entity -------------------
+	override public void postEntityOps(){
+		postScoreCalc ();
 		GameObject PostSubmitTablePF = Resources.Load (LocationManager.COMPLETE_LOC_PARAGRAPH_TYPE + LocationManager.NAME_POST_SUBMIT_TABLE) as GameObject;
 		GameObject PostSubmitTableGO = BasicGOOperation.InstantiateNGUIGO (PostSubmitTablePF, ElementGO.transform);
 		PostSubmitTableGO.GetComponentInChildren<TEXDrawNGUI> ().text = postSubmitText;
 		EventDelegate.Set(PostSubmitTableGO.GetComponentInChildren<UIButton>().onClick, delegate() { (this.Parent as ComprehensionBody).nextParaTrigger(); });
 		if (!(this.Parent as ComprehensionBody).checkForNextPara ()) {
 			PostSubmitTableGO.GetComponentInChildren<UIButton> ().gameObject.GetComponentInChildren<UILabel>().text ="Working Rule finished";
+		}
+
+	}
+	protected void postScoreCalc(){
+		foreach (Line line in LineList) {
+			foreach (QuestionChecker ques in line.QuestionList) {
+				scoreTracker.attemptScore += ques.scoreTracker.attemptScore;
+			}
 		}
 	}
 

@@ -42,7 +42,7 @@ public class DragSourceCell : Cell {
 
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
-	override public void updateGOProp(GameObject ElementGO){
+	override protected void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 		GameObject labelGO = BasicGOOperation.getChildGameObject (ElementGO, "Label");
 		labelGO.GetComponent<UILabel> ().text = DisplayText;

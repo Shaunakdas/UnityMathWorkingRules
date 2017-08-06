@@ -68,6 +68,7 @@ public class OptionChecker : MonoBehaviour {
 		ItemAttemptState = AttemptState.Attempted;
 		scoreTracker.attemptTimestamp = System.DateTime.Now;
 		scoreTracker.attemptTime = scoreTracker.attemptTimestamp - scoreTracker.startTimestamp;
+		(ParentChecker as QuestionChecker).optionAttemptTracker (this);
 		Debug.Log ("scoreTracker.maxScore"+scoreTracker.maxScore+scoreTracker.attemptTime.ToString());
 	}
 	/// <summary>
@@ -118,9 +119,18 @@ public class OptionChecker : MonoBehaviour {
 	//----------------------Score Values ----------------------------
 
 	virtual public void setChildScoreValues(){
+		setupDefaultScoreValues ();
+		adjustForWeightage();
 		setupScoreValues ();
+		foreach (OptionChecker option in ChildList) {
+			option.setChildScoreValues ();
+		}
 	}
 
-	virtual public void setupScoreValues(){
+	virtual protected void setupDefaultScoreValues(){
+	}
+	virtual protected void adjustForWeightage(){
+	}
+	virtual protected void setupScoreValues(){
 	}
 }

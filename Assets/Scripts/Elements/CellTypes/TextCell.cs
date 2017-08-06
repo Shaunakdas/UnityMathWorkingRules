@@ -27,7 +27,7 @@ public class TextCell : Cell {
 	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
-	override public void updateGOProp(GameObject ElementGO){
+	override protected void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 		if (ElementGO.GetComponent<UILabel> () != null) {
 			ElementGO.GetComponent<UILabel> ().text =(DisplayText) ;

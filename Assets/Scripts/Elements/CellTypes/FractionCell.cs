@@ -54,7 +54,7 @@ public class FractionCell : Cell {
 		BasicGOOperation.CheckAndRepositionTable (cellGO);
 		return cellGO;
 	}
-	override public void updateGOProp(GameObject cellGO){
+	override protected void updateGOProp(GameObject cellGO){
 
 		BasicGOOperation.RepositionChildTables (cellGO);
 		BasicGOOperation.ResizeToFitChildGO (cellGO);

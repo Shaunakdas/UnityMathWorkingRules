@@ -11,12 +11,20 @@ public class ScoreTracker {
 	public int maxLives;
 	//Attempt Score Variables
 	public float attemptScore;
+
+
 	//Max Time Variables
-	public float idealTime,maxTime;
+	public float idealTime,maxTime,timeAllotted;
 	//Attempt Time Variables
 	public System.TimeSpan attemptTime;
 	public System.DateTime startTimestamp,attemptTimestamp,endTimestamp;
 
+
+	//Star Calculations
+	public int attemptStar=0;
+	//DifficultyLevel Star Calculations
+	public int currentDiffLevel=0,nextDiffLevel=0;
+	public int childCorrectCount = 0;
 	//Attempt Status
 	public OptionChecker.AttemptState state;
 	//Reference

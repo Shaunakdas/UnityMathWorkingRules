@@ -35,7 +35,7 @@ public class SelectableButtonCell : Cell {
 	//Analytics and setting ParagraphRef
 	override public void  setChildParagraphRef(){
 		if(correctFlag){
-			ParagraphRef.scoreSettings.maxCorrectCount += 1;
+			ParagraphRef.scoreTracker.childCorrectCount += 1;
 		}
 	}
 	//-------------Based on Element Attributes, creating GameObject -------------------
@@ -55,7 +55,7 @@ public class SelectableButtonCell : Cell {
 		return cellGO;
 	}
 
-	override public void updateGOProp(GameObject ElementGO){
+	override protected void updateGOProp(GameObject ElementGO){
 		//		Debug.Log ("Updating Text of Cell" + DisplayText);
 		updateSelectBtnGO(ElementGO, DisplayText);
 		//Init Select Item Checker
@@ -66,7 +66,7 @@ public class SelectableButtonCell : Cell {
 
 	//-------------Static methods to create/update Selectable GameObject attributes -------------------
 	//Static method which can be used by any class initiating SelectButton
-	public  void updateSelectBtnGO(GameObject ElementGO, string text){
+	void updateSelectBtnGO(GameObject ElementGO, string text){
 		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
 		updateText (ElementGO, text);
 		//Setting width based on text width

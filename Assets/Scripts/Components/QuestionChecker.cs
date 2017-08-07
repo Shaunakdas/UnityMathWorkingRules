@@ -67,5 +67,14 @@ public class QuestionChecker : OptionChecker {
 	public void optionAttemptTracker(OptionChecker option){
 
 	}
-
+	override public void notifyManager (ScoreManager.Result _result){
+		if (_result == ScoreManager.Result.Correct) {
+			foreach (OptionChecker option in ChildList) {
+				scoreTracker.attemptScore += option.scoreTracker.attemptScore;
+			}
+			scoreTracker.notifyManager (ContainerElem.ParagraphRef, _result);
+		} else {
+			scoreTracker.notifyManager (ContainerElem.ParagraphRef, _result);
+		}
+	}
 }

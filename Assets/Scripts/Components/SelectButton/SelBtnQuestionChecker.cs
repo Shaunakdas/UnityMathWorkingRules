@@ -49,24 +49,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	}
 	public void checkChildCorrect(){
 		Debug.Log ("checkChildCorrect");
-		//Check for user selected Buttons
-//		foreach (GameObject selBtnGO in SelBtnGOList) {
-//			
-//			SelBtnItemChecker itemChecker = selBtnGO.GetComponent<SelBtnItemChecker> ();
-//			Debug.Log (itemChecker.userInputFlag);
-//			Debug.Log (itemChecker.correctFlag);
-//			if (itemChecker.userInputFlag) {
-//				//CheckAnimation if userinputFlag is correct. Wait
-//				if (itemChecker.correctFlag) {
-//					itemChecker.correctAnim ();
-//				} else {
-//					itemChecker.incorrectAnim ();
-//				}
-//			}
-//		}
 		correctionAnim ();
-//		deactivateAnim ();
-//		nextAnimTrigger ();
 
 	}
 	void Awake(){
@@ -132,35 +115,40 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	override public void correctionAnim(){
 		base.correctionAnim ();
 		Debug.Log ("DropZoneRowCell CorrectionAnim");
+		bool quesCorrect = true;
 		//check in not user selected buttons
 //		foreach (GameObject selBtnGO in SelBtnGOList) {
 		for (int i=0;i<ChildList.Count; i++){
-			SelBtnOptionChecker itemChecker = ChildList [i] as SelBtnOptionChecker;
+			SelBtnOptionChecker option = ChildList [i] as SelBtnOptionChecker;
+			option.attemptEvent();
+			bool optionCorrect = false;
 			EventDelegate _nextEvent = null;
-			if (i == ChildList.Count - 1)
-				_nextEvent = new EventDelegate(nextAnimTrigger);
-			if (itemChecker.userInputFlag) {
-				//CheckAnimation if userinputFlag is correct. Wait
-				if (itemChecker.correctFlag) {
-					itemChecker.nextEvent = _nextEvent;itemChecker.correctAnim ();
-//					itemChecker.correctAnimWithDelegate (_nextEvent);
-				} else {
-					itemChecker.nextEvent = _nextEvent;itemChecker.incorrectAnim ();
-//					itemChecker.incorrectAnimWithDelegate (_nextEvent);
-				}
-			} else if (itemChecker.correctFlag) {
-				itemChecker.ItemAttemptState = AttemptState.Checked;
-				//Animation for showing the correct options
-				itemChecker.nextEvent = _nextEvent;itemChecker.correctionAnim ();
-//				itemChecker.correctionAnimWithDelegate(_nextEvent);
+			if (i == ChildList.Count - 1) {
+				_nextEvent = nextEvent;
 			}
+			if (option.userInputFlag) {
+				//CheckAnimation if userinputFlag is correct. Wait
+				if (option.correctFlag) {
+					option.correctAnim ();optionCorrect = true;
+				} else {
+					option.incorrectAnim ();optionCorrect = false;
+				}
+				option.nextEvent = _nextEvent;
+			} else if (option.correctFlag) {
+				option.ItemAttemptState = AttemptState.Checked;
+				optionCorrect = false;
+				//Animation for showing the correct options
+				option.nextEvent = _nextEvent;option.correctionAnim ();
+			}
+			quesCorrect = quesCorrect && optionCorrect;
 		}
+		ScoreManager.Result _quesResult = (quesCorrect == true) ?  (ScoreManager.Result.Correct) : (ScoreManager.Result.Incorrect);
+		notifyManager (_quesResult);
 		deactivateAnim ();
-//		nextAnimTrigger ();
 	}
 	override public void nextAnimTrigger(){
 		Debug.Log ("nextAnimTrigger"+nextEvent.ToString());
-		nextEvent.Execute ();
+//		nextEvent.Execute ();
 		//		ParagraphRef.nextTargetTrigger (this);
 	}
 }

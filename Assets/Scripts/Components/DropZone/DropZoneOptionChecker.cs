@@ -41,20 +41,6 @@ public class DropZoneOptionChecker : OptionChecker {
 			return true;
 		}
 	}
-//	public string compositeText(string text){
-//		string textToCheck="";
-//		foreach (Transform childTransform in gameObject.transform.parent) {
-//			if (childTransform.gameObject != gameObject) {
-//				//Getting char of sibling dropzone
-//				string childFilledText = childTransform.gameObject.GetComponent<DropZoneOptionChecker> ().filledText;
-//				textToCheck += (childFilledText != null) ? childFilledText : " ";
-//			} else {
-//				//Getting char of current dropzone
-//				textToCheck += text;
-//			}
-//		}
-//		return textToCheck;
-//	}
 
 
 	// Update is called once per frame

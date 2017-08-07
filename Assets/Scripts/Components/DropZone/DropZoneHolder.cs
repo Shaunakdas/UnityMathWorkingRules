@@ -137,17 +137,7 @@ public class DropZoneHolder : QuestionChecker {
 		
 	}
 	//----------------------Animations ----------------------------
-//	public void resultAnim(bool inputCorrect, DropZoneOptionChecker itemChecker){
-//		EventDelegate nextItemEvent = nextEvent;
-//		int itemIndex = ChildList.IndexOf (itemChecker);
-//		if(inputCorrect){
-//			itemChecker.correctAnim ();
-//		}else{
-//			itemChecker.incorrectAnim();
-//		}
-//		//If DropZone Holder doesn't has pending DropZoneItemChecker
-//
-//	}
+
 
 	/// <summary>
 	/// Getting active animation.
@@ -288,18 +278,6 @@ public class DropZoneHolder : QuestionChecker {
 							Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
 							return (cell as DragSourceCell);
 						}
-//						if (idCheck) {
-//							if(cellText == TargetTextList[_ques.getSiblingIndex()]){
-//								Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
-//								return (cell as DragSourceCell);
-//							}
-//						} else {
-//							if(allowedString(_ques).IndexOf(cellText)){
-////							if(cell.ElementGO.GetComponentInChildren<UILabel>().text == TargetTextList[_ques.getSiblingIndex()].ToCharArray()[_option.getSiblingIndex()].ToString()){
-//								Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
-//								return (cell as DragSourceCell);
-//							}
-//						}
 
 					}
 				}

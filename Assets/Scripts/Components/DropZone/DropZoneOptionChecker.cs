@@ -21,41 +21,40 @@ public class DropZoneOptionChecker : OptionChecker {
 	}
 	//Checker function called after the item is dropped in drop zone.
 	public bool checkDropZoneItem(string text){
-		attemptEvent();
-		attempted = true;bool correct=false;
-		Debug.Log ("checkDropZoneItem for checking "+text);
-		filledText = text;
-		if (idCheck) {
+		if (ItemAttemptState != AttemptState.Corrected) {
+			attemptEvent ();
+			attempted = true;
+			bool correct = false;
+			Debug.Log ("checkDropZoneItem for checking " + text);
+			filledText = text;
 			if ((ParentChecker as DropZoneQuestionChecker).checkDropZoneItem ()) {
 				correct = true;
 			}
-		} else {
-			if ((ParentChecker as DropZoneQuestionChecker).checkDropZoneItem ()) {
-				correct = true;
-			}
-		}
-		if (correct) {
-			correctAnim ();
-		} else {
-			incorrectAnim ();filledText = null;
-		}
-		return false;
-		
-	}
-	public string compositeText(string text){
-		string textToCheck="";
-		foreach (Transform childTransform in gameObject.transform.parent) {
-			if (childTransform.gameObject != gameObject) {
-				//Getting char of sibling dropzone
-				string childFilledText = childTransform.gameObject.GetComponent<DropZoneOptionChecker> ().filledText;
-				textToCheck += (childFilledText != null) ? childFilledText : " ";
+			if (correct) {
+				correctAnim ();
 			} else {
-				//Getting char of current dropzone
-				textToCheck += text;
+				incorrectAnim ();
+				filledText = null;
 			}
+			return false;
+		} else {
+			return true;
 		}
-		return textToCheck;
 	}
+//	public string compositeText(string text){
+//		string textToCheck="";
+//		foreach (Transform childTransform in gameObject.transform.parent) {
+//			if (childTransform.gameObject != gameObject) {
+//				//Getting char of sibling dropzone
+//				string childFilledText = childTransform.gameObject.GetComponent<DropZoneOptionChecker> ().filledText;
+//				textToCheck += (childFilledText != null) ? childFilledText : " ";
+//			} else {
+//				//Getting char of current dropzone
+//				textToCheck += text;
+//			}
+//		}
+//		return textToCheck;
+//	}
 
 
 	// Update is called once per frame
@@ -99,6 +98,7 @@ public class DropZoneOptionChecker : OptionChecker {
 		Debug.Log("correctAnim");
 		if (ItemAttemptState == AttemptState.Attempted) {
 			base.correctAnim ();
+			ParentChecker.notifyManager ( ScoreManager.Result.Correct);
 			animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem> ().gameObject, new EventDelegate (deactivateAnim));
 		}
 	}
@@ -107,6 +107,7 @@ public class DropZoneOptionChecker : OptionChecker {
 		Debug.Log("incorrectAnim");
 		if (ItemAttemptState == AttemptState.Attempted) {
 			base.incorrectAnim ();
+			ParentChecker.notifyManager ( ScoreManager.Result.Incorrect);
 			animManager.incorrectAnim (2, gameObject, new EventDelegate (correctionAnim), true);
 		}
 	}

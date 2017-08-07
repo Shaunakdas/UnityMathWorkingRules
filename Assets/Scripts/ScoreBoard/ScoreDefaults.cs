@@ -6,7 +6,7 @@ public class ScoreDefaults  {
 	public const float DEFAULT_MAX_SCORE=3000f,DEFAULT_MIN_SCORE=3000f,DEFAULT_MAX_QUES_SCORE=1000f,DEFAULT_MIN_QUES_SCORE=1000f,DEFAULT_MAX_OPTION_SCORE=1000f,DEFAULT_MIN_OPTION_SCORE=1000f;
 	public const float DEFAULT_SCORE_WEIGHTAGE=1f;
 	//Time Tracking
-	public const float DEFAULT_MAX_TIME=10f,DEFAULT_IDEAL_TIME=10f,DEFAULT_MAX_QUES_TIME=10f,DEFAULT_IDEAL_QUES_TIME=20f,DEFAULT_MAX_OPTION_TIME=10f,DEFAULT_IDEAL_OPTION_TIME=10f,DEFAULT_TIME_ALLOTTED=180f;
+	public const float DEFAULT_MAX_TIME=10f,DEFAULT_IDEAL_TIME=10f,DEFAULT_MAX_QUES_TIME=20f,DEFAULT_IDEAL_QUES_TIME=10f,DEFAULT_MAX_OPTION_TIME=10f,DEFAULT_IDEAL_OPTION_TIME=5f,DEFAULT_TIME_ALLOTTED=180f;
 	//Live Tracking
 	public const int DEFAULT_MAX_LIVES=4;
 	public int MaxTotalScore = 3000,MinTotalScore = 1000;
@@ -42,6 +42,7 @@ public class ScoreDefaults  {
 		return _itemScore;
 	}
 	public static float correctScoreFormula(float _timeTaken, float _minTime, float _maxTime, float _minScore, float _maxScore){
+		Debug.Log ("correctScoreFormula"+_timeTaken+" "+_minTime+" "+_maxTime+" "+_minScore+" "+_maxScore);
 		return _maxScore - ((_timeTaken - _minTime) * (_maxScore - _minScore) / (_maxTime - _minTime));
 	}
 	public static int starFormula(float attemptScore, float totalScore){

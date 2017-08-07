@@ -67,5 +67,19 @@ public class DropZoneQuestionChecker : QuestionChecker {
 		base.correctionAnim ();
 		(ParentChecker as DropZoneHolder).correctionAnim (itemChecker,this, _nextEvent);
 	}
+	override public void notifyManager (ScoreManager.Result _result){
+		if (_result == ScoreManager.Result.Correct) {
+			List<OptionChecker> unactivatedOptions = ChildList.Where (x => x.ItemAttemptState == AttemptState.Unseen).ToList();
 
+			Debug.Log("Updating Display : adding score"+unactivatedOptions.Count.ToString());
+			if (unactivatedOptions.Count == 0) {
+				foreach (OptionChecker option in ChildList) {
+					scoreTracker.attemptScore += option.scoreTracker.attemptScore;
+				}
+				scoreTracker.notifyManager (ContainerElem.ParagraphRef, _result);
+			}
+		} else {
+			scoreTracker.notifyManager (ContainerElem.ParagraphRef, _result);
+		}
+	}
 }

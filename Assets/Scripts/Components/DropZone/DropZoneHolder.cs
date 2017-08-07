@@ -137,17 +137,17 @@ public class DropZoneHolder : QuestionChecker {
 		
 	}
 	//----------------------Animations ----------------------------
-	public void resultAnim(bool inputCorrect, DropZoneOptionChecker itemChecker){
-		EventDelegate nextItemEvent = nextEvent;
-		int itemIndex = ChildList.IndexOf (itemChecker);
-		if(inputCorrect){
-			itemChecker.correctAnim ();
-		}else{
-			itemChecker.incorrectAnim();
-		}
-		//If DropZone Holder doesn't has pending DropZoneItemChecker
-
-	}
+//	public void resultAnim(bool inputCorrect, DropZoneOptionChecker itemChecker){
+//		EventDelegate nextItemEvent = nextEvent;
+//		int itemIndex = ChildList.IndexOf (itemChecker);
+//		if(inputCorrect){
+//			itemChecker.correctAnim ();
+//		}else{
+//			itemChecker.incorrectAnim();
+//		}
+//		//If DropZone Holder doesn't has pending DropZoneItemChecker
+//
+//	}
 
 	/// <summary>
 	/// Getting active animation.
@@ -214,7 +214,7 @@ public class DropZoneHolder : QuestionChecker {
 	public void correctionAnim(DropZoneOptionChecker _option,DropZoneQuestionChecker _ques,EventDelegate _nextEvent){
 		Debug.Log ("DropZoneRowCell correctionAnim");
 		DragSourceCell targetCell = findCorrectDragItem(_option,_ques);
-		Debug.Log(targetCell.ElementGO.name);
+		Debug.Log(_option.ItemAttemptState.ToString());
 		targetCell.dragToDropZone (_option.gameObject,_nextEvent);
 	}
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class QuestionChecker : OptionChecker {
 	
 	//Holder to hold list of TargetItemChecker
@@ -67,4 +67,5 @@ public class QuestionChecker : OptionChecker {
 	public void optionAttemptTracker(OptionChecker option){
 
 	}
+
 }

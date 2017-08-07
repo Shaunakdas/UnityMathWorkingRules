@@ -94,6 +94,7 @@ public class OptionChecker : MonoBehaviour {
 	/// Correct animation.
 	/// </summary>
 	virtual public void correctAnim(){
+		scoreTracker.attemptScore = scoreTracker.calcScore (scoreTracker.attemptTime.Seconds);
 		ItemAttemptState = AttemptState.Checked;
 	}
 	virtual public void correctAnimWithDelegate(EventDelegate _nextEvent){
@@ -103,6 +104,7 @@ public class OptionChecker : MonoBehaviour {
 	/// Incorrect animation.
 	/// </summary>
 	virtual public void incorrectAnim(){
+		scoreTracker.attemptScore = 0f;
 		ItemAttemptState = AttemptState.Checked;
 	}
 	virtual public void incorrectAnimWithDelegate(EventDelegate _nextEvent){
@@ -125,7 +127,8 @@ public class OptionChecker : MonoBehaviour {
 	virtual public void autocorrectionAnim(){
 		
 	}
-
+	virtual public void notifyManager (ScoreManager.Result _result){
+	}
 	//----------------------Score Values ----------------------------
 
 	virtual public void setChildScoreValues(){

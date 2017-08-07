@@ -15,6 +15,7 @@ public class ScoreDisplayManager : MonoBehaviour {
 	}
 	public void updateScore(float scoreDelta){
 		//Add/Subtract Score
+		Debug.Log("Updating Display : adding score"+scoreDelta.ToString());
 		currentScore += scoreDelta;
 		ScoreCounterGO.GetComponent<UILabel> ().text =((int)currentScore).ToString();
 	}
@@ -32,12 +33,19 @@ public class ScoreDisplayManager : MonoBehaviour {
 
 	public void setupLives(int startLives){
 		for (int i = 0; i < startLives; i++) {
-			liveGOList.Add(BasicGOOperation.InstantiateNGUIGO(livePF,RightTableGO.transform));
+			GameObject liveGo = BasicGOOperation.InstantiateNGUIGO (livePF, RightTableGO.transform);
+			liveGo.name +=  i.ToString ("D2");
+//			liveGOList.Add(BasicGOOperation.InstantiateNGUIGO(livePF,RightTableGO.transform));
+			liveGOList.Add(liveGo);
 		}
 		repositionTable (RightTableGO);
 	}
 	public void updateLives(int liveDelta){
-
+		if (liveDelta < 0) {
+			for (int i=0;i< Mathf.Abs(liveDelta); i++){
+				BasicGOOperation.Destroy (liveGOList [i]);
+			}
+		}
 	}
 	void Awake(){
 		liveGOList = new List<GameObject> ();

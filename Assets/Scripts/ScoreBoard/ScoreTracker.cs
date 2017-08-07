@@ -34,10 +34,22 @@ public class ScoreTracker {
 	public ScoreTracker(){
 	}
 	public float calcScore (float timeTaken){
-		return ScoreDefaults.correctScoreFormula (timeTaken, idealTime, maxTime, minScore, maxScore);
+		attemptTime = System.TimeSpan.FromSeconds(timeTaken);
+		return ScoreDefaults.correctScoreFormula (attemptTime.Seconds, idealTime, maxTime, minScore, maxScore);
 	}
 
-	public void notifyScoreDisplay (float timeTaken, Paragraph para){
-		
+	public void notifyManager (Paragraph para,ScoreManager.Result _result){
+		Debug.Log ("Changing Display" + _result.ToString ());
+		switch (_result) {
+		case ScoreManager.Result.Correct:
+			(para.Parent as ComprehensionBody).scoreMan.updateScore (attemptScore);
+			break;
+		case ScoreManager.Result.Incorrect:
+			(para.Parent as ComprehensionBody).scoreMan.updateLives (-1);
+			break;
+		case ScoreManager.Result.Timeout:
+			(para.Parent as ComprehensionBody).scoreMan.updateLives (-1);
+			break;
+		}
 	}
 }

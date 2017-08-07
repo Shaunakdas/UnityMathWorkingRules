@@ -19,6 +19,7 @@ public class OptionChecker : MonoBehaviour {
 
 	//Reference Variables
 	public int AnalyticsId = 0;
+	public int siblingIndex=-1;
 	public BaseElement ContainerElem;
 	public OptionChecker ParentChecker;
 	public List<OptionChecker> ChildList = new List<OptionChecker>();
@@ -44,6 +45,13 @@ public class OptionChecker : MonoBehaviour {
 			option.AnalyticsId = optionIndex;
 			optionIndex++;
 		}
+	}
+
+	public int getSiblingIndex(){
+		if (siblingIndex == -1) {
+			siblingIndex = ParentChecker.ChildList.IndexOf (this);
+		}
+		return siblingIndex;
 	}
 	//----------------------Animations ----------------------------
 	/// <summary>
@@ -114,7 +122,9 @@ public class OptionChecker : MonoBehaviour {
 	/// </summary>
 	virtual public void nextAnimTrigger(){
 	}
-
+	virtual public void autocorrectionAnim(){
+		
+	}
 
 	//----------------------Score Values ----------------------------
 

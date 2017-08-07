@@ -5,7 +5,6 @@ using UnityEngine;
 public class DropZoneOptionChecker : OptionChecker {
 	public BaseElement element;
 	public bool idCheck{ get; set; }
-//	public GameObject DropZoneHolderGO;
 	public string filledText{ get; set; }
 	public bool attempted{ get; set; }
 	AnimationManager animManager;
@@ -23,16 +22,22 @@ public class DropZoneOptionChecker : OptionChecker {
 	//Checker function called after the item is dropped in drop zone.
 	public bool checkDropZoneItem(string text){
 		attemptEvent();
-		attempted = true;
+		attempted = true;bool correct=false;
 		Debug.Log ("checkDropZoneItem for checking "+text);
+		filledText = text;
 		if (idCheck) {
-			if ((ParentChecker.ParentChecker as DropZoneHolder).checkDropZoneItem (text,this)) {
-				filledText = text;return true;
+			if ((ParentChecker as DropZoneQuestionChecker).checkDropZoneItem ()) {
+				correct = true;
 			}
 		} else {
-			if ((ParentChecker.ParentChecker as DropZoneHolder).checkDropZoneItem (compositeText(text),this)) {
-				filledText = text;return true;
+			if ((ParentChecker as DropZoneQuestionChecker).checkDropZoneItem ()) {
+				correct = true;
 			}
+		}
+		if (correct) {
+			correctAnim ();
+		} else {
+			incorrectAnim ();filledText = null;
 		}
 		return false;
 		
@@ -87,14 +92,14 @@ public class DropZoneOptionChecker : OptionChecker {
 		Debug.Log ("deactivateAnim of DropZoneRowCell");
 		base.deactivateAnim();
 		gameObject.GetComponent<TweenColor>().enabled = false;
+		nextEvent.Execute ();
 	}
 	override public void correctAnim(){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim");
 		if (ItemAttemptState == AttemptState.Attempted) {
 			base.correctAnim ();
-			deactivateAnim ();
-			animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem> ().gameObject, nextEvent);
+			animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem> ().gameObject, new EventDelegate (deactivateAnim));
 		}
 	}
 	override public void incorrectAnim(){
@@ -111,8 +116,14 @@ public class DropZoneOptionChecker : OptionChecker {
 
 		if ((ItemAttemptState == AttemptState.Activated)||(ItemAttemptState == AttemptState.Checked)) {
 			base.correctionAnim ();
-			(ParentChecker.ParentChecker as DropZoneHolder).correctionAnim (this, nextEvent);
+			(ParentChecker as DropZoneQuestionChecker).correctionAnim (this);
 		}
+	}
+	override public void autocorrectionAnim(){
+		//Animation for ignoring the correct option
+		Debug.Log("autocorrectionAnim"+ItemAttemptState.ToString());
+		base.correctionAnim ();
+		(ParentChecker as DropZoneQuestionChecker).autocorrectionAnim (this, new EventDelegate (deactivateAnim));
 	}
 
 }

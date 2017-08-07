@@ -25,52 +25,112 @@ public class DropZoneHolder : QuestionChecker {
 	}
 
 	//----------------------Target Matching and checking mechanism ----------------------------
-	public bool checkDropZoneItem(string inputText, DropZoneOptionChecker itemChecker){
-		Debug.Log ("Holder: checkDropZoneItem for checking "+inputText);
+
+	public bool checkDropZoneItem( DropZoneQuestionChecker _ques){
+		List<string> inputTextList = new List<string>();
+		foreach (OptionChecker _option in _ques.ChildList) {
+			inputTextList.Add ((_option as DropZoneOptionChecker).filledText);
+		}
+		Debug.Log ("Holder: checkDropZoneItem for checking "+inputTextList[0]);
 		bool inputCorrect = false;
 		if (idCheck) {
-			if (TargetTextList.IndexOf(inputText)!= -1) {
+			if (TargetTextList.IndexOf(inputTextList[0])!= -1) {
+				TargetTextList.Remove(inputTextList[0]);
 				inputCorrect = true;
 			}
 		} else {
-			if (checkCompositeText(inputText)) {
+			if (checkCompositeText(inputTextList)) {
 				inputCorrect = true;
 			}
 		}
 		if (multipleHolderCheck) {
 			holderListParentGO.GetComponent<DropZoneHolderParent> ().dropEvent(inputCorrect);
 		}
-		resultAnim (inputCorrect, itemChecker);
+		//		resultAnim (inputCorrect, itemChecker);
 		return inputCorrect;
 	}
-	public bool checkCompositeText(string inputText){
-		
+	public bool checkCompositeText(List<string> inputTextList){
+
 		//Checking through TargetTextList;
 		foreach (string targetText in TargetTextList) {
-			Debug.Log("inputText"+inputText+"targetText"+targetText);
+			Debug.Log("inputText"+inputTextList[0]+"targetText"+targetText);
 			//Checking for TriedText with same length;
-			if (targetText.Length == inputText.Length) {
+			if (targetText.Length == inputTextList.Count) {
 
 
 				//Checking for matching exact text
-				if ((inputText.IndexOf(' ') == -1)&&(inputText == targetText)) {
+				if ((noNullElement(inputTextList))&&(string.Concat(inputTextList.ToArray()) == targetText)) {
 					//Removing targetText from targetTextList
-					TargetTextList.Remove(inputText);
+					TargetTextList.Remove(targetText);
 					return true;
 				}
 				int inputCharIndex = 0;
+				bool foundMisMatch = true;
 				//Iterating through whole list of characters of targetText
-				foreach (char inputChar in inputText.ToCharArray()) {
+				foreach (string inputString in inputTextList) {
+					foundMisMatch = false;
+
 					// Checking for matching text after removing space
-					if ((inputChar != ' ')&&(inputChar == targetText.ToCharArray()[inputCharIndex])) {
-						
-						return true;
+					if ((inputString != null)&&(inputString != targetText.ToCharArray()[inputCharIndex].ToString())) {
+						foundMisMatch = true;
 					}
+					Debug.Log (foundMisMatch.ToString()+inputString);
 					inputCharIndex ++;
+					if (foundMisMatch) {
+						break;
+					}
+				}
+				if (!foundMisMatch) {
+					return true;
 				}
 			}
 		}
 		return false;
+	}
+	bool noNullElement(List<string> inputList){
+		foreach (string input in inputList) {
+			if (input == null) {
+				return false;
+			}
+		}
+		return true;
+	}
+	List<string> getCorrectionOptions(DropZoneOptionChecker _option, DropZoneQuestionChecker _ques){
+		List<string> correctionOptions = new List<string> ();
+		if (idCheck) {
+			return TargetTextList;
+		} else {
+			List<string> inputTextList = new List<string>();
+			foreach (OptionChecker option in _ques.ChildList) {
+				inputTextList.Add ((option as DropZoneOptionChecker).filledText);
+			}
+			//Checking through TargetTextList;
+			foreach (string targetText in TargetTextList) {
+				Debug.Log ("inputText" + inputTextList [0] + "targetText" + targetText);
+				//Checking for TriedText with same length;
+				if (targetText.Length == inputTextList.Count) {
+					int inputCharIndex = 0;
+					bool foundMisMatch = true;
+					//Iterating through whole list of characters of targetText
+					foreach (string inputString in inputTextList) {
+						foundMisMatch = false;
+						// Checking for matching text after removing space
+						if ((inputString != null) && (inputString != targetText.ToCharArray () [inputCharIndex].ToString ())) {
+							foundMisMatch = true;
+						}
+						inputCharIndex++;
+						if (foundMisMatch) {
+							break;
+						}
+					}
+					if (!foundMisMatch) {
+						correctionOptions.Add (targetText.ToCharArray () [_option.getSiblingIndex ()].ToString());
+					}
+				}
+			}
+		}
+
+		return correctionOptions;
 	}
 	// Update is called once per frame
 	void Update () {
@@ -136,35 +196,26 @@ public class DropZoneHolder : QuestionChecker {
 	override public void incorrectAnim(){
 		Debug.Log ("DropZoneRowCell InCorrectAnim"+ContainerElem.ParagraphRef.ElementGO.name);
 	}
-	public void incorrectAnim(DropZoneOptionChecker itemChecker){
-		Debug.Log ("DropZoneRowCell InCorrectAnim"+ContainerElem.ParagraphRef.ElementGO.name);
-		correctionAnim (itemChecker);
-	}
+//	public void incorrectAnim(DropZoneOptionChecker itemChecker){
+//		Debug.Log ("DropZoneRowCell InCorrectAnim"+ContainerElem.ParagraphRef.ElementGO.name);
+//		correctionAnim (itemChecker);
+//	}
 	/// <summary>
 	/// Correction animation.
 	/// </summary>
 	override public void correctionAnim(){
 		Debug.Log ("DropZoneRowCell correctionAnim");
 	}
-	public void correctionAnim(DropZoneOptionChecker itemChecker){
+//	public void correctionAnim(DropZoneOptionChecker itemChecker){
+//		Debug.Log ("DropZoneRowCell correctionAnim");
+//		DragSourceCell targetCell = findCorrectDragItem (itemChecker);
+//		targetCell.dragToDropZone (itemChecker.gameObject,null);
+//	}
+	public void correctionAnim(DropZoneOptionChecker _option,DropZoneQuestionChecker _ques,EventDelegate _nextEvent){
 		Debug.Log ("DropZoneRowCell correctionAnim");
-		DragSourceCell targetCell = findCorrectDragItem(itemChecker);
-//		targetCell.DroppedOnSurface += delegate {
-//			if (!nextItemChecker (itemChecker))
-//				nextTargetTrigger ();
-//		};
-
-		targetCell.dragToDropZone (itemChecker.gameObject,null);
-	}
-	public void correctionAnim(DropZoneOptionChecker itemChecker,EventDelegate _nextEvent){
-		Debug.Log ("DropZoneRowCell correctionAnim");
-		DragSourceCell targetCell = findCorrectDragItem(itemChecker);
-//		targetCell.DroppedOnSurface += delegate {
-//			if (!nextItemChecker (itemChecker))
-//				nextTargetTrigger ();
-//		};
+		DragSourceCell targetCell = findCorrectDragItem(_option,_ques);
 		Debug.Log(targetCell.ElementGO.name);
-		targetCell.dragToDropZone (itemChecker.gameObject,_nextEvent);
+		targetCell.dragToDropZone (_option.gameObject,_nextEvent);
 	}
 
 	/// <summary>
@@ -207,30 +258,48 @@ public class DropZoneHolder : QuestionChecker {
 //		ContainerElem.ParagraphRef.nextTargetTrigger (this);
 
 	}
+	List<string> allowedString(DropZoneOptionChecker _option,DropZoneQuestionChecker _ques){
+		List<string> allowedList = new List<string> ();
+		if (idCheck) {
+
+
+		} else {
+
+		}
+		return allowedList;
+	}
 	/// <summary>
 	/// Returns the correct drag item.
 	/// </summary>
 	/// <returns>The correct drag item.</returns>
 	/// <param name="dropZoneItem">Drop zone item</param>
-	public DragSourceCell findCorrectDragItem(DropZoneOptionChecker dropZoneItem){
+	public DragSourceCell findCorrectDragItem(DropZoneOptionChecker _option, DropZoneQuestionChecker _ques){
 		//Find the target drag cell
 		DragSourceCell targetCell;
-		Debug.Log ("Inside findCorrectDragItem");
+//		Debug.Log ("Inside findCorrectDragItem"+_ques.getSiblingIndex()+_option.getSiblingIndex());
+//		Debug.Log ("Inside findCorrectDragItem"+TargetTextList.Count);
+//		Debug.Log ("Inside findCorrectDragItem"+TargetTextList[_ques.getSiblingIndex()].ToCharArray()[_option.getSiblingIndex()].ToString());
 		foreach (Line line in ContainerElem.ParagraphRef.LineList) {
 			foreach (Row row in line.RowList) {
 				if (row.Type == Row.RowType.DragSourceLine) {
 					foreach (Cell cell in row.CellList) {
-						if (idCheck) {
-							if(cell.ElementGO.GetComponentInChildren<UILabel>().text == TargetTextList[0]){
-								Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
-								return (cell as DragSourceCell);
-							}
-						} else {
-							if(cell.ElementGO.GetComponentInChildren<UILabel>().text == TargetTextList[0]){
-								Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
-								return (cell as DragSourceCell);
-							}
+						string cellText = cell.ElementGO.GetComponentInChildren<UILabel> ().text;
+						if((getCorrectionOptions(_option,_ques).IndexOf(cellText))>-1){
+							Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
+							return (cell as DragSourceCell);
 						}
+//						if (idCheck) {
+//							if(cellText == TargetTextList[_ques.getSiblingIndex()]){
+//								Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
+//								return (cell as DragSourceCell);
+//							}
+//						} else {
+//							if(allowedString(_ques).IndexOf(cellText)){
+////							if(cell.ElementGO.GetComponentInChildren<UILabel>().text == TargetTextList[_ques.getSiblingIndex()].ToCharArray()[_option.getSiblingIndex()].ToString()){
+//								Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
+//								return (cell as DragSourceCell);
+//							}
+//						}
 
 					}
 				}

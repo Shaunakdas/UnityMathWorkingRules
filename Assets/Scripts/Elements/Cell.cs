@@ -72,7 +72,7 @@ public class Cell : TableLine {
 	//----------------------Score Values ----------------------------
 	override public void  setChildScoreValues(){
 		setupScoreValues ();
-		Debug.Log ("Question count in cell "+QuestionList.Count+(Parent.Parent as Line).QuestionList.Count);
+//		Debug.Log ("Question count in cell "+QuestionList.Count+(Parent.Parent as Line).QuestionList.Count);
 		foreach (QuestionChecker ques in QuestionList) {
 			ques.setChildScoreValues ();
 		}

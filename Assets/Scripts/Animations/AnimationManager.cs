@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationManager : MonoBehaviour {
-	const float ANIMATION_DURATION = 3f;
+	const float ANIMATION_DURATION = 2f;
 	const float TIMER_ANIM_DURATION = 10f;
 	const float TIMER_WARNING_DELAY = 7f;
 	public void correctAnim(int _id, GameObject _elementGO, EventDelegate _nextEvent){
@@ -28,22 +28,22 @@ public class AnimationManager : MonoBehaviour {
 	}
 	public void correctSizeAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Size (->Small->Big->Normal), Colour(->Green)
-		Debug.Log("correctAnim 1: Size (->Small->Big->Normal), Colour(->Green) "+(_nextEvent==null));
+		Debug.Log("correctAnim 1: Size (->Small->Big->Normal), Colour(->Green) ");
 		UISprite elementSprite = _elementGO.GetComponent<UISprite>();
 		elementSprite.color = new Color (0f, 1f, 0f);
 		if (_elementGO.GetComponent<TweenScale> () == null)
 			_elementGO.AddComponent<TweenScale> ();
 		TweenScale _tweenScale = _elementGO.GetComponent<TweenScale> ();
+		_tweenScale.style = UITweener.Style.Once;
 		_tweenScale.from.x = (elementSprite.transform.localScale.x*0.95f); _tweenScale.to.x = (elementSprite.transform.localScale.x*1.2f);
 		_tweenScale.animationCurve = new AnimationCurve (
 			new Keyframe (0f, 0f), new Keyframe (0.5f, 1.2f),  new Keyframe (0.75f, 0.8f), new Keyframe (1f, 1f)
 		);
 		_tweenScale.duration = ANIMATION_DURATION;
-		Debug.Log (_nextEvent.ToString()); 
-		Debug.Log (_nextEvent.ToString() == null);
+//		Debug.Log (_nextEvent.ToString()); 
 		if (_nextEvent != null) {
 			
-			Debug.Log (_nextEvent.methodName);
+			Debug.Log (_nextEvent.ToString()); 
 			_tweenScale.onFinished.Add (_nextEvent);
 		}
 
@@ -68,6 +68,7 @@ public class AnimationManager : MonoBehaviour {
 		);
 		_tweenPos.duration = ANIMATION_DURATION;
 		if (_nextEvent != null) {
+			Debug.Log ("Tween Finished and calling next Event"+_nextEvent.ToString());
 			_tweenPos.onFinished.Add (_nextEvent);
 		}
 	}
@@ -97,6 +98,9 @@ public class AnimationManager : MonoBehaviour {
 		case 5:
 			incorrectCrossOnTopAnim (_elementGO, _nextEvent,delete);
 			break;
+		case 6:
+			incorrectDestroyAnim (_elementGO, _nextEvent,delete);
+			break;
 		}
 	}
 	public void incorrectSizeAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
@@ -107,9 +111,31 @@ public class AnimationManager : MonoBehaviour {
 		if (_elementGO.GetComponent<TweenScale> () == null)
 			_elementGO.AddComponent<TweenScale> ();
 		TweenScale _tweenScale = _elementGO.GetComponent<TweenScale> ();
-		 _tweenScale.to.x = (elementSprite.transform.localScale.x*1.4f);
+		_tweenScale.to.x = (elementSprite.transform.localScale.x*1.4f);
+		_tweenScale.style = UITweener.Style.Once;
 		_tweenScale.animationCurve = new AnimationCurve (
 			new Keyframe (0f, 0f), new Keyframe (0.5f, 1.2f),  new Keyframe (0.75f, 0.8f), new Keyframe (1f, 1f)
+		);
+		_tweenScale.duration = ANIMATION_DURATION;
+		if((delete != null)&&delete){
+			EventDelegate.Set(_tweenScale.onFinished, delegate{ NGUITools.Destroy(_elementGO); });
+		}
+		if (_nextEvent != null) {
+			Debug.Log (" next Event"+_nextEvent.ToString());
+			_tweenScale.onFinished.Add (_nextEvent);
+		}
+	}
+	public void incorrectDestroyAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
+		//Size (->Big), Colour(->Red)
+		Debug.Log("incorrectAnim 6: Size (->Small) ");
+//		UISprite elementSprite = _elementGO.GetComponent<UISprite>();
+//		elementSprite.color = new Color (1f, 0f, 0f);
+		if (_elementGO.GetComponent<TweenScale> () == null)
+			_elementGO.AddComponent<TweenScale> ();
+		TweenScale _tweenScale = _elementGO.GetComponent<TweenScale> ();
+		_tweenScale.to.x = (0f);
+		_tweenScale.animationCurve = new AnimationCurve (
+			new Keyframe (0f, 0f), new Keyframe (1f, 1f)
 		);
 		_tweenScale.duration = ANIMATION_DURATION;
 		if((delete != null)&&delete){

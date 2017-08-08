@@ -20,7 +20,7 @@ public class QuestionChecker : OptionChecker {
 //		Debug.Log(BasicGOOperation.getMasterLineRef(ContainerElem).ElementGO.name);
 //		Debug.Log(_lineRef.ElementGO.name);
 		addToList (this, _lineRef.QuestionList);
-		Debug.Log(_lineRef.QuestionList.Count);
+//		Debug.Log(_lineRef.QuestionList.Count);
 //		addToList (this, BasicGOOperation.getMasterLineRef(ContainerElem).QuestionList);
 	}
 	void addToContainerElemList(BaseElement _containerElem){
@@ -70,6 +70,15 @@ public class QuestionChecker : OptionChecker {
 	//----------------------Animation ----------------------------
 	public void optionAttemptTracker(OptionChecker option){
 
+	}
+	virtual public void setChildScoreValues(){
+		//		Debug.Log ("SET CHILD SCORE VALUES CELL"+this.GetType().ToString());
+		setupDefaultScoreValues ();
+		adjustForWeightage();
+		setupScoreValues ();
+		foreach (OptionChecker option in ChildList) {
+			option.setChildScoreValues ();
+		}
 	}
 	override public void notifyManager (ScoreManager.Result _result){
 		if (_result == ScoreManager.Result.Correct) {

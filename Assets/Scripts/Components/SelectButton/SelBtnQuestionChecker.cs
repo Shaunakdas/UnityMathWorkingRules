@@ -48,17 +48,17 @@ public class SelBtnQuestionChecker : QuestionChecker {
 			checkChildCorrect ();
 	}
 	public void checkChildCorrect(){
-		Debug.Log ("checkChildCorrect");
+//		Debug.Log ("checkChildCorrect");
 		correctionAnim ();
 
 	}
 	void Awake(){
 		ItemTargetType=TargetType.Question;
-		Debug.Log ("Awake of SelBtnHolder called");
+//		Debug.Log ("Awake of SelBtnHolder called");
 	}
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("Start of SelBtnHolder called");
+//		Debug.Log ("Start of SelBtnHolder called");
 	}
 	
 	// Update is called once per frame
@@ -72,7 +72,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	/// <param name="_elementGO">Element G.</param>
 	override public void activateAnim(){
 		base.activateAnim ();
-		Debug.Log ("getActiveAnim of DropZoneRowCell");
+//		Debug.Log ("getActiveAnim of DropZoneRowCell");
 		for (int i = 0; i < ChildList.Count; i++) {
 			ChildList[i].activateAnim();
 		}
@@ -115,6 +115,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	override public void correctionAnim(){
 		base.correctionAnim ();
 		Debug.Log ("DropZoneRowCell CorrectionAnim");
+		Debug.Log (nextEvent.ToString());
 		bool quesCorrect = true;
 		//check in not user selected buttons
 //		foreach (GameObject selBtnGO in SelBtnGOList) {
@@ -122,31 +123,34 @@ public class SelBtnQuestionChecker : QuestionChecker {
 			SelBtnOptionChecker option = ChildList [i] as SelBtnOptionChecker;
 			option.attemptEvent();
 			bool optionCorrect = true;
-			EventDelegate _nextEvent = null;
+//			EventDelegate _nextEvent = null;
 			if (i == ChildList.Count - 1) {
-				_nextEvent = nextEvent;
+				option.nextEvent = nextEvent;
 			}
 			if (option.userInputFlag) {
-				option.nextEvent = _nextEvent;
 				//CheckAnimation if userinputFlag is correct. Wait
 				if (option.correctFlag) {
-					option.correctAnim ();optionCorrect = true;
+					option.correctAnim ();
+					optionCorrect = true;
 				} else {
-					option.incorrectAnim ();optionCorrect = false;
+					option.incorrectAnim ();
+					optionCorrect = false;
 				}
 			} else if (option.correctFlag) {
 				option.ItemAttemptState = AttemptState.Checked;
 				optionCorrect = false;
 				//Animation for showing the correct options
-				option.nextEvent = _nextEvent;option.correctionAnim ();
+				option.correctionAnim ();
+			} else {
+				option.destroyAnim ();
 			}
-			Debug.Log ("Before And"+quesCorrect.ToString()+optionCorrect.ToString());
+//			Debug.Log ("Before And"+quesCorrect.ToString()+optionCorrect.ToString());
 			quesCorrect = quesCorrect && optionCorrect;
-			Debug.Log ("After And"+quesCorrect.ToString()+optionCorrect.ToString());
+//			Debug.Log ("After And"+quesCorrect.ToString()+optionCorrect.ToString());
 		}
 		ScoreManager.Result _quesResult = (quesCorrect == true) ?  (ScoreManager.Result.Correct) : (ScoreManager.Result.Incorrect);
 		notifyManager (_quesResult);
-		deactivateAnim ();
+//		deactivateAnim ();
 	}
 	override public void nextAnimTrigger(){
 		Debug.Log ("nextAnimTrigger"+nextEvent.ToString());

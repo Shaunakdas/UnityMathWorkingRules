@@ -186,7 +186,7 @@ public class BasicGOOperation : MonoBehaviour{
 		Vector3 finalSize = NGUIMath.CalculateAbsoluteWidgetBounds (TargetGO.transform).size;
 		finalSize.x = finalSize.x / scale.x; finalSize.y = finalSize.y / scale.y;
 		if (ParentGameObject.GetComponent<UIWidget> () != null) {
-			Debug.Log ("ResizeToFitChildGO" + finalSize.x + " and " + finalSize.y);
+//			Debug.Log ("ResizeToFitChildGO" + finalSize.x + " and " + finalSize.y);
 			ParentGameObject.GetComponent<UIWidget> ().width = (int)finalSize.x;
 			ParentGameObject.GetComponent<UIWidget> ().height = (int)finalSize.y;
 		}

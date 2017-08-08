@@ -111,7 +111,7 @@ public class Line : BaseElement{
 		int index = 0;
 		Paragraph para = (Parent as Paragraph);
 		int dragLineCount = para.DragSourceTableList.Count;
-//		Debug.Log (siblingIndex ().ToString()+para.LineList.Count.ToString()+dragLineCount.ToString());
+		Debug.Log (siblingIndex () == para.LineList.Count - 1 - dragLineCount);
 		if (siblingIndex () == para.LineList.Count - 1 - dragLineCount) {
 			return true;
 		} else {
@@ -263,6 +263,7 @@ public class Line : BaseElement{
 
 		//Setting Next Event Delegate
 		EventDelegate nextEvent = new EventDelegate (ParagraphRef.finishQuestionStep);
+		Debug.Log (nextEvent.ToString());
 		if (!lastSibling()) {
 			nextEvent = new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO);
 		}
@@ -274,7 +275,7 @@ public class Line : BaseElement{
 		//Check for Interaction elements in Line ElementGO
 		if (QuestionList.Count > 0) {
 			//checking for QuestonCheckers
-			Debug.Log ("Element Display Anim:Checking for Questions");
+//			Debug.Log ("Element Display Anim:Checking for Questions");
 			displayDragSourceLine ();
 			BasicGOOperation.displayElementGOAnim (ElementGO,null);
 			activateQuestionListAnim (nextEvent);
@@ -298,12 +299,13 @@ public class Line : BaseElement{
 	}
 	public void activateQuestionListAnim(EventDelegate nextEvent){
 		//Going through all questionHolders in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
-		Debug.Log("QuestionList Count"+QuestionList.Count);
+//		Debug.Log("QuestionList Count"+QuestionList.Count);
 		for(int i = 0; i < QuestionList.Count; i++){
 			EventDelegate nextLineEvent = nextEvent;
 			if (i < QuestionList.Count - 1) {
 				nextLineEvent = new EventDelegate (QuestionList [i + 1].activateAnim);
 			}
+			Debug.Log (nextEvent.ToString());
 			QuestionList [i].nextEvent = nextLineEvent;
 //			Debug.Log("nextLineEvent"+(nextLineEvent.ToString()==null));
 		}

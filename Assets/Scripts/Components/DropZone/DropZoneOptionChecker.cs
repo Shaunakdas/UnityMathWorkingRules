@@ -36,7 +36,7 @@ public class DropZoneOptionChecker : OptionChecker {
 				incorrectAnim ();
 				filledText = null;
 			}
-			return false;
+			return correct;
 		} else {
 			return true;
 		}
@@ -84,6 +84,7 @@ public class DropZoneOptionChecker : OptionChecker {
 		Debug.Log("correctAnim");
 		if (ItemAttemptState == AttemptState.Attempted) {
 			base.correctAnim ();
+			Debug.Log (nextEvent.ToString());
 			ParentChecker.notifyManager ( ScoreManager.Result.Correct);
 			animManager.correctAnim (1, gameObject.GetComponentInChildren<CustomDragDropItem> ().gameObject, new EventDelegate (deactivateAnim));
 		}

@@ -223,9 +223,9 @@ public class Row : BaseElement {
 
 	//----------------------Score Values ----------------------------
 	override public void  setChildScoreValues(){
-		Debug.Log ("Calling setChildScoreValues in row");
+//		Debug.Log ("Calling setChildScoreValues in row");
 		foreach (Cell cell in CellList) {
-			Debug.Log ("Calling setChildScoreValues for cell"+cell.AnalyticsId.ToString()+" in row");
+//			Debug.Log ("Calling setChildScoreValues for cell"+cell.AnalyticsId.ToString()+" in row");
 			cell.setChildScoreValues ();
 		}
 	}

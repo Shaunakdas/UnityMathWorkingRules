@@ -42,9 +42,9 @@ public class SelectableButtonCell : Cell {
 	override public GameObject generateElementGO(GameObject parentGO){
 		getAlignType ();
 		ElementGO =  generateSelBtnCellGO (parentGO, DisplayText);
-		Debug.Log (Parent.Parent.GetType ().ToString ());
+//		Debug.Log (Parent.Parent.GetType ().ToString ());
 		SelBtnOptionChecker itemChecker = updateItemChecker (ElementGO, correctFlag, Parent.Parent as Line);
-		Debug.Log(itemChecker.correctFlag);
+//		Debug.Log(itemChecker.correctFlag);
 		return ElementGO;
 	}
 	 public GameObject generateSelBtnCellGO(GameObject parentGO, string text){
@@ -97,7 +97,7 @@ public class SelectableButtonCell : Cell {
 	}
 	public  void resizeToFit(GameObject ElementGO){
 		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
-		Debug.Log ("Name of ElemtnGO" + ElementGO.name + "NAme of targetGO" + TableGO.GetComponentInChildren<UILabel>().text);
+//		Debug.Log ("Name of ElemtnGO" + ElementGO.name + "NAme of targetGO" + TableGO.GetComponentInChildren<UILabel>().text);
 		TableGO.GetComponent<UITable> ().Reposition ();
 		BasicGOOperation.ResizeToFitTargetGO (ElementGO, TableGO);
 		ElementGO.GetComponent<UIWidget> ().width = (int)(ElementGO.GetComponent<UIWidget> ().width + 25f);

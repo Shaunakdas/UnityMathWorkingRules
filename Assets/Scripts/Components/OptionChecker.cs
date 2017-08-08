@@ -132,13 +132,11 @@ public class OptionChecker : MonoBehaviour {
 	//----------------------Score Values ----------------------------
 
 	virtual public void setChildScoreValues(){
-		Debug.Log ("SET CHILD SCORE VALUES CELL"+this.GetType().ToString());
+//		Debug.Log ("SET CHILD SCORE VALUES CELL"+this.GetType().ToString());
 		setupDefaultScoreValues ();
 		adjustForWeightage();
 		setupScoreValues ();
-		foreach (OptionChecker option in ChildList) {
-			option.setChildScoreValues ();
-		}
+
 	}
 
 	virtual protected void setupDefaultScoreValues(){

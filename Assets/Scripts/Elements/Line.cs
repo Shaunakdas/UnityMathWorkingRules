@@ -54,7 +54,7 @@ public class Line : BaseElement{
 		if(type_text != null){
 			LineLocation = (LocationType)System.Enum.Parse (typeof(LocationType),StringWrapper.ConvertToPascalCase(type_text),true);
 		}
-		Debug.Log ("LineLocation TYPE" + LineLocation.ToString());
+//		Debug.Log ("LineLocation TYPE" + LineLocation.ToString());
 	}
 	/// <summary>
 	/// Initializes a new instance of the Line class with HTMLNode attribute
@@ -79,7 +79,7 @@ public class Line : BaseElement{
 		IEnumerable<HtmlNode> node_list = line_node.Elements(AttributeManager.TAG_ROW) ;
 		if (node_list!=null) {
 			foreach (HtmlNode row_node in node_list) {
-				Debug.Log ("Content of row_node : " + row_node.InnerHtml);
+//				Debug.Log ("Content of row_node : " + row_node.InnerHtml);
 				Row row = new Row (row_node);
 				row.Parent = this;
 				RowList.Add(row);
@@ -95,23 +95,23 @@ public class Line : BaseElement{
 	override public int siblingIndex(){
 		int index=0;
 		List<Line> lineList = (Parent as Paragraph).LineList;
-		Debug.Log (lineList.Count);
+//		Debug.Log (lineList.Count);
 		for (int i =0; i< lineList.Count ; i++){
-			Debug.Log (lineList[i].GetType());
-			Debug.Log (index + "index");
+//			Debug.Log (lineList[i].GetType());
+//			Debug.Log (index + "index");
 			if (lineList [i].ElementGO == ElementGO) {
-				Debug.Log (i + "yayy");
+//				Debug.Log (i + "yayy");
 				index = i;
 			}
 		}
-		Debug.Log (index + "final");
+//		Debug.Log (index + "final");
 		return index;
 	}
 	public bool lastSibling(){
 		int index = 0;
 		Paragraph para = (Parent as Paragraph);
 		int dragLineCount = para.DragSourceTableList.Count;
-		Debug.Log (siblingIndex ().ToString()+para.LineList.Count.ToString()+dragLineCount.ToString());
+//		Debug.Log (siblingIndex ().ToString()+para.LineList.Count.ToString()+dragLineCount.ToString());
 		if (siblingIndex () == para.LineList.Count - 1 - dragLineCount) {
 			return true;
 		} else {
@@ -266,7 +266,7 @@ public class Line : BaseElement{
 		if (!lastSibling()) {
 			nextEvent = new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO);
 		}
-		Debug.Log ("NEXT EVENT"+ElementGO.name+this.siblingIndex ().ToString()+this.lastSibling().ToString());
+//		Debug.Log ("NEXT EVENT"+ElementGO.name+this.siblingIndex ().ToString()+this.lastSibling().ToString());
 		if (nextEvent.target != null) {
 			Debug.Log (nextEvent.target.name);
 		}
@@ -291,18 +291,21 @@ public class Line : BaseElement{
 			Debug.Log ("Element Display Anim:Checking for DragSourceLine Table");
 			nextEvent.Execute ();
 		} else {
-			Debug.Log ("Element Display Anim: No Interaction Element is present");
+//			Debug.Log ("Element Display Anim: No Interaction Element is present");
 			//If no interaction element is present
 			BasicGOOperation.displayElementGOAnim (ElementGO, nextEvent);
 		}
 	}
 	public void activateQuestionListAnim(EventDelegate nextEvent){
 		//Going through all questionHolders in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
+		Debug.Log("QuestionList Count"+QuestionList.Count);
 		for(int i = 0; i < QuestionList.Count; i++){
 			EventDelegate nextLineEvent = nextEvent;
-			if (i < QuestionList.Count - 1)
+			if (i < QuestionList.Count - 1) {
 				nextLineEvent = new EventDelegate (QuestionList [i + 1].activateAnim);
+			}
 			QuestionList [i].nextEvent = nextLineEvent;
+//			Debug.Log("nextLineEvent"+(nextLineEvent.ToString()==null));
 		}
 		QuestionList [0].activateAnim ();
 	}

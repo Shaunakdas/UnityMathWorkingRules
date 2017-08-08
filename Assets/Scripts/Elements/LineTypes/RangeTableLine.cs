@@ -97,7 +97,7 @@ public class RangeTableLine  : TableLine {
 
 	public List<SelItem> setCorrectFlag(List<SelItem> _selItemList, ItemType _itemType, List<int> _targetList){
 		for (int i = 0; i < _selItemList.Count; i++) {
-			Debug.Log (_selItemList[i].DisplayText);
+//			Debug.Log (_selItemList[i].DisplayText);
 			bool correctFlag = false; int content = int.Parse (_selItemList[i].DisplayText);int _targetCount = _targetList.Count;
 			switch (_itemType) {
 			case ItemType.Multiple:

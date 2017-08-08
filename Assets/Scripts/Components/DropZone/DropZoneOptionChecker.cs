@@ -59,7 +59,7 @@ public class DropZoneOptionChecker : OptionChecker {
 
 	override public void activateAnim(){
 		//Animation for selecting the correct option
-		Debug.Log("activateAnim");
+//		Debug.Log("activateAnim");
 		if (ItemAttemptState != AttemptState.Activated) {
 			base.activateAnim ();
 			gameObject.GetComponent<TweenColor> ().enabled = true;

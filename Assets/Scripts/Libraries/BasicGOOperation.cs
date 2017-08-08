@@ -163,7 +163,7 @@ public class BasicGOOperation : MonoBehaviour{
 		ResizeToFitChildGO (GO);
 		Vector3 finalSize = NGUIMath.CalculateAbsoluteWidgetBounds (GO.transform).size;
 		finalSize.x = finalSize.x / scale.x; finalSize.y = finalSize.y / scale.y;
-		Debug.Log ("ElementSize" + finalSize.x + " and " + finalSize.y);
+//		Debug.Log ("ElementSize" + finalSize.x + " and " + finalSize.y);
 		return finalSize;
 	}
 
@@ -177,7 +177,7 @@ public class BasicGOOperation : MonoBehaviour{
 		Vector3 finalSize = NGUIMath.CalculateRelativeWidgetBounds (ParentGameObject.transform).size;
 //		finalSize.x = finalSize.x / scale.x; finalSize.y = finalSize.y / scale.y;
 		if (ParentGameObject.GetComponent<UIWidget> () != null) {
-			Debug.Log ("ResizeToFitChildGO name"+ ParentGameObject.name+ finalSize.x + " and " + finalSize.y);
+//			Debug.Log ("ResizeToFitChildGO name"+ ParentGameObject.name+ finalSize.x + " and " + finalSize.y);
 			ParentGameObject.GetComponent<UIWidget> ().width = (int)finalSize.x;
 			ParentGameObject.GetComponent<UIWidget> ().height = (int)finalSize.y;
 		}

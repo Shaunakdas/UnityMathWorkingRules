@@ -38,7 +38,7 @@ public class TableLine  : Line {
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	override protected void updateGOProp(GameObject ElementGO){
-		Debug.Log ("COLUMN_COUNT"+ColumnCount);
+//		Debug.Log ("COLUMN_COUNT"+ColumnCount);
 		ElementGO.GetComponent<UITable> ().columns = ColumnCount;
 		SelBtnQuestionChecker selBtnHolder = ElementGO.GetComponent<SelBtnQuestionChecker> ();
 

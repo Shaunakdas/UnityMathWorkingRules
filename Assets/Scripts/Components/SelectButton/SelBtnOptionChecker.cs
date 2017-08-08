@@ -20,12 +20,14 @@ public class SelBtnOptionChecker : OptionChecker {
 		Debug.Log ("activateAnim");
 		if (ItemAttemptState != AttemptState.Activated) {
 			base.activateAnim ();
+			this.gameObject.GetComponent<TweenColor> ().enabled = true;
 		}
 	}
 	override public void deactivateAnim(){
 		//Animation for selecting the correct option
 		Debug.Log("correctAnim");
 		base.deactivateAnim();
+		this.gameObject.GetComponent<TweenColor> ().enabled = false;
 	}
 	override public void correctAnim(){
 		//Animation for selecting the correct option

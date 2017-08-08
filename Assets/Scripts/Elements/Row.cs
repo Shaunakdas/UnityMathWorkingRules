@@ -60,12 +60,12 @@ public class Row : BaseElement {
 		HtmlAttribute attr_tag = row_node.Attributes [AttributeManager.ATTR_TYPE];
 		if (attr_tag != null) {
 			string type_text = row_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-			Debug.Log ("Initializing Row node of type " + type_text);
+//			Debug.Log ("Initializing Row node of type " + type_text);
 			getRowType (type_text);
 			if (Type == RowType.DragSourceLine)
 				initDragSourceCellList (row_node);
 		} else {
-			Debug.Log ("Initializing Row node");
+//			Debug.Log ("Initializing Row node");
 		}
 
 		setAnalyticsIdFromAttr (row_node);
@@ -85,7 +85,7 @@ public class Row : BaseElement {
 			foreach (HtmlNode cell_node in node_list) {
 				Cell newCell = new Cell (cell_node);
 				string cell_type = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-				Debug.Log ("cell_type" + cell_type);
+//				Debug.Log ("cell_type" + cell_type);
 				switch (cell_type) {
 				case "text": 
 					if (Type == RowType.Default) {
@@ -223,7 +223,9 @@ public class Row : BaseElement {
 
 	//----------------------Score Values ----------------------------
 	override public void  setChildScoreValues(){
+		Debug.Log ("Calling setChildScoreValues in row");
 		foreach (Cell cell in CellList) {
+			Debug.Log ("Calling setChildScoreValues for cell"+cell.AnalyticsId.ToString()+" in row");
 			cell.setChildScoreValues ();
 		}
 	}
@@ -277,17 +279,17 @@ public class Row : BaseElement {
 		return parentGO;
 	}
 	public void updateTableColumn (GameObject parentGO){
-		Debug.Log (Parent.GetType ());
+//		Debug.Log (Parent.GetType ());
 		if (Parent.GetType () == typeof(TableLine)) {
 			TableLine tableElement = Parent as TableLine;
-			Debug.Log ("Number of columns of " +parentGO.name+ CellList.Count + tableElement.ColumnCount);
+//			Debug.Log ("Number of columns of " +parentGO.name+ CellList.Count + tableElement.ColumnCount);
 			if (tableElement.ColumnCount == 0) {
 				parentGO.GetComponent<UITable> ().columns = CellList.Count;
 				tableElement.ColumnCount = CellList.Count;
 			} 
 		} else if(Parent.GetType () == typeof(FractionCell)) {
 			FractionCell tableElement = Parent as FractionCell;
-			Debug.Log ("Number of columns of " +parentGO.name+ CellList.Count + tableElement.ColumnCount);
+//			Debug.Log ("Number of columns of " +parentGO.name+ CellList.Count + tableElement.ColumnCount);
 			if (tableElement.ColumnCount == 0) {
 				parentGO.GetComponent<UITable> ().columns = CellList.Count;
 				tableElement.ColumnCount = CellList.Count;
@@ -295,7 +297,7 @@ public class Row : BaseElement {
 		}
 	}
 	override protected void updateGOProp(GameObject _elementGO){
-		Debug.Log ("Updating Grid cell width");
+//		Debug.Log ("Updating Grid cell width");
 		ElementGO = _elementGO;
 		if (Type == RowType.DragSourceLine) {
 			//making Grid child of ScrollView as parent

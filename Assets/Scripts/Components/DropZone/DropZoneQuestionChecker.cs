@@ -23,7 +23,7 @@ public class DropZoneQuestionChecker : QuestionChecker {
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	override public void activateAnim(){
-		Debug.Log ("activateAnim of DropZoneRowCell");
+//		Debug.Log ("activateAnim of DropZoneRowCell");
 		base.activateAnim ();
 		for (int i = 0; i < ChildList.Count; i++) {
 			EventDelegate nextOptionEvent = nextEvent;

@@ -39,9 +39,13 @@ public class AnimationManager : MonoBehaviour {
 			new Keyframe (0f, 0f), new Keyframe (0.5f, 1.2f),  new Keyframe (0.75f, 0.8f), new Keyframe (1f, 1f)
 		);
 		_tweenScale.duration = ANIMATION_DURATION;
-		if (_nextEvent != null)
+		Debug.Log (_nextEvent.ToString()); 
+		Debug.Log (_nextEvent.ToString() == null);
+		if (_nextEvent != null) {
+			
 			Debug.Log (_nextEvent.methodName);
 			_tweenScale.onFinished.Add (_nextEvent);
+		}
 
 	}
 	public void correctBlastAnim(GameObject _elementGO, EventDelegate _nextEvent){
@@ -63,8 +67,9 @@ public class AnimationManager : MonoBehaviour {
 			new Keyframe (0f, 0f), new Keyframe (0.285f, 2f),  new Keyframe (0.524f, 0.33f),new Keyframe (0.72f, 1.66f),new Keyframe (0.86f, 0.66f), new Keyframe (1f, 1f)
 		);
 		_tweenPos.duration = ANIMATION_DURATION;
-		if (_nextEvent != null)
+		if (_nextEvent != null) {
 			_tweenPos.onFinished.Add (_nextEvent);
+		}
 	}
 	public void correctExpandAnim(GameObject _elementGO, EventDelegate _nextEvent){
 		//Depth(+10), Size(->Screen Size)
@@ -110,8 +115,9 @@ public class AnimationManager : MonoBehaviour {
 		if((delete != null)&&delete){
 			EventDelegate.Set(_tweenScale.onFinished, delegate{ NGUITools.Destroy(_elementGO); });
 		}
-		if (_nextEvent != null)
+		if (_nextEvent != null) {
 			_tweenScale.onFinished.Add (_nextEvent);
+		}
 	}
 	public void incorrectLocationAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
 		//Location (->Left->Right->Mid)X3 , Timer decreased by zooming into decrease sector of circle
@@ -131,8 +137,9 @@ public class AnimationManager : MonoBehaviour {
 		if((delete != null)&&delete){
 			EventDelegate.Set(_tweenPos.onFinished, delegate{ NGUITools.Destroy(_elementGO.GetComponentInChildren<CustomDragDropItem>().gameObject); });
 		}
-		if (_nextEvent != null)
+		if (_nextEvent != null) {
 			_tweenPos.onFinished.Add (_nextEvent);
+		}
 	}
 	public void incorrectCrossAnim(GameObject _elementGO, EventDelegate _nextEvent, bool delete){
 		//Duplicate Sprite of same size Size(-> 1.2X), Colour Red, Cross(Center on Top)

@@ -108,7 +108,7 @@ public class DropZoneRowCell : Cell {
 		}
 	}
 	List<string> generateTargetTextList(string targetText){
-		Debug.Log ("generateTargetTextList");
+//		Debug.Log ("generateTargetTextList");
 		List<string> _targetTextList = new List<string> ();
 		//If answer tag is present. user should be able to drop an element.
 		Touchable = true;Dropable = true;

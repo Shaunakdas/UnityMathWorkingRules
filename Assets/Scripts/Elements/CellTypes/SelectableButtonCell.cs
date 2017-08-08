@@ -128,5 +128,10 @@ public class SelectableButtonCell : Cell {
 
 		return option;
 	}
-
+	override public void  setChildScoreValues(){
+		setupScoreValues ();
+		foreach (QuestionChecker ques in BasicGOOperation.getMasterLineRef(this).QuestionList) {
+			ques.setChildScoreValues ();
+		}
+	}
 }

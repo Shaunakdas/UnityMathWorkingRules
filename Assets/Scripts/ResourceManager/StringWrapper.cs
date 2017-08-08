@@ -22,10 +22,10 @@ public static class StringWrapper {
 		init ();
 //		int std = UserProfile.userStandard.standard_number;
 		int std = 6;
-		Debug.Log ("User standard"+std);
+//		Debug.Log ("User standard"+std);
 
 		if(textToChange.IndexOf ("\\_") == -1){
-			Debug.Log ("Replacing underscore");
+//			Debug.Log ("Replacing underscore");
 			textToChange =  textToChange.Replace ('_'.ToString(), "\\_");
 		}
 		if(textToChange.IndexOf ('^') != -1){

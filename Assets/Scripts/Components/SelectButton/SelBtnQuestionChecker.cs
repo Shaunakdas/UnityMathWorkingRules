@@ -73,8 +73,8 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	override public void activateAnim(){
 		base.activateAnim ();
 		Debug.Log ("getActiveAnim of DropZoneRowCell");
-		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
-			itemColor.enabled = true;
+		for (int i = 0; i < ChildList.Count; i++) {
+			ChildList[i].activateAnim();
 		}
 	}
 	override public void startTimerAnim (){
@@ -87,8 +87,8 @@ public class SelBtnQuestionChecker : QuestionChecker {
 	override public void deactivateAnim(){
 		base.deactivateAnim ();
 		Debug.Log ("getActiveAnim of DropZoneRowCell");
-		foreach (TweenColor itemColor in this.gameObject.GetComponentsInChildren<TweenColor>()) {
-			itemColor.enabled = false;
+		for (int i = 0; i < ChildList.Count; i++) {
+			ChildList[i].deactivateAnim();
 		}
 	}
 	/// <summary>
@@ -121,26 +121,28 @@ public class SelBtnQuestionChecker : QuestionChecker {
 		for (int i=0;i<ChildList.Count; i++){
 			SelBtnOptionChecker option = ChildList [i] as SelBtnOptionChecker;
 			option.attemptEvent();
-			bool optionCorrect = false;
+			bool optionCorrect = true;
 			EventDelegate _nextEvent = null;
 			if (i == ChildList.Count - 1) {
 				_nextEvent = nextEvent;
 			}
 			if (option.userInputFlag) {
+				option.nextEvent = _nextEvent;
 				//CheckAnimation if userinputFlag is correct. Wait
 				if (option.correctFlag) {
 					option.correctAnim ();optionCorrect = true;
 				} else {
 					option.incorrectAnim ();optionCorrect = false;
 				}
-				option.nextEvent = _nextEvent;
 			} else if (option.correctFlag) {
 				option.ItemAttemptState = AttemptState.Checked;
 				optionCorrect = false;
 				//Animation for showing the correct options
 				option.nextEvent = _nextEvent;option.correctionAnim ();
 			}
+			Debug.Log ("Before And"+quesCorrect.ToString()+optionCorrect.ToString());
 			quesCorrect = quesCorrect && optionCorrect;
+			Debug.Log ("After And"+quesCorrect.ToString()+optionCorrect.ToString());
 		}
 		ScoreManager.Result _quesResult = (quesCorrect == true) ?  (ScoreManager.Result.Correct) : (ScoreManager.Result.Incorrect);
 		notifyManager (_quesResult);

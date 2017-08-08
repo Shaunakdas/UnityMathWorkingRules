@@ -29,13 +29,13 @@ public class Cell : TableLine {
 	public Cell(HtmlNode cell_node){
 		RowList = new List<Row> ();htmlNode = cell_node;
 		string type_text = cell_node.Attributes [AttributeManager.ATTR_TYPE].Value;
-		Debug.Log ("Initializing Cell node of type "+type_text);
+//		Debug.Log ("Initializing Cell node of type "+type_text);
 
 		setAnalyticsIdFromAttr (cell_node);
 		parseChildNode (cell_node);
 	}
 	override public void parseChildNode(HtmlNode cell_node){
-		Debug.Log ("inside parseChildNode of Cell");
+//		Debug.Log ("inside parseChildNode of Cell");
 	}
 	virtual public void  getAlignType(){
 		DragAlign = Paragraph.ParagraphAlign;
@@ -72,6 +72,7 @@ public class Cell : TableLine {
 	//----------------------Score Values ----------------------------
 	override public void  setChildScoreValues(){
 		setupScoreValues ();
+		Debug.Log ("Question count in cell "+QuestionList.Count+(Parent.Parent as Line).QuestionList.Count);
 		foreach (QuestionChecker ques in QuestionList) {
 			ques.setChildScoreValues ();
 		}

@@ -10,14 +10,18 @@ public class QuestionChecker : OptionChecker {
 	}
 	virtual public void addToMasterLine(){ 
 //		BasicGOOperation.getMasterLineRef(ContainerElem).QuestionList.Add(this);
-		Debug.Log(ContainerElem.GetType().ToString());
 		addToContainerElemList (ContainerElem);
+//		Debug.Log(BasicGOOperation.getMasterLineRef(ContainerElem).ElementGO.name);
 		addToList (this, BasicGOOperation.getMasterLineRef(ContainerElem).QuestionList);
 	}
 	virtual public void addToMasterLine(Line _lineRef){ 
 //		_lineRef.QuestionList.Add(this);
 		addToContainerElemList (ContainerElem);
+//		Debug.Log(BasicGOOperation.getMasterLineRef(ContainerElem).ElementGO.name);
+//		Debug.Log(_lineRef.ElementGO.name);
 		addToList (this, _lineRef.QuestionList);
+		Debug.Log(_lineRef.QuestionList.Count);
+//		addToList (this, BasicGOOperation.getMasterLineRef(ContainerElem).QuestionList);
 	}
 	void addToContainerElemList(BaseElement _containerElem){
 		if(_containerElem.GetType ().IsSubclassOf(typeof(Cell))){

@@ -57,7 +57,7 @@ public class Paragraph : BaseElement{
 	public Paragraph(HtmlNode para_node){
 		ParagraphRef = this;htmlNode = para_node;
 		LineList = new List<Line> ();
-		Debug.Log ("Initializing paragraph node of type "+para_node.Attributes [AttributeManager.ATTR_TYPE].Value);
+//		Debug.Log ("Initializing paragraph node of type "+para_node.Attributes [AttributeManager.ATTR_TYPE].Value);
 
 		HtmlAttribute align = para_node.Attributes [AttributeManager.ATTR_ALIGN];
 		HtmlAttribute correctCount = para_node.Attributes [AttributeManager.ATTR_CORRECT_TYPE];
@@ -99,7 +99,7 @@ public class Paragraph : BaseElement{
 					postSubmitText = StringWrapper.HtmlToPlainText((line_node).InnerText);
 				} else {
 					Line newLine = new Line (line_node);
-					Debug.Log ("Line type " + line_type);
+//					Debug.Log ("Line type " + line_type);
 					switch (line_type) {
 					case "text": 
 						newLine = new TextLine (line_node);
@@ -147,7 +147,7 @@ public class Paragraph : BaseElement{
 	/// (Based on matching id) Populates TargetText of DropZone Row Element with Reference of corresponding DragSourceCell 
 	/// </summary>
 	public void populateCellTargetText(){
-		Debug.Log ("Populating Target Text of each drop zone cell");
+//		Debug.Log ("Populating Target Text of each drop zone cell");
 		//Tracking all DropZone Cell TargetText
 		List<DropZoneRowCell> dropZoneCellList = new List<DropZoneRowCell> ();
 		List<DragSourceCell> dragSourceCellList = new List<DragSourceCell> ();
@@ -273,14 +273,14 @@ public class Paragraph : BaseElement{
 			if (childTransform.gameObject != CenterContentGO) {
 				//Check for size of other GameObjects other than Default Types
 				if (childTransform.gameObject.GetComponent<TEXDrawNGUI> () != null) {
-					Debug.Log (BasicGOOperation.ElementSize(childTransform.gameObject).y);
+//					Debug.Log (BasicGOOperation.ElementSize(childTransform.gameObject).y);
 				}
 
 				Vector3 childSize = NGUIMath.CalculateAbsoluteWidgetBounds(childTransform).size;
 				childSize.x = childSize.x / scale.x; childSize.y = childSize.y / scale.y;
-				Debug.Log ("Bound of GameObject "+childTransform.gameObject.name+(childSize.x)+" - "+(childSize.y));
+//				Debug.Log ("Bound of GameObject "+childTransform.gameObject.name+(childSize.x)+" - "+(childSize.y));
 				remainingSize = remainingSize - childSize;
-				Debug.Log ("Remaining Bound" + remainingSize.x +" - "+ remainingSize.y);
+//				Debug.Log ("Remaining Bound" + remainingSize.x +" - "+ remainingSize.y);
 			}
 		}
 		resizeCenterContentChild (CenterContentGO, ParagraphAlign, remainingSize);
@@ -376,16 +376,16 @@ public class Paragraph : BaseElement{
 		//Adding Lines
 		foreach (Line line in para.LineList) {
 			TargetEntity lineEntity = new TargetEntity("Line", line.AnalyticsId);
-			Debug.Log ("Line"+line.AnalyticsId.ToString());
+//			Debug.Log ("Line"+line.AnalyticsId.ToString());
 			//Adding Questions
 			foreach (QuestionChecker ques in line.QuestionList) {
 				TargetEntity quesEntity = new TargetEntity("Question", ques.AnalyticsId);
-				Debug.Log ("Question"+ques.AnalyticsId.ToString());
+//				Debug.Log ("Question"+ques.AnalyticsId.ToString());
 				//Adding Options
 				foreach (OptionChecker option in ques.ChildList) {
 					TargetEntity optionEntity = new TargetEntity("Option", option.AnalyticsId);
 					quesEntity.ChildEntityList.Add (optionEntity);
-					Debug.Log ("Option"+option.AnalyticsId.ToString());
+//					Debug.Log ("Option"+option.AnalyticsId.ToString());
 				}
 
 				lineEntity.ChildEntityList.Add (quesEntity);

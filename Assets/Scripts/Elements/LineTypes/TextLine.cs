@@ -36,5 +36,6 @@ public class TextLine : Line {
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 //		ElementGO.GetComponent<UILabel> ().text = DisplayText;
 		BasicGOOperation.setText(ElementGO,DisplayText);
+
 	}
 }

@@ -14,20 +14,20 @@ public class ScreenManager : MonoBehaviour {
 		
 	}
 	static public GameObject SetAsScreenSize(GameObject _elementGO){
-		SetAsScreenHeight (_elementGO);SetAsScreenWidth (_elementGO);
+		SetAsScreenHeight (_elementGO,0);SetAsScreenWidth (_elementGO,0);
 		return _elementGO;
 	}
-	static public GameObject SetAsScreenWidth(GameObject _elementGO){
+	static public GameObject SetAsScreenWidth(GameObject _elementGO, int padding){
 		UIWidget elementWidget = _elementGO.GetComponent<UIWidget> ();
 		if (elementWidget != null) {
-			elementWidget.height = Screen.height;
+			elementWidget.width = Screen.width - padding;
 		}
 		return _elementGO;
 	}
-	static public GameObject SetAsScreenHeight(GameObject _elementGO){
+	static public GameObject SetAsScreenHeight(GameObject _elementGO, int padding){
 		UIWidget elementWidget = _elementGO.GetComponent<UIWidget> ();
 		if (elementWidget != null) {
-			elementWidget.width = Screen.width;
+			elementWidget.height = Screen.height - padding;
 		}
 		return _elementGO;
 	}

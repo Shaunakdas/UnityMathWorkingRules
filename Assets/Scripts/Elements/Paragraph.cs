@@ -317,6 +317,9 @@ public class Paragraph : BaseElement{
 			GameObject StartWorkingRuleBtnPF = Resources.Load (LocationManager.COMPLETE_LOC_OTHER_TYPE + LocationManager.NAME_START_WORKING_RULE_BTN)as GameObject;
 			GameObject StartWorkingRuleBtn = BasicGOOperation.InstantiateNGUIGO(StartWorkingRuleBtnPF,LineTableGO.transform);
 			EventDelegate.Set(StartWorkingRuleBtn.GetComponentInChildren<UIButton>().onClick, delegate() { (this.Parent as ComprehensionBody).nextParaTrigger(); });
+			if (ParagraphAlign == AlignType.Vertical) {
+				ScreenManager.SetAsScreenWidth (StartWorkingRuleBtn,30);
+			}
 		}
 	}
 

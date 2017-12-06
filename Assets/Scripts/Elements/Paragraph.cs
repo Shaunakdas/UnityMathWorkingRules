@@ -257,6 +257,8 @@ public class Paragraph : BaseElement{
 	override protected void updateGOProp(GameObject _elementGO){
 		if (ParagraphStep == Paragraph.StepType.Comprehension) {
 			ScreenManager.SetAsScreenSize (ElementGO);
+		} else if (ParagraphStep == Paragraph.StepType.QuestionStep) {
+			ScreenManager.resizeChildren (ElementGO);
 		}
 	}
 	/// <summary>

@@ -52,7 +52,7 @@ public class TableLine  : Line {
 			Debug.Log ("Table width"+BasicGOOperation.ScaledBounds (ElementGO).x.ToString());
 			float paddingNeeded = Screen.width -BasicGOOperation.ScaledBounds(ElementGO).x;
 			if (ColumnCount > 1) {
-				ElementGO.GetComponent<UITable> ().padding.x = (paddingNeeded - 30)/(ColumnCount);
+//				ElementGO.GetComponent<UITable> ().padding.x = (paddingNeeded - 30)/(ColumnCount);
 			}
 		}
 	}

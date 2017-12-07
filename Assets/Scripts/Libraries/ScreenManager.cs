@@ -18,10 +18,18 @@ public class ScreenManager : MonoBehaviour {
 	static bool isTexDraw(GameObject _elementGO){
 		return (_elementGO.GetComponent<TEXDrawNGUI> () != null);
 	}
-	static bool isChildOfGrid(GameObject _elementGO){
-		return (_elementGO.GetComponentInParent<UIGrid>() != null);
+	static UIWidget resizeTexDraw(Vector2 scale, UIWidget widget){
+		widget.width = (int)(scale.x * widget.width);
+		widget.gameObject.GetComponent<TEXDrawNGUI> ().size = scale.y * widget.gameObject.GetComponent<TEXDrawNGUI> ().size;
+		return widget;
 	}
-
+	static bool isUILabel(GameObject _elementGO){
+		return (_elementGO.GetComponent<UILabel> () != null);
+	}
+	static UIWidget resizeUILabel(Vector2 scale, UIWidget widget){
+		widget.gameObject.GetComponent<UILabel> ().fontSize = (int)(scale.y * widget.gameObject.GetComponent<UILabel> ().fontSize);
+		return widget;
+	}
 	//Resizing Children based on its type
 	static GameObject resizePanelChildren(Vector2 scale, GameObject _elementGO){
 		foreach (UIPanel panel in  _elementGO.GetComponentsInChildren<UIPanel> ()){
@@ -41,9 +49,8 @@ public class ScreenManager : MonoBehaviour {
 		foreach (UIWidget widget in _elementGO.GetComponentsInChildren<UIWidget> ()){
 			if (isTexDraw (widget.gameObject)) {
 				resizeTexDraw (scale, widget);
-			} else if (isChildOfGrid (widget.gameObject)) {
-				Debug.Log ("isChildOfGrid"+ widget.gameObject.name );
-				Debug.Log ("isChildOfGrid"+ widget.gameObject.name + " child of "+widget.gameObject.GetComponentInParent<UIGrid>().gameObject.name);
+			} else if (isUILabel (widget.gameObject)) {
+				resizeUILabel (scale, widget);
 			} else if (widget.isAnchored) {
 				Debug.Log ("isAnchored"+ widget.gameObject.name);
 			} else {
@@ -52,11 +59,6 @@ public class ScreenManager : MonoBehaviour {
 			}
 		}
 		return _elementGO;
-	}
-	static UIWidget resizeTexDraw(Vector2 scale, UIWidget widget){
-		widget.width = (int)(scale.x * widget.width);
-		widget.gameObject.GetComponent<TEXDrawNGUI> ().size = scale.y * widget.gameObject.GetComponent<TEXDrawNGUI> ().size;
-		return widget;
 	}
 	/// <summary>
 	/// Resizes the children based on its type.

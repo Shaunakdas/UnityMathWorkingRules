@@ -138,6 +138,10 @@ public class ComprehensionBody : BaseElement {
 		//Setting ParaCounterTable as screen bottom
 		GameObject ParaTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaTable");
 		ScreenManager.SetTableAsScreenBottom (ParaTableGO);
+		// Resizing Scoreboard based on Screensize 
+		ScreenManager.resizeChildren(BasicGOOperation.getChildGameObject (ElementGO, "ScoreBoard"));
+		// Resizing ParaCounterTable based on Screensize 
+		ScreenManager.resizeChildren(BasicGOOperation.getChildGameObject (ParaTableGO, "ParaCounterTable"));
 	}
 	override public void  setChildAnalyticsId(){
 		int index = 1;

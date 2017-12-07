@@ -138,8 +138,6 @@ public class ComprehensionBody : BaseElement {
 		//Setting ParaCounterTable as screen bottom
 		GameObject ParaTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaTable");
 		ScreenManager.SetTableAsScreenBottom (ParaTableGO);
-		// Resizing Scoreboard based on Screensize 
-		ScreenManager.resizeChildren(BasicGOOperation.getChildGameObject (ElementGO, "ScoreBoard"));
 		// Resizing ParaCounterTable based on Screensize 
 		ScreenManager.resizeChildren(BasicGOOperation.getChildGameObject (ParaTableGO, "ParaCounterTable"));
 	}
@@ -183,6 +181,7 @@ public class ComprehensionBody : BaseElement {
 		}
 		scoreMan.setupTimer (scoreTracker.timeAllotted);
 		scoreMan.setupLives (scoreTracker.maxLives);
+		ScreenManager.resizeChildren(scoreMan.ElementGO);
 	}
 	//----------------------Analytics ----------------------------
 	public void setupScoreSettings(){

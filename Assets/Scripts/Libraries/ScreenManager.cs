@@ -18,6 +18,9 @@ public class ScreenManager : MonoBehaviour {
 	static bool isTexDraw(GameObject _elementGO){
 		return (_elementGO.GetComponent<TEXDrawNGUI> () != null);
 	}
+	static bool isSprite(GameObject _elementGO){
+		return (_elementGO.GetComponent<UI2DSprite> () != null);
+	}
 	static UIWidget resizeTexDraw(Vector2 scale, UIWidget widget){
 		widget.width = (int)(scale.x * widget.width);
 		widget.gameObject.GetComponent<TEXDrawNGUI> ().size = scale.y * widget.gameObject.GetComponent<TEXDrawNGUI> ().size;
@@ -46,13 +49,19 @@ public class ScreenManager : MonoBehaviour {
 		return _elementGO;
 	}
 	static GameObject resizeWidgetChildren(Vector2 scale, GameObject _elementGO){
+		Debug.Log ("GameObject resizeWidgetChildren"+ _elementGO.name);
 		foreach (UIWidget widget in _elementGO.GetComponentsInChildren<UIWidget> ()){
 			if (isTexDraw (widget.gameObject)) {
 				resizeTexDraw (scale, widget);
 			} else if (isUILabel (widget.gameObject)) {
 				resizeUILabel (scale, widget);
+
+				if ((widget.GetComponent<UILabel>().overflowMethod != UILabel.Overflow.ResizeFreely) && (!widget.isAnchored)){
+					widget.height = (int)(scale.y *widget.height);
+					widget.width = (int)(scale.x * widget.width);
+				}
 			} else if (widget.isAnchored) {
-				Debug.Log ("isAnchored"+ widget.gameObject.name);
+				//				Debug.Log ("isAnchored"+ widget.gameObject.name);
 			} else {
 				widget.height = (int)(scale.y *widget.height);
 				widget.width = (int)(scale.x * widget.width);
@@ -90,6 +99,16 @@ public class ScreenManager : MonoBehaviour {
 		if (elementWidget != null) {
 			elementWidget.height = Screen.height - padding;
 		}
+		return _elementGO;
+	}
+	static public GameObject SetAsScreenLeft(GameObject _elementGO){
+		Vector2 elementSize = BasicGOOperation.ElementSize (_elementGO); Vector3 elementPos = _elementGO.transform.localPosition;
+		_elementGO.transform.localPosition =new Vector3 ( -Screen.width/2, elementPos.y, elementPos.z);
+		return _elementGO;
+	}
+	static public GameObject SetAsScreenRight(GameObject _elementGO){
+		Vector2 elementSize = BasicGOOperation.ElementSize (_elementGO); Vector3 elementPos = _elementGO.transform.localPosition;
+		_elementGO.transform.localPosition =new Vector3 ( Screen.width/2, elementPos.y, elementPos.z);
 		return _elementGO;
 	}
 	static public GameObject SetAsScreenTop(GameObject _elementGO){

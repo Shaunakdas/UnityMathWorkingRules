@@ -63,7 +63,7 @@ public class ScoreManager:BaseElement  {
 	override protected void updateGOProp(GameObject _elementGO){
 		setupScoreDisplay(_elementGO);
 		ScreenManager.SetAsScreenTop (_elementGO);
-		
+		ScreenManager.SetAsScreenLeft(BasicGOOperation.getChildGameObject (_elementGO, "LeftTable"));
 	}
 	void setupScoreDisplay(GameObject _elementGO){
 		scoreDisplay = _elementGO.GetComponent<ScoreDisplayManager> ();

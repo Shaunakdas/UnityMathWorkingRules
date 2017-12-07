@@ -13,53 +13,63 @@ public class ScreenManager : MonoBehaviour {
 	void Update () {
 		
 	}
+	//-------------Based on Children Types, resizing based on screen size -------------------
+	//Checking GameObject type
 	static bool isTexDraw(GameObject _elementGO){
 		return (_elementGO.GetComponent<TEXDrawNGUI> () != null);
-	}
-	static bool notScrollView(GameObject _elementGO){
-		return true;
 	}
 	static bool isChildOfGrid(GameObject _elementGO){
 		return (_elementGO.GetComponentInParent<UIGrid>() != null);
 	}
-	static bool isButton(GameObject _elementGO){
-		return (_elementGO.GetComponent<UIButton>() != null);
-	}
-	static public GameObject resizeChildren(GameObject _elementGO){
-//			_elementGO.transform.localScale = new Vector3(scale_x,scale_y,1);
-		//		_elementGO.transform.localScale.y = scale_y;
-		float scale_x = ((float)Screen.width / 480);
-		float scale_y = ((float)Screen.height / 900);
-		foreach (UIGrid grid in  _elementGO.GetComponentsInChildren<UIGrid> ()){
-			grid.cellWidth = scale_x * grid.cellWidth;
-			grid.cellHeight = scale_y * grid.cellHeight;
-		}
+
+	//Resizing Children based on its type
+	static GameObject resizePanelChildren(Vector2 scale, GameObject _elementGO){
 		foreach (UIPanel panel in  _elementGO.GetComponentsInChildren<UIPanel> ()){
 			Vector4 region = panel.baseClipRegion;
-			panel.baseClipRegion = new Vector4 (region.x, region.y, region.z * scale_x, region.w * scale_y);
-//			Vector3 initial = panel.GetComponent<RectTransform> ().sizeDelta;
-//			panel.GetComponent<RectTransform> ().sizeDelta = new Vector3(scale_x * initial.x, scale_y *initial.y, initial.z) ;
-//			panel.width = scale_x * panel.width;
-//			panel.height = scale_y * panel.height;
+			panel.baseClipRegion = new Vector4 (region.x, region.y, region.z * scale.x, region.w * scale.y);
 		}
+		return _elementGO;
+	}
+	static GameObject resizeGridChildren(Vector2 scale, GameObject _elementGO){
+		foreach (UIGrid grid in  _elementGO.GetComponentsInChildren<UIGrid> ()){
+			grid.cellWidth = scale.x * grid.cellWidth;
+			grid.cellHeight = scale.y * grid.cellHeight;
+		}
+		return _elementGO;
+	}
+	static GameObject resizeWidgetChildren(Vector2 scale, GameObject _elementGO){
 		foreach (UIWidget widget in _elementGO.GetComponentsInChildren<UIWidget> ()){
-//			Debug.Log (widget.gameObject.name);
 			if (isTexDraw (widget.gameObject)) {
-				widget.width = (int)(scale_x * widget.width);
-				widget.gameObject.GetComponent<TEXDrawNGUI> ().size = scale_y * widget.gameObject.GetComponent<TEXDrawNGUI> ().size;
+				resizeTexDraw (scale, widget);
 			} else if (isChildOfGrid (widget.gameObject)) {
 				Debug.Log ("isChildOfGrid"+ widget.gameObject.name );
 				Debug.Log ("isChildOfGrid"+ widget.gameObject.name + " child of "+widget.gameObject.GetComponentInParent<UIGrid>().gameObject.name);
 			} else if (widget.isAnchored) {
 				Debug.Log ("isAnchored"+ widget.gameObject.name);
 			} else {
-				widget.height = (int)(scale_y *widget.height);
-				widget.width = (int)(scale_x * widget.width);
+				widget.height = (int)(scale.y *widget.height);
+				widget.width = (int)(scale.x * widget.width);
 			}
-//			widget.gameObject.transform.localScale = new Vector3(scale_x,scale_y,1);
-//			widget.height = (Screen.height/900)*(widget.height);
-//			widget.width = (Screen.width/400)*(widget.width);
 		}
+		return _elementGO;
+	}
+	static UIWidget resizeTexDraw(Vector2 scale, UIWidget widget){
+		widget.width = (int)(scale.x * widget.width);
+		widget.gameObject.GetComponent<TEXDrawNGUI> ().size = scale.y * widget.gameObject.GetComponent<TEXDrawNGUI> ().size;
+		return widget;
+	}
+	/// <summary>
+	/// Resizes the children based on its type.
+	/// </summary>
+	/// <returns>GameObject itself</returns>
+	/// <param name="_elementGO">Element Gameobject</param>
+	static public GameObject resizeChildren(GameObject _elementGO){
+		float scale_x = ((float)Screen.width / 480);
+		float scale_y = ((float)Screen.height / 900);
+		Vector2 newScale = new Vector2 (scale_x, scale_y);
+		resizePanelChildren (newScale, _elementGO);
+		resizeGridChildren (newScale, _elementGO);
+		resizeWidgetChildren (newScale, _elementGO);
 		return _elementGO;
 	}
 	static public GameObject SetAsScreenSize(GameObject _elementGO){

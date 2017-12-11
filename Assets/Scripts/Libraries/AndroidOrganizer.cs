@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class SharedPrefOrganizer {
+public static class AndroidOrganizer {
 
 	/// <summary>
 	/// Gets the Android activity.

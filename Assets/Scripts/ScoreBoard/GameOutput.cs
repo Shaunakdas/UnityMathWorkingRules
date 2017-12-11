@@ -43,8 +43,8 @@ public class GameOutput {
 	/// Set GameResult Prefs to outputString() and ShowResult to 1
 	/// </summary>
 	public void setOutputPrefs(){
-		SharedPrefOrganizer.setSharedPrefs ("GameResult", outputString ());
-		SharedPrefOrganizer.setSharedPrefs ("ShowResult", "1");
+		AndroidOrganizer.setSharedPrefs ("GameResult", outputString ());
+		AndroidOrganizer.setSharedPrefs ("ShowResult", "1");
 	}
 
 }

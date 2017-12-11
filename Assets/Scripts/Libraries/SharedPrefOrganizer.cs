@@ -18,7 +18,7 @@ public static class SharedPrefOrganizer {
 	/// </summary>
 	/// <param name="key">Key.</param>
 	/// <param name="value">Value.</param>
-	static void setSharedPrefs (string key, string value) {
+	public static void setSharedPrefs (string key, string value) {
 		getAndroidActivity ().Call("setPrefsValue",key, value);
 	}
 	
@@ -26,7 +26,7 @@ public static class SharedPrefOrganizer {
 	/// Gets the shared prefs in android.
 	/// </summary>
 	/// <param name="key">Key.</param>
-	static string getSharedPrefs (string key) {
+	public static string getSharedPrefs (string key) {
 		return (getAndroidActivity ().Call<string>("getPrefsValue",key));
 	}
 }

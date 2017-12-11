@@ -33,7 +33,7 @@ public class GameOutput {
 		failed = _failed;
 	}
 	/// <summary>
-	/// Convert object into JSON and stringify it.
+	/// Convert GameOutput into JSON and stringify it.
 	/// </summary>
 	/// <returns>stringified GameOutput JSON</returns>
 	string outputString(){

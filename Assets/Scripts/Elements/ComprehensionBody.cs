@@ -240,6 +240,8 @@ public class ComprehensionBody : BaseElement {
 		postScoreCalc ();
 		postStarCalc ();
 		postDiffLevelCalc ();
+		scoreTracker.setSharedPrefs ();
+		AndroidOrganizer.callMethod ("Call");
 	}
 	protected void postScoreCalc(){
 		foreach (Paragraph para in ParagraphList) {

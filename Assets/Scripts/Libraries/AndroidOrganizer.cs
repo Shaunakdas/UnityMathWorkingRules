@@ -29,4 +29,7 @@ public static class AndroidOrganizer {
 	public static string getSharedPrefs (string key) {
 		return (getAndroidActivity ().Call<string>("getPrefsValue",key));
 	}
+	public static void callMethod(string key){
+		getAndroidActivity ().Call(key);
+	}
 }

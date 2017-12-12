@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using SimpleJSON;
 public class GameOutput {
 	float score {get; set;}
 	float time_taken{get; set;}
@@ -37,7 +37,16 @@ public class GameOutput {
 	/// </summary>
 	/// <returns>stringified GameOutput JSON</returns>
 	string outputString(){
-		return "";
+		JSONNode node = new JSONClass();
+		node["score"]=score.ToString();		
+		node["time_taken"]=time_taken.ToString();		
+		node["correct_count"]=correct_count.ToString();		
+		node["incorrect_count"]=incorrect_count.ToString();		
+		node["seen"]=seen.ToString();
+		node["passed"]=passed.ToString();
+		node["failed"]=failed.ToString();
+		Debug.Log("Generating output String as "+node.ToString());
+		return node.ToString();
 	}
 	/// <summary>
 	/// Set GameResult Prefs to outputString() and ShowResult to 1

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
+using UnityEngine.SceneManagement;
 
 public class HTMLParserTest : MonoBehaviour {
 	//List of Paragraphs of questions
@@ -63,6 +64,10 @@ public class HTMLParserTest : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+	//To be called from Android Activity
+	public void reloadScene(){
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 }

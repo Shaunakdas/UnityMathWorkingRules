@@ -137,7 +137,7 @@ PlayerSettings:
   protectGraphicsMemory: 0
   useHDRDisplay: 0
   applicationIdentifier:
-    Android: com.math.genius
+    Android: com.edu.genius
     Standalone: unity.DefaultCompany.MathWorkingRule
     Tizen: com.Company.ProductName
     iOS: com.Company.ProductName

@@ -38,7 +38,7 @@ public class GameOutput {
 	/// <returns>stringified GameOutput JSON</returns>
 	string outputString(){
 		JSONNode node = new JSONClass();
-		node["score"]=score.ToString();		
+		node["value"]=score.ToString();		
 		node["time_taken"]=time_taken.ToString();		
 		node["correct_count"]=correct_count.ToString();		
 		node["incorrect_count"]=incorrect_count.ToString();		

@@ -218,8 +218,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: /Users/shaunakdas2020/Documents/workspace/android_keystores/drona.keystore
+  AndroidKeyaliasName: genius
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 1

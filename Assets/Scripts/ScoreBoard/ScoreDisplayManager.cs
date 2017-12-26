@@ -38,7 +38,9 @@ public class ScoreDisplayManager : MonoBehaviour {
 //			liveGOList.Add(BasicGOOperation.InstantiateNGUIGO(livePF,RightTableGO.transform));
 			liveGOList.Add(liveGo);
 		}
+
 		repositionTable (RightTableGO);
+		ScreenManager.SetAsScreenRight (RightTableGO);
 	}
 	public void updateLives(int liveDelta){
 		if (liveDelta < 0) {

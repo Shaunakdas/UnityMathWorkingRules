@@ -6,10 +6,10 @@ public class BasicGOOperation : MonoBehaviour{
 	static private Vector3 _scale;
 	static public Vector3 scale{
 		get { 
-			if (_scale != null) {
+			if (_scale != new Vector3(0f,0f,0f)) {
 				return _scale;
 			} else {
-				return new Vector3 (0.002136752f, 0.002136752f, 0.002136752f);
+				return new Vector3 (0.0015625f,0.0015625f,0.0015625f);
 			}
 		}
 		set { _scale = value; }

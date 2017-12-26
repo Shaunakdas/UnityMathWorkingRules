@@ -52,4 +52,8 @@ public class ScoreTracker {
 			break;
 		}
 	}
+	public void setSharedPrefs(){
+		GameOutput output = new GameOutput (attemptScore, (float)attemptTime.TotalSeconds, childCorrectCount, 0, true, true, false);
+		output.setOutputPrefs ();
+	}
 }

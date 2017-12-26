@@ -81,8 +81,8 @@ MonoBehaviour:
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
   m_Text: '250105 '
   m_FontIndex: 15
-  m_AutoFit: 2
-  m_AutoWrap: 0
+  m_AutoFit: 3
+  m_AutoWrap: 2
   m_AutoFill: 0
   m_Size: 35
   m_Material: {fileID: 0}

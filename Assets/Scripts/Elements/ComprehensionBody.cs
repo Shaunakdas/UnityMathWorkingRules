@@ -138,6 +138,8 @@ public class ComprehensionBody : BaseElement {
 		//Setting ParaCounterTable as screen bottom
 		GameObject ParaTableGO = BasicGOOperation.getChildGameObject (ElementGO, "ParaTable");
 		ScreenManager.SetTableAsScreenBottom (ParaTableGO);
+		// Resizing ParaCounterTable based on Screensize 
+		ScreenManager.resizeChildren(BasicGOOperation.getChildGameObject (ParaTableGO, "ParaCounterTable"));
 	}
 	override public void  setChildAnalyticsId(){
 		int index = 1;
@@ -179,6 +181,7 @@ public class ComprehensionBody : BaseElement {
 		}
 		scoreMan.setupTimer (scoreTracker.timeAllotted);
 		scoreMan.setupLives (scoreTracker.maxLives);
+		ScreenManager.resizeChildren(scoreMan.ElementGO);
 	}
 	//----------------------Analytics ----------------------------
 	public void setupScoreSettings(){
@@ -237,6 +240,8 @@ public class ComprehensionBody : BaseElement {
 		postScoreCalc ();
 		postStarCalc ();
 		postDiffLevelCalc ();
+		scoreTracker.setSharedPrefs ();
+		AndroidOrganizer.callMethod ("Call");
 	}
 	protected void postScoreCalc(){
 		foreach (Paragraph para in ParagraphList) {

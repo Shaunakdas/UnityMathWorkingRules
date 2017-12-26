@@ -28,7 +28,7 @@ public static class QuestionImporter  {
 		inputChapter = -1;
 		questionArrIndex = -1;
 		//User Input Values
-		importMode = ImportSettings.File;
+		importMode = ImportSettings.Android;
 		inputStandard = -1;
 		inputChapter = -1;
 		questionArrIndex = -1;

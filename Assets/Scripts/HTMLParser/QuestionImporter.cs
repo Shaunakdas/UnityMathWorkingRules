@@ -29,7 +29,7 @@ public static class QuestionImporter  {
 		questionArrIndex = -1;
 		//User Input Values
 		importMode = ImportSettings.File;
-		inputStandard = -1;
+		inputStandard = 6;
 		inputChapter = -1;
 		questionArrIndex = -1;
 	}
@@ -37,8 +37,10 @@ public static class QuestionImporter  {
 		setUserInput();
 		if ((inputStandard != -1)&&(inputChapter != -1)){
 			string file = "QuestionSource/screenplays/standard_"+inputStandard+"/chapter_"+inputChapter+".html";
+			loadFromFile (file);
 		} else if (inputStandard != -1){
 			string folder = "QuestionSource/screenplays/standard_"+inputStandard+"/";
+			loadFromFolder(folder);
 			//Go through the folder, make an array of chapter files
 			//Go through each chapter files, add all html to questionArr
 		} else {
@@ -47,24 +49,42 @@ public static class QuestionImporter  {
 			//For each folder: folder+standard_i
 			foreach (string folder in Directory.GetDirectories(parent)) {
 				Debug.Log ("Folder"+folder);
-				if (folder.Contains ("standard_")) {
-					//For each file chapter_j
-					foreach (string file in Directory.GetFiles(folder)) {
-						Debug.Log ("File"+file);
-						if ((file.Contains ("chapter_"))&&(!file.Contains ("meta"))) {
-							Debug.Log ("File2"+file);
-							string parentTag = System.IO.File.ReadAllText (@file);
-							var html = new HtmlDocument ();
-							html.LoadHtml (parentTag);
-							Debug.Log (html.DocumentNode.SelectNodes("//body")[0].OuterHtml);
-							// For each questionHtml
-							foreach (HtmlNode body in html.DocumentNode.SelectNodes("//body")) {
-								questionArr.Add (body.OuterHtml);
-							}
-//							questionArr.Add ();
-						}
-					}
-				}
+				loadFromFolder(folder);
+			}
+		}
+	}
+	/// <summary>
+	/// Loads from html.
+	/// </summary>
+	/// <param name="parentNode">Parent node.</param>
+	static void loadFromHtml(string parentNode){
+		var html = new HtmlDocument ();
+		html.LoadHtml (parentNode);
+		Debug.Log (html.DocumentNode.SelectNodes("//body")[0].OuterHtml);
+		// For each questionHtml
+		foreach (HtmlNode body in html.DocumentNode.SelectNodes("//body")) {
+			questionArr.Add (body.OuterHtml);
+		}
+	}
+	/// <summary>
+	/// Loads from file.
+	/// </summary>
+	/// <param name="file">File.</param>
+	static void loadFromFile(string file){
+		if ((file.Contains ("chapter_"))&&(!file.Contains ("meta"))) {
+			Debug.Log ("File2"+file);
+			loadFromHtml(System.IO.File.ReadAllText (@file));
+		}
+	}
+	/// <summary>
+	/// Loads from folder.
+	/// </summary>
+	/// <param name="folder">Folder.</param>
+	static void loadFromFolder(string folder){
+		if (folder.Contains ("standard_")) {
+			//For each file chapter_j
+			foreach (string file in Directory.GetFiles(folder)) {
+				loadFromFile (file);
 			}
 		}
 	}

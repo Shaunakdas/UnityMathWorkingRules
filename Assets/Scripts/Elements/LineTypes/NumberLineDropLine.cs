@@ -227,9 +227,9 @@ public class NumberLineDropLine  : Line {
 		//Going through all questionHolders in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
 		//		Debug.Log("QuestionList Count"+QuestionList.Count);
 		for(int i = 0; i < QuestionList.Count; i++){
-			QuestionList [i].activateAnim ();
 			QuestionList [i].nextEvent = nextEvent;
-			//			Debug.Log("nextLineEvent"+(nextLineEvent.ToString()==null));
+			QuestionList [i].activateAnim ();
+			Debug.Log("nextEvent"+(nextEvent.ToString()==null));
 		}
 	}
 }

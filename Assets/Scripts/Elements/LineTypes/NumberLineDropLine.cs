@@ -125,11 +125,12 @@ public class NumberLineDropLine  : Line {
 		GameObject itemGO=null;int index=0;
 		//In order to track target Cell
 		Row row = new Row ();
-
+		row.Parent = this;
 		foreach (GameObject numberMarkerItem in NumberMarkerList){
 			if (displayNumber) numberMarkerItem.GetComponentInChildren<TEXDrawNGUI> ().text = ( index).ToString() ;
 			//To access DropZoneRowCell methods
 			DropZoneRowCell dropCell = new DropZoneRowCell (this.ParagraphRef);
+			dropCell.Parent = row;
 			switch (Type) {
 			case LineType.NumberLineDrop:
 				List<string> _targetTextList = StringWrapper.splitTargetText (" ");
@@ -137,8 +138,8 @@ public class NumberLineDropLine  : Line {
 				dropCell.ParagraphRef = this.ParagraphRef;
 				itemGO.GetComponent<UITable> ().pivot = UIWidget.Pivot.Center;
 				itemGO.GetComponentInChildren<UISprite> ().height = itemGO.GetComponentInChildren<UISprite> ().height - 20;
-				DropZoneRowCell dropZoneRowCell = new DropZoneRowCell (this.ParagraphRef);
-				dropZoneRowCell.addDropZoneHolder (ElementGO, itemGO);
+//				DropZoneRowCell dropZoneRowCell = new DropZoneRowCell (this.ParagraphRef);
+				dropCell.addDropZoneHolder (ElementGO, itemGO);
 				row.CellList.Add (dropCell);
 				//Set target text
 				break;
@@ -146,6 +147,7 @@ public class NumberLineDropLine  : Line {
 //				itemGO = BasicGOOperation.InstantiateNGUIGO (selectBtnPF, numberMarkerItem.transform);
 				//To access SelectableButtonCell methods
 				SelectableButtonCell selectCell = new SelectableButtonCell ();
+				selectCell.Parent = row;
 				itemGO = selectCell.generateSelBtnCellGO(numberMarkerItem,"  ");
 				selectCell.updateTableCol (itemGO, 0);
 				selectCell.updateTextSize (itemGO, 40);
@@ -157,7 +159,7 @@ public class NumberLineDropLine  : Line {
 				row.CellList.Add (dropCell);
 				break;
 			}
-			RowList.Add (row);
+//			RowList.Add (row);
 			itemGO.transform.localPosition = new Vector3 (-60f, 0f,0f);
 			index++;
 		}
@@ -194,10 +196,9 @@ public class NumberLineDropLine  : Line {
 				break;
 			}
 		} else if (cellLabel == NumberLineLabelCell.LabelType.LabelAnswer) {
-			itemGO = NumberMarkerList [displayIndex];
+			itemGO = NumberMarkerList [index];
 			switch (Type) {
 			case LineType.NumberLineDrop:
-
 				itemGO.GetComponentInChildren<DropZoneHolder> ().TargetTextList = StringWrapper.splitTargetText (text); 
 				itemGO.GetComponentInChildren<DropZoneHolder> ().ContainerElem = this;
 				//Set target text
@@ -218,5 +219,17 @@ public class NumberLineDropLine  : Line {
 			}
 		}
 		return itemGO;
+	}
+
+
+
+	override public void activateQuestionListAnim(EventDelegate nextEvent){
+		//Going through all questionHolders in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
+		//		Debug.Log("QuestionList Count"+QuestionList.Count);
+		for(int i = 0; i < QuestionList.Count; i++){
+			QuestionList [i].activateAnim ();
+			QuestionList [i].nextEvent = nextEvent;
+			//			Debug.Log("nextLineEvent"+(nextLineEvent.ToString()==null));
+		}
 	}
 }

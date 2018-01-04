@@ -25,11 +25,11 @@ public class NumberLineLabelCell : Cell {
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	public void getLabelType(string type_text){
-		switch (Type) {
-		case CellType.NumberLineLabel: 
+		switch (type_text) {
+		case "number_line_label": 
 			LineLabel = LabelType.Label;
 			break;
-		case CellType.NumberLineLabelAnswer: 
+		case "number_line_label_answer": 
 			LineLabel = LabelType.LabelAnswer;
 			break;
 		}

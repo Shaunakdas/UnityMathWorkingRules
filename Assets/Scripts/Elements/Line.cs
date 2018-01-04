@@ -297,7 +297,7 @@ public class Line : BaseElement{
 			BasicGOOperation.displayElementGOAnim (ElementGO, nextEvent);
 		}
 	}
-	public void activateQuestionListAnim(EventDelegate nextEvent){
+	virtual public void activateQuestionListAnim(EventDelegate nextEvent){
 		//Going through all questionHolders in current Line ElementGO except the last one. Seting their next EventDelegate as the next targetItemChecker in list.
 //		Debug.Log("QuestionList Count"+QuestionList.Count);
 		for(int i = 0; i < QuestionList.Count; i++){

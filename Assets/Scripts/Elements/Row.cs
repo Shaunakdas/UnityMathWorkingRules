@@ -322,6 +322,11 @@ public class Row : BaseElement {
 		Debug.Log (container.GetComponent<UIWidget> ().width);
 		Debug.Log (_rowGO.transform.parent.gameObject);
 		Debug.Log (BasicGOOperation.ElementSize(grid).x);
-		container.GetComponent<UIWidget> ().width = (int)((grid.transform.childCount)*(grid.GetComponent<UIGrid>().cellWidth));
+		Debug.Log (Paragraph.ParagraphAlign);
+		if (Paragraph.ParagraphAlign == Paragraph.AlignType.Vertical) {
+			container.GetComponent<UIWidget> ().width = (int)((grid.transform.childCount) * (grid.GetComponent<UIGrid> ().cellWidth));
+		} else {
+			container.GetComponent<UIWidget> ().height = (int)((grid.transform.childCount) * (grid.GetComponent<UIGrid> ().cellHeight));
+		}
 	}
 }

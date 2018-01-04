@@ -134,13 +134,16 @@ public class AnimationManager : MonoBehaviour {
 			_elementGO.AddComponent<TweenScale> ();
 		TweenScale _tweenScale = _elementGO.GetComponent<TweenScale> ();
 		_tweenScale.to.x = (0f);
+		_tweenScale.style = UITweener.Style.Once;
 		_tweenScale.animationCurve = new AnimationCurve (
 			new Keyframe (0f, 0f), new Keyframe (1f, 1f)
 		);
 		_tweenScale.duration = ANIMATION_DURATION;
+		Debug.Log ("incorrectDestroyAnim"+((delete != null)&&delete));
 		if((delete != null)&&delete){
 			EventDelegate.Set(_tweenScale.onFinished, delegate{ NGUITools.Destroy(_elementGO); });
 		}
+		Debug.Log ("incorrectDestroyAnim"+(_nextEvent.ToString()==null));
 		if (_nextEvent != null) {
 			_tweenScale.onFinished.Add (_nextEvent);
 		}

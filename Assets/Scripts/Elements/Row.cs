@@ -249,7 +249,7 @@ public class Row : BaseElement {
 			//making Grid child of ScrollView as parent
 			HorizontalScrollView = BasicGOOperation.getChildGameObject (rowGO, "ScrollView");
 			parentGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Grid");
-			updateGOProp (rowGO);
+			initGOProp (rowGO);
 			break;
 		case RowType.HorizontalScroll:
 			GameObject horizontalScrollPrefab = Resources.Load (LocationManager.COMPLETE_LOC_ROW_TYPE + prefabName)as GameObject;
@@ -257,7 +257,7 @@ public class Row : BaseElement {
 			//making Grid child of ScrollView as parent
 			HorizontalScrollView = BasicGOOperation.getChildGameObject (rowGO, "ScrollView");
 			parentGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Table");
-			updateGOProp (rowGO);
+			initGOProp (rowGO);
 			break;
 
 		default:
@@ -276,6 +276,7 @@ public class Row : BaseElement {
 			GameObject elementGO = cell.generateElementGO (parentGO);
 //			Debug.Log (elementGO.GetComponent<SelBtnItemChecker> ().correctFlag);
 		}
+		updateGOProp (ElementGO);
 		return parentGO;
 	}
 	public void updateTableColumn (GameObject parentGO){
@@ -296,14 +297,31 @@ public class Row : BaseElement {
 			} 
 		}
 	}
-	override protected void updateGOProp(GameObject _elementGO){
-//		Debug.Log ("Updating Grid cell width");
+	override protected void initGOProp(GameObject _elementGO){
+		//		Debug.Log ("Updating Grid cell width");
 		ElementGO = _elementGO;
 		if (Type == RowType.DragSourceLine) {
 			//making Grid child of ScrollView as parent
 			GameObject HorizontalScrollView = BasicGOOperation.getChildGameObject (_elementGO, "ScrollView");
 			GameObject gridGO = BasicGOOperation.getChildGameObject (HorizontalScrollView, "Grid");
 			gridGO.GetComponent<UIGrid> ().cellWidth = Mathf.Max(80f,maxGridCellWidth+30f);
+
 		}
+	}
+	override protected void updateGOProp(GameObject _elementGO){
+		if (Type == RowType.DragSourceLine) {
+			widenDragDropContainer (ElementGO);
+		}
+	}
+	public void widenDragDropContainer(GameObject _rowGO){
+		//making Container width same as TableLine
+		GameObject container = BasicGOOperation.getChildGameObject(_rowGO,"Container");
+		GameObject grid = BasicGOOperation.getChildGameObject(_rowGO,"Grid");
+		Debug.Log (grid.transform.childCount);
+		Debug.Log (container.gameObject);
+		Debug.Log (container.GetComponent<UIWidget> ().width);
+		Debug.Log (_rowGO.transform.parent.gameObject);
+		Debug.Log (BasicGOOperation.ElementSize(grid).x);
+		container.GetComponent<UIWidget> ().width = (int)((grid.transform.childCount)*(grid.GetComponent<UIGrid>().cellWidth));
 	}
 }

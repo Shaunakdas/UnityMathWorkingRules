@@ -255,6 +255,7 @@ public class Paragraph : BaseElement{
 		}
 	}
 	override protected void updateGOProp(GameObject _elementGO){
+		ScreenManager.resizeTexDraw (this);
 		ScreenManager.resizeChildren (ElementGO);
 //		if (ParagraphStep == Paragraph.StepType.Comprehension) {
 ////			ScreenManager.SetAsScreenSize (ElementGO);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ScreenManager : MonoBehaviour {
 
@@ -82,6 +83,18 @@ public class ScreenManager : MonoBehaviour {
 		resizeGridChildren (newScale, _elementGO);
 		resizeWidgetChildren (newScale, _elementGO);
 		return _elementGO;
+	}
+
+	static public void resizeTexDraw(Paragraph para){
+		List<UITable> tableList = new List<UITable> ();
+		foreach (TexLength texLength in para.ElementGO.GetComponentsInChildren<TexLength>()){
+			texLength.gameObject.GetComponent<TEXDrawNGUI> ().width = (int)(20f * (texLength.m_Count + 1));
+			tableList = tableList.Union(texLength.gameObject.GetComponentsInParent<UITable>()).ToList();
+		}
+		foreach (UITable table in tableList){
+			table.Reposition ();
+		}
+
 	}
 	static public GameObject SetAsScreenSize(GameObject _elementGO){
 		SetAsScreenHeight (_elementGO,0);SetAsScreenWidth (_elementGO,0);

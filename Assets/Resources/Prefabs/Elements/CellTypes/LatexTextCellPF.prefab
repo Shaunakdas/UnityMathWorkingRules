@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4921749930211012}
   - component: {fileID: 114860427963326290}
+  - component: {fileID: 114539455356299774}
   m_Layer: 8
   m_Name: LatexTextCellPF
   m_TagString: Untagged
@@ -40,6 +41,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114539455356299774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1753868201097288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ee15a711c9548ada3e88bfff0516a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Factor:
+    scale: 1
+    offset: 0
+  m_Count: 0
+  m_ApproxCount: 0
 --- !u!114 &114860427963326290
 MonoBehaviour:
   m_ObjectHideFlags: 1

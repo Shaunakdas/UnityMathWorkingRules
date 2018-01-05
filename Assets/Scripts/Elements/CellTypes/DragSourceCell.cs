@@ -47,9 +47,16 @@ public class DragSourceCell : Cell {
 		GameObject labelGO = BasicGOOperation.getChildGameObject (ElementGO, "Label");
 		labelGO.GetComponent<UILabel> ().text = DisplayText;
 		ElementGO.name = ElementGO.name + "_"+ generateStandardName(DisplayText);
-		ElementGO.GetComponent<CustomDragDropItem> ().restriction = (DragAlign == Paragraph.AlignType.Horizontal)? UIDragDropItem.Restriction.Horizontal:UIDragDropItem.Restriction.Vertical ;
-		GameObject containerGO = BasicGOOperation.getChildGameObject (BasicGOOperation.getChildGameObject (this.Parent.ElementGO, "ScrollView"), "Container");
-		ElementGO.GetComponent<CustomDragDropItem> ().DragScrollView = containerGO;
+		ElementGO.GetComponent<CustomDragDropItem> ().restriction = (DragAlign == Paragraph.AlignType.Horizontal) ? UIDragDropItem.Restriction.Horizontal : UIDragDropItem.Restriction.Vertical;
+		// If Cell is child of DragSource Row, its scroll should be modified to math parent scroll for horizontal dragging
+		if (ElementGO.transform.parent.gameObject.name == "Grid") {
+			
+			GameObject containerGO = BasicGOOperation.getChildGameObject (BasicGOOperation.getChildGameObject (this.Parent.ElementGO, "ScrollView"), "Container");
+			ElementGO.GetComponent<CustomDragDropItem> ().DragScrollView = containerGO;
+		} else {
+			// If Cell is not a child of DragSource Row
+//			ElementGO.GetComponent<TEXDrawNGUI>().Redraw();
+		}
 	}
 	public string generateStandardName(string text){
 		int number; string newText = text;

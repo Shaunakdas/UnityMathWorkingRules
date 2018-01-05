@@ -88,12 +88,12 @@ public class ScreenManager : MonoBehaviour {
 	static public void resizeTexDraw(Paragraph para){
 		List<UITable> tableList = new List<UITable> ();
 		foreach (TexLength texLength in para.ElementGO.GetComponentsInChildren<TexLength>()){
-			texLength.gameObject.GetComponent<TEXDrawNGUI> ().width = (int)(20f * (texLength.m_Count + 1));
-			tableList = tableList.Union(texLength.gameObject.GetComponentsInParent<UITable>()).ToList();
+			texLength.gameObject.GetComponent<TexLength> ().resizeTexCell();
+//			tableList = tableList.Union(texLength.gameObject.GetComponentsInParent<UITable>()).ToList();
 		}
-		foreach (UITable table in tableList){
-			table.Reposition ();
-		}
+//		foreach (UITable table in tableList){
+//			table.Reposition ();
+//		}
 
 	}
 	static public GameObject SetAsScreenSize(GameObject _elementGO){

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class ComprehensionBody : BaseElement {
 	//-------------Common Attributes -------------------
@@ -241,7 +242,12 @@ public class ComprehensionBody : BaseElement {
 		postStarCalc ();
 		postDiffLevelCalc ();
 		scoreTracker.setSharedPrefs ();
-		AndroidOrganizer.callMethod ("Call");
+		if (QuestionImporter.importMode == QuestionImporter.ImportSettings.File) {
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		} else if (QuestionImporter.importMode == QuestionImporter.ImportSettings.Android) {
+			AndroidOrganizer.callMethod ("Call");
+		}
+
 	}
 	protected void postScoreCalc(){
 		foreach (Paragraph para in ParagraphList) {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 using TexDrawLib;
 
 public class TexLength : TEXPerCharacterBase {
@@ -15,13 +15,17 @@ public class TexLength : TEXPerCharacterBase {
 
 		if (match.Length == 1) {
 			m_Count++;
-			float scale_x = ((float)Screen.width / 480);
-			gameObject.GetComponent<TEXDrawNGUI> ().width = (int)(scale_x * 20f * (m_Count + 1));
-			gameObject.GetComponentInParent<UITable> ().Reposition ();
+			resizeTexCell ();
 		}
 		// In case if you wondering:
 		// Debug.Log(match);
 		return match;
+	}
+	public void resizeTexCell(){
+		float scale_x = ((float)Screen.width / 480);
+		int spaceCount = gameObject.GetComponent<TEXDrawNGUI> ().text.Count(f => f == ' ');
+		gameObject.GetComponent<TEXDrawNGUI> ().width = (int)(scale_x * 20f * (m_Count + spaceCount));
+		gameObject.GetComponentInParent<UITable> ().Reposition ();
 	}
 
 	protected override void OnBeforeSubtitution (float count)

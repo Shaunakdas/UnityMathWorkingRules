@@ -24,7 +24,7 @@ public class TexLength : TEXPerCharacterBase {
 	public void resizeTexCell(){
 		float scale_x = ((float)Screen.width / 480);
 		int spaceCount = gameObject.GetComponent<TEXDrawNGUI> ().text.Count(f => f == ' ');
-		gameObject.GetComponent<TEXDrawNGUI> ().width = (int)(scale_x * 20f * (m_Count + spaceCount));
+		gameObject.GetComponent<TEXDrawNGUI> ().width = Mathf.Min((int)(scale_x * 20f * (m_ApproxCount + spaceCount + 1)),Screen.width-30);
 		gameObject.GetComponentInParent<UITable> ().Reposition ();
 	}
 

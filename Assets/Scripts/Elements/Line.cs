@@ -256,45 +256,49 @@ public class Line : BaseElement{
 	}
 	//----------------------Animations ----------------------------
 	override public void hideElementGO(){
-		BasicGOOperation.hideElementGO (ElementGO);
+		if (ElementGO) {
+			BasicGOOperation.hideElementGO (ElementGO);
+		}
 	}
 	override public void displayElementGO(){
-		Parent.setCurrentChild (this);
+		if (ElementGO) {
+			Parent.setCurrentChild (this);
 
-		//Setting Next Event Delegate
-		EventDelegate nextEvent = new EventDelegate (ParagraphRef.finishQuestionStep);
-		Debug.Log (nextEvent.ToString());
-		if (!lastSibling()) {
-			nextEvent = new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO);
-		}
+			//Setting Next Event Delegate
+			EventDelegate nextEvent = new EventDelegate (ParagraphRef.finishQuestionStep);
+			Debug.Log (nextEvent.ToString ());
+			if (!lastSibling ()) {
+				nextEvent = new EventDelegate (ParagraphRef.LineList [siblingIndex () + 1].displayElementGO);
+			}
 //		Debug.Log ("NEXT EVENT"+ElementGO.name+this.siblingIndex ().ToString()+this.lastSibling().ToString());
-		if (nextEvent.target != null) {
-			Debug.Log (nextEvent.target.name);
-		}
+			if (nextEvent.target != null) {
+				Debug.Log (nextEvent.target.name);
+			}
 
-		//Check for Interaction elements in Line ElementGO
-		if (QuestionList.Count > 0) {
-			//checking for QuestonCheckers
+			//Check for Interaction elements in Line ElementGO
+			if (QuestionList.Count > 0) {
+				//checking for QuestonCheckers
 //			Debug.Log ("Element Display Anim:Checking for Questions");
-			displayDragSourceLine ();
-			BasicGOOperation.displayElementGOAnim (ElementGO,null);
-			activateQuestionListAnim (nextEvent);
+				displayDragSourceLine ();
+				BasicGOOperation.displayElementGOAnim (ElementGO, null);
+				activateQuestionListAnim (nextEvent);
 
 		
-		} else if (BasicGOOperation.getFirstButton(ElementGO)!=null) {
-			//checking for UIButton
-			Debug.Log ("Element Display Anim:Checking for UIButton");
-			UIButton btn = BasicGOOperation.getFirstButton (ElementGO);
-			EventDelegate.Set (btn.onClick, nextEvent);
+			} else if (BasicGOOperation.getFirstButton (ElementGO) != null) {
+				//checking for UIButton
+				Debug.Log ("Element Display Anim:Checking for UIButton");
+				UIButton btn = BasicGOOperation.getFirstButton (ElementGO);
+				EventDelegate.Set (btn.onClick, nextEvent);
 
-		} else if ((this.Type == LineType.Table)&&(ParagraphRef.DragSourceTableList.Contains(this as TableLine))) {
-			//Checking for DragSourceLine Table
-			Debug.Log ("Element Display Anim:Checking for DragSourceLine Table");
-			nextEvent.Execute ();
-		} else {
+			} else if ((this.Type == LineType.Table) && (ParagraphRef.DragSourceTableList.Contains (this as TableLine))) {
+				//Checking for DragSourceLine Table
+				Debug.Log ("Element Display Anim:Checking for DragSourceLine Table");
+				nextEvent.Execute ();
+			} else {
 //			Debug.Log ("Element Display Anim: No Interaction Element is present");
-			//If no interaction element is present
-			BasicGOOperation.displayElementGOAnim (ElementGO, nextEvent);
+				//If no interaction element is present
+				BasicGOOperation.displayElementGOAnim (ElementGO, nextEvent);
+			}
 		}
 	}
 	virtual public void activateQuestionListAnim(EventDelegate nextEvent){

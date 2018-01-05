@@ -140,6 +140,7 @@ public class DropZoneRowCell : Cell {
 	}
 
 	public GameObject generateDropZoneHolderGO(GameObject parentGO, List<string> _targetTextList, bool idPresent){
+		TargetTextList = _targetTextList;
 		DropZoneHolder dropZoneholder = initDropZoneHolder (parentGO, _targetTextList, idPresent);
 		generateDropZoneQuestionList (dropZoneholder,_targetTextList);
 		BasicGOOperation.CheckAndRepositionTable (dropZoneholder.gameObject);

@@ -40,10 +40,12 @@ public class PrimeDivisionLine : Line {
 	public void initPrimeDivLineGameObject(GameObject primeDivisionGrid){
 		int levelCount = primeDivision.PrimeFactorList.Count;
 		GameObject primeDivisionLevelPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_PRIME_DIV_LEVEL_CELL)as GameObject;
-
+		Row row = new Row ();
+		row.Parent = this;
+		RowList.Add (row);
 		for (int i = 0; i < levelCount; i++) {
 			GameObject primeDivisionLevel = BasicGOOperation.InstantiateNGUIGO (primeDivisionLevelPF, primeDivisionGrid.transform);
-			populatePrimeDivLevel (primeDivisionLevel,i);
+			populatePrimeDivLevel (primeDivisionLevel,i,row);
 		}
 	}
 	/// <summary>
@@ -51,7 +53,7 @@ public class PrimeDivisionLine : Line {
 	/// </summary>
 	/// <param name="primeDivisionLevel">Prime division level GameObject</param>
 	/// <param name="index">Index.</param>
-	public void populatePrimeDivLevel(GameObject primeDivisionLevel, int index){
+	public void populatePrimeDivLevel(GameObject primeDivisionLevel, int index, Row row){
 		//Adding Dividend
 		int dividend = primeDivision.PrimeDividendList[index];
 		GameObject dividendLabelCellPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_LATEX_TEXT_CELL)as GameObject;
@@ -59,17 +61,30 @@ public class PrimeDivisionLine : Line {
 		dividendLabelCell.GetComponent<TEXDrawNGUI>().text = dividend.ToString();dividendLabelCell.GetComponent<TEXDrawNGUI> ().autoFit = TexDrawLib.Fitting.Off;
 		//Setting the size and location
 		dividendLabelCell.GetComponent<TEXDrawNGUI>().height = 90;dividendLabelCell.GetComponent<TEXDrawNGUI>().width = 72;
-		Vector3 divLocation = dividendLabelCell.transform.localPosition; divLocation.x = 53; dividendLabelCell.transform.localPosition = divLocation;
+		float scale_x = ((float)Screen.width / 480);
+		float scale_y = ((float)Screen.height / 900);
+		Vector3 divLocation = dividendLabelCell.transform.localPosition; divLocation.x = 53*scale_x; dividendLabelCell.transform.localPosition = divLocation;
 
 		//Adding Divisor
 		int factor = primeDivision.PrimeFactorList[index];
 //		GameObject factorDropCellPF = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_DROP_ZONE_CELL)as GameObject;
 //		GameObject factorDropCell = BasicGOOperation.InstantiateNGUIGO (factorDropCellPF, primeDivisionLevel.transform);
 		//To access DropZoneRowCell methods
-		DropZoneRowCell dropCell = new DropZoneRowCell (this.ParagraphRef);
+		PrimeDropZoneRowCell dropCell = new PrimeDropZoneRowCell (this.ParagraphRef);
+		row.CellList.Add (dropCell);
+		dropCell.Parent = row;
 		GameObject factorDropCell = dropCell.generateDropZoneHolderGO(primeDivisionLevel,StringWrapper.splitTargetText(factor.ToString()),false);
-		Vector3 factorLocation = factorDropCell.transform.localPosition; factorLocation.x = -75;factorLocation.y = 50;factorDropCell.transform.localPosition = factorLocation;
-	}
+		Vector3 factorLocation = factorDropCell.transform.localPosition;
 
+		factorLocation.x = -75*scale_x;
+		factorLocation.y = 50*scale_y;
+		factorDropCell.transform.localPosition = factorLocation;
+	}
+//	override public GameObject generateElementGO(GameObject parentGO){
+////		GameObject _elementGO =   generateDropZoneHolderGO (parentGO, TargetTextList, idPresent);
+////		ElementGO = _elementGO;
+//		//_elementGO add to list of aniamtion
+//		return ElementGO;
+//	}
 }
 

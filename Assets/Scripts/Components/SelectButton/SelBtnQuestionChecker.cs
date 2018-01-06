@@ -40,7 +40,7 @@ public class SelBtnQuestionChecker : QuestionChecker {
 
 		if(Paragraph.ParagraphAlign == Paragraph.AlignType.Horizontal){
 		}else{
-			submitBtnGO.GetComponent<UIWidget> ().width = (int)lineSize.x-200;
+			submitBtnGO.GetComponent<UIWidget> ().width = 280;
 		}
 	}
 	public void optionSelected(){

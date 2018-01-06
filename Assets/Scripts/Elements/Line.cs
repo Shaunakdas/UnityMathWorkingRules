@@ -293,6 +293,7 @@ public class Line : BaseElement{
 			} else if ((this.Type == LineType.Table) && (ParagraphRef.DragSourceTableList.Contains (this as TableLine))) {
 				//Checking for DragSourceLine Table
 				Debug.Log ("Element Display Anim:Checking for DragSourceLine Table");
+				BasicGOOperation.displayElementGOAnim (ElementGO, nextEvent);
 				nextEvent.Execute ();
 			} else {
 //			Debug.Log ("Element Display Anim: No Interaction Element is present");

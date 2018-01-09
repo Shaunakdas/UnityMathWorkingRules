@@ -15,6 +15,7 @@ public class SelectableButtonCell : Cell {
 	}
 	public SelectableButtonCell(string type, string answer, string displayText):base(type){
 		correctFlag = answer=="1"? true:false;
+		prefabName = LocationManager.NAME_SELECT_BTN_CELL;
 		DisplayText = displayText;
 	}
 	public SelectableButtonCell(SelItem item):base(){
@@ -48,7 +49,7 @@ public class SelectableButtonCell : Cell {
 		return ElementGO;
 	}
 	 public GameObject generateSelBtnCellGO(GameObject parentGO, string text){
-		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + LocationManager.NAME_SELECT_BTN_CELL)as GameObject;
+		GameObject prefab = Resources.Load (LocationManager.COMPLETE_LOC_CELL_TYPE + prefabName)as GameObject;
 		GameObject cellGO = BasicGOOperation.InstantiateNGUIGO (prefab, parentGO.transform);
 		updateSelectBtnGO(cellGO, text);
 		BasicGOOperation.CheckAndRepositionTable (cellGO);
@@ -66,13 +67,22 @@ public class SelectableButtonCell : Cell {
 
 	//-------------Static methods to create/update Selectable GameObject attributes -------------------
 	//Static method which can be used by any class initiating SelectButton
-	void updateSelectBtnGO(GameObject ElementGO, string text){
+	protected void updateSelectBtnGO(GameObject ElementGO, string text){
 		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
 		updateText (ElementGO, text);
 		//Setting width based on text width
 		resizeToFit(ElementGO);
+		setTriggerMethods (TableGO,ElementGO);
+//		GameObject checkBoxGO = BasicGOOperation.getChildGameObject (TableGO, "CheckBox");
+//		SelBtnOptionChecker itemChecker = ElementGO.GetComponent<SelBtnOptionChecker> ();
+//		Debug.Log (itemChecker.GetType());
+//		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { updateCheckBox(checkBoxGO);itemChecker.changeInputFlag(); });
+
+	}
+	protected virtual void setTriggerMethods(GameObject TableGO, GameObject ElementGO){
 		GameObject checkBoxGO = BasicGOOperation.getChildGameObject (TableGO, "CheckBox");
 		SelBtnOptionChecker itemChecker = ElementGO.GetComponent<SelBtnOptionChecker> ();
+		Debug.Log (itemChecker.GetType());
 		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { updateCheckBox(checkBoxGO);itemChecker.changeInputFlag(); });
 	}
 	public  void updateCheckBox(GameObject checkBoxGO){

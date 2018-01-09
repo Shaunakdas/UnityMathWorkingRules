@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using HtmlAgilityPack;
 
-public class SelectableSignCell : Cell {
+public class SelectableSignCell : SelectableButtonCell {
 	//-------------Common Attributes -------------------
 	public enum Sign{Positive,Negative};
 	public Sign TargetSign{ get; set; }
+	public Sign InputSign{ get; set; }
 
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
-	public SelectableSignCell(string type, string answer):base(type){
-		TargetSign = answer=="1"? Sign.Positive:Sign.Negative;
+	public SelectableSignCell():base(){
+	}
+	public SelectableSignCell(string sign):base(){
+		TargetSign = sign=="+"? Sign.Positive:Sign.Negative;
+		prefabName = LocationManager.NAME_SELECT_SIGN_CELL;
 	}
 	/// Initializes a new instance of the SelectableSignCell class with HTMLNode attribute
 	/// </summary>
@@ -26,4 +30,12 @@ public class SelectableSignCell : Cell {
 
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
+
+	protected override void setTriggerMethods(GameObject TableGO, GameObject ElementGO){
+//		GameObject TableGO = BasicGOOperation.getChildGameObject (ElementGO, "Table");
+		GameObject checkBoxGO = BasicGOOperation.getChildGameObject (TableGO, "CheckBox");
+		SelSignOptionChecker itemChecker = ElementGO.GetComponent<SelSignOptionChecker> ();
+		Debug.Log (itemChecker.GetType());
+		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { updateCheckBox(checkBoxGO);itemChecker.changeInputFlag(); });
+	}
 }

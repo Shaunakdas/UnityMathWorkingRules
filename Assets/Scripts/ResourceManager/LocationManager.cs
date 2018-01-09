@@ -60,7 +60,8 @@ public class LocationManager {
 
 	public const string NAME_EXPONENT_TABLE_CELL = "ExponentTableCellPF";
 	public const string NAME_SELECT_BTN_CELL = "SelectBtnCellPF";
-	public const string NAME_SELECT_SIGN_CELL = "SelectSignBtnCellPF";
+	public const string NAME_SELECT_SIGN_CELL = "SelectSignCellPF";
+	public const string NAME_SELECT_SIGN_BTN_CELL = "SelectSignBtnCellPF";
 	public const string NAME_NUM_LINE_LABEL_CELL = "NumLineLabelCellPF";
 	public const string NAME_NUM_LINE_MARK_BIG_CELL =  "NumLineMarkBigCellPF";
 	public const string NAME_NUM_LINE_MARK_SMALL_CELL =  "NumLineMarkSmallCellPF";

@@ -190,7 +190,7 @@ public class DropZoneRowCell : Cell {
 			//Calculating Length of DropZoneItem
 			tableWidth += 50 + 5;
 			if (targetChar == '+' || targetChar == '-') {
-				SelectableButtonCell selectCell = new SelectableButtonCell ();
+				SelectableSignCell selectCell = new SelectableSignCell (targetChar.ToString());
 				GameObject tableGO = BasicGOOperation.getChildGameObject (_question.gameObject, "Table");
 				GameObject signBtnGO = selectCell.generateSelBtnCellGO (tableGO, "-");
 			} else {

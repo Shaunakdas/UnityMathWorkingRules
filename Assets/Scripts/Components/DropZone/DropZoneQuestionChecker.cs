@@ -25,14 +25,22 @@ public class DropZoneQuestionChecker : QuestionChecker {
 	override public void activateAnim(){
 //		Debug.Log ("activateAnim of DropZoneRowCell");
 		base.activateAnim ();
+		int first = -1;
 		for (int i = 0; i < ChildList.Count; i++) {
-			EventDelegate nextOptionEvent = nextEvent;
-			if (i < ChildList.Count - 1) {
-				nextOptionEvent = new EventDelegate (ChildList [i + 1].activateAnim);
+			//We dont need any activation on SelSignOption
+			if (ChildList [i].GetType () != typeof(SelSignOptionChecker)) {
+				Debug.Log (ChildList [i].GetType ());
+				EventDelegate nextOptionEvent = nextEvent;
+				if (i < ChildList.Count - 1) {
+					nextOptionEvent = new EventDelegate (ChildList [i + 1].activateAnim);
+				}
+				ChildList [i].nextEvent = nextOptionEvent;
+			} else {
+				first = i;
 			}
-			ChildList[i].nextEvent = nextOptionEvent;
 		}
-		ChildList [0].activateAnim();
+        //Looking for SelSignOption and starting after that option
+		ChildList [first+1].activateAnim();
 	}
 	/// <summary>
 	/// Getting active animation.

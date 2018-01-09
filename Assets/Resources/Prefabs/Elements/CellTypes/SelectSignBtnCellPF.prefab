@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 114793450724797982}
   - component: {fileID: 65371074539148882}
   - component: {fileID: 114492628169051842}
-  - component: {fileID: 114912070740575162}
   - component: {fileID: 114789685098966392}
   m_Layer: 8
   m_Name: PositiveBtnCellPF
@@ -160,7 +159,6 @@ GameObject:
   - component: {fileID: 114176381271415132}
   - component: {fileID: 65990196297592616}
   - component: {fileID: 114220882688253064}
-  - component: {fileID: 114498046338699742}
   m_Layer: 8
   m_Name: SelectBtnCellPF (1)
   m_TagString: Untagged
@@ -1128,19 +1126,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 62adb30369acbf943a67cee0f69267a3, type: 2}
   mSpriteName: Button
   mFillCenter: 1
---- !u!114 &114498046338699742
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1456464077943714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05b1aae174d04aa9b13e1d4d97d36ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userInputFlag: 0
-  SelBtnHolderGO: {fileID: 0}
 --- !u!114 &114522678994436620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1254,7 +1239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   method: 0
-  style: 0
+  style: 1
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1511,19 +1496,6 @@ MonoBehaviour:
   eventReceiver: {fileID: 0}
   functionName: OnActivate
   startsChecked: 0
---- !u!114 &114912070740575162
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1441415269001260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05b1aae174d04aa9b13e1d4d97d36ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userInputFlag: 0
-  SelBtnHolderGO: {fileID: 0}
 --- !u!114 &114930612286420460
 MonoBehaviour:
   m_ObjectHideFlags: 1

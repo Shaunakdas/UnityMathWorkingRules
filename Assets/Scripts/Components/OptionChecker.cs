@@ -76,7 +76,8 @@ public class OptionChecker : MonoBehaviour {
 		ItemAttemptState = AttemptState.Attempted;
 		scoreTracker.attemptTimestamp = System.DateTime.Now;
 		scoreTracker.attemptTime = scoreTracker.attemptTimestamp - scoreTracker.startTimestamp;
-		(ParentChecker as QuestionChecker).optionAttemptTracker (this);
+		if (ParentChecker)
+			(ParentChecker as QuestionChecker).optionAttemptTracker (this);
 		Debug.Log ("scoreTracker.maxScore"+scoreTracker.maxScore+scoreTracker.attemptTime.ToString());
 	}
 	/// <summary>

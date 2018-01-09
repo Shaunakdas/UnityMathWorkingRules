@@ -28,9 +28,10 @@ public class DropZoneHolder : QuestionChecker {
 
 	public bool checkDropZoneItem( DropZoneQuestionChecker _ques){
 		List<string> inputTextList = new List<string>();
-		foreach (OptionChecker _option in _ques.ChildList) {
-			inputTextList.Add ((_option as DropZoneOptionChecker).filledText);
-		}
+//		foreach (OptionChecker _option in _ques.ChildList) {
+//			inputTextList.Add ((_option as DropZoneOptionChecker).filledText);
+//		}
+		addOptionText(inputTextList, _ques);
 		Debug.Log ("Holder: checkDropZoneItem for checking "+inputTextList[0]);
 		bool inputCorrect = false;
 		if (idCheck) {
@@ -101,9 +102,7 @@ public class DropZoneHolder : QuestionChecker {
 			return TargetTextList;
 		} else {
 			List<string> inputTextList = new List<string>();
-			foreach (OptionChecker option in _ques.ChildList) {
-				inputTextList.Add ((option as DropZoneOptionChecker).filledText);
-			}
+			addOptionText(inputTextList, _ques);
 			//Checking through TargetTextList;
 			foreach (string targetText in TargetTextList) {
 				Debug.Log ("inputText" + inputTextList [0] + "targetText" + targetText);
@@ -135,6 +134,16 @@ public class DropZoneHolder : QuestionChecker {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	void addOptionText(List<string> inputTextList, DropZoneQuestionChecker _ques){
+		foreach (OptionChecker _option in _ques.ChildList) {
+			if (_option.GetType () == typeof(DropZoneOptionChecker)) {
+				inputTextList.Add ((_option as DropZoneOptionChecker).filledText);
+			} else if (_option.GetType () == typeof(SelSignOptionChecker)) {
+				inputTextList.Add ((_option as SelSignOptionChecker).filledText);
+			}
+		}
 	}
 	//----------------------Animations ----------------------------
 

@@ -193,6 +193,7 @@ public class DropZoneRowCell : Cell {
 				SelectableSignCell selectCell = new SelectableSignCell (targetChar.ToString());
 				GameObject tableGO = BasicGOOperation.getChildGameObject (_question.gameObject, "Table");
 				GameObject signBtnGO = selectCell.generateSelBtnCellGO (tableGO, "-");
+				selectCell.updateItemChecker (signBtnGO, _question);
 			} else {
 				//Generating DropZone Option
 				DropZoneOptionChecker option = initDropZoneOption (_question, false);

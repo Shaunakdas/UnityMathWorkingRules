@@ -10,7 +10,7 @@ public class SelBtnOptionChecker : OptionChecker {
 	public bool HighlightOnCorrectSelection = true;
 	AnimationManager animManager;
 
-	public void changeInputFlag(){
+	virtual public void changeInputFlag(){
 		attemptEvent ();
 		userInputFlag = !userInputFlag;
 		(ParentChecker as SelBtnQuestionChecker).optionSelected ();

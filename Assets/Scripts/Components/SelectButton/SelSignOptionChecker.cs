@@ -10,6 +10,11 @@ public class SelSignOptionChecker : SelBtnOptionChecker {
 		get { return userInputFlag?"-":"+";}
 		set { _filledText = value; }
 	}
+
+	public void genCorrectFlag(string sign){
+		filledText = sign;
+		correctFlag = sign=="+"? false:true;
+	}
 	/// <summary>
 	/// Changes the input flag.
 	/// </summary>
@@ -26,5 +31,28 @@ public class SelSignOptionChecker : SelBtnOptionChecker {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	void Awake(){
+		ItemTargetType=TargetType.Option;
+		if (gameObject.GetComponent<AnimationManager> () == null)
+			gameObject.AddComponent<AnimationManager> ();
+		animManager = gameObject.GetComponent<AnimationManager> ();
+	}
+		
+	override public void autocorrectionAnim(){
+//		activateAnim ();
+		//Animation for ignoring the correct option
+		Debug.Log("autocorrectionAnim"+ItemAttemptState.ToString());
+//		base.correctionAnim ();
+		inputCorrectTrigger();
+	}
+
+	public override bool inputCorrectTrigger(){
+		if (ItemAttemptState != AttemptState.Deactivated) {
+			return base.inputCorrectTrigger ();
+		} else {
+			return false;
+		}
 	}
 }

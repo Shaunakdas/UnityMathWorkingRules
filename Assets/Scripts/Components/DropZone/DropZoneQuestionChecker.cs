@@ -23,51 +23,42 @@ public class DropZoneQuestionChecker : QuestionChecker {
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	override public void activateAnim(){
-//		Debug.Log ("activateAnim of DropZoneRowCell");
+		//		Debug.Log ("activateAnim of DropZoneRowCell");
 		base.activateAnim ();
-		int first = -1;
 		for (int i = 0; i < ChildList.Count; i++) {
-			//We dont need any activation on SelSignOption
-			if (ChildList [i].GetType () != typeof(SelSignOptionChecker)) {
-				Debug.Log (ChildList [i].GetType ());
-				EventDelegate nextOptionEvent = nextEvent;
-				if (i < ChildList.Count - 1) {
-					nextOptionEvent = new EventDelegate (ChildList [i + 1].activateAnim);
-				}
-				ChildList [i].nextEvent = nextOptionEvent;
-			} else {
-				first = i;
+			EventDelegate nextOptionEvent = nextEvent;
+			if (i < ChildList.Count - 1) {
+				nextOptionEvent = new EventDelegate (ChildList [i + 1].activateAnim);
 			}
+			ChildList[i].nextEvent = nextOptionEvent;
 		}
-        //Looking for SelSignOption and starting after that option
-		ChildList [first+1].activateAnim();
+		ChildList [0].activateAnim();
 	}
 	/// <summary>
 	/// Getting active animation.
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
-	override public void deactivateAnim(){
-		base.deactivateAnim ();
-		Debug.Log ("deactivateAnim of DropZoneRowCell");
-		foreach (DropZoneOptionChecker itemChecker in ChildList) {
-			itemChecker.deactivateAnim ();
-		}
-	}/// <summary>
+	virtual public void questionFinish(){
+		deactivateAnim ();
+		nextEvent.Execute ();
+	}
+	/// <summary>
 	/// Getting correction animation.
 	/// </summary>
 	/// <param name="_elementGO">Element G.</param>
 	public void correctionAnim(DropZoneOptionChecker _option){
-		Debug.Log ("correctionAnim of DropZoneRowCell");
+		Debug.Log ("correctionAnim of DropZoneRowCell"+ChildList.Count);
 		base.correctionAnim ();
 //		(ParentChecker as DropZoneHolder).correctionAnim (_option,this, _nextEvent);
 		List<OptionChecker> PendingOptionList = ChildList.Where (x => x.ItemAttemptState != AttemptState.Deactivated).ToList();
 		for (int i = 0; i < PendingOptionList.Count; i++) {
-			EventDelegate nextOptionEvent = nextEvent;
+			EventDelegate nextOptionEvent = new EventDelegate(questionFinish);
 			if (i < PendingOptionList.Count - 1) {
 				nextOptionEvent = new EventDelegate (PendingOptionList [i + 1].autocorrectionAnim);
 			}
 			PendingOptionList[i].nextEvent = nextOptionEvent;
 		}
+		Debug.Log (PendingOptionList [0]);
 		PendingOptionList [0].autocorrectionAnim();
 	}
 	public void autocorrectionAnim(DropZoneOptionChecker itemChecker,EventDelegate _nextEvent){
@@ -90,4 +81,8 @@ public class DropZoneQuestionChecker : QuestionChecker {
 			scoreTracker.notifyManager (ContainerElem.ParagraphRef, _result);
 		}
 	}
+	void onLastOptionCheck(){
+		  
+	}
+
 }

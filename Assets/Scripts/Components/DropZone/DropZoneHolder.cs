@@ -13,11 +13,11 @@ public class DropZoneHolder : QuestionChecker {
 	/// <summary>
 	/// list of list of DropZoneItemChecker for managing animatiojn after user input. 
 	/// </summary>
-	public List<List<DropZoneOptionChecker>> ItemCheckerMasterList{ get; set; }
+	public List<List<OptionChecker>> ItemCheckerMasterList{ get; set; }
 	void Awake(){
 		ItemTargetType=TargetType.Holder;
 		multipleHolderCheck = false;
-		ItemCheckerMasterList = new List<List<DropZoneOptionChecker>> ();
+		ItemCheckerMasterList = new List<List<OptionChecker>> ();
 	}
 	// Use this for initialization
 	void Start () {
@@ -28,9 +28,6 @@ public class DropZoneHolder : QuestionChecker {
 
 	public bool checkDropZoneItem( DropZoneQuestionChecker _ques){
 		List<string> inputTextList = new List<string>();
-//		foreach (OptionChecker _option in _ques.ChildList) {
-//			inputTextList.Add ((_option as DropZoneOptionChecker).filledText);
-//		}
 		addOptionText(inputTextList, _ques);
 		Debug.Log ("Holder: checkDropZoneItem for checking "+inputTextList[0]);
 		bool inputCorrect = false;
@@ -50,8 +47,8 @@ public class DropZoneHolder : QuestionChecker {
 		//		resultAnim (inputCorrect, itemChecker);
 		return inputCorrect;
 	}
-	public bool checkCompositeText(List<string> inputTextList){
-
+	public virtual bool checkCompositeText(List<string> inputTextList){
+		
 		//Checking through TargetTextList;
 		foreach (string targetText in TargetTextList) {
 			Debug.Log("inputText"+inputTextList[0]+"targetText"+targetText);
@@ -88,7 +85,7 @@ public class DropZoneHolder : QuestionChecker {
 		}
 		return false;
 	}
-	bool noNullElement(List<string> inputList){
+	protected bool noNullElement(List<string> inputList){
 		foreach (string input in inputList) {
 			if (input == null) {
 				return false;
@@ -96,7 +93,7 @@ public class DropZoneHolder : QuestionChecker {
 		}
 		return true;
 	}
-	List<string> getCorrectionOptions(DropZoneOptionChecker _option, DropZoneQuestionChecker _ques){
+	protected virtual List<string> getCorrectionOptions(DropZoneOptionChecker _option, DropZoneQuestionChecker _ques){
 		List<string> correctionOptions = new List<string> ();
 		if (idCheck) {
 			return TargetTextList;
@@ -105,13 +102,14 @@ public class DropZoneHolder : QuestionChecker {
 			addOptionText(inputTextList, _ques);
 			//Checking through TargetTextList;
 			foreach (string targetText in TargetTextList) {
-				Debug.Log ("inputText" + inputTextList [0] + "targetText" + targetText);
+				Debug.Log ("inputText" + inputTextList.Count + "targetText" + targetText);
 				//Checking for TriedText with same length;
 				if (targetText.Length == inputTextList.Count) {
 					int inputCharIndex = 0;
 					bool foundMisMatch = true;
 					//Iterating through whole list of characters of targetText
 					foreach (string inputString in inputTextList) {
+						Debug.Log (inputString);
 						foundMisMatch = false;
 						// Checking for matching text after removing space
 						if ((inputString != null) && (inputString != targetText.ToCharArray () [inputCharIndex].ToString ())) {
@@ -123,6 +121,7 @@ public class DropZoneHolder : QuestionChecker {
 						}
 					}
 					if (!foundMisMatch) {
+						Debug.Log (targetText.ToCharArray () [_option.getSiblingIndex ()].ToString());
 						correctionOptions.Add (targetText.ToCharArray () [_option.getSiblingIndex ()].ToString());
 					}
 				}
@@ -131,12 +130,21 @@ public class DropZoneHolder : QuestionChecker {
 
 		return correctionOptions;
 	}
+
+	protected bool integerTarget(string targetText){
+		char[] signs = {'+','-'};
+		if (targetText != null) {
+			return (targetText.IndexOfAny (signs) > -1);
+		} else {
+			return false;
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-	void addOptionText(List<string> inputTextList, DropZoneQuestionChecker _ques){
+	protected void addOptionText(List<string> inputTextList, DropZoneQuestionChecker _ques){
 		foreach (OptionChecker _option in _ques.ChildList) {
 			if (_option.GetType () == typeof(DropZoneOptionChecker)) {
 				inputTextList.Add ((_option as DropZoneOptionChecker).filledText);
@@ -224,9 +232,9 @@ public class DropZoneHolder : QuestionChecker {
 	/// <param name="_attemptedItemChecker">Attempted item checker.</param>
 	public bool nextItemChecker(DropZoneOptionChecker _attemptedItemChecker){
 		bool nextFound = false;
-		List<DropZoneOptionChecker> attemptedItemCheckerList = new List<DropZoneOptionChecker>();
-		foreach (List<DropZoneOptionChecker> itemCheckerList in ItemCheckerMasterList) {
-			foreach(DropZoneOptionChecker itemChecker in itemCheckerList){
+		List<OptionChecker> attemptedItemCheckerList = new List<OptionChecker>();
+		foreach (List<OptionChecker> itemCheckerList in ItemCheckerMasterList) {
+			foreach(OptionChecker itemChecker in itemCheckerList){
 				if (_attemptedItemChecker == itemChecker) {
 					attemptedItemCheckerList = itemCheckerList;
 				}
@@ -278,20 +286,29 @@ public class DropZoneHolder : QuestionChecker {
 //		Debug.Log ("Inside findCorrectDragItem"+_ques.getSiblingIndex()+_option.getSiblingIndex());
 //		Debug.Log ("Inside findCorrectDragItem"+TargetTextList.Count);
 //		Debug.Log ("Inside findCorrectDragItem"+TargetTextList[_ques.getSiblingIndex()].ToCharArray()[_option.getSiblingIndex()].ToString());
-		foreach (Line line in ContainerElem.ParagraphRef.LineList) {
-			foreach (Row row in line.RowList) {
-				if (row.Type == Row.RowType.DragSourceLine) {
-					foreach (Cell cell in row.CellList) {
-						string cellText = cell.ElementGO.GetComponentInChildren<UILabel> ().text;
-						if((getCorrectionOptions(_option,_ques).IndexOf(cellText))>-1){
-							Debug.Log ("Found correct DragCell "+ TargetTextList[0]);
-							return (cell as DragSourceCell);
-						}
+		List<string> correctionOptions = getCorrectionOptions (_option, _ques);
+		Debug.Log ("Correction"+correctionOptions.Count);
+		if (correctionOptions.Count > 0){
+			foreach (string option in correctionOptions) {
+				Debug.Log ("Correction"+option);
+			}
+			foreach (Line line in ContainerElem.ParagraphRef.LineList) {
+				foreach (Row row in line.RowList) {
+					if (row.Type == Row.RowType.DragSourceLine) {
+						foreach (Cell cell in row.CellList) {
+							string cellText = cell.ElementGO.GetComponentInChildren<UILabel> ().text;
+							Debug.Log ("Checking for DragCell " + cellText);
+							if ((correctionOptions.IndexOf (cellText)) > -1) {
+								Debug.Log ("Found correct DragCell " + TargetTextList [0]);
+								return (cell as DragSourceCell);
+							}
 
+						}
 					}
 				}
 			}
 		}
+
 		return null;
 	}
 }

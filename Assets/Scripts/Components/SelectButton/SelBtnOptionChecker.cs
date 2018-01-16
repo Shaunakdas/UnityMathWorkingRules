@@ -8,7 +8,7 @@ public class SelBtnOptionChecker : OptionChecker {
 //	public GameObject SelBtnHolderGO;
 	public string DisplayText = "";
 	public bool HighlightOnCorrectSelection = true;
-	AnimationManager animManager;
+	public AnimationManager animManager;
 
 	virtual public void changeInputFlag(){
 		attemptEvent ();
@@ -78,5 +78,30 @@ public class SelBtnOptionChecker : OptionChecker {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+	/// <summary>
+	/// Checking if option was selected/deselected correctly and trgigering corresponding animation
+	/// </summary>
+	/// <returns><c>true</c>, if correct was input, <c>false</c> otherwise.</returns>
+	public virtual bool inputCorrectTrigger(){
+		Debug.Log ("inputCorrectTrigger"+userInputFlag+correctFlag);
+		if (userInputFlag) {
+			//CheckAnimation if userinputFlag is correct. Wait
+			if (correctFlag) {
+				correctAnim ();
+				return true;
+			} else {
+				incorrectAnim ();
+				return false;
+			}
+		} else if (correctFlag) {
+			ItemAttemptState = AttemptState.Checked;
+			//Animation for showing the correct options
+			correctionAnim ();
+			return false;
+		} else {
+			destroyAnim ();
+			return false;
+		}
 	}
 }

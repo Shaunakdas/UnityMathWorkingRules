@@ -127,23 +127,8 @@ public class SelBtnQuestionChecker : QuestionChecker {
 			if (i == ChildList.Count - 1) {
 				option.nextEvent = nextEvent;
 			}
-			if (option.userInputFlag) {
-				//CheckAnimation if userinputFlag is correct. Wait
-				if (option.correctFlag) {
-					option.correctAnim ();
-					optionCorrect = true;
-				} else {
-					option.incorrectAnim ();
-					optionCorrect = false;
-				}
-			} else if (option.correctFlag) {
-				option.ItemAttemptState = AttemptState.Checked;
-				optionCorrect = false;
-				//Animation for showing the correct options
-				option.correctionAnim ();
-			} else {
-				option.destroyAnim ();
-			}
+			//Checking if option was selected/deselected correctly and trgigering corresponding animation
+			optionCorrect = option.inputCorrectTrigger ();
 //			Debug.Log ("Before And"+quesCorrect.ToString()+optionCorrect.ToString());
 			quesCorrect = quesCorrect && optionCorrect;
 //			Debug.Log ("After And"+quesCorrect.ToString()+optionCorrect.ToString());

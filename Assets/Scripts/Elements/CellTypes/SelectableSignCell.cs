@@ -14,11 +14,12 @@ public class SelectableSignCell : SelectableButtonCell {
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Constructor
 	public SelectableSignCell():base(){
+		prefabName = LocationManager.NAME_SELECT_SIGN_CELL;
 	}
 	public SelectableSignCell(string sign):base(){
-		filledText = sign;
-		TargetSign = sign=="+"? Sign.Positive:Sign.Negative;
+		genCorrectFlag(sign);
 		prefabName = LocationManager.NAME_SELECT_SIGN_CELL;
+		Debug.Log ("SelectableSignCell"+correctFlag);
 	}
 	/// Initializes a new instance of the SelectableSignCell class with HTMLNode attribute
 	/// </summary>
@@ -29,7 +30,11 @@ public class SelectableSignCell : SelectableButtonCell {
 		filledText = (cell_node.Attributes [AttributeManager.ATTR_ANSWER].Value)=="1"? "+":"-";
 		prefabName = LocationManager.NAME_SELECT_SIGN_CELL;
 	}
-
+	public void genCorrectFlag(string sign){
+		filledText = sign;
+		TargetSign = sign=="+"? Sign.Positive:Sign.Negative;
+		correctFlag = sign=="+"? false:true;
+	}
 
 
 	//-------------Based on Element Attributes, creating GameObject -------------------

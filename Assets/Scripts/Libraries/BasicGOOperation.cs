@@ -334,7 +334,9 @@ public class BasicGOOperation : MonoBehaviour{
 				return _element.Parent.Parent.Parent as Line;
 			}
 		} else if (_element.GetType ().IsSubclassOf(typeof(Cell))){
-			if (para.LineList.Contains (_element.Parent.Parent as Line)) {
+			if (_element.Parent.Parent.GetType().IsSubclassOf(typeof(Cell))) {
+				return _element.Parent.Parent.Parent.Parent as Line;
+			} else if (para.LineList.Contains (_element.Parent.Parent as Line)) {
 				return _element.Parent.Parent as Line;
 			} else if (para.LineList.Contains (_element.Parent.Parent.Parent.Parent as Line)) {
 				return _element.Parent.Parent.Parent.Parent as Line;

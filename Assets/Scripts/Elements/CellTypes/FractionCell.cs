@@ -57,11 +57,11 @@ public class FractionCell : Cell {
 	override protected void updateGOProp(GameObject cellGO){
 
 		BasicGOOperation.RepositionChildTables (cellGO);
-		BasicGOOperation.ResizeToFitChildGO (cellGO);
+//		BasicGOOperation.ResizeToFitChildGO (cellGO);
 		GameObject ContentGO = BasicGOOperation.getChildGameObject (cellGO, LocationManager.NAME_CONTENT_TABLE);
 		ContentGO.GetComponent<UITable> ().columns = ColumnCount;
 		GameObject barGO = BasicGOOperation.getChildGameObject (cellGO, LocationManager.NAME_FRACTION_BAR);
-//		barGO.GetComponent<UIWidget>().width =(int) BasicGOOperation.ScaledBounds(cellGO).x;
+		barGO.GetComponent<UIWidget>().width =(int) BasicGOOperation.ScaledBounds(ContentGO).x/2;
 		//Setting width as cellGO width
 		//Seeting location as center of cellGO
 	}

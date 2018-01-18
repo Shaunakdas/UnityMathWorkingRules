@@ -153,29 +153,31 @@ public class Paragraph : BaseElement{
 		List<DragSourceCell> dragSourceCellList = new List<DragSourceCell> ();
 		//Parse through whole line list and its contents to get DragZoneRow Cell with valid id
 		foreach (Line line in LineList) {
-			foreach (Row row in line.RowList) {
-				foreach (var cell in row.CellList) {
-					//					Debug.Log ("Traversing through cell List current type" + cell.GetType ().ToString () + cell.CellId);
-					if ((cell.GetType () == typeof(DropZoneRowCell))&& (cell.CellId != null)) {
-						//						Debug.Log ("Found one Drop zone Cell");
-						DropZoneRowCell dropCell = (DropZoneRowCell)cell;
-						Debug.Log ("Found one Drop zone Cell" + dropCell.CellId);
-						dropZoneCellList.Add (dropCell);
-					}
-				}
-			}
+			dropZoneCellList = getDropZoneCellList(dropZoneCellList,line);
+//			foreach (Row row in line.RowList) {
+//				foreach (var cell in row.CellList) {
+//					//					Debug.Log ("Traversing through cell List current type" + cell.GetType ().ToString () + cell.CellId);
+//					if ((cell.GetType () == typeof(DropZoneRowCell))&& (cell.CellId != null)) {
+//						//						Debug.Log ("Found one Drop zone Cell");
+//						DropZoneRowCell dropCell = (DropZoneRowCell)cell;
+//						Debug.Log ("Found one Drop zone Cell" + dropCell.CellId);
+//						dropZoneCellList.Add (dropCell);
+//					}
+//				}
+//			}
 		}
-		foreach (Line line in LineList) {
-			foreach (Row row in line.RowList) {
-				foreach (var cell in row.CellList) {
-					if ((cell.GetType () == typeof(DragSourceCell)) && (cell.CellId != null)) {
-						DragSourceCell dragCell = (DragSourceCell)cell;
-						Debug.Log ("Found one Drag source Cell"+ dragCell.CellId);
-						dragSourceCellList.Add (dragCell);
-					}
-				}
-			}
-		}
+		dragSourceCellList = getDragSourceCellList (dragSourceCellList, this);
+//		foreach (Line line in LineList) {
+//			foreach (Row row in line.RowList) {
+//				foreach (var cell in row.CellList) {
+//					if ((cell.GetType () == typeof(DragSourceCell)) && (cell.CellId != null)) {
+//						DragSourceCell dragCell = (DragSourceCell)cell;
+//						Debug.Log ("Found one Drag source Cell"+ dragCell.CellId);
+//						dragSourceCellList.Add (dragCell);
+//					}
+//				}
+//			}
+//		}
 //		foreach (DragSourceCell dragCell in dragSourceCellList) {
 //			DropZoneRowCell dropZone = dropZoneCellList.Find (x => x.CellId == dragCell.CellId);
 //			Debug.Log ("Changing Target Text of id" + dragCell.DisplayText +dropZone.CellId);
@@ -188,6 +190,38 @@ public class Paragraph : BaseElement{
 		}
 	}
 
+	protected List<DropZoneRowCell> getDropZoneCellList(List<DropZoneRowCell> _dropZoneCellList, Line rowParent){
+		foreach (Row row in rowParent.RowList) {
+			foreach (var cell in row.CellList) {
+				//					Debug.Log ("Traversing through cell List current type" + cell.GetType ().ToString () + cell.CellId);
+				if ((cell.GetType () == typeof(DropZoneRowCell))&& (cell.CellId != null)) {
+					//						Debug.Log ("Found one Drop zone Cell");
+					DropZoneRowCell dropCell = (DropZoneRowCell)cell;
+					Debug.Log ("Found one Drop zone Cell" + dropCell.CellId);
+					_dropZoneCellList.Add (dropCell);
+				}
+				if (cell.GetType () == typeof(FractionCell)) {
+					_dropZoneCellList = getDropZoneCellList (_dropZoneCellList, cell);
+				}
+			}
+		}
+		return _dropZoneCellList;
+	}
+
+	protected List<DragSourceCell> getDragSourceCellList(List<DragSourceCell> _dragSourceCellList, Paragraph _para){
+		foreach (Line line in _para.LineList) {
+			foreach (Row row in line.RowList) {
+				foreach (var cell in row.CellList) {
+					if ((cell.GetType () == typeof(DragSourceCell)) && (cell.CellId != null)) {
+						DragSourceCell dragCell = (DragSourceCell)cell;
+						Debug.Log ("Found one Drag source Cell"+ dragCell.CellId);
+						_dragSourceCellList.Add (dragCell);
+					}
+				}
+			}
+		}
+		return _dragSourceCellList;
+	}
 	//-------------Based on Element Attributes, creating GameObject -------------------
 
 

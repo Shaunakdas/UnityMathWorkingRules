@@ -323,7 +323,7 @@ public class Paragraph : BaseElement{
 			//Changing Panel Height = - Half of its size
 			float height = CenterContentGO.GetComponent<UIPanel> ().height;
 			float width = CenterContentGO.GetComponent<UIPanel> ().width;
-			CenterContentGO.GetComponent<UIPanel> ().SetRect (0, containerPosition.y, width, height);
+			CenterContentGO.GetComponent<UIPanel> ().SetRect (0, containerPosition.y, width, ContainerGO.GetComponent<UIWidget>().height);
 		}
 	}
 	public void addStartWorkingRuleBtn(GameObject LineTableGO){

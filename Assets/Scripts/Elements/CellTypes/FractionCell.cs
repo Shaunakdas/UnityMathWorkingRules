@@ -61,7 +61,7 @@ public class FractionCell : Cell {
 		GameObject ContentGO = BasicGOOperation.getChildGameObject (cellGO, LocationManager.NAME_CONTENT_TABLE);
 		ContentGO.GetComponent<UITable> ().columns = ColumnCount;
 		GameObject barGO = BasicGOOperation.getChildGameObject (cellGO, LocationManager.NAME_FRACTION_BAR);
-		barGO.GetComponent<UIWidget>().width =(int) BasicGOOperation.ScaledBounds(cellGO).x;
+//		barGO.GetComponent<UIWidget>().width =(int) BasicGOOperation.ScaledBounds(cellGO).x;
 		//Setting width as cellGO width
 		//Seeting location as center of cellGO
 	}

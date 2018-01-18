@@ -33,7 +33,7 @@ public class DragSourceCell : Cell {
 		if (attr_tag != null) {
 			CellId = cell_node.Attributes [AttributeManager.ATTR_ID].Value;
 		}
-		DisplayText = cell_node.InnerText;
+		DisplayText = StringWrapper.changeString(cell_node.InnerText);
 		prefabName = LocationManager.NAME_DRAG_SOURCE_CELL;
 	}
 	public void getSourceType(string source_type){

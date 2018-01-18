@@ -37,6 +37,20 @@ public class TableLine  : Line {
 
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
+	override protected void initGOProp(GameObject ElementGO){
+		foreach (Row row in RowList){
+			Debug.Log (row.CellList.Count);
+			if ((ColumnCount!=null)&&(row.CellList.Count < ColumnCount)){
+				int extra = ColumnCount - row.CellList.Count;
+				for (int i = 0; i < extra; i++) {
+					Cell newCell = new TextCell ("");
+					newCell.Type = Cell.CellType.Text;
+					newCell.Parent = row;
+					row.CellList.Add (newCell);
+				}
+			}
+		}
+	}
 	override protected void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("COLUMN_COUNT"+ColumnCount);
 		ElementGO.GetComponent<UITable> ().columns = ColumnCount;

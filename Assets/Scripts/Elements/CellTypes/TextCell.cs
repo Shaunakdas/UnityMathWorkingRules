@@ -25,6 +25,14 @@ public class TextCell : Cell {
 
 //		Debug.Log ("Found TextCell node of content"+ DisplayText);
 	}
+	/// <summary>
+	/// Initializes a new instance of the TextCell class
+	/// </summary>
+	/// <param name="para">Para.</param>
+	public TextCell(string text){
+		DisplayText = text;
+		prefabName = LocationManager.NAME_LATEX_TEXT_CELL;
+	}
 
 	//-------------Based on Element Attributes, creating GameObject -------------------
 	override protected void updateGOProp(GameObject ElementGO){

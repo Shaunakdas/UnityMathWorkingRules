@@ -165,6 +165,7 @@ public class Line : BaseElement{
 			break;
 		}
 		ElementGO = lineGO;
+		Debug.Log ("INITGOProp");
 		initGOProp (lineGO);
 		foreach (Row row in RowList) {
 			row.generateElementGO (lineGO);
@@ -281,6 +282,7 @@ public class Line : BaseElement{
 //			Debug.Log ("Element Display Anim:Checking for Questions");
 				displayDragSourceLine ();
 				BasicGOOperation.displayElementGOAnim (ElementGO, null);
+				BasicGOOperation.RepositionParentTables (ElementGO);
 				activateQuestionListAnim (nextEvent);
 
 		

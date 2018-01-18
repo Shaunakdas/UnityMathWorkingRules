@@ -282,10 +282,8 @@ public class Line : BaseElement{
 //			Debug.Log ("Element Display Anim:Checking for Questions");
 				displayDragSourceLine ();
 				BasicGOOperation.displayElementGOAnim (ElementGO, null);
-				BasicGOOperation.RepositionParentTables (ElementGO);
+				animatePrevLineAfterAnim ();
 				activateQuestionListAnim (nextEvent);
-
-		
 			} else if (BasicGOOperation.getFirstButton (ElementGO) != null) {
 				//checking for UIButton
 				Debug.Log ("Element Display Anim:Checking for UIButton");
@@ -302,6 +300,21 @@ public class Line : BaseElement{
 				//If no interaction element is present
 				BasicGOOperation.displayElementGOAnim (ElementGO, nextEvent);
 			}
+		}
+	}
+	protected void animatePrevLineAfterAnim(){
+		Transform parent = ElementGO.transform.parent;
+		if (parent.gameObject.name == "LineTablePF") {
+			//If the line displays inside Center Scroll View
+			int index = ElementGO.transform.GetSiblingIndex ();
+			if (index > 1) {
+				//If Element had a sibling before its serial
+				GameObject prevGO = parent.GetChild(index-1).gameObject;
+				float curr_y = -ElementGO.transform.localPosition.y;
+				Vector3 deltaPos = new Vector3(0,NGUIMath.CalculateRelativeWidgetBounds(ElementGO.transform).size.y+curr_y,0);
+				SpringPanel.Begin (ElementGO.GetComponentsInParent<UIPanel>()[0].gameObject, deltaPos, 8f);
+			}
+			parent.GetComponent<UITable> ().Reposition ();
 		}
 	}
 	virtual public void activateQuestionListAnim(EventDelegate nextEvent){

@@ -313,6 +313,17 @@ public class Paragraph : BaseElement{
 			//Change CenterContentGO.height
 			GameObject ContainerGO = BasicGOOperation.getChildGameObject(CenterContentGO,"Container");
 			ContainerGO.GetComponent<UIWidget> ().height = (int)newSize.y;
+			//Calculating Delta Height for Container child and self panel
+			float scale_y = ((float)Screen.height / 900);
+			float delta_h = - ((int)newSize.y / 2)*scale_y;
+			//Changing Container Height = - Half of its size
+			Vector3 containerPosition = ContainerGO.transform.localPosition;
+			containerPosition.y = delta_h;
+			ContainerGO.transform.localPosition = containerPosition;
+			//Changing Panel Height = - Half of its size
+			float height = CenterContentGO.GetComponent<UIPanel> ().height;
+			float width = CenterContentGO.GetComponent<UIPanel> ().width;
+			CenterContentGO.GetComponent<UIPanel> ().SetRect (0, containerPosition.y, width, height);
 		}
 	}
 	public void addStartWorkingRuleBtn(GameObject LineTableGO){

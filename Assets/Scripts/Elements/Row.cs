@@ -161,43 +161,53 @@ public class Row : BaseElement {
 			int startInt = int.Parse (row_node.Attributes [AttributeManager.ATTR_START].Value);
 			int endInt = int.Parse (row_node.Attributes [AttributeManager.ATTR_END].Value);
 			string sourceType = row_node.Attributes [AttributeManager.ATTR_SOURCE_TYPE].Value;
+			Debug.Log ("sourceType"+sourceType);
 			//Initiate Creation of Cell List 
 			switch (sourceType) {
 			case "integer":
 				for (int a = startInt; a < endInt+1; a = a + 1)
 				{
-					Cell newCell = new DragSourceCell ("text",a.ToString());
-					newCell.Parent = this;
-					//Checking For Grid Cell Max Width
-					maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(a.ToString()));
-					CellList.Add (newCell);
+//					Cell newCell = new DragSourceCell ("text",a.ToString());
+//					newCell.Parent = this;
+//					//Checking For Grid Cell Max Width
+//					maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(a.ToString()));
+//					CellList.Add (newCell);
+					maxGridCellWidth = addNewCell(a.ToString(),this,maxGridCellWidth,CellList);
 				}
 				break;
 			case "prime":
 				for (int a = startInt; a < endInt+1; a = a + 1)
 				{
 					if (isPrime (a)) {
-						Cell newCell = new DragSourceCell ("text",a.ToString());
-						newCell.Parent = this;
-						//Checking For Grid Cell Max Width
-						maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(a.ToString()));
-						CellList.Add (newCell);
+						maxGridCellWidth = addNewCell(a.ToString(),this,maxGridCellWidth,CellList);
 					}
+				}
+				break;
+			case "decimal":
+				//Adding decimal point
+				maxGridCellWidth = addNewCell(".",this,maxGridCellWidth,CellList);
+				//Adding given integers
+				for (int a = startInt; a < endInt+1; a = a + 1)
+				{
+					maxGridCellWidth = addNewCell(a.ToString(),this,maxGridCellWidth,CellList);
 				}
 				break;
 			default:
 				for (int a = startInt; a < endInt+1; a = a + 1)
 				{
-					Cell newCell = new DragSourceCell ("text",a.ToString());
-					newCell.Parent = this;
-					//Checking For Grid Cell Max Width
-					maxGridCellWidth = Mathf.Max(maxGridCellWidth, BasicGOOperation.getNGUITextSize(a.ToString()));
-					CellList.Add (newCell);
+					maxGridCellWidth = addNewCell(a.ToString(),this,maxGridCellWidth,CellList);
 				}
 				break;
 			}
 		}
 
+	}
+	protected float addNewCell(string _target, Row _row, float _maxGridCellWidth, List<Cell> _cellList){
+		Cell newCell = new DragSourceCell ("text",_target);
+		newCell.Parent = _row;
+		_cellList.Add (newCell);
+		//Checking For Grid Cell Max Width
+		return Mathf.Max(_maxGridCellWidth, BasicGOOperation.getNGUITextSize(_target));
 	}
 	public void addToParaDragSourceList (){
 		if (Type == RowType.DragSourceLine) {

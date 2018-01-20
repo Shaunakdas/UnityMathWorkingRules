@@ -9,7 +9,7 @@ public class Line : BaseElement{
 	//-------------Common Attributes -------------------
 	//What is the broad classification of line types?
 	public enum LineType {
-		Text,PostSubmitText,IncorrectSubmitText,Table,RangeTable,NumberLineDrop,
+		Text,PostSubmitText,IncorrectSubmitText,Table,TexTable,RangeTable,NumberLineDrop,
 		NumberLineDropJump,NumberLineSelect,PrimeDivision,CombinationProduct,CombinationSum,CombinationProductSum
 	}
 	public LineType Type{ get; set; }

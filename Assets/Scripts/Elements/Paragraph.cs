@@ -110,6 +110,9 @@ public class Paragraph : BaseElement{
 					case "table": 
 						newLine = new TableLine (line_node);
 						break;
+					case "tex_table": 
+						newLine = new TexTableLine (line_node);
+						break;
 					case "range_table": 
 						newLine = new RangeTableLine (line_node);
 						break;

@@ -55,8 +55,8 @@ MonoBehaviour:
   m_Factor:
     scale: 1
     offset: 0
-  m_Count: 0
-  m_ApproxCount: 0
+  m_Count: 1
+  m_ApproxCount: 1
 --- !u!114 &114860427963326290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,16 +87,16 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 168
-  mHeight: 36
+  mWidth: 33
+  mHeight: 2
   mDepth: 5
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.6666665
+  aspectRatio: 0.9166667
   pref: {fileID: 11400000, guid: c7e998b2cd9f6b448b30ca3a64870cc8, type: 2}
-  m_Text: '250105 '
+  m_Text: 20
   m_FontIndex: 15
   m_AutoFit: 3
   m_AutoWrap: 2

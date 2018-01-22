@@ -23,8 +23,21 @@ public class TexLength : TEXPerCharacterBase {
 	}
 	public void resizeTexCell(){
 		float scale_x = ((float)Screen.width / 480);
-		int spaceCount = gameObject.GetComponent<TEXDrawNGUI> ().text.Count(f => f == ' ');
-		gameObject.GetComponent<TEXDrawNGUI> ().width = Mathf.Min((int)(scale_x * 20f * (m_ApproxCount + spaceCount + 1)),Screen.width-30);
+		float stdFontSize = scale_x * 35f;
+		TEXDrawNGUI texComponent = gameObject.GetComponent<TEXDrawNGUI> ();
+		float sizeMultiplier = texComponent.size * (17f/stdFontSize);
+		if (texComponent.text.Contains ("\\n")) {
+			//Add new Line component
+			if(gameObject.GetComponents<TEXSupNewLine>().Length ==0)
+				gameObject.AddComponent <TEXSupNewLine>();
+		}
+		int newLineIndex = texComponent.text.IndexOf ("\\n");
+		if ((texComponent.text.Contains ("\\n"))&&(newLineIndex<m_Count)) {
+			//Stop extending
+		} else {
+			int spaceCount = texComponent.text.Count (f => f == ' ');
+			texComponent.width = Mathf.Min ((int)(scale_x * sizeMultiplier * (m_Count + spaceCount + 1)), Screen.width - 30);
+		}
 		gameObject.GetComponentInParent<UITable> ().Reposition ();
 	}
 

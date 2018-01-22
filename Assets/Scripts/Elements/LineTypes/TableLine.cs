@@ -70,7 +70,37 @@ public class TableLine  : Line {
 			}
 		}
 	}
-
+	public static void resizeLargestTexCell(TableLine _line){
+		Debug.Log ("Resizing resizeLargestTexCell"+_line.ElementGO);
+		if (_line.ColumnCount>0){
+			int SCREEN_WIDTH = Screen.width;
+			int extra = (int)(BasicGOOperation.ElementSize (_line.ElementGO).x - (0.9)*SCREEN_WIDTH);
+			TextCell largestCell = new TextCell("");
+			int maxTextCellLength = 0;
+			Debug.Log (extra);
+			if (extra<0){
+				foreach (Row row in _line.RowList) {
+					//Iterating through each row
+					foreach (Cell cell in row.CellList) {
+						//Iterating through each cell
+						if (cell.GetType () == typeof(TextCell)) {
+							//If the cell is a TextCell
+							if ((cell.ElementGO.GetComponents<TEXDrawNGUI> ().Length > 0)&&(cell.ElementGO.GetComponent<TEXDrawNGUI> ().width > maxTextCellLength)) {
+								//LatexTextCell with width more than last biggest latexTexCell
+								largestCell = cell as TextCell;
+								maxTextCellLength =  Mathf.Max(maxTextCellLength, cell.ElementGO.GetComponent<TEXDrawNGUI> ().width);
+							}
+						}
+					}
+				}
+				//If found the largestTextCell
+				if (maxTextCellLength > 0) {
+					largestCell.ElementGO.GetComponent<TEXDrawNGUI> ().width = maxTextCellLength - extra;
+					_line.ElementGO.GetComponent<UITable> ().Reposition ();
+				}
+			}
+		}
+	}
 	//-------------Static methods to create/update GameObject components for Correct/Incorrect Check-------------------
 	//For Selectable Button Holder
 	public void updateSelBtnHolder(GameObject _selBtnGO,bool _selBtnBool){

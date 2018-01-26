@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 public class BasicGOOperation : MonoBehaviour{	
 	//Base methods
 	static private Vector3 _scale;
@@ -212,68 +213,94 @@ public class BasicGOOperation : MonoBehaviour{
 			TextGO.GetComponent<TEXDrawNGUI> ().text = text;
 		}
 	}
-	static public void hideElementGO(GameObject ParentGO){
-//		Debug.Log ("HIDE ELEMENTGO"+ParentGO);
-		if (ParentGO.GetComponent<UIWidget> () != null) {
-			ParentGO.GetComponent<UIWidget> ().alpha = 0f;
-		} else {
-			foreach (Transform childTf in ParentGO.transform) {
-				UIWidget childWidget = childTf.gameObject.GetComponent<UIWidget> ();
-				if (childWidget != null) {
-					childWidget.alpha = 0f;
-				} else {
-					foreach (Transform grandChildTf in childTf) {
-						UIWidget grandChildWidget = grandChildTf.gameObject.GetComponent<UIWidget> ();
-						if (grandChildWidget != null) {
-							grandChildWidget.alpha = 0f;
-						}
-					}
-				}
+	static public List<UIWidget> childWidgets(GameObject _elementGO){
+		List<UIWidget> _childWidgets = new List<UIWidget> ();
+		if (_elementGO.GetComponent<UIWidget> () != null) {
+			_childWidgets.Add(_elementGO.GetComponent<UIWidget> ());
+		} else if(_elementGO.GetComponents<UITable> ().Length > 0){
+			foreach (Transform childTf in _elementGO.transform) {
+				_childWidgets = _childWidgets.Concat(childWidgets(childTf.gameObject)).ToList();
 			}
 		}
+		return _childWidgets;
+	}
+	static public void hideElementGO(GameObject ParentGO){
+		foreach (UIWidget childWidget in childWidgets(ParentGO)){
+			Debug.Log (childWidget.gameObject.name);
+			childWidget.alpha = 0f;
+		}
+//		Debug.Log ("HIDE ELEMENTGO"+ParentGO);
+//		if (ParentGO.GetComponent<UIWidget> () != null) {
+//			ParentGO.GetComponent<UIWidget> ().alpha = 0f;
+//		} else {
+//			foreach (Transform childTf in ParentGO.transform) {
+//				UIWidget childWidget = childTf.gameObject.GetComponent<UIWidget> ();
+//				if (childWidget != null) {
+//					childWidget.alpha = 0f;
+//				} else {
+//					foreach (Transform grandChildTf in childTf) {
+//						UIWidget grandChildWidget = grandChildTf.gameObject.GetComponent<UIWidget> ();
+//						if (grandChildWidget != null) {
+//							grandChildWidget.alpha = 0f;
+//						}
+//					}
+//				}
+//			}
+//		}
 	}
 	static public void displayElementGO(GameObject ParentGO){
-		if (ParentGO.GetComponent<UIWidget> () != null) {
-			ParentGO.GetComponent<UIWidget> ().alpha = 1f;
-		}else {
-			foreach (Transform childTf in ParentGO.transform) {
-				UIWidget childWidget = childTf.gameObject.GetComponent<UIWidget> ();
-				if (childWidget != null){
-					childWidget.alpha = 1f;
-				} else {
-					foreach (Transform grandChildTf in childTf) {
-						UIWidget grandChildWidget = grandChildTf.gameObject.GetComponent<UIWidget> ();
-						if (grandChildWidget != null) {
-							grandChildWidget.alpha = 1f;
-						}
-					}
-				}
-			}
+		foreach (UIWidget childWidget in childWidgets(ParentGO)){
+			childWidget.alpha = 1f;
 		}
+//		if (ParentGO.GetComponent<UIWidget> () != null) {
+//			ParentGO.GetComponent<UIWidget> ().alpha = 1f;
+//		}else {
+//			foreach (Transform childTf in ParentGO.transform) {
+//				UIWidget childWidget = childTf.gameObject.GetComponent<UIWidget> ();
+//				if (childWidget != null){
+//					childWidget.alpha = 1f;
+//				} else {
+//					foreach (Transform grandChildTf in childTf) {
+//						UIWidget grandChildWidget = grandChildTf.gameObject.GetComponent<UIWidget> ();
+//						if (grandChildWidget != null) {
+//							grandChildWidget.alpha = 1f;
+//						}
+//					}
+//				}
+//			}
+//		}
 	}
 	static public void displayElementGOAnim(GameObject ParentGO, EventDelegate nextAnim){
-		if (ParentGO.GetComponent<UIWidget> () != null) {
-			alphaAnim (ParentGO.GetComponent<UIWidget> (), 0f, 1f, nextAnim);
-		} else {
-			//Go through the list of child transforms of ParentGO and start animation if they have UIWidget Component
-			for (int i = 0; i < ParentGO.transform.childCount; i++) {
-				UIWidget childWidget = ParentGO.transform.GetChild (i).GetComponent<UIWidget>();
-				EventDelegate nextWidgetAnim = null;
-				if (i == ParentGO.transform.childCount - 1) {
-					nextWidgetAnim = nextAnim;
-				}
-				if (childWidget != null) {
-					alphaAnim (childWidget, 0f, 1f, nextWidgetAnim);
-				} else {
-					foreach (Transform grandChildTf in ParentGO.transform.GetChild (i)) {
-						UIWidget grandChildWidget = grandChildTf.gameObject.GetComponent<UIWidget> ();
-						if (grandChildWidget != null) {
-							alphaAnim (grandChildWidget, 0f, 1f, nextWidgetAnim);
-						}
-					}
-				}
+		List<UIWidget> _childWidgets = childWidgets (ParentGO);
+		for (int i = 0; i < _childWidgets.Count; i++) {
+			EventDelegate nextWidgetAnim = null;
+			if (i == _childWidgets.Count - 1) {
+				nextWidgetAnim = nextAnim;
 			}
+			alphaAnim (_childWidgets[i], 0f, 1f, nextWidgetAnim);
 		}
+//		if (ParentGO.GetComponent<UIWidget> () != null) {
+//			alphaAnim (ParentGO.GetComponent<UIWidget> (), 0f, 1f, nextAnim);
+//		} else {
+//			//Go through the list of child transforms of ParentGO and start animation if they have UIWidget Component
+//			for (int i = 0; i < ParentGO.transform.childCount; i++) {
+//				UIWidget childWidget = ParentGO.transform.GetChild (i).GetComponent<UIWidget>();
+//				EventDelegate nextWidgetAnim = null;
+//				if (i == ParentGO.transform.childCount - 1) {
+//					nextWidgetAnim = nextAnim;
+//				}
+//				if (childWidget != null) {
+//					alphaAnim (childWidget, 0f, 1f, nextWidgetAnim);
+//				} else {
+//					foreach (Transform grandChildTf in ParentGO.transform.GetChild (i)) {
+//						UIWidget grandChildWidget = grandChildTf.gameObject.GetComponent<UIWidget> ();
+//						if (grandChildWidget != null) {
+//							alphaAnim (grandChildWidget, 0f, 1f, nextWidgetAnim);
+//						}
+//					}
+//				}
+//			}
+//		}
 	}
 	static public void alphaAnim(UIWidget _elementWidget, float _fromAlpha, float _toAlpha, EventDelegate nextAnim){
 //		Debug.Log ("ALPHA ANIM 2"+_elementWidget.gameObject.name+_fromAlpha+_toAlpha);

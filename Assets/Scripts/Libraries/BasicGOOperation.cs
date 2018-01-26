@@ -251,7 +251,6 @@ public class BasicGOOperation : MonoBehaviour{
 			}
 		}
 	}
-
 	static public void displayElementGOAnim(GameObject ParentGO, EventDelegate nextAnim){
 		if (ParentGO.GetComponent<UIWidget> () != null) {
 			alphaAnim (ParentGO.GetComponent<UIWidget> (), 0f, 1f, nextAnim);
@@ -286,6 +285,11 @@ public class BasicGOOperation : MonoBehaviour{
 			elementTweenAlpha.from = _fromAlpha; 
 			elementTweenAlpha.to = _toAlpha; 
 			elementTweenAlpha.duration = 2f;
+			//Triggering Reposition for TexDraw's parents
+			if (_elementWidget.gameObject.GetComponents<TEXFinish>().Length > 0){
+				EventDelegate texTablerepostion = new EventDelegate (_elementWidget.gameObject.GetComponent<TEXFinish>(),"triggerReposition");
+				elementTweenAlpha.onFinished.Add (texTablerepostion);
+			}
 			if(nextAnim !=null)
 				elementTweenAlpha.onFinished.Add (nextAnim);
 			elementTweenAlpha.Play (true);

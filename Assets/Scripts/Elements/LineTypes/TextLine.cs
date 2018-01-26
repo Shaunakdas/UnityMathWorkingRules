@@ -7,12 +7,14 @@ public class TextLine : Line {
 
 	//-------------Common Attributes -------------------
 	public string DisplayText {get; set;}
+	float fontSizeMultiplier{get; set;}
 
 
 	//-------------Parsing HTML Node and initiating Element Attributes -------------------
 	//Contructor
 	public TextLine(string displayText, string type):base(){
 		DisplayText = StringWrapper.HtmlToPlainText(displayText);
+		fontSizeMultiplier = 1.0f;
 	}
 	/// <summary>
 	/// Initializes a new instance of the TextLine class with HTMLNode attribute
@@ -22,6 +24,12 @@ public class TextLine : Line {
 		DisplayText = StringWrapper.HtmlToPlainText(line_node.InnerText);
 
 		prefabName = LocationManager.NAME_LATEX_TEXT_LINE;
+		HtmlAttribute attr_fontSize = line_node.Attributes [AttributeManager.ATTR_FONT_SIZE];
+		if (attr_fontSize != null) {
+			fontSizeMultiplier = float.Parse (attr_fontSize.Value);
+		} else {
+			fontSizeMultiplier = 1.0f;
+		}
 	}
 
 
@@ -35,7 +43,15 @@ public class TextLine : Line {
 	override protected void updateGOProp(GameObject ElementGO){
 //		Debug.Log ("Updating Text of Cell" + DisplayText);
 //		ElementGO.GetComponent<UILabel> ().text = DisplayText;
-		BasicGOOperation.setText(ElementGO,DisplayText);
 
+		TEXDrawNGUI texComponent = ElementGO.GetComponent<TEXDrawNGUI> ();
+		if ( texComponent!= null) {
+			//If it has TEX comnponent
+			if (fontSizeMultiplier!=null){
+				//If fontSizeMultiplier is provided
+				texComponent.size = fontSizeMultiplier * texComponent.size;
+			}
+		}
+		BasicGOOperation.setText(ElementGO,DisplayText);
 	}
 }

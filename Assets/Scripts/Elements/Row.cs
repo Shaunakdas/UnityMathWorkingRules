@@ -144,6 +144,8 @@ public class Row : BaseElement {
 		foreach (Cell cell in CellList) {
 			cell.ParagraphRef = this.ParagraphRef;
 			cell.setChildParagraphRef ();
+			if(cell.Type == Cell.CellType.DragSource)
+				Type = RowType.DragSourceLine;
 		}
 		addToParaDragSourceList ();
 	}
@@ -210,7 +212,7 @@ public class Row : BaseElement {
 		return Mathf.Max(_maxGridCellWidth, BasicGOOperation.getNGUITextSize(_target));
 	}
 	public void addToParaDragSourceList (){
-		if (Type == RowType.DragSourceLine) {
+		if ((Type == RowType.DragSourceLine)&&(ParagraphRef.DragSourceTableList.IndexOf(Parent as TableLine)<0)) {
 			ParagraphRef.DragSourceTableList.Add (Parent as TableLine);
 		}
 	}

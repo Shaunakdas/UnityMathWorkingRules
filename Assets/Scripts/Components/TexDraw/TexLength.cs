@@ -8,11 +8,15 @@ public class TexLength : TEXPerCharacterBase {
 
 	public float m_Count;
 	public float m_ApproxCount;
+	public int newLineIndex = -1;
 
 	// This is applied for each character (and commands)
 	protected override string Subtitute(string match, float m_Factor)
 	{
 
+		if (match == ("\\n")){
+			newLineIndex = (int)m_Count;
+		}
 		if (match.Length == 1) {
 			m_Count++;
 			resizeTexCell ();
@@ -25,18 +29,22 @@ public class TexLength : TEXPerCharacterBase {
 		float scale_x = ((float)Screen.width / 480);
 		float stdFontSize = scale_x * 35f;
 		TEXDrawNGUI texComponent = gameObject.GetComponent<TEXDrawNGUI> ();
-		float sizeMultiplier = texComponent.size * (17f/stdFontSize);
+		float sizeMultiplier = texComponent.size * (19f/stdFontSize);
 		if (texComponent.text.Contains ("\\n")) {
 			//Add new Line component
 			if(gameObject.GetComponents<TEXSupNewLine>().Length ==0)
 				gameObject.AddComponent <TEXSupNewLine>();
 		}
-		int newLineIndex = texComponent.text.IndexOf ("\\n");
-		if ((texComponent.text.Contains ("\\n"))&&(newLineIndex<m_Count)) {
+
+		float maxCount = Mathf.Max (m_ApproxCount,m_Count);
+		if (texComponent.text.Contains("\\n")){
+			maxCount = m_Count;
+		}
+		if ((newLineIndex>0)&&(newLineIndex<m_Count)) {
 			//Stop extending
 		} else {
 			int spaceCount = texComponent.text.Count (f => f == ' ');
-			texComponent.width = Mathf.Min ((int)(scale_x * sizeMultiplier * (m_Count + spaceCount + 1)), Screen.width - 30);
+			texComponent.width = Mathf.Min ((int)(scale_x * sizeMultiplier * (maxCount + spaceCount + 1)), Screen.width - 30);
 		}
 		gameObject.GetComponentInParent<UITable> ().Reposition ();
 	}

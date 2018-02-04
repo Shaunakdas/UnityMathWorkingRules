@@ -364,6 +364,9 @@ public class Paragraph : BaseElement{
 		}
 	}
 	public void addStartWorkingRuleBtn(GameObject LineTableGO){
+		if (GameObject.Find ("PauseImgBtn")) {
+			EventDelegate.Set(GameObject.Find ("PauseImgBtn").GetComponent<UIButton>().onClick, delegate() { (this.Parent as ComprehensionBody).nextParaTrigger(); });
+		}
 		if (ParagraphStep == Paragraph.StepType.Comprehension) {
 
 			GameObject StartWorkingRuleBtnPF = Resources.Load (LocationManager.COMPLETE_LOC_OTHER_TYPE + LocationManager.NAME_START_WORKING_RULE_BTN)as GameObject;

@@ -252,9 +252,11 @@ public class DropZoneRowCell : Cell {
 	}
 	bool integerQuestion(){
 		char[] signs = {'+','-'};
-		foreach (string text in TargetTextList) {
-			if(text.IndexOfAny(signs)>-1){
-				return true;
+		if (TargetId == null) {
+			foreach (string text in TargetTextList) {
+				if (text.IndexOfAny (signs) > -1) {
+					return true;
+				}
 			}
 		}
 		return false;

@@ -53,7 +53,7 @@ public class DropZoneHolder : QuestionChecker {
 		foreach (string targetText in TargetTextList) {
 			Debug.Log("inputText"+inputTextList[0]+"targetText"+targetText);
 			//Checking for TriedText with same length;
-			if (targetText.Length == inputTextList.Count) {
+			if (stringWithoutSign(targetText).Length == stringListWithoutSign(inputTextList).Count) {
 
 
 				//Checking for matching exact text
@@ -85,6 +85,23 @@ public class DropZoneHolder : QuestionChecker {
 		}
 		return false;
 	}
+	protected string stringWithoutSign(string targetText){
+		string absText =targetText;
+		if(targetText.Length > 0){
+			string firstString = targetText.Substring (0, 1);
+			if((firstString == "-")||(firstString == "+")){
+				absText = targetText.Remove (0, 1);
+			}
+		}
+		return absText;
+	}
+	protected List<string> stringListWithoutSign(List<string> inputTextList){
+		List<string> absTextList = inputTextList;
+		absTextList.Remove("-");
+		absTextList.Remove("+");
+		return absTextList;
+	}
+
 	protected bool noNullElement(List<string> inputList){
 		foreach (string input in inputList) {
 			if (input == null) {

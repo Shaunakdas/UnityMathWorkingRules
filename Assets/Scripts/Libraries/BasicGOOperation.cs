@@ -195,6 +195,7 @@ public class BasicGOOperation : MonoBehaviour{
 	static public Vector3 ScaledBounds(GameObject TargetGO){
 		Vector3 finalSize = NGUIMath.CalculateAbsoluteWidgetBounds (TargetGO.transform).size;
 		finalSize.x = finalSize.x / scale.x; finalSize.y = finalSize.y / scale.y; finalSize.z = finalSize.z / scale.z;
+		Debug.Log (finalSize);
 		return finalSize;
 	}
 	static public Vector3 NGUIPosition(Transform transform){
@@ -315,6 +316,11 @@ public class BasicGOOperation : MonoBehaviour{
 			//Triggering Reposition for TexDraw's parents
 			if (_elementWidget.gameObject.GetComponents<TEXFinish>().Length > 0){
 				EventDelegate texTablerepostion = new EventDelegate (_elementWidget.gameObject.GetComponent<TEXFinish>(),"triggerReposition");
+				elementTweenAlpha.onFinished.Add (texTablerepostion);
+			}
+			//Triggering Reposition for TexDraw's parents
+			foreach (TEXFinish texFinish in _elementWidget.gameObject.GetComponentsInChildren<TEXFinish>()) {
+				EventDelegate texTablerepostion = new EventDelegate (texFinish,"triggerReposition");
 				elementTweenAlpha.onFinished.Add (texTablerepostion);
 			}
 			if(nextAnim !=null)

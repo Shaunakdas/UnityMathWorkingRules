@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationManager : MonoBehaviour {
+public class AnimManager : MonoBehaviour {
 	const float ANIMATION_DURATION = 2f;
 	const float TIMER_ANIM_DURATION = 10f;
 	const float TIMER_WARNING_DELAY = 7f;

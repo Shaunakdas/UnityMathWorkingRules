@@ -7,12 +7,12 @@ public class DropZoneOptionChecker : OptionChecker {
 	public bool idCheck{ get; set; }
 	public string filledText{ get; set; }
 	public bool attempted{ get; set; }
-	AnimationManager animManager;
+	AnimManager animManager;
 	void Awake(){
 		ItemTargetType=TargetType.Option;
-		if (gameObject.GetComponent<AnimationManager> () == null)
-			gameObject.AddComponent<AnimationManager> ();
-		animManager = gameObject.GetComponent<AnimationManager> ();
+		if (gameObject.GetComponent<AnimManager> () == null)
+			gameObject.AddComponent<AnimManager> ();
+		animManager = gameObject.GetComponent<AnimManager> ();
 	}
 	// Use this for initialization
 	void Start () {

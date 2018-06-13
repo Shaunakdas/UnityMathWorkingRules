@@ -35,9 +35,9 @@ public class SelSignOptionChecker : SelBtnOptionChecker {
 
 	void Awake(){
 		ItemTargetType=TargetType.Option;
-		if (gameObject.GetComponent<AnimationManager> () == null)
-			gameObject.AddComponent<AnimationManager> ();
-		animManager = gameObject.GetComponent<AnimationManager> ();
+		if (gameObject.GetComponent<AnimManager> () == null)
+			gameObject.AddComponent<AnimManager> ();
+		animManager = gameObject.GetComponent<AnimManager> ();
 	}
 		
 	override public void autocorrectionAnim(){

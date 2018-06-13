@@ -8,7 +8,7 @@ public class SelBtnOptionChecker : OptionChecker {
 //	public GameObject SelBtnHolderGO;
 	public string DisplayText = "";
 	public bool HighlightOnCorrectSelection = true;
-	public AnimationManager animManager;
+	public AnimManager animManager;
 
 	virtual public void changeInputFlag(){
 		attemptEvent ();
@@ -66,9 +66,9 @@ public class SelBtnOptionChecker : OptionChecker {
 	}
 	void Awake(){
 		ItemTargetType=TargetType.Option;
-		if (gameObject.GetComponent<AnimationManager> () == null)
-			gameObject.AddComponent<AnimationManager> ();
-		animManager = gameObject.GetComponent<AnimationManager> ();
+		if (gameObject.GetComponent<AnimManager> () == null)
+			gameObject.AddComponent<AnimManager> ();
+		animManager = gameObject.GetComponent<AnimManager> ();
 	}
 	// Use this for initialization
 	void Start () {

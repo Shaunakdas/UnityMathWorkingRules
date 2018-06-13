@@ -145,9 +145,9 @@ public class ScreenManager : MonoBehaviour {
 		return _elementGO;
 	}
 	static public int ScreenWidth(){
-		return Screen.width;
+		return (int)(Screen.width*0.8);
 	}
 	static public int ScreenHeight(){
-		return Screen.height;
+		return (int)(Screen.height*0.8);
 	}
 }

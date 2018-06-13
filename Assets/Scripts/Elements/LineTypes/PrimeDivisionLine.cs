@@ -61,7 +61,7 @@ public class PrimeDivisionLine : Line {
 		dividendLabelCell.GetComponent<TEXDrawNGUI>().text = dividend.ToString();dividendLabelCell.GetComponent<TEXDrawNGUI> ().autoFit = TexDrawLib.Fitting.Off;
 		//Setting the size and location
 		dividendLabelCell.GetComponent<TEXDrawNGUI>().height = 90;dividendLabelCell.GetComponent<TEXDrawNGUI>().width = 72;
-		float scale_x = ((float)Screen.width / 480);
+		float scale_x = ((float)ScreenManager.ScreenWidth() / 480);
 		float scale_y = ((float)Screen.height / 900);
 		Vector3 divLocation = dividendLabelCell.transform.localPosition; divLocation.x = 53*scale_x; dividendLabelCell.transform.localPosition = divLocation;
 

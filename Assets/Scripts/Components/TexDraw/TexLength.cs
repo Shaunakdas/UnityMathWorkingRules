@@ -26,7 +26,7 @@ public class TexLength : TEXPerCharacterBase {
 		return match;
 	}
 	public void resizeTexCell(){
-		float scale_x = ((float)Screen.width / 480);
+		float scale_x = ((float)ScreenManager.ScreenWidth() / 480);
 		float stdFontSize = scale_x * 35f;
 		TEXDrawNGUI texComponent = gameObject.GetComponent<TEXDrawNGUI> ();
 		float sizeMultiplier = texComponent.size * (19f/stdFontSize);
@@ -44,7 +44,7 @@ public class TexLength : TEXPerCharacterBase {
 			//Stop extending
 		} else {
 			int spaceCount = texComponent.text.Count (f => f == ' ');
-			texComponent.width = Mathf.Min ((int)(scale_x * sizeMultiplier * (maxCount + spaceCount + 1)), Screen.width - 30);
+			texComponent.width = Mathf.Min ((int)(scale_x * sizeMultiplier * (maxCount + spaceCount + 1)), ScreenManager.ScreenWidth() - 30);
 		}
 		gameObject.GetComponentInParent<UITable> ().Reposition ();
 	}

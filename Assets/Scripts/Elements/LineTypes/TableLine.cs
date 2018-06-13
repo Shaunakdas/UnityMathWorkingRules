@@ -64,7 +64,7 @@ public class TableLine  : Line {
 
 		if (Paragraph.ParagraphAlign == Paragraph.AlignType.Vertical) {
 			Debug.Log ("Table width"+BasicGOOperation.ScaledBounds (ElementGO).x.ToString());
-			float paddingNeeded = Screen.width -BasicGOOperation.ScaledBounds(ElementGO).x;
+			float paddingNeeded = ScreenManager.ScreenWidth() -BasicGOOperation.ScaledBounds(ElementGO).x;
 			if (ColumnCount > 1) {
 //				ElementGO.GetComponent<UITable> ().padding.x = (paddingNeeded - 30)/(ColumnCount);
 			}
@@ -73,7 +73,7 @@ public class TableLine  : Line {
 	public static void resizeLargestTexCell(TableLine _line){
 		Debug.Log ("Resizing resizeLargestTexCell"+_line.ElementGO);
 		if (_line.ColumnCount>0){
-			int SCREEN_WIDTH = Screen.width;
+			int SCREEN_WIDTH = ScreenManager.ScreenWidth();
 			int extra = (int)(BasicGOOperation.ElementSize (_line.ElementGO).x - (0.9)*SCREEN_WIDTH);
 			TextCell largestCell = new TextCell("");
 			int maxTextCellLength = 0;

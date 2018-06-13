@@ -351,7 +351,7 @@ public class Paragraph : BaseElement{
 			GameObject ContainerGO = BasicGOOperation.getChildGameObject(CenterContentGO,"Container");
 			ContainerGO.GetComponent<UIWidget> ().height = (int)newSize.y;
 			//Calculating Delta Height for Container child and self panel
-			float scale_y = ((float)Screen.height / 900);
+			float scale_y = ((float)ScreenManager.ScreenHeight() / 900);
 			float delta_h = - ((int)newSize.y / 2)*scale_y;
 			//Changing Container Height = - Half of its size
 			Vector3 containerPosition = ContainerGO.transform.localPosition;

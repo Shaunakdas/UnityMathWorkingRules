@@ -151,7 +151,7 @@ public class ComprehensionBody : BaseElement {
 	}
 	public void setRootSize(GameObject _elementGO){
 		UIRoot Root = ElementGO.GetComponentInParent<UIRoot> (); 
-		Root.manualHeight = Screen.height; Root.manualWidth = Screen.width; 
+		Root.manualHeight = ScreenManager.ScreenHeight(); Root.manualWidth = ScreenManager.ScreenWidth(); 
 	}
 	//----------------------Score Values ----------------------------
 	override public void  setChildScoreValues(){

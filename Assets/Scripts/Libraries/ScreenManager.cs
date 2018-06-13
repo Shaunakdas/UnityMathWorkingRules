@@ -76,8 +76,8 @@ public class ScreenManager : MonoBehaviour {
 	/// <returns>GameObject itself</returns>
 	/// <param name="_elementGO">Element Gameobject</param>
 	static public GameObject resizeChildren(GameObject _elementGO){
-		float scale_x = ((float)Screen.width / 480);
-		float scale_y = ((float)Screen.height / 900);
+		float scale_x = ((float)ScreenManager.ScreenWidth() / 480);
+		float scale_y = ((float)ScreenManager.ScreenHeight() / 900);
 		Vector2 newScale = new Vector2 (scale_x, scale_y);
 		resizePanelChildren (newScale, _elementGO);
 		resizeGridChildren (newScale, _elementGO);
@@ -103,45 +103,51 @@ public class ScreenManager : MonoBehaviour {
 	static public GameObject SetAsScreenWidth(GameObject _elementGO, int padding){
 		UIWidget elementWidget = _elementGO.GetComponent<UIWidget> ();
 		if (elementWidget != null) {
-			elementWidget.width = Screen.width - padding;
+			elementWidget.width = ScreenManager.ScreenWidth() - padding;
 		}
 		return _elementGO;
 	}
 	static public GameObject SetAsScreenHeight(GameObject _elementGO, int padding){
 		UIWidget elementWidget = _elementGO.GetComponent<UIWidget> ();
 		if (elementWidget != null) {
-			elementWidget.height = Screen.height - padding;
+			elementWidget.height = ScreenManager.ScreenHeight() - padding;
 		}
 		return _elementGO;
 	}
 	static public GameObject SetAsScreenLeft(GameObject _elementGO){
 		Vector2 elementSize = BasicGOOperation.ElementSize (_elementGO); Vector3 elementPos = _elementGO.transform.localPosition;
-		_elementGO.transform.localPosition =new Vector3 ( -Screen.width/2, elementPos.y, elementPos.z);
+		_elementGO.transform.localPosition =new Vector3 ( -ScreenManager.ScreenWidth()/2, elementPos.y, elementPos.z);
 		return _elementGO;
 	}
 	static public GameObject SetAsScreenRight(GameObject _elementGO){
 		Vector2 elementSize = BasicGOOperation.ElementSize (_elementGO); Vector3 elementPos = _elementGO.transform.localPosition;
-		_elementGO.transform.localPosition =new Vector3 ( Screen.width/2, elementPos.y, elementPos.z);
+		_elementGO.transform.localPosition =new Vector3 ( ScreenManager.ScreenWidth()/2, elementPos.y, elementPos.z);
 		return _elementGO;
 	}
 	static public GameObject SetAsScreenTop(GameObject _elementGO){
 		Vector2 elementSize = BasicGOOperation.ElementSize (_elementGO); Vector3 elementPos = _elementGO.transform.localPosition;
-		_elementGO.transform.localPosition =new Vector3 (elementPos.x, ((Screen.height/2) - (elementSize.y / 2)), elementPos.z);
+		_elementGO.transform.localPosition =new Vector3 (elementPos.x, ((ScreenManager.ScreenHeight()/2) - (elementSize.y / 2)), elementPos.z);
 		return _elementGO;
 	}
 	static public GameObject SetAsScreenBottom(GameObject _elementGO){
 		Vector2 elementSize = BasicGOOperation.ElementSize (_elementGO); Vector3 elementPos = _elementGO.transform.localPosition;
-		_elementGO.transform.localPosition =new Vector3 (elementPos.x, ((-Screen.height/2) + (elementSize.y / 2)), elementPos.z);
+		_elementGO.transform.localPosition =new Vector3 (elementPos.x, ((-ScreenManager.ScreenHeight()/2) + (elementSize.y / 2)), elementPos.z);
 		return _elementGO;
 	}
 	static public GameObject SetTableAsScreenBottom(GameObject _elementGO){
 		Vector2 elementSize = BasicGOOperation.ElementSize (_elementGO); Vector3 elementPos = _elementGO.transform.localPosition;
-		_elementGO.transform.localPosition =new Vector3 (elementPos.x, (-Screen.height/2), elementPos.z);
+		_elementGO.transform.localPosition =new Vector3 (elementPos.x, (-ScreenManager.ScreenHeight()/2), elementPos.z);
 		return _elementGO;
 	}
 	static public GameObject SetTableAsScreenTop(GameObject _elementGO){
 		Vector2 elementSize = BasicGOOperation.ElementSize (_elementGO); Vector3 elementPos = _elementGO.transform.localPosition;
-		_elementGO.transform.localPosition =new Vector3 (elementPos.x, Screen.height/2, elementPos.z);
+		_elementGO.transform.localPosition =new Vector3 (elementPos.x, ScreenManager.ScreenHeight()/2, elementPos.z);
 		return _elementGO;
+	}
+	static public int ScreenWidth(){
+		return Screen.width;
+	}
+	static public int ScreenHeight(){
+		return Screen.height;
 	}
 }

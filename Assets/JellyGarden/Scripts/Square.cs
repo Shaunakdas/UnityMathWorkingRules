@@ -30,7 +30,8 @@ public class Square : MonoBehaviour
     public int col;
     public SquareTypes type;
 
-    public List< GameObject> block = new List<GameObject>();
+    public List<GameObject> block = new List<GameObject>();
+    private int ccc;
 
     // Use this for initialization
     void Start()
@@ -40,7 +41,7 @@ public class Square : MonoBehaviour
         {
             if (LevelManager.THIS.target == Target.INGREDIENT && (LevelManager.THIS.ingrTarget[0] == Ingredients.Ingredient1 || LevelManager.THIS.ingrTarget[1] == Ingredients.Ingredient1 || LevelManager.THIS.ingrTarget[0] == Ingredients.Ingredient2 || LevelManager.THIS.ingrTarget[1] == Ingredients.Ingredient2))
             {
-                GameObject obj = Instantiate( Resources.Load("Prefabs/arrow_ingredients")) as GameObject;
+                GameObject obj = Instantiate(Resources.Load("Prefabs/arrow_ingredients")) as GameObject;
                 obj.transform.SetParent(transform);
                 obj.transform.localPosition = Vector3.zero + Vector3.down * 0.8f;
             }
@@ -50,7 +51,8 @@ public class Square : MonoBehaviour
 
     public Item GenItem(bool falling = true)
     {
-        if (IsNone() && !CanGoInto()) return null;
+        if (IsNone() && !CanGoInto())
+            return null;
         GameObject item = Instantiate(LevelManager.THIS.itemPrefab) as GameObject;
         item.transform.localScale = Vector2.one * 0.6f;
         item.GetComponent<Item>().square = this;
@@ -71,22 +73,29 @@ public class Square : MonoBehaviour
 
     public Square GetNeighborLeft(bool safe = false)
     {
-        if (col == 0 && !safe) return null;
+        if (col == 0 && !safe)
+            return null;
         return LevelManager.THIS.GetSquare(col - 1, row, safe);
     }
+
     public Square GetNeighborRight(bool safe = false)
     {
-        if (col >= LevelManager.THIS.maxCols && !safe) return null;
+        if (col >= LevelManager.THIS.maxCols && !safe)
+            return null;
         return LevelManager.THIS.GetSquare(col + 1, row, safe);
     }
+
     public Square GetNeighborTop(bool safe = false)
     {
-        if (row == 0 && !safe) return null;
+        if (row == 0 && !safe)
+            return null;
         return LevelManager.THIS.GetSquare(col, row - 1, safe);
     }
+
     public Square GetNeighborBottom(bool safe = false)
     {
-        if (row >= LevelManager.THIS.maxRows && !safe) return null;
+        if (row >= LevelManager.THIS.maxRows && !safe)
+            return null;
         return LevelManager.THIS.GetSquare(col, row + 1, safe);
     }
 
@@ -98,19 +107,22 @@ public class Square : MonoBehaviour
             globalCounter = false;
             countedSquaresGlobal = new Hashtable();
         }
-
-        if (this.item == null) return countedSquares;
-        if (this.item.destroying) return countedSquares;
-    //    if (LevelManager.THIS.countedSquares.ContainsValue(this.item) && globalCounter) return countedSquares;
-        if (this.item.color == spr_COLOR && !countedSquares.ContainsValue(this.item) && this.item.currentType != ItemsTypes.INGREDIENT)
-        {
+        ccc++;
+        if (this.item == null)
+            return countedSquares;
+        if (this.item.destroying)
+            return countedSquares;
+        //    if (LevelManager.THIS.countedSquares.ContainsValue(this.item) && globalCounter) return countedSquares;
+        if (this.item.color == spr_COLOR && !countedSquares.ContainsValue(this.item) && this.item.currentType != ItemsTypes.INGREDIENT && item.currentType != ItemsTypes.BOMB)
+        {  //2.0
             if (LevelManager.THIS.onlyFalling && this.item.justCreatedItem)
                 countedSquares.Add(countedSquares.Count - 1, this.item);
             else if (!LevelManager.THIS.onlyFalling)
                 countedSquares.Add(countedSquares.Count - 1, this.item);
-            else return countedSquares;
+            else
+                return countedSquares;
 
-             if (separating == FindSeparating.VERTICAL)
+            if (separating == FindSeparating.VERTICAL)
             {
                 if (GetNeighborTop() != null)
                     countedSquares = GetNeighborTop().FindMoreMatches(spr_COLOR, countedSquares, FindSeparating.VERTICAL);
@@ -139,7 +151,8 @@ public class Square : MonoBehaviour
         }
         Hashtable countedSquares = new Hashtable();
         countedSquares.Clear();
-        if (this.item == null) return newList;
+        if (this.item == null)
+            return newList;
 
         if (separating != FindSeparating.HORIZONTAL)
         {
@@ -151,7 +164,8 @@ public class Square : MonoBehaviour
             LevelManager.THIS.countedSquares.Add(LevelManager.THIS.countedSquares.Count - 1, de.Value);
         }
 
-        if (countedSquares.Count < matches) countedSquares.Clear();
+        if (countedSquares.Count < matches)
+            countedSquares.Clear();
 
         if (separating != FindSeparating.VERTICAL)
         {
@@ -163,9 +177,10 @@ public class Square : MonoBehaviour
             LevelManager.THIS.countedSquares.Add(LevelManager.THIS.countedSquares.Count - 1, de.Value);
         }
 
-        if (countedSquares.Count < matches) countedSquares.Clear();
+        if (countedSquares.Count < matches)
+            countedSquares.Clear();
 
-        foreach ( DictionaryEntry de in countedSquares)
+        foreach (DictionaryEntry de in countedSquares)
         {
             newList.Add((Item)de.Value);
         }
@@ -239,7 +254,8 @@ public class Square : MonoBehaviour
 
     public void DestroyBlock()
     {
-        if (type == SquareTypes.UNDESTROYABLE) return;
+        if (type == SquareTypes.UNDESTROYABLE)
+            return;
         if (type != SquareTypes.SOLIDBLOCK && type != SquareTypes.THRIVING)
         {
             List<Square> sqList = GetAllNeghbors();
@@ -254,7 +270,7 @@ public class Square : MonoBehaviour
             if (type == SquareTypes.BLOCK)
             {
                 LevelManager.THIS.CheckCollectedTarget(gameObject.transform.Find("Block(Clone)").gameObject);
-                LevelManager.THIS.PopupScore(LevelManager.THIS.scoreForBlock, transform.position, 0); 
+                LevelManager.THIS.PopupScore(LevelManager.THIS.scoreForBlock, transform.position, 0);
                 LevelManager.THIS.TargetBlocks--;
                 block[block.Count - 1].GetComponent<SpriteRenderer>().enabled = false;
             }
@@ -282,7 +298,8 @@ public class Square : MonoBehaviour
                 block[block.Count - 1].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(Random.insideUnitCircle.x * Random.Range(30, 200), Random.Range(100, 150)), ForceMode2D.Force);
             }
             GameObject.Destroy(block[block.Count - 1], 1.5f);
-            if (block.Count > 1) type = SquareTypes.BLOCK;
+            if (block.Count > 1)
+                type = SquareTypes.BLOCK;
             block.Remove(block[block.Count - 1]);
 
             if (block.Count == 0)

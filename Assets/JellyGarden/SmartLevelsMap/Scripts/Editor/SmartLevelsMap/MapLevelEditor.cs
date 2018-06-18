@@ -48,7 +48,6 @@ public class MapLevelEditor : LevelsEditorBase
         base.OnInspectorGUI();
     }
 
-
     private void UpdateSceneName()
     {
         string oldSceneName = _mapLevel.SceneName;

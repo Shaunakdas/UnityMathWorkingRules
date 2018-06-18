@@ -2,252 +2,214 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class LevelsMap : MonoBehaviour
-{
-    private static LevelsMap _instance;
-    private static IMapProgressManager _mapProgressManager = new PlayerPrefsMapProgressManager();
+public class LevelsMap : MonoBehaviour {
+	public static LevelsMap _instance;
+	private static IMapProgressManager _mapProgressManager = new PlayerPrefsMapProgressManager ();
 
-    public bool IsGenerated;
+	public bool IsGenerated;
 
-    public MapLevel MapLevelPrefab;
-    public Transform CharacterPrefab;
-    public int Count = 10;
+	public MapLevel MapLevelPrefab;
+	public Transform CharacterPrefab;
+	public int Count = 10;
 
-    public WaypointsMover WaypointsMover;
-    public MapLevel CharacterLevel;
-    public TranslationType TranslationType;
+	public WaypointsMover WaypointsMover;
+	public MapLevel CharacterLevel;
+	public TranslationType TranslationType;
 
-    public bool StarsEnabled;
-    public StarsType StarsType;
+	public bool StarsEnabled;
+	public StarsType StarsType;
 
-    public bool ScrollingEnabled;
-    public MapCamera MapCamera;
+	public bool ScrollingEnabled;
+	public MapCamera MapCamera;
 
-    public bool IsClickEnabled;
-    public bool IsConfirmationEnabled;
+	public bool IsClickEnabled;
+	public bool IsConfirmationEnabled;
 
-    public void Awake()
-    {
-        _instance = this;
-    }
+	public void Awake () {
+		_instance = this;
+	}
 
-    public void OnDestroy()
-    {
-        _instance = null;
-    }
+	public void OnDestroy () {
+		_instance = null;
+	}
 
-    public void OnEnable()
-    {
-        if (IsGenerated)
-        {
-            Reset();
-        }
-    }
+	public void OnEnable () {
+		if (IsGenerated) {
+			Reset ();
+		}
+	}
 
-    private List<MapLevel> GetMapLevels()
-    {
-        return FindObjectsOfType<MapLevel>().OrderBy(ml => ml.Number).ToList();
-    }
+	public List<MapLevel> GetMapLevels () {
+		return FindObjectsOfType<MapLevel> ().OrderBy (ml => ml.Number).ToList ();
+	}
 
-    private void Reset()
-    {
-        UpdateMapLevels();
-        PlaceCharacterToLastUnlockedLevel();
-        SetCameraToCharacter();
-    }
+	public void Reset () {
+		UpdateMapLevels ();
+		PlaceCharacterToLastUnlockedLevel ();
+		SetCameraToCharacter ();
+	}
 
-    private void UpdateMapLevels()
-    {
-        foreach (MapLevel mapLevel in GetMapLevels())
-        {
-            mapLevel.UpdateState(
-                _mapProgressManager.LoadLevelStarsCount(mapLevel.Number),
-                IsLevelLocked(mapLevel.Number));
-        }
-    }
+	private void UpdateMapLevels () {
+		foreach (MapLevel mapLevel in GetMapLevels()) {
+			mapLevel.UpdateState (
+				_mapProgressManager.LoadLevelStarsCount (mapLevel.Number),
+				IsLevelLocked (mapLevel.Number));
+		}
+	}
 
-    private void PlaceCharacterToLastUnlockedLevel()
-    {
-        int lastUnlockedNumber = GetMapLevels().Where(l => !l.IsLocked).Select(l => l.Number).Max();
-        TeleportToLevelInternal(lastUnlockedNumber, true);
-    }
+	private void PlaceCharacterToLastUnlockedLevel () {
+		int lastUnlockedNumber = GetMapLevels ().Where (l => !l.IsLocked).Select (l => l.Number).Max ();
+		TeleportToLevelInternal (lastUnlockedNumber, true);
+	}
 
-    private void SetCameraToCharacter()
-    {
-        MapCamera mapCamera = FindObjectOfType<MapCamera>();
-        if (mapCamera != null)
-            mapCamera.SetPosition(WaypointsMover.transform.position);
-    }
+	public int GetLastestReachedLevel () {//1.3.3
+		return GetMapLevels ().Where (l => !l.IsLocked).Select (l => l.Number).Max ();
+	}
 
-    #region Events
+	private void SetCameraToCharacter () {
+		MapCamera mapCamera = FindObjectOfType<MapCamera> ();
+		if (mapCamera != null)
+			mapCamera.SetPosition (WaypointsMover.transform.position);
+	}
 
-    public static event EventHandler<LevelReachedEventArgs> LevelSelected;
-    public static event EventHandler<LevelReachedEventArgs> LevelReached;
+	#region Events
 
-    #endregion
+	public static event EventHandler<LevelReachedEventArgs> LevelSelected;
+	public static event EventHandler<LevelReachedEventArgs> LevelReached;
 
-    #region Static API
+	#endregion
 
-    public static void CompleteLevel(int number)
-    {
-        CompleteLevelInternal(number, 1);
-    }
+	#region Static API
 
-    public static void CompleteLevel(int number, int starsCount)
-    {
-        CompleteLevelInternal(number, starsCount);
-    }
+	public static void CompleteLevel (int number) {
+		CompleteLevelInternal (number, 1);
+	}
 
-    internal static void OnLevelSelected(int number)
-    {
-        if (LevelSelected != null && !IsLevelLocked(number))  //need to fix in the map plugin
-            LevelSelected(_instance, new LevelReachedEventArgs(number));
+	public static void CompleteLevel (int number, int starsCount) {
+		CompleteLevelInternal (number, starsCount);
+	}
 
-        if (!_instance.IsConfirmationEnabled)
-            GoToLevel(number);
-    }
+	internal static void OnLevelSelected (int number) {
+		if (LevelSelected != null && !IsLevelLocked (number))  //need to fix in the map plugin
+            LevelSelected (_instance, new LevelReachedEventArgs (number));
 
-    public static void GoToLevel(int number)
-    {
-        switch (_instance.TranslationType)
-        {
-            case TranslationType.Teleportation:
-                _instance.TeleportToLevelInternal(number, false);
-                break;
-            case TranslationType.Walk:
-                _instance.WalkToLevelInternal(number);
-                break;
-        }
-    }
+		if (!_instance.IsConfirmationEnabled)
+			GoToLevel (number);
+	}
 
-    public static bool IsLevelLocked(int number)
-    {
-        return number > 1 && _mapProgressManager.LoadLevelStarsCount(number - 1) == 0;
-    }
+	public static void GoToLevel (int number) {
+		switch (_instance.TranslationType) {
+		case TranslationType.Teleportation:
+			_instance.TeleportToLevelInternal (number, false);
+			break;
+		case TranslationType.Walk:
+			_instance.WalkToLevelInternal (number);
+			break;
+		}
+	}
 
-    public static void OverrideMapProgressManager(IMapProgressManager mapProgressManager)
-    {
-        _mapProgressManager = mapProgressManager;
-    }
+	public static bool IsLevelLocked (int number) {
+		return number > 1 && _mapProgressManager.LoadLevelStarsCount (number - 1) == 0;
+	}
 
-    public static void ClearAllProgress()
-    {
-        _instance.ClearAllProgressInternal();
-    }
+	public static void OverrideMapProgressManager (IMapProgressManager mapProgressManager) {
+		_mapProgressManager = mapProgressManager;
+	}
 
-    public static bool IsStarsEnabled()
-    {
-        return _instance.StarsEnabled;
-    }
+	public static void ClearAllProgress () {
+		_instance.ClearAllProgressInternal ();
+	}
 
-    public static bool GetIsClickEnabled()
-    {
-        return _instance.IsClickEnabled;
-    }
+	public static bool IsStarsEnabled () {
+		return _instance.StarsEnabled;
+	}
 
-    public static bool GetIsConfirmationEnabled()
-    {
-        return _instance.IsConfirmationEnabled;
-    }
+	public static bool GetIsClickEnabled () {
+		return _instance.IsClickEnabled;
+	}
 
-    #endregion
+	public static bool GetIsConfirmationEnabled () {
+		return _instance.IsConfirmationEnabled;
+	}
 
-    private static void CompleteLevelInternal(int number, int starsCount)
-    {
-        if (IsLevelLocked(number))
-        {
-            Debug.Log(string.Format("Can't complete locked level {0}.", number));
-        }
-        else if (starsCount < 1 || starsCount > 3)
-        {
-            Debug.Log(string.Format("Can't complete level {0}. Invalid stars count {1}.", number, starsCount));
-        }
-        else
-        {
-            int curStarsCount = _mapProgressManager.LoadLevelStarsCount(number);
-            int maxStarsCount = Mathf.Max(curStarsCount, starsCount);
-            _mapProgressManager.SaveLevelStarsCount(number, maxStarsCount);
+	#endregion
 
-            if (_instance != null)
-                _instance.UpdateMapLevels();
-        }
-    }
+	private static void CompleteLevelInternal (int number, int starsCount) {
+		if (IsLevelLocked (number)) {
+			Debug.Log (string.Format ("Can't complete locked level {0}.", number));
+		} else if (starsCount < 1 || starsCount > 3) {
+			Debug.Log (string.Format ("Can't complete level {0}. Invalid stars count {1}.", number, starsCount));
+		} else {
+			int curStarsCount = _mapProgressManager.LoadLevelStarsCount (number);
+			int maxStarsCount = Mathf.Max (curStarsCount, starsCount);
+			_mapProgressManager.SaveLevelStarsCount (number, maxStarsCount);
 
-    private void TeleportToLevelInternal(int number, bool isQuietly)
-    {
-        MapLevel mapLevel = GetLevel(number);
-        if (mapLevel.IsLocked)
-        {
-            Debug.Log(string.Format("Can't jump to locked level number {0}.", number));
-        }
-        else
-        {
-            WaypointsMover.transform.position = mapLevel.PathPivot.transform.position;   //need to fix in the map plugin
-            CharacterLevel = mapLevel;
-            if (!isQuietly)
-                RaiseLevelReached(number);
-        }
-    }
+			if (_instance != null)
+				_instance.UpdateMapLevels ();
+		}
+	}
 
-    private void WalkToLevelInternal(int number)
-    {
-        MapLevel mapLevel = GetLevel(number);
-        if (mapLevel.IsLocked)
-        {
-            Debug.Log(string.Format("Can't go to locked level number {0}.", number));
-        }
-        else
-        {
-            WaypointsMover.Move(CharacterLevel.PathPivot, mapLevel.PathPivot,
-                () =>
-                {
-                    RaiseLevelReached(number);
-                    CharacterLevel = mapLevel;
-                });
-        }
-    }
+	private void TeleportToLevelInternal (int number, bool isQuietly) {
+		MapLevel mapLevel = GetLevel (number);
+		if (mapLevel.IsLocked) {
+			Debug.Log (string.Format ("Can't jump to locked level number {0}.", number));
+		} else {
+			WaypointsMover.transform.position = mapLevel.PathPivot.transform.position;   //need to fix in the map plugin
+			CharacterLevel = mapLevel;
+			if (!isQuietly)
+				RaiseLevelReached (number);
+		}
+	}
 
-    private void RaiseLevelReached(int number)
-    {
-        MapLevel mapLevel = GetLevel(number);
-        if (!string.IsNullOrEmpty(mapLevel.SceneName))
-            Application.LoadLevel(mapLevel.SceneName);
+	private void WalkToLevelInternal (int number) {
+		MapLevel mapLevel = GetLevel (number);
+		if (mapLevel.IsLocked) {
+			Debug.Log (string.Format ("Can't go to locked level number {0}.", number));
+		} else {
+			WaypointsMover.Move (CharacterLevel.PathPivot, mapLevel.PathPivot,
+				() => {
+					RaiseLevelReached (number);
+					CharacterLevel = mapLevel;
+				});
+		}
+	}
 
-        if (LevelReached != null)
-            LevelReached(this, new LevelReachedEventArgs(number));
-    }
+	private void RaiseLevelReached (int number) {
+		MapLevel mapLevel = GetLevel (number);
+		if (!string.IsNullOrEmpty (mapLevel.SceneName))
+			SceneManager.LoadScene (mapLevel.SceneName);
 
-    private MapLevel GetLevel(int number)
-    {
-        return GetMapLevels().SingleOrDefault(ml => ml.Number == number);
-    }
+		if (LevelReached != null)
+			LevelReached (this, new LevelReachedEventArgs (number));
+	}
 
-    private void ClearAllProgressInternal()
-    {
-        foreach (MapLevel mapLevel in GetMapLevels())
-            _mapProgressManager.ClearLevelProgress(mapLevel.Number);
-        Reset();
-    }
+	public MapLevel GetLevel (int number) {
+		return GetMapLevels ().SingleOrDefault (ml => ml.Number == number);
+	}
 
-    public void SetStarsEnabled(bool bEnabled)
-    {
-        StarsEnabled = bEnabled;
-        int starsCount = 0;
-        foreach (MapLevel mapLevel in GetMapLevels())
-        {
-            mapLevel.UpdateStars(starsCount);
-            starsCount = (starsCount + 1) % 4;
-            mapLevel.StarsHoster.gameObject.SetActive(bEnabled);
-            mapLevel.SolidStarsHoster.gameObject.SetActive(bEnabled);
-        }
-    }
+	private void ClearAllProgressInternal () {
+		foreach (MapLevel mapLevel in GetMapLevels())
+			_mapProgressManager.ClearLevelProgress (mapLevel.Number);
+		Reset ();
+	}
 
-    public void SetStarsType(StarsType starsType)
-    {
-        StarsType = starsType;
-        foreach (MapLevel mapLevel in GetMapLevels())
-            mapLevel.UpdateStarsType(starsType);
-    }
+	public void SetStarsEnabled (bool bEnabled) {
+		StarsEnabled = bEnabled;
+		int starsCount = 0;
+		foreach (MapLevel mapLevel in GetMapLevels()) {
+			mapLevel.UpdateStars (starsCount);
+			starsCount = (starsCount + 1) % 4;
+			mapLevel.StarsHoster.gameObject.SetActive (bEnabled);
+			mapLevel.SolidStarsHoster.gameObject.SetActive (bEnabled);
+		}
+	}
+
+	public void SetStarsType (StarsType starsType) {
+		StarsType = starsType;
+		foreach (MapLevel mapLevel in GetMapLevels())
+			mapLevel.UpdateStarsType (starsType);
+	}
 
 }

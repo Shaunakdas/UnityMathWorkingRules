@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 
 using System.Collections.Generic;
+
 #if UNITY_ADS
 using UnityEngine.Advertisements;
 #endif
@@ -10,11 +11,12 @@ using UnityEngine.Advertisements;
 #if CHARTBOOST_ADS
 using ChartboostSDK;
 #endif
-#if  GOOGLE_MOBILE_ADS
+#if GOOGLE_MOBILE_ADS
 using GoogleMobileAds.Api;
 #endif
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
 #if FACEBOOK
 using Facebook.Unity;
 #endif
@@ -109,8 +111,6 @@ public class InitScript : MonoBehaviour
     public static bool sound = false;
     public static bool music = false;
     private bool adsReady;
-    public string unityAdsIDAndroid;
-    public string unityAdsIDIOS;
     public bool enableUnityAds;
     public bool enableGoogleMobileAds;
     public bool enableChartboostAds;
@@ -119,12 +119,14 @@ public class InitScript : MonoBehaviour
     public int ShowChartboostAdsEveryLevel;
     public int ShowAdmobAdsEveryLevel;
     private bool leftControl;
-#if  GOOGLE_MOBILE_ADS
+#if GOOGLE_MOBILE_ADS
     private InterstitialAd interstitial;
     private AdRequest requestAdmob;
 #endif
     public string admobUIDAndroid;
     public string admobUIDIOS;
+    public string admobRewardedUIDAndroid;
+    public string admobRewardedUIDIOS;
     public bool LoginEnable;
 
     public int ShowRateEvery;
@@ -132,6 +134,8 @@ public class InitScript : MonoBehaviour
     private GameObject rate;
     public int rewardedGems = 5;
     public bool losingLifeEveryGame;
+    public static Sprite profilePic;
+    public GameObject facebookButton;
     private string lastResponse = string.Empty;
 
     protected string LastResponse
@@ -148,6 +152,7 @@ public class InitScript : MonoBehaviour
     }
 
     private string status = "Ready";
+    public string RateURLIOS; //2.1.5
 
     protected string Status
     {
@@ -165,6 +170,7 @@ public class InitScript : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        Application.targetFrameRate = 60;
         Instance = this;
         RestLifeTimer = PlayerPrefs.GetFloat("RestLifeTimer");
         DateOfExit = PlayerPrefs.GetString("DateOfExit", "");
@@ -193,12 +199,33 @@ public class InitScript : MonoBehaviour
         GameObject.Find("Music").GetComponent<AudioSource>().volume = PlayerPrefs.GetInt("Music");
         SoundBase.Instance.GetComponent<AudioSource>().volume = PlayerPrefs.GetInt("Sound");
 
+#if UNITY_ADS//2.1.1
+		enableUnityAds = true;
+#else
+        enableUnityAds = false;
+#endif
+#if CHARTBOOST_ADS//1.6.1
+        enableChartboostAds = true;
+#else
+        enableChartboostAds = false;
+#endif
+
+#if FACEBOOK
+        FacebookManager fbManager = gameObject.AddComponent<FacebookManager>();
+        fbManager.facebookButton = facebookButton;
+#endif
+
+
 #if GOOGLE_MOBILE_ADS
+        enableGoogleMobileAds = true;//1.6.1
 #if UNITY_ANDROID
+        MobileAds.Initialize(admobUIDAndroid);//2.1.6
         interstitial = new InterstitialAd(admobUIDAndroid);
 #elif UNITY_IOS
+        MobileAds.Initialize(admobUIDIOS);//2.1.6
         interstitial = new InterstitialAd(admobUIDIOS);
 #else
+        MobileAds.Initialize(admobUIDAndroid);//2.1.6
 		interstitial = new InterstitialAd (admobUIDAndroid);
 #endif
 
@@ -208,7 +235,8 @@ public class InitScript : MonoBehaviour
         interstitial.LoadAd(requestAdmob);
         interstitial.OnAdLoaded += HandleInterstitialLoaded;
         interstitial.OnAdFailedToLoad += HandleInterstitialFailedToLoad;
-
+#else
+        enableGoogleMobileAds = false;//1.6.1
 #endif
         Transform canvas = GameObject.Find("CanvasGlobal").transform;
         foreach (Transform item in canvas)
@@ -265,19 +293,15 @@ public class InitScript : MonoBehaviour
     {
 #if UNITY_ADS
 
-        rewardedVideoZone = "rewardedVideo";
-        if (Advertisement.IsReady(rewardedVideoZone))
-        {
-            return true;
-        }
-        else
-        {
-            rewardedVideoZone = "rewardedVideoZone";
-            if (Advertisement.IsReady(rewardedVideoZone))
-            {
-                return true;
-            }
-        }
+		rewardedVideoZone = "rewardedVideo";
+		if (Advertisement.IsReady (rewardedVideoZone)) {
+			return true;
+		} else {
+			rewardedVideoZone = "rewardedVideoZone";
+			if (Advertisement.IsReady (rewardedVideoZone)) {
+				return true;
+			}
+		}
 #endif
 
         return false;
@@ -286,53 +310,48 @@ public class InitScript : MonoBehaviour
     public void ShowRewardedAds()
     {
 #if UNITY_ADS
-        Debug.Log("show Unity Rewarded ads video in " + LevelManager.THIS.gameStatus);
+		Debug.Log ("show Unity Rewarded ads video in " + LevelManager.THIS.gameStatus);
 
-        if (GetRewardedUnityAdsReady())
-        {
-            Advertisement.Show(rewardedVideoZone, new ShowOptions
-            {
-                resultCallback = result =>
-                {
-                    if (result == ShowResult.Finished)
-                    {
-                        CheckRewardedAds();
-                    }
-                }
-            });
-        }
+		if (GetRewardedUnityAdsReady ()) {
+			Advertisement.Show (rewardedVideoZone, new ShowOptions {
+				resultCallback = result => {
+					if (result == ShowResult.Finished) {
+						CheckRewardedAds ();
+					}
+				}
+			});
+		}
+        
+#elif GOOGLE_MOBILE_ADS//2.2
+        Debug.Log ("show Admob Rewarded ads video in " + LevelManager.THIS.gameStatus);
+        RewAdmobManager.THIS.ShowRewardedAd(CheckRewardedAds);
 #endif
     }
 
-    public void CheckAdsEvents(GameState state)    //1.4 added
-    {
+    public void CheckAdsEvents(GameState state)
+    {    //1.4 added
         foreach (AdEvents item in adsEvents)
         {
             if (item.gameEvent == state)
             {
-                //1.5
-                if ((LevelManager.THIS.gameStatus == GameState.GameOver || LevelManager.THIS.gameStatus == GameState.Pause ||
-                    LevelManager.THIS.gameStatus == GameState.Playing || LevelManager.THIS.gameStatus == GameState.PrepareGame || LevelManager.THIS.gameStatus == GameState.PreWinAnimations ||
-                    LevelManager.THIS.gameStatus == GameState.RegenLevel || LevelManager.THIS.gameStatus == GameState.Win))
-                {
+                //1.5   1.6.1
+                //				if ((LevelManager.THIS.gameStatus == GameState.GameOver || LevelManager.THIS.gameStatus == GameState.Pause ||
+                //				    LevelManager.THIS.gameStatus == GameState.Playing || LevelManager.THIS.gameStatus == GameState.PrepareGame || LevelManager.THIS.gameStatus == GameState.PreWinAnimations ||
+                //				    LevelManager.THIS.gameStatus == GameState.RegenLevel || LevelManager.THIS.gameStatus == GameState.Win)) {
 
-                    if (LevelManager.THIS.passLevelCounter > 0 && item.everyLevel > 0)
-                    {
-                        if (LevelManager.THIS.passLevelCounter % item.everyLevel == 0)
-                            ShowAdByType(item.adType);
-                    }
-                }
-                else
-                {
+                item.calls++;  //1.6
+                if (item.calls % item.everyLevel == 0)
                     ShowAdByType(item.adType);
-
-                }
+                //				} else {
+                //					ShowAdByType (item.adType);
+                //
+                //				}
             }
         }
     }
 
-    void ShowAdByType(AdType adType) //1.4 added
-    {
+    void ShowAdByType(AdType adType)
+    { //1.4 added
         if (adType == AdType.AdmobInterstitial && enableGoogleMobileAds)
             ShowAds(false);
         else if (adType == AdType.UnityAdsVideo && enableUnityAds)
@@ -342,22 +361,18 @@ public class InitScript : MonoBehaviour
 
     }
 
-    public void ShowVideo()  //1.4 added
-    {
+    public void ShowVideo()
+    {  //1.4 added
 #if UNITY_ADS
-        Debug.Log("show Unity ads video in " + LevelManager.THIS.gameStatus);
+		Debug.Log ("show Unity ads video in " + LevelManager.THIS.gameStatus);
 
-        if (Advertisement.IsReady("video"))
-        {
-            Advertisement.Show("video");
-        }
-        else
-        {
-            if (Advertisement.IsReady("defaultZone"))
-            {
-                Advertisement.Show("defaultZone");
-            }
-        }
+		if (Advertisement.IsReady ("video")) {
+			Advertisement.Show ("video");
+		} else {
+			if (Advertisement.IsReady ("defaultZone")) {
+				Advertisement.Show ("defaultZone");
+			}
+		}
 #endif
     }
 
@@ -428,11 +443,23 @@ public class InitScript : MonoBehaviour
 
     }
 
+    public void SetGems(int count)
+    {
+        Gems = count;
+        PlayerPrefs.SetInt("Gems", Gems);
+        PlayerPrefs.Save();
+    }
+
+
     public void AddGems(int count)
     {
         Gems += count;
         PlayerPrefs.SetInt("Gems", Gems);
         PlayerPrefs.Save();
+#if PLAYFAB || GAMESPARKS
+        NetworkManager.currencyManager.IncBalance(count);
+#endif
+
     }
 
     public void SpendGems(int count)
@@ -441,6 +468,10 @@ public class InitScript : MonoBehaviour
         Gems -= count;
         PlayerPrefs.SetInt("Gems", Gems);
         PlayerPrefs.Save();
+#if PLAYFAB || GAMESPARKS
+        NetworkManager.currencyManager.DecBalance(count);
+#endif
+
     }
 
 
@@ -495,6 +526,10 @@ public class InitScript : MonoBehaviour
     {
         PlayerPrefs.SetInt("" + boostType, count);
         PlayerPrefs.Save();
+#if PLAYFAB || GAMESPARKS
+        NetworkManager.dataManager.SetBoosterData();
+#endif
+
         //   ReloadBoosts();
     }
 
@@ -502,6 +537,9 @@ public class InitScript : MonoBehaviour
     {
         PlayerPrefs.SetInt("" + boostType, PlayerPrefs.GetInt("" + boostType) - 1);
         PlayerPrefs.Save();
+#if PLAYFAB || GAMESPARKS
+        NetworkManager.dataManager.SetBoosterData();
+#endif
     }
     //void ReloadBoosts()
     //{
@@ -520,6 +558,11 @@ public class InitScript : MonoBehaviour
     //    PurchaseSucceded();
     //}
 
+    //private void OnApplicationFocus(bool focus)//2.1.5 need to test music on
+    //{
+    //	var music = GameObject.Find("Music");
+    //	if (music != null) music.GetComponent<AudioSource>().Play();
+    //}
 
     void OnApplicationPause(bool pauseStatus)
     {
@@ -535,8 +578,8 @@ public class InitScript : MonoBehaviour
         }
     }
 
-    void OnApplicationQuit()   //1.4  added 
-    {
+    void OnApplicationQuit()
+    {   //1.4  added 
         if (RestLifeTimer > 0)
         {
             PlayerPrefs.SetFloat("RestLifeTimer", RestLifeTimer);
@@ -551,10 +594,11 @@ public class InitScript : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject(-1))
             return;
-        if (!GameObject.Find("CanvasGlobal").transform.Find("MenuPlay").gameObject.activeSelf && !GameObject.Find("CanvasGlobal").transform.Find("GemsShop").gameObject.activeSelf && !GameObject.Find("CanvasGlobal").transform.Find("LiveShop").gameObject.activeSelf)
+        if (!GameObject.Find("CanvasGlobal").transform.Find("MenuPlay").gameObject.activeSelf && !GameObject.Find("CanvasGlobal").transform.Find("GemsShop").gameObject.activeSelf && !GameObject.Find("CanvasGlobal").transform.Find("LiveShop").gameObject.activeSelf && !GameObject.Find("CanvasGlobal").transform.Find("Settings").gameObject.activeSelf)  //2.1.6
         {
             PlayerPrefs.SetInt("OpenLevel", args.Number);
             PlayerPrefs.Save();
+            LevelManager.THIS.MenuPlayEvent();
             LevelManager.THIS.LoadLevel();
             openLevel = args.Number;
             //  currentTarget = targets[args.Number];
@@ -585,135 +629,110 @@ public class InitScript : MonoBehaviour
     }
 
     #region FaceBook
+
 #if FACEBOOK
-    public void CallFBInit()
-    {
-        FB.Init(OnInitComplete, OnHideUnity);
-
-    }
-
-    private void OnInitComplete()
-    {
-        Debug.Log("FB.Init completed: Is user logged in? " + FB.IsLoggedIn);
-
-    }
-
-    private void OnHideUnity(bool isGameShown)
-    {
-        Debug.Log("Is game showing? " + isGameShown);
-    }
-
-    void OnGUI()
-    {
-        if (LoginEnable)
-        {
-            InitScript.Instance.CallFBLogin();
-            LoginEnable = false;
-        }
-    }
-
-
-    public void CallFBLogin()
-    {
-        FB.LogInWithReadPermissions(new List<string>() { "public_profile", "email", "user_friends" }, this.HandleResult);
-    }
-
-    public void CallFBLoginForPublish()
-    {
-        // It is generally good behavior to split asking for read and publish
-        // permissions rather than ask for them all at once.
-        //
-        // In your own game, consider postponing this call until the moment
-        // you actually need it.
-        FB.LogInWithPublishPermissions(new List<string>() { "publish_actions" }, this.HandleResult);
-    }
-
-    void LoginCallback(IPayResult result)
-    {
-
-        if (result.Error != null)
-            lastResponse = "Error Response:\n" + result.Error;
-        else if (!FB.IsLoggedIn)
-        {
-            lastResponse = "Login cancelled by Player";
-        }
-        else
-        {
-            lastResponse = "Login was successful!";
-            if (loginForSharing)
-            {
-                loginForSharing = false;
-                Share();
-            }
-        }
-        Debug.Log(lastResponse);
-    }
-
-    private void CallFBLogout()
-    {
-        FB.LogOut();
-    }
-
-    public void Share()
-    {
-        if (!FB.IsLoggedIn)
-        {
-            loginForSharing = true;
-            LoginEnable = true;
-            Debug.Log("not logged, logging");
-        }
-        else
-        {
-            FB.FeedShare(
-                link: new Uri("http://apps.facebook.com/" + FB.AppId + "/?challenge_brag=" + (FB.IsLoggedIn ? AccessToken.CurrentAccessToken.UserId : "guest")),
-                linkCaption: "I'm got " + LevelManager.Score + " scores! Try to beat me!"
-            //picture: "https://fbexternal-a.akamaihd.net/safe_image.php?d=AQCzlvjob906zmGv&w=128&h=128&url=https%3A%2F%2Ffbcdn-photos-h-a.akamaihd.net%2Fhphotos-ak-xtp1%2Ft39.2081-0%2F11891368_513258735497916_1832270581_n.png&cfs=1"
-            );
-        }
-    }
-
-    protected void HandleResult(IResult result)
-    {
-        if (result == null)
-        {
-            this.LastResponse = "Null Response\n";
-            Debug.Log(this.LastResponse);
-            return;
-        }
-
-        //     this.LastResponseTexture = null;
-
-        // Some platforms return the empty string instead of null.
-        if (!string.IsNullOrEmpty(result.Error))
-        {
-            this.Status = "Error - Check log for details";
-            this.LastResponse = "Error Response:\n" + result.Error;
-            Debug.Log(result.Error);
-        }
-        else if (result.Cancelled)
-        {
-            this.Status = "Cancelled - Check log for details";
-            this.LastResponse = "Cancelled Response:\n" + result.RawResult;
-            Debug.Log(result.RawResult);
-        }
-        else if (!string.IsNullOrEmpty(result.RawResult))
-        {
-            this.Status = "Success - Check log for details";
-            this.LastResponse = "Success Response:\n" + result.RawResult;
-            if (loginForSharing)
-            {
-                loginForSharing = false;
-                Share();
-            }
-
-            Debug.Log(result.RawResult);
-        }
-        else
-        {
-            this.LastResponse = "Empty Response\n";
-            Debug.Log(this.LastResponse);
-        }
-    }
+    //	public void CallFBInit () {
+    //		FB.Init (OnInitComplete, OnHideUnity);
+    //
+    //	}
+    //
+    //	private void OnInitComplete () {
+    //		Debug.Log ("FB.Init completed: Is user logged in? " + FB.IsLoggedIn);
+    //
+    //	}
+    //
+    //	private void OnHideUnity (bool isGameShown) {
+    //		Debug.Log ("Is game showing? " + isGameShown);
+    //	}
+    //
+    //	void OnGUI () {
+    //		if (LoginEnable) {
+    //			InitScript.Instance.CallFBLogin ();
+    //			LoginEnable = false;
+    //		}
+    //	}
+    //
+    //
+    //	public void CallFBLogin () {
+    //		FB.LogInWithReadPermissions (new List<string> () { "public_profile", "email", "user_friends" }, this.HandleResult);
+    //	}
+    //
+    //	public void CallFBLoginForPublish () {
+    //		// It is generally good behavior to split asking for read and publish
+    //		// permissions rather than ask for them all at once.
+    //		//
+    //		// In your own game, consider postponing this call until the moment
+    //		// you actually need it.
+    //		FB.LogInWithPublishPermissions (new List<string> () { "publish_actions" }, this.HandleResult);
+    //	}
+    //
+    //	void LoginCallback (IPayResult result) {
+    //
+    //		if (result.Error != null)
+    //			lastResponse = "Error Response:\n" + result.Error;
+    //		else if (!FB.IsLoggedIn) {
+    //			lastResponse = "Login cancelled by Player";
+    //		} else {
+    //			lastResponse = "Login was successful!";
+    //			if (loginForSharing) {
+    //				loginForSharing = false;
+    //				Share ();
+    //			}
+    //		}
+    //		Debug.Log (lastResponse);
+    //	}
+    //
+    //	private void CallFBLogout () {
+    //		FB.LogOut ();
+    //	}
+    //
+    //	public void Share () {
+    //		if (!FB.IsLoggedIn) {
+    //			loginForSharing = true;
+    //			LoginEnable = true;
+    //			Debug.Log ("not logged, logging");
+    //		} else {
+    //			FB.FeedShare (
+    //				link: new Uri ("http://apps.facebook.com/" + FB.AppId + "/?challenge_brag=" + (FB.IsLoggedIn ? AccessToken.CurrentAccessToken.UserId : "guest")),
+    //				linkName: FacebookSettings.AppLabels [0],
+    //				linkCaption: "I just scored " + LevelManager.Score + " points! Try to beat me!"
+    //            //picture: "https://fbexternal-a.akamaihd.net/safe_image.php?d=AQCzlvjob906zmGv&w=128&h=128&url=https%3A%2F%2Ffbcdn-photos-h-a.akamaihd.net%2Fhphotos-ak-xtp1%2Ft39.2081-0%2F11891368_513258735497916_1832270581_n.png&cfs=1"
+    //			);
+    //		}
+    //	}
+    //
+    //	protected void HandleResult (IResult result) {
+    //		if (result == null) {
+    //			this.LastResponse = "Null Response\n";
+    //			Debug.Log (this.LastResponse);
+    //			return;
+    //		}
+    //
+    //		//     this.LastResponseTexture = null;
+    //
+    //		// Some platforms return the empty string instead of null.
+    //		if (!string.IsNullOrEmpty (result.Error)) {
+    //			this.Status = "Error - Check log for details";
+    //			this.LastResponse = "Error Response:\n" + result.Error;
+    //			Debug.Log (result.Error);
+    //		} else if (result.Cancelled) {
+    //			this.Status = "Cancelled - Check log for details";
+    //			this.LastResponse = "Cancelled Response:\n" + result.RawResult;
+    //			Debug.Log (result.RawResult);
+    //		} else if (!string.IsNullOrEmpty (result.RawResult)) {
+    //			this.Status = "Success - Check log for details";
+    //			this.LastResponse = "Success Response:\n" + result.RawResult;
+    //			if (loginForSharing) {
+    //				loginForSharing = false;
+    //				Share ();
+    //			}
+    //
+    //			Debug.Log (result.RawResult);
+    //		} else {
+    //			this.LastResponse = "Empty Response\n";
+    //			Debug.Log (this.LastResponse);
+    //		}
+    //	}
 #endif
     #endregion
 

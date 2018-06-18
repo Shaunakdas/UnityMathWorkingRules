@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Assets.Plugins.SmartLevelsMap.Scripts;
+using UnityEngine.SceneManagement;
 
 public class SquareBlocks
 {
@@ -92,6 +93,8 @@ public class LevelManager : MonoBehaviour
     public BoostIcon emptyBoostIcon;
     public BoostIcon AvctivatedBoostView;
     public BoostIcon activatedBoost;
+    public string androidSharingPath;
+    public string iosSharingPath;
 
     public BoostIcon ActivatedBoost
     {
@@ -133,6 +136,7 @@ public class LevelManager : MonoBehaviour
 
                     ActivatedBoost = null;
                 }
+
             }
         }
     }
@@ -226,6 +230,20 @@ public class LevelManager : MonoBehaviour
     public Sprite doubleBlock;
     public bool FacebookEnable;
     internal int latstMatchColor;
+    public CombineManager combineManager;
+
+    #region EVENTS
+
+    public delegate void GameStateEvents();
+
+    public static event GameStateEvents OnMapState;
+    public static event GameStateEvents OnEnterGame;
+    public static event GameStateEvents OnLevelLoaded;
+    public static event GameStateEvents OnMenuPlay;
+    public static event GameStateEvents OnMenuComplete;
+    public static event GameStateEvents OnStartPlay;
+    public static event GameStateEvents OnWin;
+    public static event GameStateEvents OnLose;
 
     public GameState gameStatus
     {
@@ -252,6 +270,8 @@ public class LevelManager : MonoBehaviour
             {
 
                 InitLevel();
+                OnLevelLoaded();
+
 
             }
             else if (value == GameState.PreFailed)
@@ -268,6 +288,7 @@ public class LevelManager : MonoBehaviour
                     MusicBase.Instance.GetComponent<AudioSource>().clip = MusicBase.Instance.music[0];
                     MusicBase.Instance.GetComponent<AudioSource>().Play();
                     EnableMap(true);
+                    OnMapState();
                 }
                 else
                 {
@@ -294,6 +315,7 @@ public class LevelManager : MonoBehaviour
             else if (value == GameState.GameOver)
             {
                 GameObject.Find("CanvasGlobal").transform.Find("MenuFailed").gameObject.SetActive(true);
+                OnLose();
             }
             else if (value == GameState.PreWinAnimations)
             {
@@ -301,24 +323,36 @@ public class LevelManager : MonoBehaviour
             }
             else if (value == GameState.Win)
             {
+                //InitScript.THIS.AddGems(1);//Add coins after win
+                OnMenuComplete();
+                if (PlayerPrefs.GetInt(string.Format("Level.{0:000}.StarsCount", currentLevel), 0) < stars)
+                    PlayerPrefs.SetInt(string.Format("Level.{0:000}.StarsCount", currentLevel), stars);
+                if (Score > PlayerPrefs.GetInt("Score" + currentLevel))
+                {
+                    PlayerPrefs.SetInt("Score" + currentLevel, Score);
+                }
+
+#if PLAYFAB || GAMESPARKS
+                NetworkManager.dataManager.SetPlayerScore(currentLevel, Score);
+                NetworkManager.dataManager.SetPlayerLevel(currentLevel + 1);
+                NetworkManager.dataManager.SetStars();
+#endif
                 GameObject.Find("CanvasGlobal").transform.Find("MenuComplete").gameObject.SetActive(true);
                 SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.complete[1]);
-                //if (InitScript.Instance.ShowChartboostAdsEveryLevel > 0)
-                //{
-                //    if (passLevelCounter % InitScript.Instance.ShowChartboostAdsEveryLevel == 0 && InitScript.Instance.enableUnityAds)
-                //        InitScript.Instance.ShowAds(true);
-                //}
-                //if (InitScript.Instance.ShowAdmobAdsEveryLevel > 0)
-                //{
-                //    if (passLevelCounter % InitScript.Instance.ShowAdmobAdsEveryLevel == 0 && InitScript.Instance.enableUnityAds)
-                //        InitScript.Instance.ShowAds(false);
-                //}
-
+                OnWin();
             }
 
 
         }
     }
+
+    public void MenuPlayEvent()
+    {
+        OnMenuPlay();
+    }
+
+
+    #endregion
 
     void LockBoosts()
     {
@@ -349,11 +383,13 @@ public class LevelManager : MonoBehaviour
 
     public void EnableMap(bool enable)
     {
+        float aspect = (float)Screen.height / (float)Screen.width;//2.1.4
+        GetComponent<Camera>().orthographicSize = 5.3f;
+        aspect = (float)Math.Round(aspect, 2);
+        GameObject.Find("CanvasGlobal").GetComponent<GraphicRaycaster>().enabled = false;
+        GameObject.Find("CanvasGlobal").GetComponent<GraphicRaycaster>().enabled = true;
         if (enable)
         {
-            float aspect = (float)Screen.height / (float)Screen.width;
-            GetComponent<Camera>().orthographicSize = 5.3f;
-            aspect = (float)Math.Round(aspect, 2);
             if (aspect == 1.6f)
                 GetComponent<Camera>().orthographicSize = 6.25f;                    //16:10
             else if (aspect == 1.78f)
@@ -366,6 +402,10 @@ public class LevelManager : MonoBehaviour
                 GetComponent<Camera>().orthographicSize = 6.6f;                  //5:3
             else if (aspect == 1.25f)
                 GetComponent<Camera>().orthographicSize = 4.9f;                  //5:4
+            else if (aspect == 2.06f)
+                GetComponent<Camera>().orthographicSize = 8.2f;                  //2960:1440
+            else if (aspect == 2.17f)
+                GetComponent<Camera>().orthographicSize = 8.7f;                  //iphone x
             GetComponent<Camera>().GetComponent<MapCamera>().SetPosition(new Vector2(0, GetComponent<Camera>().transform.position.y));
         }
         else
@@ -375,8 +415,16 @@ public class LevelManager : MonoBehaviour
             LevelManager.THIS.latstMatchColor = -1;
 
             GetComponent<Camera>().orthographicSize = 6.5f;
-            GameObject.Find("CanvasGlobal").GetComponent<GraphicRaycaster>().enabled = false;
-            GameObject.Find("CanvasGlobal").GetComponent<GraphicRaycaster>().enabled = true;
+            Level.transform.Find("Canvas/Panel").GetComponent<RectTransform>().anchoredPosition = Vector3.zero;//2.2
+            if (aspect == 2.06f)
+                GetComponent<Camera>().orthographicSize = 7.6f;                  //2960:1440
+            else if (aspect == 2.17f)
+            {
+                GetComponent<Camera>().orthographicSize = 8.1f;                  //iphone x
+                Level.transform.Find("Canvas/Panel").GetComponent<RectTransform>().anchoredPosition = Vector3.down * 50;//2.2
+
+            }
+
             Level.transform.Find("Canvas").GetComponent<GraphicRaycaster>().enabled = false;
             Level.transform.Find("Canvas").GetComponent<GraphicRaycaster>().enabled = true;
 
@@ -401,18 +449,26 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
 #if FACEBOOK
-
+        FacebookEnable = true;//1.6.2
         if (FacebookEnable)
-            InitScript.Instance.CallFBInit();
+            FacebookManager.THIS.CallFBInit();
+#else
+        FacebookEnable = false;
+
 #endif
 #if UNITY_INAPPS
 
         gameObject.AddComponent<UnityInAppsIntegration>();
+        enableInApps = true;//1.6.1
+#else
+        enableInApps = false;
+
 #endif
+        combineManager = new CombineManager();
         THIS = this;
         Instance = this;
-        if (!LevelManager.THIS.enableInApps)
-            GameObject.Find("Gems").gameObject.SetActive(false);
+        //        if (!LevelManager.THIS.enableInApps)
+        //            GameObject.Find("CanvasMap/Gems").gameObject.SetActive(false);//2.1.2
 
         gameStatus = GameState.Map;
         for (int i = 0; i < 20; i++)
@@ -570,6 +626,7 @@ public class LevelManager : MonoBehaviour
             InGameBoosts[1].gameObject.SetActive(true);
 
         }
+        OnEnterGame();
     }
 
     public void CheckCollectedTarget(GameObject _item)
@@ -689,13 +746,14 @@ public class LevelManager : MonoBehaviour
         }
         //     SoundBase.Instance.audio.PlayOneShot(SoundBase.Instance.getStarIngr);
         Destroy(item);
-        if (gameStatus == GameState.Playing)
+        if (gameStatus == GameState.Playing && !IsIngredientFalling())//1.6.1
             CheckWinLose();
         ingredientFly = false;
     }
 
     public void CheckWinLose()
     {
+        //		print ("check win lose");
         if (Limit <= 0)
         {
             bool lose = false;
@@ -758,6 +816,8 @@ public class LevelManager : MonoBehaviour
             else if (LevelManager.THIS.target == Target.INGREDIENT && (LevelManager.THIS.ingrCountTarget[0] <= 0 && LevelManager.THIS.ingrCountTarget[1] <= 0))
             {
                 win = true;
+                //			} else if (LevelManager.Score >= LevelManager.THIS.star1 && LevelManager.THIS.target == Target.SCORE) { // win if get 1 start and still have moves
+                //				win = true;
             }
             if (LevelManager.Score < LevelManager.THIS.star1)
             {
@@ -767,7 +827,13 @@ public class LevelManager : MonoBehaviour
             //else if (LevelManager.THIS.target == Target.SCORE && LevelManager.Score >= LevelManager.THIS.star1)
             //    win = true;
             if (win)
-                gameStatus = GameState.PreWinAnimations;
+            {
+                if (currentLevel >= 1 && currentLevel <= 10)
+                    gameStatus = GameState.Win;
+                else
+                    gameStatus = GameState.PreWinAnimations;
+            }
+
 
         }
     }
@@ -789,8 +855,8 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         yield return new WaitForSeconds(0.3f);
-        while (GetAllExtaItems().Count > 0)
-        {
+        while (GetAllExtaItems().Count > 0 && gameStatus != GameState.Win)
+        { //1.6
             Item item = GetAllExtaItems()[0];
             item.DestroyItem();
             dragBlocked = true;
@@ -812,12 +878,7 @@ public class LevelManager : MonoBehaviour
         GameObject.Find("Canvas").transform.Find("PreCompleteBanner").gameObject.SetActive(true);
         yield return new WaitForSeconds(3);
         GameObject.Find("Canvas").transform.Find("PreCompleteBanner").gameObject.SetActive(false);
-        if (PlayerPrefs.GetInt(string.Format("Level.{0:000}.StarsCount", currentLevel), 0) < stars)
-            PlayerPrefs.SetInt(string.Format("Level.{0:000}.StarsCount", currentLevel), stars);
-        if (Score > PlayerPrefs.GetInt("Score" + currentLevel))
-        {
-            PlayerPrefs.SetInt("Score" + currentLevel, Score);
-        }
+
 
         gameStatus = GameState.Win;
     }
@@ -838,8 +899,8 @@ public class LevelManager : MonoBehaviour
             Limit = 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad2))   //save items state
-        {
+        if (Input.GetKeyDown(KeyCode.F2))
+        {   //save items state
             print("Saving items...");
             int[] items = new int[99];
 
@@ -860,8 +921,8 @@ public class LevelManager : MonoBehaviour
             LevelDebugger.SaveMap(items, maxCols, maxRows);
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad3))   //load items state
-        {
+        if (Input.GetKeyDown(KeyCode.F3))
+        {   //load items state
             print("load items...");
 
             int[] items = new int[99];
@@ -885,6 +946,7 @@ public class LevelManager : MonoBehaviour
                 GameObject.Find("CanvasGlobal").transform.Find("MenuPause").gameObject.SetActive(true);
             else if (LevelManager.THIS.gameStatus == GameState.Map)
                 Application.Quit();
+
         }
 
 
@@ -892,6 +954,7 @@ public class LevelManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                OnStartPlay();
                 Collider2D hit = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
                 if (hit != null)
                 {
@@ -949,7 +1012,8 @@ public class LevelManager : MonoBehaviour
                 if (LevelManager.Instance.limitType == LIMIT.TIME)
                 {
                     LevelManager.THIS.Limit--;
-                    CheckWinLose();
+                    if (IsAllItemsFallDown())
+                        CheckWinLose();
                 }
             }
             if (gameStatus == GameState.Map)
@@ -987,9 +1051,7 @@ public class LevelManager : MonoBehaviour
         AnimationClip clip = new AnimationClip();
         AnimationCurve curveX = new AnimationCurve(new Keyframe(0, pos.x + 15), new Keyframe(0.7f, pos.x - 0.2f), new Keyframe(0.8f, pos.x));
         AnimationCurve curveY = new AnimationCurve(new Keyframe(0, pos.y + yOffset), new Keyframe(1, pos.y + yOffset));
-#if UNITY_5
-        clip.legacy = true;
-#endif
+        clip.legacy = true;//2.1.6
         clip.SetCurve("", typeof(Transform), "localPosition.x", curveX);
         clip.SetCurve("", typeof(Transform), "localPosition.y", curveY);
         clip.AddEvent(new AnimationEvent() { time = 1, functionName = "EndAnimGamField" });
@@ -1363,8 +1425,9 @@ public class LevelManager : MonoBehaviour
             DestroyItems();
         else if (gameStatus == GameState.RegenLevel)
             DestroyItems(true);
-
+        OnLevelLoaded();
         StartCoroutine(RegenMatches());
+        OnLevelLoaded();
     }
 
     IEnumerator RegenMatches(bool onlyFalling = false)
@@ -1415,11 +1478,13 @@ public class LevelManager : MonoBehaviour
         } while (combs.Count > 0);
         yield return new WaitForFixedUpdate();
         SetPreBoosts();
-        if (!onlyFalling)
-            DragBlocked = false;
         LevelManager.THIS.onlyFalling = false;
         if (gameStatus == GameState.RegenLevel)
             gameStatus = GameState.Playing;
+        if (!onlyFalling)//2.1.5 prevents early move
+            DragBlocked = false;
+        StartCoroutine(AI.THIS.CheckPossibleCombines());//2.1.5 prevents early move
+
         //StartCoroutine(CheckFallingAtStart());
 
     }
@@ -1433,6 +1498,7 @@ public class LevelManager : MonoBehaviour
             {
                 item.NextType = ItemsTypes.PACKAGE;
                 item.ChangeType();
+                item.boost = true;
             }
             BoostPackage = 0;
         }
@@ -1443,6 +1509,7 @@ public class LevelManager : MonoBehaviour
             {
                 item.NextType = ItemsTypes.BOMB;
                 item.ChangeType();
+                item.boost = true;
             }
             BoostColorfullBomb = 0;
         }
@@ -1453,6 +1520,7 @@ public class LevelManager : MonoBehaviour
             {
                 item.NextType = (ItemsTypes)UnityEngine.Random.Range(1, 3);
                 item.ChangeType();
+                item.boost = true;
             }
             BoostStriped = 0;
         }
@@ -1468,7 +1536,7 @@ public class LevelManager : MonoBehaviour
             count = items.Length;
         foreach (GameObject item in items)
         {
-            if (item.GetComponent<Item>().currentType == ItemsTypes.NONE && item.GetComponent<Item>().NextType == ItemsTypes.NONE)
+            if (item.GetComponent<Item>().currentType == ItemsTypes.NONE && item.GetComponent<Item>().NextType == ItemsTypes.NONE && !item.GetComponent<Item>().destroying)
             {
                 list.Add(item.GetComponent<Item>());
             }
@@ -1476,10 +1544,18 @@ public class LevelManager : MonoBehaviour
 
         while (list2.Count < count)
         {
-            Item newItem = list[UnityEngine.Random.Range(0, list.Count)];
-            if (list2.IndexOf(newItem) < 0)
+
+            try
             {
-                list2.Add(newItem);
+                Item newItem = list[UnityEngine.Random.Range(0, list.Count)];
+                if (list2.IndexOf(newItem) < 0)
+                {
+                    list2.Add(newItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                gameStatus = GameState.Win;
             }
         }
         return list2;
@@ -1523,7 +1599,7 @@ public class LevelManager : MonoBehaviour
         {
             if (item != null)
             {
-                if (item.GetComponent<Item>().currentType != ItemsTypes.INGREDIENT)
+                if (item.GetComponent<Item>().currentType != ItemsTypes.INGREDIENT && item.GetComponent<Item>().currentType == ItemsTypes.NONE)
                 {
                     if (!withoutEffects)
                         item.GetComponent<Item>().DestroyItem();
@@ -1645,6 +1721,8 @@ public class LevelManager : MonoBehaviour
                 item.anim.StopPlayback();
             }
         }
+        //        combineManager.GetCombine();
+
         while (true)
         {
 
@@ -1652,49 +1730,48 @@ public class LevelManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
 
             combinedItems.Clear();
-            combinedItems = GetMatches();
-            //StartCoroutine(GetMatchesCor());
-            //while (!matchesGot)
-            //    yield return new WaitForFixedUpdate();
-            //combinedItems = newCombines;
-            //matchesGot = false;
-            //   print(LevelManager.THIS.latstMatchColor);
-            if (LevelManager.THIS.CheckExtraPackage(GetMatches(FindSeparating.HORIZONTAL)) && lastSwitchedItem != null)
-            {
+            combinedItems = combineManager.GetCombine(); //GetMatches();  //1.6
+                                                         //StartCoroutine(GetMatchesCor());
+                                                         //while (!matchesGot)
+                                                         //    yield return new WaitForFixedUpdate();
+                                                         //combinedItems = newCombines;
+                                                         //matchesGot = false;
+                                                         //   print(LevelManager.THIS.latstMatchColor);
+                                                         //			if (LevelManager.THIS.CheckExtraPackage (GetMatches (FindSeparating.HORIZONTAL)) && lastSwitchedItem != null) {
+                                                         //
+                                                         //				if (LevelManager.THIS.latstMatchColor == lastDraggedItem.color && LevelManager.THIS.lastDraggedItem.NextType == ItemsTypes.NONE)
+                                                         //					LevelManager.THIS.lastDraggedItem.NextType = ItemsTypes.PACKAGE;
+                                                         //				else if (LevelManager.THIS.latstMatchColor == lastSwitchedItem.color && LevelManager.THIS.lastDraggedItem.NextType == ItemsTypes.NONE)
+                                                         //					LevelManager.THIS.lastSwitchedItem.NextType = ItemsTypes.PACKAGE;
+                                                         //				lastDraggedItem.ChangeType ();
+                                                         //				lastSwitchedItem.ChangeType ();
+                                                         //
+                                                         //			}
 
-                if (LevelManager.THIS.latstMatchColor == lastDraggedItem.color && LevelManager.THIS.lastDraggedItem.NextType == ItemsTypes.NONE)
-                    LevelManager.THIS.lastDraggedItem.NextType = ItemsTypes.PACKAGE;
-                else if (LevelManager.THIS.latstMatchColor == lastSwitchedItem.color && LevelManager.THIS.lastDraggedItem.NextType == ItemsTypes.NONE)
-                    LevelManager.THIS.lastSwitchedItem.NextType = ItemsTypes.PACKAGE;
-                lastDraggedItem.ChangeType();
-                lastSwitchedItem.ChangeType();
-
-            }
             if (combinedItems.Count > 0)
                 combo++;
             foreach (List<Item> desrtoyItems in combinedItems)
             {
-                if (lastDraggedItem == null)
-                {
-                    if (desrtoyItems.Count == 4)
-                    {
-                        if (lastDraggedItem == null)
-                            lastDraggedItem = desrtoyItems[UnityEngine.Random.Range(0, desrtoyItems.Count)];
-                        lastDraggedItem.NextType = (ItemsTypes)UnityEngine.Random.Range(1, 3);
-                        //lastDraggedItem.ChangeType();
-                    }
-                    if (desrtoyItems.Count >= 5)
-                    {
-                        if (lastDraggedItem == null)
-                            lastDraggedItem = desrtoyItems[UnityEngine.Random.Range(0, desrtoyItems.Count)];
-                        lastDraggedItem.NextType = ItemsTypes.BOMB;
-                        //lastDraggedItem.ChangeType();
-                    }
 
-                }
+                //				if (lastDraggedItem == null) {  //1.6
+                //					if (desrtoyItems.Count == 4) {
+                //						if (lastDraggedItem == null)
+                //							lastDraggedItem = desrtoyItems [UnityEngine.Random.Range (0, desrtoyItems.Count)];
+                //						lastDraggedItem.NextType = (ItemsTypes)UnityEngine.Random.Range (1, 3);
+                //						//lastDraggedItem.ChangeType();
+                //					}
+                //					if (desrtoyItems.Count >= 5) {
+                //						if (lastDraggedItem == null)
+                //							lastDraggedItem = desrtoyItems [UnityEngine.Random.Range (0, desrtoyItems.Count)];
+                //						lastDraggedItem.NextType = ItemsTypes.BOMB;
+                //						//lastDraggedItem.ChangeType();
+                //					}
+                //
+                //				}
                 // if (desrtoyItems.Count > 0) PopupScore(scoreForItem * desrtoyItems.Count, desrtoyItems[(int)desrtoyItems.Count / 2].transform.position, Color.black);
                 foreach (Item item in desrtoyItems)
-                {
+                {//TODO items not destroy
+
                     if (item.currentType != ItemsTypes.NONE)
                         yield return new WaitForSeconds(0.1f);
                     item.DestroyItem(true);  //destroy items safely
@@ -1720,17 +1797,16 @@ public class LevelManager : MonoBehaviour
 
             if (lastDraggedItem != null)
             {
-
-                if (LevelManager.THIS.CheckExtraPackage(GetMatches(FindSeparating.HORIZONTAL)))
-                {
-                    if (LevelManager.THIS.latstMatchColor == lastDraggedItem.color)
-                        LevelManager.THIS.lastDraggedItem.NextType = ItemsTypes.PACKAGE;
-                    else if (LevelManager.THIS.latstMatchColor == lastSwitchedItem.color)
-                        LevelManager.THIS.lastSwitchedItem.NextType = ItemsTypes.PACKAGE;
-                    lastDraggedItem.ChangeType();
-                    lastSwitchedItem.ChangeType();
-
-                }
+                //
+                //				if (LevelManager.THIS.CheckExtraPackage (GetMatches (FindSeparating.HORIZONTAL))) {  //1.6
+                //					if (LevelManager.THIS.latstMatchColor == lastDraggedItem.color)
+                //						LevelManager.THIS.lastDraggedItem.NextType = ItemsTypes.PACKAGE;
+                //					else if (LevelManager.THIS.latstMatchColor == lastSwitchedItem.color)
+                //						LevelManager.THIS.lastSwitchedItem.NextType = ItemsTypes.PACKAGE;
+                //					lastDraggedItem.ChangeType ();
+                //					lastSwitchedItem.ChangeType ();
+                //
+                //				}
                 if (lastDraggedItem.NextType != ItemsTypes.NONE)
                 {
                     //lastDraggedItem.ChangeType();
@@ -1819,6 +1895,10 @@ public class LevelManager : MonoBehaviour
             //    yield return new WaitForFixedUpdate();
             //matchesGot = false;
             //CheckIngredient();
+            while (!IsAllItemsFallDown())
+            {//2.0
+                yield return new WaitForSeconds(0.1f);
+            }
 
             if (destroyAnyway.Count > 0)
                 nearEmptySquareDetected = true;
@@ -1827,7 +1907,7 @@ public class LevelManager : MonoBehaviour
         }
 
         List<Item> item_ = GetItems();
-        for (int i = 0; i < it.Count; i++)
+        for (int i = 0; i < item_.Count; i++)//2.1.5 
         {
             Item item1 = item_[i];
             if (item1 != null)
@@ -1858,13 +1938,19 @@ public class LevelManager : MonoBehaviour
                             List<Square> sqList = GetSquare(col, row).GetAllNeghbors();
                             foreach (Square sq in sqList)
                             {
-                                if (sq.CanGoInto() && UnityEngine.Random.Range(0, 5) == 0 && sq.type == SquareTypes.EMPTY)
+                                if (sq.CanGoInto() && UnityEngine.Random.Range(0, 1) == 0 && sq.type == SquareTypes.EMPTY)
                                 {
-                                    //GetSquare(col, row).GenThriveBlock(sq);
-                                    CreateObstacles(sq.col, sq.row, sq.gameObject, SquareTypes.THRIVING);
+                                    if (sq.item != null)
+                                    {//1.6.1
+                                        if (sq.item.currentType == ItemsTypes.NONE)
+                                        {//1.6.1
+                                         //GetSquare(col, row).GenThriveBlock(sq);
+                                            CreateObstacles(sq.col, sq.row, sq.gameObject, SquareTypes.THRIVING);
 
-                                    thrivingBlockSelected = true;
-                                    break;
+                                            thrivingBlockSelected = true;
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -1872,6 +1958,8 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
+
+
         thrivingBlockDestroyed = false;
 
         if (gameStatus == GameState.Playing && !ingredientFly)
@@ -1883,12 +1971,24 @@ public class LevelManager : MonoBehaviour
             combo = 0;
         }
         LevelManager.THIS.latstMatchColor = -1;
-        DragBlocked = false;
+        CheckItemsPositions();//1.6.1
+        DragBlocked = false;//2.1.5 prevents early move
         if (gameStatus == GameState.Playing)
             StartCoroutine(AI.THIS.CheckPossibleCombines());
 
 
 
+
+    }
+
+    void CheckItemsPositions()
+    {//1.6.1
+        List<Item> items = GetItems();
+        foreach (var item in items)
+        {
+            if (item)
+                item.transform.position = item.square.transform.position + Vector3.back * 0.2f;
+        }
     }
 
 
@@ -1967,6 +2067,23 @@ public class LevelManager : MonoBehaviour
         return true;
     }
 
+    bool IsIngredientFalling()
+    {//1.6.1
+        if (gameStatus == GameState.PreWinAnimations)
+            return true;
+        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+        foreach (GameObject item in items)
+        {
+            Item itemComponent = item.GetComponent<Item>();
+            if (itemComponent != null)
+            {
+                if (itemComponent.falling && itemComponent.currentType == ItemsTypes.INGREDIENT)
+                    return true;
+            }
+        }
+        return false;
+
+    }
 
     bool IsAllItemsFallDown()
     {
@@ -2199,6 +2316,7 @@ public class LevelManager : MonoBehaviour
             }
             poptxt.transform.SetParent(parent);
             //   poptxt.transform.position += Vector3.right * 1;
+            poptxt.transform.position = pos;//2.1.6
             poptxt.transform.localScale = Vector3.one / 1.5f;
             Destroy(poptxt, 0.3f);
         }
@@ -2312,6 +2430,8 @@ public class LevelManager : MonoBehaviour
                 star1 = int.Parse(blocksNumbers[0]);
                 star2 = int.Parse(blocksNumbers[1]);
                 star3 = int.Parse(blocksNumbers[2]);
+                if (ProgressBarScript.Instance != null)//2.1.2
+                    ProgressBarScript.Instance.InitBar();//2.1.2
             }
             else if (line.StartsWith("COLLECT COUNT "))
             {

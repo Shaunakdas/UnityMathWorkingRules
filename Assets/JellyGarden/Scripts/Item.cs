@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
 
+//types of items
 public enum ItemsTypes
 {
     NONE = 0,
@@ -15,14 +16,23 @@ public enum ItemsTypes
 
 public class Item : MonoBehaviour
 {
+    //items sprites array
     public Sprite[] items;
+    public GameObject[] prefabs;
+    //stripe extra items array
     public List<StripedItem> stripedItems = new List<StripedItem>();
+    //arrays for extra items
     public Sprite[] packageItems;
     public Sprite[] bombItems;
     public Sprite[] ingredientItems;
+
+    //sprite rendered reference
     public SpriteRenderer sprRenderer;
+    //square object reference
     public Square square;
+    //is that item dragging
     public bool dragThis;
+
     public Vector3 mousePos;
     public Vector3 deltaPos;
     public Vector3 switchDirection;
@@ -68,9 +78,13 @@ public class Item : MonoBehaviour
     public bool justCreatedItem;
     private float xScale;
     private float yScale;
+    public bool boost;
+    public Vector2 moveDirection;
+    //1.6
     // Use this for initialization
     void Start()
     {
+        gameObject.name = "item " + GetInstanceID();
         falling = true;
         GenColor();
         // sprRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -163,7 +177,9 @@ public class Item : MonoBehaviour
             sprRenderer.sprite = packageItems[color];
         else if (NextType == ItemsTypes.BOMB)
             sprRenderer.sprite = bombItems[0];
-        else if ((LevelManager.THIS.target == Target.INGREDIENT && (LevelManager.THIS.ingrTarget[0] == Ingredients.Ingredient1 || LevelManager.THIS.ingrTarget[0] == Ingredients.Ingredient2)) && UnityEngine.Random.Range(0, LevelManager.THIS.Limit) == 0 && square.row + 1 < LevelManager.THIS.maxRows && !onlyNONEType && LevelManager.THIS.GetIngredients(0).Count < LevelManager.THIS.ingrCountTarget[0])
+        else if ((LevelManager.THIS.target == Target.INGREDIENT && (LevelManager.THIS.ingrTarget[0] == Ingredients.Ingredient1 || LevelManager.THIS.ingrTarget[0] == Ingredients.Ingredient2))
+                 && UnityEngine.Random.Range(0, LevelManager.THIS.Limit) == 0 && square.row + 1 < LevelManager.THIS.maxRows && !onlyNONEType
+                 && LevelManager.THIS.GetIngredients(0).Count < LevelManager.THIS.ingrCountTarget[0])
         {
             int i = 0;
             if (LevelManager.THIS.ingrTarget[i] == (Ingredients)i + 1 && LevelManager.THIS.ingrCountTarget[i] > 0)
@@ -174,10 +190,13 @@ public class Item : MonoBehaviour
                     color = 1000 + (int)LevelManager.THIS.ingrTarget[i];
                     currentType = ItemsTypes.INGREDIENT;
                     sprRenderer.sprite = ingredientItems[i];
+                    name = "ingredient_" + color;
                 }
             }
         }
-        else if ((LevelManager.THIS.target == Target.INGREDIENT && (LevelManager.THIS.ingrTarget[1] == Ingredients.Ingredient1 || LevelManager.THIS.ingrTarget[1] == Ingredients.Ingredient2)) && UnityEngine.Random.Range(0, LevelManager.THIS.Limit) == 0 && square.row + 1 < LevelManager.THIS.maxRows && !onlyNONEType && LevelManager.THIS.GetIngredients(1).Count < LevelManager.THIS.ingrCountTarget[1])
+        else if ((LevelManager.THIS.target == Target.INGREDIENT && (LevelManager.THIS.ingrTarget[1] == Ingredients.Ingredient1 || LevelManager.THIS.ingrTarget[1] == Ingredients.Ingredient2))
+                 && UnityEngine.Random.Range(0, LevelManager.THIS.Limit) == 0 && square.row + 1 < LevelManager.THIS.maxRows && !onlyNONEType
+                 && LevelManager.THIS.GetIngredients(1).Count < LevelManager.THIS.ingrCountTarget[1])
         {
             int i = 1;
             if (LevelManager.THIS.ingrTarget[i] == (Ingredients)i + 1 && LevelManager.THIS.ingrCountTarget[i] > 0)
@@ -188,6 +207,7 @@ public class Item : MonoBehaviour
                     color = 1000 + (int)LevelManager.THIS.ingrTarget[i];
                     currentType = ItemsTypes.INGREDIENT;
                     sprRenderer.sprite = ingredientItems[i];
+                    name = "ingredient_" + color;
                 }
             }
         }
@@ -195,6 +215,18 @@ public class Item : MonoBehaviour
         {
             StartCoroutine(FallingCor(square, true));
             color = Array.IndexOf(items, sprRenderer.sprite);
+        }
+        if (prefabs.Length > 0)
+        {
+            sprRenderer.enabled = false;
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).name != "Sprite")
+                { Destroy(transform.GetChild(i)); }
+            }
+            GameObject obj = Instantiate(prefabs[color]);
+            obj.transform.SetParent(transform);
+            obj.transform.localPosition = Vector3.zero;
         }
 
     }
@@ -214,6 +246,7 @@ public class Item : MonoBehaviour
             anim.SetBool("package_idle", true);
 
     }
+
     public void StartIdleAnim()
     {
         StartCoroutine(AnimIdleStart());
@@ -270,44 +303,6 @@ public class Item : MonoBehaviour
 
         sprRenderer.sprite = spr;
     }
-
-    //void OnMouseDown()
-    //{
-    //    if (!LevelManager.THIS.DragBlocked && LevelManager.THIS.gameStatus == GameState.Playing)
-    //    {
-    //        if (LevelManager.THIS.ActivatedBoost.type == BoostType.Bomb && currentType != ItemsTypes.BOMB && currentType != ItemsTypes.INGREDIENT)
-    //        {
-    //            SoundBase.Instance.audio.PlayOneShot(SoundBase.Instance.boostBomb);
-    //            LevelManager.THIS.DragBlocked = true;
-    //            GameObject obj = Instantiate(Resources.Load("Prefabs/Effects/bomb"), transform.position, transform.rotation) as GameObject;
-    //            obj.GetComponent<SpriteRenderer>().sortingOrder = 4;
-    //            obj.GetComponent<BoostAnimation>().square = square;
-    //            LevelManager.THIS.ActivatedBoost = null;
-    //        }
-    //        else if (LevelManager.THIS.ActivatedBoost.type == BoostType.Random_color && currentType != ItemsTypes.BOMB)
-    //        {
-    //            SoundBase.Instance.audio.PlayOneShot(SoundBase.Instance.boostColorReplace);
-    //            LevelManager.THIS.DragBlocked = true;
-    //            GameObject obj = Instantiate(Resources.Load("Prefabs/Effects/random_color_item"), transform.position, transform.rotation) as GameObject;
-    //            obj.GetComponent<BoostAnimation>().square = square;
-    //            obj.GetComponent<SpriteRenderer>().sortingOrder = 4;
-    //            LevelManager.THIS.ActivatedBoost = null;
-    //        }
-    //        else if(square.type != SquareTypes.WIREBLOCK)
-    //        {
-    //            dragThis = true;
-    //            mousePos = GetMousePosition();
-    //            deltaPos = Vector3.zero;
-    //        }
-    //    }
-    //}
-
-
-    //void OnMouseUp()
-    //{
-    //    dragThis = false;
-    //    switchDirection = Vector3.zero;
-    //}
 
     void ResetDrag()
     {
@@ -374,8 +369,10 @@ public class Item : MonoBehaviour
             {
                 if (switchItem.square.type != SquareTypes.WIREBLOCK)
                     StartCoroutine(Switching());
-                else if (currentType != ItemsTypes.NONE || switchItem.currentType != ItemsTypes.NONE)   //1.4.1
+                else if ((currentType != ItemsTypes.NONE || switchItem.currentType != ItemsTypes.NONE) && switchItem.square.type != SquareTypes.WIREBLOCK)   //1.4.1   1.6.1
                     StartCoroutine(Switching());
+                else
+                    ResetDrag();//1.6.1
 
             }
             else
@@ -411,6 +408,7 @@ public class Item : MonoBehaviour
                 matchesHere = 0;
             float startTime = Time.time;
             Vector3 startPos = transform.position;
+
             float speed = 5;
             float distCovered = 0;
             while (distCovered < 1)
@@ -422,12 +420,14 @@ public class Item : MonoBehaviour
             }
             if (matchesHere <= 0 && matchesInNeithborItem <= 0 && LevelManager.THIS.ActivatedBoost.type != BoostType.Hand ||
                 ((this.currentType == ItemsTypes.BOMB || switchItem.currentType == ItemsTypes.BOMB) && (this.currentType == ItemsTypes.INGREDIENT || switchItem.currentType == ItemsTypes.INGREDIENT) && (matchesHere + matchesInNeithborItem <= 2)) ||
-                ((this.currentType == ItemsTypes.PACKAGE || switchItem.currentType == ItemsTypes.PACKAGE) && (this.currentType == ItemsTypes.INGREDIENT || switchItem.currentType == ItemsTypes.INGREDIENT) && (matchesHere + matchesInNeithborItem <= 2)))
-            {
+                (((int)this.currentType >= 1 || (int)switchItem.currentType >= 1) && (this.currentType == ItemsTypes.INGREDIENT || switchItem.currentType == ItemsTypes.INGREDIENT) && (matchesHere + matchesInNeithborItem <= 2)))
+            {//1.6.1
+
                 neighborSquare.item = switchItem;
                 square.item = this;
                 backMove = true;
                 SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.wrongMatch);
+
 
             }
             else
@@ -482,8 +482,13 @@ public class Item : MonoBehaviour
 
                 if ((this.currentType == ItemsTypes.HORIZONTAL_STRIPPED || this.currentType == ItemsTypes.VERTICAL_STRIPPED) && (switchItem.currentType == ItemsTypes.HORIZONTAL_STRIPPED || switchItem.currentType == ItemsTypes.VERTICAL_STRIPPED))
                 {
+                    //1.6
+                    switchItem.currentType = ItemsTypes.NONE; //2.0
+                    switchItem.nextType = ItemsTypes.NONE;  //2.0
+                    switchItem.debugType = ItemsTypes.NONE; //2.0
                     DestroyHorizontal();
-                    switchItem.DestroyVertical();
+                    DestroyVertical();
+                    //					switchItem.DestroyItem ();
                 }
 
                 CheckPackageAndStripped(this, switchItem);
@@ -499,6 +504,7 @@ public class Item : MonoBehaviour
             //Debug.Break();
             //yield return new WaitForSeconds(2);
 
+
             startTime = Time.time;
             distCovered = 0;
             while (distCovered < 1 && backMove)
@@ -510,7 +516,10 @@ public class Item : MonoBehaviour
             }
 
             if (backMove)
+            {
                 LevelManager.THIS.DragBlocked = false;
+                StartCoroutine(AI.THIS.CheckPossibleCombines());//2.1.5 prevents early move
+            }
         }
         ResetDrag();
     }
@@ -551,17 +560,27 @@ public class Item : MonoBehaviour
         {
             int i = 0;
             List<Item> itemsList = LevelManager.THIS.GetItemsAround(item2.square);
+            int direction = 1;//2.0
             foreach (Item item in itemsList)
             {
                 if (item != null)
                 {
-                    item.currentType = (ItemsTypes)((i) % 2) + 1;
-                    i++;
+                    if (item.currentType != ItemsTypes.BOMB && item.currentType != ItemsTypes.INGREDIENT)
+                    {//1.6.1
+                        if (direction > 0)//2.0
+                            item.currentType = ItemsTypes.HORIZONTAL_STRIPPED;
+                        else
+                            item.currentType = ItemsTypes.VERTICAL_STRIPPED;
+                        direction *= -1;
+                        //						item.currentType = (ItemsTypes)((i) % 2) + 1;
+                        i++;
+                    }
                 }
             }
             item2.DestroyPackage();
         }
     }
+
     public void CheckChocoBomb(Item item1, Item item2)
     {
         if (item1.currentType == ItemsTypes.INGREDIENT || item2.currentType == ItemsTypes.INGREDIENT)
@@ -586,7 +605,8 @@ public class Item : MonoBehaviour
 
     void SetStrippedExtra(Vector3 dir)
     {
-        print("set striped");
+        moveDirection = dir;//1.6
+                            //		print ("set striped");
         if (Math.Abs(dir.x) > Math.Abs(dir.y))
             NextType = ItemsTypes.HORIZONTAL_STRIPPED;
         else
@@ -642,6 +662,7 @@ public class Item : MonoBehaviour
 
             }
         }
+        transform.position = _square.transform.position + Vector3.back * 0.2f;
         if (distance > 0.5f && animate)
         {
             anim.SetTrigger("stop");
@@ -649,6 +670,7 @@ public class Item : MonoBehaviour
         }
         falling = false;
         justCreatedItem = false;
+        transform.position = _square.transform.position + Vector3.back * 0.2f;//1.6.1
     }
 
     public bool GetNearEmptySquares()
@@ -657,9 +679,8 @@ public class Item : MonoBehaviour
         if (square.row < LevelManager.Instance.maxRows - 1 && square.col < LevelManager.Instance.maxCols)
         {
             Square checkingSquare = LevelManager.Instance.GetSquare(square.col + 1, square.row + 1, true);
-            if (checkingSquare.CanGoInto() && checkingSquare.item == null)
-            {
-
+            if (checkingSquare.CanGoInto() && checkingSquare.item == null && !falling)
+            {//2.0
                 checkingSquare = LevelManager.Instance.GetSquare(square.col + 1, square.row + 1, true);
                 if (checkingSquare.CanGoInto())
                 {
@@ -668,12 +689,38 @@ public class Item : MonoBehaviour
                         square.item = null;
                         checkingSquare.item = this;
                         square = checkingSquare;
-                        StartCoroutine(FallingCor(square, true));
+                        StartFalling();//2.0
                         nearEmptySquareDetected = true;
                     }
                 }
             }
         }
+        if (square.row < LevelManager.Instance.maxRows - 1 && square.col > 0)
+        {
+            Square checkingSquare = LevelManager.Instance.GetSquare(square.col - 1, square.row + 1, true);
+            if (checkingSquare.CanGoInto() && checkingSquare.item == null && !falling)
+            {//2.0
+                checkingSquare = LevelManager.Instance.GetSquare(square.col - 1, square.row + 1, true);
+                if (checkingSquare.CanGoInto())
+                {
+                    if (checkingSquare.item == null)
+                    {
+                        square.item = null;
+                        checkingSquare.item = this;
+                        square = checkingSquare;
+                        StartFalling();//2.0
+                        nearEmptySquareDetected = true;
+                    }
+                }
+            }
+        }
+
+        return nearEmptySquareDetected;
+    }
+
+    public bool GetNearEmptySquaresLeft()
+    {
+        bool nearEmptySquareDetected = false;
         if (square.row < LevelManager.Instance.maxRows - 1 && square.col > 0)
         {
             Square checkingSquare = LevelManager.Instance.GetSquare(square.col - 1, square.row + 1, true);
@@ -695,6 +742,30 @@ public class Item : MonoBehaviour
         }
         return nearEmptySquareDetected;
     }
+
+
+    public Item GetLeftItem()
+    {
+        Square sq = square.GetNeighborLeft();
+        if (sq != null)
+        {
+            if (sq.item != null)
+                return sq.item;
+        }
+        return null;
+    }
+
+    public Item GetTopItem()
+    {
+        Square sq = square.GetNeighborTop();
+        if (sq != null)
+        {
+            if (sq.item != null)
+                return sq.item;
+        }
+        return null;
+    }
+
 
     public void ChangeType()
     {
@@ -756,8 +827,10 @@ public class Item : MonoBehaviour
     }
 
     #region Destroying
+
     public void DestroyItem(bool showScore = false, string anim_name = "", bool explEffect = false)
     {
+
         if (destroying)
             return;
         // if (nextType != ItemsTypes.NONE) return;
@@ -766,6 +839,7 @@ public class Item : MonoBehaviour
         StopCoroutine(AnimIdleStart());
         destroying = true;
         square.item = null;
+        GetComponent<BoxCollider2D>().enabled = false;//2.1.5 prevents to early moving
 
         if (this == null)
             return;
@@ -828,7 +902,7 @@ public class Item : MonoBehaviour
             GameObject FiveSec = transform.Find("5sec").gameObject;
             FiveSec.transform.SetParent(null);
 #if UNITY_5
-            FiveSec.GetComponent<Animation>().clip.legacy = true;
+			FiveSec.GetComponent<Animation>().clip.legacy = true;
 #endif
 
             FiveSec.GetComponent<Animation>().Play("5secfly");
@@ -845,8 +919,6 @@ public class Item : MonoBehaviour
 
         while (!animationFinished && currentType == ItemsTypes.NONE)
             yield return new WaitForFixedUpdate();
-
-
 
         square.DestroyBlock();
         if (currentType == ItemsTypes.HORIZONTAL_STRIPPED)
@@ -915,6 +987,7 @@ public class Item : MonoBehaviour
 
 
     }
+
     public void DestroyPackage()
     {
         SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.destroyPackage);
@@ -933,6 +1006,7 @@ public class Item : MonoBehaviour
         currentType = ItemsTypes.NONE;
         DestroyItem(true);
     }
+
     public void DestroyColor(int p)
     {
         SoundBase.Instance.GetComponent<AudioSource>().PlayOneShot(SoundBase.Instance.colorBombExpl);
@@ -959,10 +1033,12 @@ public class Item : MonoBehaviour
     IEnumerator SmoothDestroyCor()
     {
         square.item = null;
+        GetComponent<BoxCollider2D>().enabled = false;//2.1.5 prevents to early moving
         anim.SetTrigger("disAppear");
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
+
     #endregion
 
 }

@@ -11,13 +11,13 @@ public class BoostIcon : MonoBehaviour
 	void OnEnable ()
 	{
 		if (name != "Main Camera") {
-            if (LevelManager.THIS != null)
-            {
-                if (LevelManager.THIS.gameStatus == GameState.Map)
-                    transform.Find("Indicator/Image/Check").gameObject.SetActive(false);
-                if (!LevelManager.THIS.enableInApps)
-                    gameObject.SetActive(false);
-            }
+			if (LevelManager.THIS != null) {
+				if (LevelManager.THIS.gameStatus == GameState.Map)
+					transform.Find ("Indicator/Image/Check").gameObject.SetActive (false);
+//				if (!LevelManager.THIS.enableInApps)
+//					gameObject.SetActive (false);
+			}
+
 		}
 	}
 
@@ -27,9 +27,29 @@ public class BoostIcon : MonoBehaviour
 			UnCheckBoost ();
 			return;
 		}
+
+		if (check )//2.2.1
+		{
+			if (type == BoostType.Colorful_bomb) {
+				LevelManager.THIS.BoostColorfullBomb = 0;
+				UnCheck();
+				return;
+			}
+			if (type == BoostType.Packages) {
+				LevelManager.THIS.BoostPackage = 0;
+				UnCheck();
+				return;
+			}
+			if (type == BoostType.Stripes) {
+				LevelManager.THIS.BoostStriped = 0;
+				UnCheck();
+				return;
+			}
+		}
+
 		if (IsLocked () || check || (LevelManager.THIS.gameStatus != GameState.Playing && LevelManager.THIS.gameStatus != GameState.Map))
 			return;
-		if (BoostCount () > 0) {
+		if (!check && BoostCount () > 0) {
 			if (type != BoostType.Colorful_bomb && type != BoostType.Packages && type != BoostType.Stripes && !LevelManager.THIS.DragBlocked)
 				LevelManager.THIS.ActivatedBoost = this;
 			if (type == BoostType.Colorful_bomb) {
@@ -52,7 +72,7 @@ public class BoostIcon : MonoBehaviour
 
 	void UnCheckBoost ()
 	{
-        LevelManager.THIS.activatedBoost = null;
+		LevelManager.THIS.activatedBoost = null;
 		LevelManager.THIS.UnLockBoosts ();
 	}
 
@@ -72,6 +92,13 @@ public class BoostIcon : MonoBehaviour
 		transform.Find ("Indicator/Image/Check").gameObject.SetActive (true);
 		transform.Find ("Indicator/Image/Count").gameObject.SetActive (false);
 		//InitScript.Instance.SpendBoost(type);
+	}	
+	
+	void UnCheck ()//2.2.1
+	{
+		check = false;
+		transform.Find ("Indicator/Image/Check").gameObject.SetActive (false);
+		transform.Find ("Indicator/Image/Count").gameObject.SetActive (true);
 	}
 
 	public void LockBoost ()

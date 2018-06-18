@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-[RequireComponent( typeof(AudioSource) )]
-public class SoundBase : MonoBehaviour
-{
+
+[RequireComponent (typeof(AudioSource))]
+public class SoundBase : MonoBehaviour {
 	public static SoundBase Instance;
 	public AudioClip click;
 	public AudioClip[] swish;
@@ -28,22 +28,24 @@ public class SoundBase : MonoBehaviour
 	public AudioClip destroyPackage;
 	public AudioClip colorBombExpl;
 
-    ///SoundBase.Instance.audio.PlayOneShot( SoundBase.Instance.kreakWheel );
+	///SoundBase.Instance.audio.PlayOneShot( SoundBase.Instance.kreakWheel );
 
-    // Use this for initialization
-    void Awake ()
-	{
+	// Use this for initialization
+	void Awake () {
 		if (transform.parent == null) {
-			transform .parent = Camera.main.transform;
-			transform .localPosition = Vector3.zero;
+			transform.parent = Camera.main.transform;
+			transform.localPosition = Vector3.zero;
 		}
 		DontDestroyOnLoad (gameObject);
-		Instance = this;
+		if (Instance == null)
+			Instance = this;
+		else if (Instance != this)
+			Destroy (gameObject);
+
 	}
 	
 	// Update is called once per frame
-	void Update ()
-	{
+	void Update () {
 	
 	}
 }

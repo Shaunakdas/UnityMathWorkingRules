@@ -21,6 +21,8 @@ public class HTMLParserTest : MonoBehaviour {
 	//GameObjects
 	// Use this for initialization
 	public GameObject CenterContentScrollViewPF;
+
+	public ComprehensionBody comprehensionBody;
 	void Start () {
 //		BasicGOOperation.scale =  NGUITools.GetRoot (gameObject).transform.localScale;
 //		HTMLParser parser = new HTMLParser ();
@@ -46,8 +48,8 @@ public class HTMLParserTest : MonoBehaviour {
 //		ParagraphList = parser.ParagraphList;
 //		ParagraphList.ForEach( x=> x.generateElementGO(gameObject));
 
-		ComprehensionBody body = new ComprehensionBody(html.DocumentNode.Element(AttributeManager.TAG_BODY));
-		body.generateElementGO (gameObject);
+		comprehensionBody = new ComprehensionBody(html.DocumentNode.Element(AttributeManager.TAG_BODY));
+		comprehensionBody.generateElementGO (gameObject);
 //		generateParaUI ();
 		StartCoroutine (WaitForEnd());
 	}

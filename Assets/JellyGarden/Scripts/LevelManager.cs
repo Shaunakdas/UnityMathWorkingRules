@@ -268,8 +268,10 @@ public class LevelManager : MonoBehaviour
             }
             else if (value == GameState.WaitForPopup)
             {
-
-                InitLevel();
+				//MATH_CHANGES #1 Disable generating candy ground
+//                InitLevel();
+				//MATH_CHANGES #2 Generate Math Level
+				MathTrigger.Instance.InitLevel();
                 OnLevelLoaded();
 
 

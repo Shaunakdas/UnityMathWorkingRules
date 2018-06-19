@@ -241,27 +241,28 @@ public class Paragraph : BaseElement{
 		GameObject QuestionStepParaPF = Resources.Load (LocationManager.COMPLETE_LOC_PARAGRAPH_TYPE + prefabName)as GameObject;
 		GameObject ParaContentTableGO = null;
 		GameObject CenterContentScrollViewPF = Resources.Load (LocationManager.COMPLETE_LOC_OTHER_TYPE + LocationManager.NAME_CENTER_CONTENT_SCROLL_VIEW)as GameObject;
-//		if (ParagraphStep == Paragraph.StepType.QuestionStep) {
-		if(true){
+		if (ParagraphStep == Paragraph.StepType.QuestionStep) {
+//		if(true){
 			//Paragraph is of type QuestionStep
 
 			//Adding QuestionStepParaPF to the root GameObject
-			GameObject QuestionStepParaGO = BasicGOOperation.InstantiateNGUIGO(QuestionStepParaPF,parentGO.transform);
+			GameObject QuestionStepParaGO = BasicGOOperation.InstantiateNGUIGO (QuestionStepParaPF, parentGO.transform);
 			ElementGO = QuestionStepParaGO;
 			initGOProp (ElementGO);
 			//Setting height of Paragraph ElementGO
 			ParaContentTableGO = BasicGOOperation.getChildGameObject (QuestionStepParaGO, "ParaContentTable");
 			ParaContentTableGO.GetComponent<UITable> ().columns = tableCol;
 			//Checking for Center Content Scroll View
-			bool isCenterContentPresent = false; GameObject CenterContentGO = parentGO;
-			addStartWorkingRuleBtn (ParaContentTableGO); 
-			foreach (Line line in LineList) if (line.LineLocation == Line.LocationType.Default)
-			{
-				CenterContentGO = BasicGOOperation.InstantiateNGUIGO(CenterContentScrollViewPF,ParaContentTableGO.transform);
-				GameObject LineTableGO = BasicGOOperation.getChildGameObject (CenterContentGO, "LineTablePF");
-				isCenterContentPresent = true;
-				break;
-			}
+			bool isCenterContentPresent = false;
+			GameObject CenterContentGO = parentGO;
+//			addStartWorkingRuleBtn (ParaContentTableGO); 
+			foreach (Line line in LineList)
+				if (line.LineLocation == Line.LocationType.Default) {
+					CenterContentGO = BasicGOOperation.InstantiateNGUIGO (CenterContentScrollViewPF, ParaContentTableGO.transform);
+					GameObject LineTableGO = BasicGOOperation.getChildGameObject (CenterContentGO, "LineTablePF");
+					isCenterContentPresent = true;
+					break;
+				}
 
 			foreach (Line line in LineList) {
 				line.generateElementGO (ParaContentTableGO);
@@ -269,7 +270,7 @@ public class Paragraph : BaseElement{
 			if (isCenterContentPresent)
 				resizeCenterContent (CenterContentGO, ParaContentTableGO);
 //			Debug.Log ("Post Line List Element Generation CheckAndRepositionTable"+);
-			updateGOProp(ElementGO);
+			updateGOProp (ElementGO);
 			BasicGOOperation.RepositionChildTables (ParaContentTableGO);
 //			setUpChildActiveAnim (targetItemCheckerList);
 
@@ -277,6 +278,10 @@ public class Paragraph : BaseElement{
 				hideElementGO ();
 				displayElementGO ();
 			}
+		} else {
+			//Adding QuestionStepParaPF to the root GameObject
+			GameObject QuestionStepParaGO = BasicGOOperation.InstantiateNGUIGO(QuestionStepParaPF,parentGO.transform);
+			ElementGO = QuestionStepParaGO;
 		}
 
 		//Traversing through Child Element - 3

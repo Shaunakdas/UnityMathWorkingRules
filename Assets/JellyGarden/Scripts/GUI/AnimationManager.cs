@@ -402,7 +402,8 @@ public class AnimationManager : MonoBehaviour
 		{
 			if (InitScript.lifes > 0)
 			{
-				InitScript.Instance.SpendLife(1);
+				//MATH_CHANGES (REVERT) #3 To avoid life decrement. 
+//				InitScript.Instance.SpendLife(1);
 				LevelManager.THIS.gameStatus = GameState.PrepareGame;
 				CloseMenu();
 				//Application.LoadLevel( "game" );

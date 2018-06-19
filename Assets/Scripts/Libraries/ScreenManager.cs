@@ -148,6 +148,6 @@ public class ScreenManager : MonoBehaviour {
 		return (int)(Screen.width*0.8);
 	}
 	static public int ScreenHeight(){
-		return (int)(Screen.height*0.8);
+		return (int)(Screen.height*0.6);
 	}
 }

@@ -9,4 +9,8 @@ public class MathTrigger : Singleton<MathTrigger> {
 	public void InitLevel(){
 		GameObject.Find ("UI Root").GetComponent<HTMLParserTest> ().comprehensionBody.nextParaTrigger ();
 	}
+
+	public void PopupScore(int value, Vector3 pos){
+		LevelManager.THIS.PopupScore(value, pos, 2);
+	}
 }

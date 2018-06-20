@@ -96,7 +96,11 @@ public class OptionChecker : MonoBehaviour {
 	/// </summary>
 	virtual public void correctAnim(){
 		scoreTracker.attemptScore = scoreTracker.calcScore (scoreTracker.attemptTime.Seconds);
+		Debug.Log (scoreTracker.attemptScore);
 		ItemAttemptState = AttemptState.Checked;
+		Debug.Log (gameObject.transform.position);
+		Debug.Log (gameObject.transform.localPosition);
+		MathTrigger.Instance.PopupScore ((int)scoreTracker.attemptScore, gameObject.transform.position);
 	}
 	virtual public void correctAnimWithDelegate(EventDelegate _nextEvent){
 		ItemAttemptState = AttemptState.Checked;

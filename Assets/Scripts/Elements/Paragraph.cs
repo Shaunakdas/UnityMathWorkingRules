@@ -281,6 +281,7 @@ public class Paragraph : BaseElement{
 		} else {
 			//Adding QuestionStepParaPF to the root GameObject
 			GameObject QuestionStepParaGO = BasicGOOperation.InstantiateNGUIGO(QuestionStepParaPF,parentGO.transform);
+			MathTrigger.Instance.questionText = (LineList [0] as TextLine).DisplayText;
 			ElementGO = QuestionStepParaGO;
 		}
 

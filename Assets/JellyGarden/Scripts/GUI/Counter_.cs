@@ -5,11 +5,15 @@ using UnityEngine.UI;
 public class Counter_ : MonoBehaviour
 {
 	Text txt;
+	//MATH_CHANGES #4 Initializing texDraw component 
+	TEXDraw texTxt;
 	private float lastTime;
 	bool alert;
 	// Use this for initialization
 	void Start ()
 	{
+		//MATH_CHANGES #4 Initializing texDraw component 
+		texTxt = GetComponent<TEXDraw> ();
 		txt = GetComponent<Text> ();
 	}
 
@@ -99,6 +103,10 @@ public class Counter_ : MonoBehaviour
 			else if (LevelManager.THIS.target == Target.COLLECT)
 				txt.text = LevelManager.THIS.targetDiscriptions [3];
 
+		}
+		//MATH_CHANGES #5 Setting for QuestionText gameObject
+		if (name == "QuestionText") {
+			texTxt.text = MathTrigger.Instance.questionText;
 		}
 
 

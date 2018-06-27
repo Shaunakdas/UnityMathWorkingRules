@@ -6,6 +6,7 @@ public class MathTrigger : Singleton<MathTrigger> {
 
 	protected MathTrigger () {} // guarantee this will be always a singleton only - can't use the constructor!
 
+	public string questionText;
 	public void InitLevel(){
 		GameObject.Find ("UI Root").GetComponent<HTMLParserTest> ().comprehensionBody.nextParaTrigger ();
 	}

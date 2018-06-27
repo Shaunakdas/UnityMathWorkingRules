@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd48ea1c9327415abfe84003b0d076a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tableReposition: 0
 --- !u!114 &114539455356299774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,6 +70,7 @@ MonoBehaviour:
     offset: 0
   m_Count: 1
   m_ApproxCount: 1
+  newLineIndex: -1
 --- !u!114 &114860427963326290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,7 +99,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 0.6, g: 0.32941177, b: 0.99215686, a: 1}
   mPivot: 4
   mWidth: 33
   mHeight: 2

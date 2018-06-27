@@ -506,12 +506,13 @@ public class Paragraph : BaseElement{
 	//-------------Post Entity -------------------
 	override public void postEntityOps(){
 		postScoreCalc ();
-		GameObject PostSubmitTablePF = Resources.Load (LocationManager.COMPLETE_LOC_PARAGRAPH_TYPE + LocationManager.NAME_POST_SUBMIT_TABLE) as GameObject;
-		GameObject PostSubmitTableGO = BasicGOOperation.InstantiateNGUIGO (PostSubmitTablePF, ElementGO.transform);
-		PostSubmitTableGO.GetComponentInChildren<TEXDrawNGUI> ().text = postSubmitText;
-		EventDelegate.Set(PostSubmitTableGO.GetComponentInChildren<UIButton>().onClick, delegate() { (this.Parent as ComprehensionBody).nextParaTrigger(); });
+		//MATH_CHANGES Deleting PostSubmitText and SubmitBtn
+//		GameObject PostSubmitTablePF = Resources.Load (LocationManager.COMPLETE_LOC_PARAGRAPH_TYPE + LocationManager.NAME_POST_SUBMIT_TABLE) as GameObject;
+//		GameObject PostSubmitTableGO = BasicGOOperation.InstantiateNGUIGO (PostSubmitTablePF, ElementGO.transform);
+//		PostSubmitTableGO.GetComponentInChildren<TEXDrawNGUI> ().text = postSubmitText;
+//		EventDelegate.Set(PostSubmitTableGO.GetComponentInChildren<UIButton>().onClick, delegate() { (this.Parent as ComprehensionBody).nextParaTrigger(); });
 		if (!(this.Parent as ComprehensionBody).checkForNextPara ()) {
-			PostSubmitTableGO.GetComponentInChildren<UIButton> ().gameObject.GetComponentInChildren<UILabel>().text ="Working Rule finished";
+//			PostSubmitTableGO.GetComponentInChildren<UIButton> ().gameObject.GetComponentInChildren<UILabel>().text ="Working Rule finished";
 		}
 
 	}

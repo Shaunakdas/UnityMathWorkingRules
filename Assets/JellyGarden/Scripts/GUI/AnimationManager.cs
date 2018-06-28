@@ -233,6 +233,7 @@ public class AnimationManager : MonoBehaviour
 			LevelManager.THIS.gameStatus = GameState.WaitForPopup;
 
 		}
+		//MATH_CHANGES #6 Setting for SectionComplete gameObject
 		if (name == "SectionComplete")
 		{
 			MathTrigger.Instance.NextPara();

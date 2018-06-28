@@ -108,7 +108,7 @@ public class Counter_ : MonoBehaviour
 		if (name == "QuestionText") {
 			texTxt.text = MathTrigger.Instance.questionText;
 		}
-		//MATH_CHANGES #5 Setting for QuestionText gameObject
+		//MATH_CHANGES #6 Setting for SectionComplete gameObject
 		if (name == "SectionCompleteText") {
 			texTxt.text = MathTrigger.Instance.sectionCompleteText;
 		}

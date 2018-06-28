@@ -144,10 +144,12 @@ public class ScreenManager : MonoBehaviour {
 		_elementGO.transform.localPosition =new Vector3 (elementPos.x, ScreenManager.ScreenHeight()/2, elementPos.z);
 		return _elementGO;
 	}
+	static public float widthScaler = 0.8f;
 	static public int ScreenWidth(){
-		return (int)(Screen.width*0.8);
+		return (int)(Screen.width*widthScaler);
 	}
+	static public float heightScaler = 0.7f;
 	static public int ScreenHeight(){
-		return (int)(Screen.height*0.6);
+		return (int)(Screen.height*heightScaler);
 	}
 }

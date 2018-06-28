@@ -13,6 +13,9 @@ public class MathTrigger : Singleton<MathTrigger> {
 	}
 
 	public void PopupScore(int value, Vector3 pos){
+		pos.x = (pos.x*1200f*ScreenManager.widthScaler) + (Screen.width/2);
+		pos.y = (pos.y*1372f*ScreenManager.heightScaler) + (Screen.height/2) ;
+		Debug.Log (pos);
 		LevelManager.THIS.PopupScore(value, pos, 2);
 	}
 

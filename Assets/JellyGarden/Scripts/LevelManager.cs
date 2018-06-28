@@ -2319,8 +2319,9 @@ public class LevelManager : MonoBehaviour
             poptxt.transform.SetParent(parent);
             //   poptxt.transform.position += Vector3.right * 1;
             poptxt.transform.position = pos;//2.1.6
-            poptxt.transform.localScale = Vector3.one / 1.5f;
-            Destroy(poptxt, 0.3f);
+			//MATH_CHANGES #7 to show clearer score pop-up
+            poptxt.transform.localScale = Vector3.one * 1.5f;
+            Destroy(poptxt, 0.6f);
         }
     }
 

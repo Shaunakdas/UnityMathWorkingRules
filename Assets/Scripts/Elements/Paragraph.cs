@@ -265,6 +265,8 @@ public class Paragraph : BaseElement{
 				}
 
 			foreach (Line line in LineList) {
+				//Setting sectionCompleteText for each paragraph differently because postSubmitText is not generated in TextLine generation
+				MathTrigger.Instance.sectionCompleteText = postSubmitText;
 				line.generateElementGO (ParaContentTableGO);
 			}
 			if (isCenterContentPresent)
@@ -511,6 +513,7 @@ public class Paragraph : BaseElement{
 //		GameObject PostSubmitTableGO = BasicGOOperation.InstantiateNGUIGO (PostSubmitTablePF, ElementGO.transform);
 //		PostSubmitTableGO.GetComponentInChildren<TEXDrawNGUI> ().text = postSubmitText;
 //		EventDelegate.Set(PostSubmitTableGO.GetComponentInChildren<UIButton>().onClick, delegate() { (this.Parent as ComprehensionBody).nextParaTrigger(); });
+		MathTrigger.Instance.sectionComplete();
 		if (!(this.Parent as ComprehensionBody).checkForNextPara ()) {
 //			PostSubmitTableGO.GetComponentInChildren<UIButton> ().gameObject.GetComponentInChildren<UILabel>().text ="Working Rule finished";
 		}

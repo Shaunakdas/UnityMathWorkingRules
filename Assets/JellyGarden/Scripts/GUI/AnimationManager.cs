@@ -233,6 +233,11 @@ public class AnimationManager : MonoBehaviour
 			LevelManager.THIS.gameStatus = GameState.WaitForPopup;
 
 		}
+		if (name == "SectionComplete")
+		{
+			MathTrigger.Instance.NextPara();
+			CloseMenu ();
+		}
 		if (name == "PreFailed")
 		{
 			if (LevelManager.THIS.Limit <= 0)

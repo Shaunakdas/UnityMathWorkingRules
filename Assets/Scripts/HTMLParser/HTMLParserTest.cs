@@ -62,7 +62,16 @@ public class HTMLParserTest : MonoBehaviour {
 		BasicGOOperation.RepositionChildTables (gameObject);
 	}
 	public void RepositionAfterEndOfFrame(){
-		StartCoroutine (WaitForEnd());
+		StartCoroutine (WaitForLastEnd());
+	}
+
+	//Waiting for the end and reposition all the child tables and grids
+	public IEnumerator WaitForLastEnd(){
+		yield return new WaitForEndOfFrame();
+		Debug.Log ("Waited enough");
+		MathTrigger.Instance.startProcess ();
+		BasicGOOperation.RepositionChildTables (gameObject);
+		BasicGOOperation.RepositionChildTables (gameObject);
 	}
 	// Update is called once per frame
 	void Update () {

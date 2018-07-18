@@ -1605,7 +1605,7 @@ GameObject:
   - component: {fileID: 147873064}
   - component: {fileID: 147873063}
   m_Layer: 0
-  m_Name: Chartboost
+  m_Name: JellyChartboost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5743,7 +5743,7 @@ GameObject:
   - component: {fileID: 496862780}
   - component: {fileID: 496862782}
   m_Layer: 0
-  m_Name: NetworkManager
+  m_Name: JellyNetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5794,7 +5794,7 @@ GameObject:
   - component: {fileID: 507287607}
   - component: {fileID: 507287606}
   m_Layer: 0
-  m_Name: EventsListener
+  m_Name: JellyEventsListener
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5956,7 +5956,7 @@ GameObject:
   - component: {fileID: 511786113}
   - component: {fileID: 511786111}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: JellyMain Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9400,6 +9400,10 @@ Prefab:
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
+      propertyPath: m_Name
+      value: JellySoundBase
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
   m_IsPrefabParent: 0
@@ -10691,7 +10695,7 @@ GameObject:
   - component: {fileID: 885354528}
   - component: {fileID: 885354527}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: JellyEventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15292,6 +15296,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
+      propertyPath: m_Name
+      value: JellyLevelsMap
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
   m_IsPrefabParent: 0
@@ -16834,6 +16842,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
+      propertyPath: m_Name
+      value: JellyApiTestGUI
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
   m_IsPrefabParent: 0
@@ -17105,7 +17117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1375642409}
   m_Layer: 0
-  m_Name: Level
+  m_Name: JellyLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17139,7 +17151,7 @@ GameObject:
   - component: {fileID: 1380016620}
   - component: {fileID: 1380016619}
   m_Layer: 0
-  m_Name: AI
+  m_Name: JellyAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20311,6 +20323,10 @@ Prefab:
     - target: {fileID: 400000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
+      propertyPath: m_Name
+      value: JellyChartboost
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
@@ -24065,7 +24081,7 @@ GameObject:
   - component: {fileID: 2036332465}
   - component: {fileID: 2036332464}
   m_Layer: 0
-  m_Name: AdmobRewardedAdsManager
+  m_Name: JellyAdmobRewardedAdsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

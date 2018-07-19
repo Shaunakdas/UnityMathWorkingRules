@@ -1,0 +1,164 @@
+fileFormatVersion: 2
+guid: 74b43c3ac9aba6c4b86bb6ab4f182e9e
+labels:
+- Sprites
+timeCreated: 1444615835
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Spearman_Kepala
+    21300002: Spearman_Tangan_Kiri
+    21300004: Spearman_Spear
+    21300006: Spearman_Badan
+    21300008: Spearman_Tangan_Kanan
+    21300010: Spearman_Kaki_Kanan
+    21300012: Spearman_Kaki_Kiri
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 200
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Spearman_Kepala
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 419
+        width: 134
+        height: 142
+      alignment: 9
+      pivot: {x: 0.5144672, y: 0.1114711}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Spearman_Tangan_Kiri
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 396
+        width: 152
+        height: 131
+      alignment: 9
+      pivot: {x: 0.14551724, y: 0.52419436}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Spearman_Spear
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 103
+        width: 23
+        height: 450
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Spearman_Badan
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 172
+        width: 114
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Spearman_Tangan_Kanan
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 208
+        width: 90
+        height: 94
+      alignment: 9
+      pivot: {x: 0.26522252, y: 0.24149518}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Spearman_Kaki_Kanan
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 76
+        height: 118
+      alignment: 9
+      pivot: {x: 0.6737716, y: 0.842832}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Spearman_Kaki_Kiri
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 37
+        width: 83
+        height: 93
+      alignment: 9
+      pivot: {x: 0.2756925, y: 0.7918304}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

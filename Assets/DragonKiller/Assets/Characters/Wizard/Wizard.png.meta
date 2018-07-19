@@ -1,0 +1,164 @@
+fileFormatVersion: 2
+guid: 88ef657932e2ee24188b9095116987b6
+labels:
+- Sprites
+timeCreated: 1444615880
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Wizard_Kepala
+    21300002: Wizard_Tangan_Kiri
+    21300004: Wizard_Staff
+    21300006: Wizard_Badan
+    21300008: Wizard_Tangan_Kanan
+    21300010: Wizard_Kaki_Kanan
+    21300012: Wizard_Kaki_Kiri
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 200
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Wizard_Kepala
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 397
+        width: 198
+        height: 228
+      alignment: 9
+      pivot: {x: 0.65455884, y: 0.25220528}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Wizard_Tangan_Kiri
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 385
+        width: 130
+        height: 115
+      alignment: 9
+      pivot: {x: 0.15594646, y: 0.86845994}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Wizard_Staff
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 155
+        width: 38
+        height: 338
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Wizard_Badan
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 179
+        width: 115
+        height: 183
+      alignment: 9
+      pivot: {x: 0.66376, y: 0.4228182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Wizard_Tangan_Kanan
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 172
+        width: 129
+        height: 115
+      alignment: 9
+      pivot: {x: 0.13503082, y: 0.85822487}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Wizard_Kaki_Kanan
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 73
+        height: 138
+      alignment: 9
+      pivot: {x: 0.6934834, y: 0.89234173}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Wizard_Kaki_Kiri
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 28
+        width: 100
+        height: 132
+      alignment: 9
+      pivot: {x: 0.19397339, y: 0.8566742}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

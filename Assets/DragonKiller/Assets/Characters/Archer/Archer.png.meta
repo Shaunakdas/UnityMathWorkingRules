@@ -1,0 +1,159 @@
+fileFormatVersion: 2
+guid: 8f131200c843e184c806213690a5bd52
+labels:
+- Sprites
+timeCreated: 1445037410
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Archer_Head
+    21300002: Archer_Left_Hand
+    21300004: Archer_Arrow
+    21300006: Archer_Body
+    21300008: Archer_Right_Hand
+    21300010: Archer_Right_Leg
+    21300012: Archer_Left_Leg
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 200
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Archer_Head
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 431
+        width: 151
+        height: 149
+      alignment: 9
+      pivot: {x: 0.52170074, y: 0.17744784}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Archer_Left_Hand
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 276
+        width: 145
+        height: 304
+      alignment: 9
+      pivot: {x: 0.100753255, y: 0.510779}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Archer_Arrow
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 216
+        width: 21
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Archer_Body
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 208
+        width: 190
+        height: 189
+      alignment: 9
+      pivot: {x: 0.7127068, y: 0.1590242}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Archer_Right_Hand
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 140
+        width: 116
+        height: 71
+      alignment: 9
+      pivot: {x: 0.5753295, y: 0.7153791}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Archer_Right_Leg
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 88
+        height: 137
+      alignment: 9
+      pivot: {x: 0.6365348, y: 0.83485913}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Archer_Left_Leg
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 26
+        width: 112
+        height: 131
+      alignment: 9
+      pivot: {x: 0.29519764, y: 0.7668164}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

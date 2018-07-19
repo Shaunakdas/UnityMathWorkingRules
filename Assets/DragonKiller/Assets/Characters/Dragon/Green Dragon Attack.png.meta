@@ -1,0 +1,322 @@
+fileFormatVersion: 2
+guid: 9fa346ff67caf9a4c8cc20d240de142a
+labels:
+- Textures
+timeCreated: 1460227904
+licenseType: Store
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Green Dragon Attack_0
+    21300002: Green Dragon Attack_1
+    21300004: Green Dragon Attack_2
+    21300006: Green Dragon Attack_3
+    21300008: Green Dragon Attack_4
+    21300010: Green Dragon Attack_5
+    21300012: Green Dragon Attack_6
+    21300014: Green Dragon Attack_7
+    21300016: Green Dragon Attack_8
+    21300018: Green Dragon Attack_9
+    21300020: Green Dragon Attack_10
+    21300022: Green Dragon Attack_11
+    21300024: Green Dragon Attack_12
+    21300026: Green Dragon Attack_13
+    21300028: Green Dragon Attack_14
+    21300030: Green Dragon Attack_15
+    21300032: Green Dragon Attack_16
+    21300034: Green Dragon Attack_17
+    21300036: Green Dragon Attack_18
+    21300038: Green Dragon Attack_19
+    21300040: Green Dragon Attack_20
+    21300042: Green Dragon Attack_21
+    21300044: Green Dragon Attack_22
+    21300046: Green Dragon Attack_23
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 150
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Green Dragon Attack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1586.66663
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_1
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1586.66663
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_2
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 1586.66663
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_3
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 1586.66663
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1269.66663
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_5
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1269.66663
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_6
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 1269.66663
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_7
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 1269.66663
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 952.666626
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_9
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 952.666626
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_10
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 952.666626
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_11
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 952.666626
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 635.666626
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_13
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 635.666626
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_14
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 635.666626
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_15
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 635.666626
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 318.666656
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_17
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 318.666656
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_18
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 318.666656
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_19
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 318.666656
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.66665649
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_21
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1.66665649
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_22
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 1.66665649
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Green Dragon Attack_23
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 1.66665649
+        width: 387.5
+        height: 317.333344
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -24241,7 +24241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 438.79068, y: -50}
+  m_AnchoredPosition: {x: 438.7907, y: -50}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1302147555
@@ -28478,7 +28478,7 @@ AudioListener:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1550121060}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &1550121064
 Behaviour:
   m_ObjectHideFlags: 0
@@ -33244,7 +33244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 438.17804, y: -76.4884}
+  m_AnchoredPosition: {x: 438.178, y: -76.4884}
   m_SizeDelta: {x: 83, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1843037313

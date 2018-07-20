@@ -518,10 +518,10 @@ RectTransform:
   m_Father: {fileID: 817524356}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 72.30759, y: -87.5}
+  m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &30224307
 MonoBehaviour:
@@ -1855,6 +1855,10 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: -191}
   m_SizeDelta: {x: 275, y: 244}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &130552948 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
+  m_PrefabInternal: {fileID: 810961084}
 --- !u!1 &132605269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,7 +1937,7 @@ GameObject:
   - component: {fileID: 147873064}
   - component: {fileID: 147873063}
   m_Layer: 0
-  m_Name: JellyChartboost
+  m_Name: Chartboost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1957,11 +1961,11 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
   m_PrefabInternal: {fileID: 1688334269}
   m_GameObject: {fileID: 147873062}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -540, y: -960, z: -11.497004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1461179752}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &148193691
@@ -8511,7 +8515,7 @@ GameObject:
   - component: {fileID: 496862780}
   - component: {fileID: 496862782}
   m_Layer: 0
-  m_Name: JellyNetworkManager
+  m_Name: NetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8534,11 +8538,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 496862779}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.1279817, y: -5.9399996, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -547.128, y: -965.94, z: -11.497004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1461179752}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &496862782
@@ -8562,7 +8566,7 @@ GameObject:
   - component: {fileID: 507287607}
   - component: {fileID: 507287606}
   m_Layer: 0
-  m_Name: JellyEventsListener
+  m_Name: EventsListener
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8585,11 +8589,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 507287605}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -540, y: -960, z: -11.497004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1461179752}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508870823
@@ -8724,7 +8728,7 @@ GameObject:
   - component: {fileID: 511786113}
   - component: {fileID: 511786111}
   m_Layer: 0
-  m_Name: JellyMain Camera
+  m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8793,11 +8797,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 511786103}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -540, y: -960, z: -21.497004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1461179752}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &511786109
@@ -13179,11 +13183,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 764257762}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -540, y: -960, z: -21.497004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1461179752}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &764257765
@@ -13341,31 +13345,31 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1461179752}
     m_Modifications:
     - target: {fileID: 400000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -540
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -960
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -21.497004
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
       propertyPath: m_LocalRotation.w
@@ -13385,7 +13389,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
       propertyPath: m_Name
-      value: JellySoundBase
+      value: SoundBase
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8003baa1f5c64645a6884376b315d2a, type: 2}
@@ -15127,7 +15131,7 @@ GameObject:
   - component: {fileID: 885354528}
   - component: {fileID: 885354527}
   m_Layer: 0
-  m_Name: JellyEventSystem
+  m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15183,11 +15187,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 885354526}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -540, y: -960, z: -11.497004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1461179752}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &889631136
@@ -19665,6 +19669,10 @@ Transform:
   m_Father: {fileID: 1810715941}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1088066424 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
+  m_PrefabInternal: {fileID: 1346907472}
 --- !u!1 &1115580172
 GameObject:
   m_ObjectHideFlags: 0
@@ -21891,10 +21899,10 @@ RectTransform:
   m_Father: {fileID: 817524356}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 197.30759, y: -87.5}
+  m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1242458526
 MonoBehaviour:
@@ -22151,31 +22159,31 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1461179752}
     m_Modifications:
     - target: {fileID: 400000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -540
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -960
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -11.497004
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_LocalRotation.w
@@ -22255,7 +22263,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
       propertyPath: m_Name
-      value: JellyLevelsMap
+      value: LevelsMap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
@@ -22784,7 +22792,7 @@ Transform:
   m_Children:
   - {fileID: 1706886097}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1289045750
 GameObject:
@@ -23958,31 +23966,31 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1461179752}
     m_Modifications:
     - target: {fileID: 400000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -540
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -960
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -11.497004
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
       propertyPath: m_LocalRotation.w
@@ -23998,7 +24006,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
       propertyPath: m_Name
-      value: JellyApiTestGUI
+      value: ApiTestGUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dbde5ef7c93a4ad5ba11ccffbfc7e19, type: 2}
@@ -24604,7 +24612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1375642409}
   m_Layer: 0
-  m_Name: JellyLevel
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24616,8 +24624,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1375642408}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -540, y: -960, z: -21.497004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1970235630}
@@ -24625,7 +24633,7 @@ Transform:
   - {fileID: 374269959}
   - {fileID: 1835779614}
   - {fileID: 1050245871}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1461179752}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1380016618
@@ -24638,7 +24646,7 @@ GameObject:
   - component: {fileID: 1380016620}
   - component: {fileID: 1380016619}
   m_Layer: 0
-  m_Name: JellyAI
+  m_Name: AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24667,11 +24675,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1380016618}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7417785, y: -0.1431223, z: -0.1953125}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -538.25824, y: -960.1431, z: -11.692316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1461179752}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1385236328
@@ -25250,6 +25258,10 @@ CanvasRenderer:
 --- !u!1 &1404877721 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
+  m_PrefabInternal: {fileID: 1268009023}
+--- !u!4 &1404877722 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: acb13cf7f83bfd34ab58c92ae4926c80, type: 2}
   m_PrefabInternal: {fileID: 1268009023}
 --- !u!1 &1405427750
 GameObject:
@@ -26197,6 +26209,47 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -52}
   m_SizeDelta: {x: 150, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1461179751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1461179752}
+  m_Layer: 0
+  m_Name: Jelly
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1461179752
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1461179751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 540, y: 960, z: 11.497004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1375642409}
+  - {fileID: 511786108}
+  - {fileID: 885354530}
+  - {fileID: 1380016620}
+  - {fileID: 1676068915}
+  - {fileID: 1404877722}
+  - {fileID: 130552948}
+  - {fileID: 764257764}
+  - {fileID: 147873064}
+  - {fileID: 1088066424}
+  - {fileID: 496862781}
+  - {fileID: 507287607}
+  - {fileID: 2036332465}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1461312794
 GameObject:
   m_ObjectHideFlags: 0
@@ -26779,10 +26832,10 @@ RectTransform:
   m_Father: {fileID: 817524356}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 322.3076, y: -87.5}
+  m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1487421663
 MonoBehaviour:
@@ -29896,7 +29949,7 @@ RectTransform:
   - {fileID: 23477387}
   - {fileID: 214525772}
   - {fileID: 1889374601}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1461179752}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -29909,31 +29962,31 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1461179752}
     m_Modifications:
     - target: {fileID: 400000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -540
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -960
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -11.497004
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
       propertyPath: m_LocalRotation.w
@@ -29945,7 +29998,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
       propertyPath: m_Name
-      value: JellyChartboost
+      value: Chartboost
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ffb533105d914fb7a9ab5cda3d6796a, type: 2}
@@ -30767,10 +30820,10 @@ RectTransform:
   m_Father: {fileID: 817524356}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 447.3076, y: -87.5}
+  m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1733158579
 MonoBehaviour:
@@ -33446,10 +33499,10 @@ RectTransform:
   m_Father: {fileID: 817524356}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 72.30759, y: -162.5}
+  m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1853467322
 MonoBehaviour:
@@ -35823,7 +35876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2011351082
 Transform:
   m_ObjectHideFlags: 0
@@ -35843,7 +35896,7 @@ Transform:
   - {fileID: 1858114962}
   - {fileID: 553509797}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2021653325
 GameObject:
@@ -36365,7 +36418,7 @@ GameObject:
   - component: {fileID: 2036332465}
   - component: {fileID: 2036332464}
   m_Layer: 0
-  m_Name: JellyAdmobRewardedAdsManager
+  m_Name: AdmobRewardedAdsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36388,11 +36441,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2036332463}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1580505, y: 0.7816932, z: -10.430625}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -534.8419, y: -959.2183, z: -21.927628}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1461179752}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2045621772

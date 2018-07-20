@@ -12807,7 +12807,7 @@ Canvas:
   m_GameObject: {fileID: 701099357}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -12828,7 +12828,7 @@ RectTransform:
   m_GameObject: {fileID: 701099357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.0784612, y: 2.0784612, z: 2.0784612}
   m_Children:
   - {fileID: 1707678926}
   - {fileID: 247100218}
@@ -12848,9 +12848,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 960}
+  m_SizeDelta: {x: 519.6152, y: 923.7603}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &701320301
 GameObject:
   m_ObjectHideFlags: 0
@@ -21786,6 +21786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16808cdf7c88afd41841fceddd8bc3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnityAndroidGameID: 1633868
   basedTimeInterstitialAtGameOver: 0
   numberOfPlayToShowInterstitial: 2
   numberOfMinutesToShowAnInterstitialAtGameOver: 2

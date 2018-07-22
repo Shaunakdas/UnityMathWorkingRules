@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameObjectHolder : MonoBehaviour {
 
+	public GameObject Dragon,Jelly,UIRoot;
 
 	// Use this for initialization
 	void Start () {

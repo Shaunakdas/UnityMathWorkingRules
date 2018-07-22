@@ -8527,7 +8527,7 @@ MonoBehaviour:
   - {fileID: 131752, guid: 742bb024ad0d38d499f1c45865a537cb, type: 2}
   - {fileID: 118332, guid: 5023e04ee1e907d4e931c5b8968509eb, type: 2}
   SpawnPoint: {fileID: 731226892}
-  Interval: 4
+  Interval: 90
   OffsetMin: {x: 0, y: 2}
   OffsetMax: {x: 0, y: 7}
 --- !u!114 &446967435

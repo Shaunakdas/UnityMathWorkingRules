@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Rezero;
+using System.Collections.Generic;
 
 namespace Rezero
 {
@@ -17,11 +18,14 @@ namespace Rezero
         [Tooltip("Y offset maximum (up) for the object that spawned")]
         public Vector2 OffsetMax;
 
+		public List<GameObject> GameObjectList;
+
         private float BaseInterval;
 
         void Start () {
             BaseInterval = Interval;
             StartSpawn();
+			GameObjectList = new List<GameObject> ();
         }
         
         void Update () {
@@ -44,7 +48,7 @@ namespace Rezero
             float xPos = Random.Range(OffsetMin.x, OffsetMax.x);
             float yPos = Random.Range(OffsetMin.y, OffsetMax.y);
             Vector3 nextSpawn = SpawnPoint.position + new Vector3(xPos, yPos);
-            Instantiate(Object[Random.Range(0, Object.Length)], nextSpawn, SpawnPoint.rotation);
+			GameObjectList.Add(Instantiate(Object[Random.Range(0, Object.Length)], nextSpawn, SpawnPoint.rotation));
             yield return new WaitForSeconds(Interval);
             if(Interval > 1.0f)
             {

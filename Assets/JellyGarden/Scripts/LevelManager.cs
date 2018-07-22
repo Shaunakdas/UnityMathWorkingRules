@@ -271,7 +271,7 @@ public class LevelManager : MonoBehaviour
 				//MATH_CHANGES #1 Disable generating candy ground
 //                InitLevel();
 				//MATH_CHANGES #2 Generate Math Level
-				MathTrigger.Instance.NextPara();
+				MathTrigger.Instance.StartMath();
                 OnLevelLoaded();
 
 

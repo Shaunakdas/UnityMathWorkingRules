@@ -26,13 +26,18 @@ namespace Rezero
 
         void Start () {
             // We need some stored value for used later
-			CamFollow = GameObject.Find("DragonMainCamera").GetComponent<CameraFollow>();
+			CamFollow = GameObject.Find("Dragon/Main Camera").GetComponent<CameraFollow>();
             Spawner = GetComponents<RandomSpawner>();
         }
         
         void Update () {
 
         }
+
+		public void StartPlayer(){
+			CamFollow = GameObject.Find("Dragon/Main Camera").GetComponent<CameraFollow>();
+			Spawner = GetComponents<RandomSpawner>();
+		}
 
         public void UpdatePlayer()
         {

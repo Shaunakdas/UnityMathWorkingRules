@@ -44,10 +44,13 @@ namespace Rezero
             ChooseHero();
             PlayerPrefs.SetInt(Heroes[0].HeroName, 1);
             
-            if(PlayerPrefs.GetInt("Playing", 0) == 1)
-            {
-                GameController.Instance.StartGame();
-            }
+			//DRAGON CHANGES#1 commenting out Starting Game
+//            if(PlayerPrefs.GetInt("Playing", 0) == 1)
+//            {
+//                GameController.Instance.StartGame();
+//            }
+			GameController.Instance.StartGame();
+			//DRAGON CHANGES#1 end
         }
         
         void Update () {
@@ -119,6 +122,7 @@ namespace Rezero
             HeroPlayers[CurrentHero].SetActive(true);
             CameraFollow.Instance.ChangeTarget(HeroPlayers[CurrentHero].transform);
             CameraFollow.Instance.ChangeDefault(HeroPlayers[CurrentHero].transform);
+			GameController.Instance.StartPlayer ();
             GameController.Instance.UpdatePlayer();
         }
 

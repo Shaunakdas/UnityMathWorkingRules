@@ -30,7 +30,7 @@ namespace Rezero
         }
         
         void Update () {
-
+			CheckMeeting ();
         }
 
 		public void StartPlayer(){
@@ -139,5 +139,13 @@ namespace Rezero
         {
             return iLevelVariation;
         }
+
+		public void CheckMeeting(){
+			Debug.Log (character.gameObject.transform.position);
+			if (Spawner [0].GameObjectList.Count> 0 ) {
+				Debug.Log ("haha");
+				Debug.Log (Spawner [0].GameObjectList.ToArray () [0].transform.position);
+			}
+		}
     }
 }

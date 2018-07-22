@@ -32239,7 +32239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  Offset: {x: 11, y: 2, z: 0}
+  Offset: {x: 4, y: 2, z: 0}
   ZoominOffset: {x: 0, y: 0, z: 0}
   ZoominFOV: 30
 --- !u!81 &1773555157

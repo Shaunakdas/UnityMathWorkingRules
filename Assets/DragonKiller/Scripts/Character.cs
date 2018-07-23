@@ -112,6 +112,13 @@ namespace Rezero
             }
         }
 
+		public void keepAim(){
+			if(isAiming)
+			{
+				aimer.StopDuplicating();
+			}
+		}
+
         public void CancelAim()
         {
             aimer.StopDuplicating();

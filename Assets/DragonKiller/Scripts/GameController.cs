@@ -164,8 +164,9 @@ namespace Rezero
 		// Spawn randomly
 		IEnumerator WaitAndAttack()
 		{
-			yield return new WaitForSeconds(1.0f);
-			PlayerAttack ();
+			yield return new WaitForSeconds(0.5f);
+			character.keepAim ();
+			MathTrigger.Instance.NextPara();
 		}
     }
 }

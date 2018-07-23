@@ -16,6 +16,8 @@ namespace Rezero
         private float startTime;
         private int iLevelVariation;
 
+		public bool enemyMeeting;
+
         void Awake()
         {
             instance = this;
@@ -27,10 +29,13 @@ namespace Rezero
         void Start () {
             // We need some stored value for used later
 			StartPlayer();
+			enemyMeeting = false;
         }
         
         void Update () {
-			CheckMeeting ();
+			if (!enemyMeeting) {
+				CheckMeeting ();
+			}
         }
 
 		public void StartPlayer(){
@@ -141,11 +146,26 @@ namespace Rezero
         }
 
 		public void CheckMeeting(){
-			Debug.Log (character.gameObject.transform.position);
 			if (Spawner [0].GameObjectList.Count> 0 ) {
-				Debug.Log ("haha");
-				Debug.Log (Spawner [0].GameObjectList.ToArray () [0].transform.position);
+				if ((Spawner [0].GameObjectList.ToArray () [0].transform.position.x - character.gameObject.transform.position.x) < 8.0f) {
+					enemyMeeting = true;
+					enemyMeeted ();
+				}
 			}
+		}
+
+		public void enemyMeeted(){
+			Spawner [0].GameObjectList.ToArray () [0].GetComponent<Enemy> ().StopRunning ();
+			character.StopRunning ();
+			PlayerAim ();
+			StartCoroutine(WaitAndAttack());
+		}
+
+		// Spawn randomly
+		IEnumerator WaitAndAttack()
+		{
+			yield return new WaitForSeconds(1.0f);
+			PlayerAttack ();
 		}
     }
 }

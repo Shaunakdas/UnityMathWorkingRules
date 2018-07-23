@@ -22,10 +22,10 @@ namespace Rezero
 
         private float BaseInterval;
 
-        void Start () {
+		void Start () {
+			GameObjectList = new List<GameObject> ();
             BaseInterval = Interval;
             StartSpawn();
-			GameObjectList = new List<GameObject> ();
         }
         
         void Update () {

@@ -268,7 +268,7 @@ namespace Rezero
             GetComponent<Rigidbody2D>().velocity = new Vector2(Speed, 0);
         }
 
-        void StopRunning()
+        public void StopRunning()
         {
             _anim.SetBool("isRunning", false);
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);

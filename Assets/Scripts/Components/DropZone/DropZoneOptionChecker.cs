@@ -65,6 +65,7 @@ public class DropZoneOptionChecker : OptionChecker {
 			gameObject.GetComponent<TweenColor> ().enabled = true;
 			startTimerAnim ();
 		}
+		MathTrigger.Instance.QuesActivTrigger (gameObject);
 	}
 	override public void startTimerAnim(){
 		//Start Item Timer

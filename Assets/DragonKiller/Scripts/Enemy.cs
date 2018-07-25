@@ -31,6 +31,9 @@ namespace Rezero
         private Character character;
         private EnemyAttack enemyAttack;
 
+		private bool isReaching = false;
+		private GameObject targetGO;
+
         void Start() {
             audioS = GetComponent<AudioSource>();
             _Anim = GetComponentInChildren<Animator>();
@@ -60,7 +63,10 @@ namespace Rezero
         }
 
         void Update() {
-
+			if (isReaching) {
+				Vector3 targetPos = MathTrigger.Instance.convertNGUIToArrow (targetGO.transform.position);
+				gameObject.transform.position = Vector3.MoveTowards (transform.position, targetPos, 3.0f * Time.deltaTime);
+			}
         }
 
         void Dead()
@@ -221,5 +227,11 @@ namespace Rezero
             yield return new WaitForSeconds(dur);
             CameraFollow.Instance.Zoomout();
         }
+
+		public void ReachByRunning(GameObject target)
+		{
+			targetGO = target;
+			isReaching = true;
+		}
     }
 }

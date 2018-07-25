@@ -173,5 +173,8 @@ namespace Rezero
 			CamFollow.enabled = false;
 			character.ReachByRunning (target);
 		}
+		public void enemyReachTarget(GameObject _targetGO){
+			Spawner [0].GameObjectList.ToArray () [0].GetComponent<Enemy> ().ReachByRunning (_targetGO);
+		}
     }
 }

@@ -94,6 +94,10 @@ public class MathTrigger : Singleton<MathTrigger> {
 	public void DragCellTrigger(GameObject _elementGO){
 		Rezero.GameController.Instance.characterReachTarget (convertNGUIToArrow(_elementGO.transform.position));
 	}
+		
+	public void QuesActivTrigger(GameObject _elementGO){
+		Rezero.GameController.Instance.enemyReachTarget (_elementGO);
+	}
 
 	IEnumerator MyCoroutine()
 	{
@@ -102,9 +106,9 @@ public class MathTrigger : Singleton<MathTrigger> {
 		dragCorrectItem ();
 	}
 
-	Vector3 convertNGUIToArrow(Vector3 target){
-		float arrowWindowStartX = 2.7f;
-		float arrowWindowEndX = 11.5f;
+	public Vector3 convertNGUIToArrow(Vector3 target){
+		float arrowWindowStartX = 2f;
+		float arrowWindowEndX = 12f;
 		float arrowWindowWidthX = arrowWindowEndX - arrowWindowStartX;
 		float arrowWindowStartY = -14f;
 		float arrowWindowEndY = 14f;

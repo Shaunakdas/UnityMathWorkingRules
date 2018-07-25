@@ -37,8 +37,10 @@ namespace Rezero
         public AimingObject[] Aimings;
         private Vector3[] AimingsBaseRotation;
 
-        private bool canShoot = true;
-        private bool isAiming = false;
+		private bool canShoot = true;
+		private bool isAiming = false;
+		private bool isAimingEnemy = false;
+		private Enemy enemy;
 		private bool isReaching = false;
 		private Vector3 targetPos;
         private bool isUltimate = false;
@@ -96,17 +98,43 @@ namespace Rezero
 			if (isReaching) {
 				gameObject.transform.position = Vector3.MoveTowards (transform.position, targetPos, 3.0f * Time.deltaTime);
 			}
+			// Rotate aiming objects when aiming
+			if(isAimingEnemy)
+			{
+				foreach (AimingObject obj in Aimings)
+				{	
+					//Setting max rotation of right hand to aim at enemy
+					if (obj.Object.gameObject.name == "Right Hand") {
+						Vector3 lookPos = enemy.transform.position -  obj.Object.transform.position;
+						float angle = Mathf.Atan2(lookPos.y, lookPos.x) * Mathf.Rad2Deg;
+						obj.MaxRotation = angle;
+					}
+					if (obj.Object.transform.rotation.eulerAngles.z <= obj.MaxRotation)
+						obj.Object.transform.Rotate (new Vector3 (0, 0, obj.MaxRotation / 1.5f * Time.deltaTime));
+				}
+			}
         }
 
-        public void StartAim()
-        {
-            if(canShoot && canAim)
-            {      
-                isAiming = true;
-                Aimer.SetActive(true);
-                aimer.StartDuplicating();
-            }
-        }
+		public void StartAim()
+		{
+			if(canShoot && canAim)
+			{      
+				isAiming = true;
+				Aimer.SetActive(true);
+				aimer.StartDuplicating();
+			}
+		}
+
+		public void StartAimEnemy(Enemy _enemy)
+		{
+			if(canShoot && canAim)
+			{      
+				isAimingEnemy = true;
+				Aimer.SetActive(true);
+				aimer.StartDuplicating();
+				enemy = _enemy;
+			}
+		}
 
         public void ReleaseAim()
         {

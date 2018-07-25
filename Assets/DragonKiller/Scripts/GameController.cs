@@ -157,7 +157,7 @@ namespace Rezero
 		public void enemyMeeted(){
 			Spawner [0].GameObjectList.ToArray () [0].GetComponent<Enemy> ().StopRunning ();
 			character.StopRunning ();
-			PlayerAim ();
+			character.StartAimEnemy (Spawner [0].GameObjectList.ToArray () [0].GetComponent<Enemy> ());
 			StartCoroutine(WaitAndAttack());
 		}
 
@@ -172,6 +172,7 @@ namespace Rezero
 		public void characterReachTarget(Vector3 target){
 			CamFollow.enabled = false;
 			character.ReachByRunning (target);
+//			character.Shoot ();
 		}
 		public void enemyReachTarget(GameObject _targetGO){
 			Spawner [0].GameObjectList.ToArray () [0].GetComponent<Enemy> ().ReachByRunning (_targetGO);

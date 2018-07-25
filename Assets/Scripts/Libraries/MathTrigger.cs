@@ -20,7 +20,9 @@ public class MathTrigger : Singleton<MathTrigger> {
 		LevelManager.THIS.PopupScore(value, pos, 2);
 	}
 	public void StartMath(){
-		GameObject.Find ("UI Root").GetComponent<HTMLParserTest> ().comprehensionBody.nextParaTrigger ();
+		Debug.Log ("Math Started");
+		GameObject.Find ("GameObjectHolder").GetComponent<GameObjectHolder>().Dragon.SetActive (true);
+//		GameObject.Find ("UI Root").GetComponent<HTMLParserTest> ().comprehensionBody.nextParaTrigger ();
 	}
 
 	public void sectionComplete(){
@@ -85,8 +87,12 @@ public class MathTrigger : Singleton<MathTrigger> {
 	}
 
 	public void startProcess(){
-		StartCoroutine(MyCoroutine());
+//		StartCoroutine(MyCoroutine());
 
+	}
+
+	public void DragCellTrigger(GameObject _elementGO){
+		Rezero.GameController.Instance.characterReachTarget (convertNGUIToArrow(_elementGO.transform.position));
 	}
 
 	IEnumerator MyCoroutine()
@@ -94,5 +100,23 @@ public class MathTrigger : Singleton<MathTrigger> {
 
 		yield return new WaitForSeconds(6f);
 		dragCorrectItem ();
+	}
+
+	Vector3 convertNGUIToArrow(Vector3 target){
+		float arrowWindowStartX = 2.7f;
+		float arrowWindowEndX = 11.5f;
+		float arrowWindowWidthX = arrowWindowEndX - arrowWindowStartX;
+		float arrowWindowStartY = -14f;
+		float arrowWindowEndY = 14f;
+		float arrowWindowWidthY = arrowWindowEndY - arrowWindowStartY;
+		float nguiWindowStartX = -0.5f;
+		float nguiWindowEndX = 0.5f;
+		float nguiWindowWidthX = nguiWindowEndX - nguiWindowStartX;
+		float nguiWindowStartY = -1.7f;
+		float nguiWindowEndY = 1.7f;
+		float nguiWindowWidthY = nguiWindowEndY - nguiWindowStartY;
+		target.x = arrowWindowStartX + ((target.x - nguiWindowStartX) * (arrowWindowWidthX/nguiWindowWidthX));
+		target.y = arrowWindowStartY + ((target.y - nguiWindowStartY) * (arrowWindowWidthY/nguiWindowWidthY));
+		return target;
 	}
 }

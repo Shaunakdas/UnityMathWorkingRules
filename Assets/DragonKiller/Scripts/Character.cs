@@ -39,6 +39,8 @@ namespace Rezero
 
         private bool canShoot = true;
         private bool isAiming = false;
+		private bool isReaching = false;
+		private Vector3 targetPos;
         private bool isUltimate = false;
         private int UltimateCount = 0;
         private AimerDuplicator aimer;
@@ -91,6 +93,9 @@ namespace Rezero
                         obj.Object.transform.Rotate(new Vector3(0, 0, obj.MaxRotation / 1.5f * Time.deltaTime));
                 }
             }
+			if (isReaching) {
+				gameObject.transform.position = Vector3.MoveTowards (transform.position, targetPos, 3.0f * Time.deltaTime);
+			}
         }
 
         public void StartAim()
@@ -280,6 +285,13 @@ namespace Rezero
             _anim.SetBool("isRunning", false);
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
+
+		public void ReachByRunning(Vector3 target)
+		{
+			_anim.SetBool("isRunning", false);
+			targetPos = target;
+			isReaching = true;
+		}
 
         void Die()
         {

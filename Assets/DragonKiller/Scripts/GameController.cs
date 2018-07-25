@@ -168,5 +168,10 @@ namespace Rezero
 			character.keepAim ();
 			MathTrigger.Instance.NextPara();
 		}
+
+		public void characterReachTarget(Vector3 target){
+			CamFollow.enabled = false;
+			character.ReachByRunning (target);
+		}
     }
 }

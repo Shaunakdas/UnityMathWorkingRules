@@ -96,7 +96,11 @@ namespace Rezero
                 }
             }
 			if (isReaching) {
-				gameObject.transform.position = Vector3.MoveTowards (transform.position, targetPos, 3.0f * Time.deltaTime);
+				if (Vector3.Distance (transform.position, targetPos) > 0.1f) {
+					gameObject.transform.position = Vector3.MoveTowards (transform.position, targetPos, 3.0f * Time.deltaTime);
+				} else {
+					isReaching = false;
+				}
 			}
 			// Rotate aiming objects when aiming
 			if(isAimingEnemy)

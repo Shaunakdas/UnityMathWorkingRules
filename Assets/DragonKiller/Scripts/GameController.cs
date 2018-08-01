@@ -144,7 +144,7 @@ namespace Rezero
         {
             return iLevelVariation;
         }
-
+		//Changes for Math
 		public void CheckMeeting(){
 			if (Spawner [0].GameObjectList.Count> 0 ) {
 				if ((Spawner [0].GameObjectList.ToArray () [0].transform.position.x - character.gameObject.transform.position.x) < 8.0f) {
@@ -169,13 +169,14 @@ namespace Rezero
 			MathTrigger.Instance.NextPara();
 		}
 
-		public void characterReachTarget(Vector3 target){
+		public void characterReachTarget(GameObject _targetGO, GUIType _gUIType){
 			CamFollow.enabled = false;
-			character.ReachByRunning (target);
+			character.ReachByRunning (_targetGO,_gUIType);
 //			character.Shoot ();
 		}
 		public void enemyReachTarget(GameObject _targetGO){
 			Spawner [0].GameObjectList.ToArray () [0].GetComponent<Enemy> ().ReachByRunning (_targetGO);
 		}
+		//Changes for Math
     }
 }

@@ -92,7 +92,7 @@ public class MathTrigger : Singleton<MathTrigger> {
 	}
 
 	public void DragCellTrigger(GameObject _elementGO){
-		Rezero.GameController.Instance.characterReachTarget (convertNGUIToArrow(_elementGO.transform.position));
+		Rezero.GameController.Instance.characterReachTarget (_elementGO, GUIType.NGUI);
 	}
 		
 	public void QuesActivTrigger(GameObject _elementGO){

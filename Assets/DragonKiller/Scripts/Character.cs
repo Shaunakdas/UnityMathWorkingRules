@@ -41,8 +41,7 @@ namespace Rezero
 		private bool isAiming = false;
 		private bool isAimingEnemy = false;
 		private Enemy enemy;
-		private bool isReaching = false;
-		private Vector3 targetPos;
+		public LocationFollower locationFollower;
         private bool isUltimate = false;
         private int UltimateCount = 0;
         private AimerDuplicator aimer;
@@ -75,7 +74,10 @@ namespace Rezero
             {
                 AimingsBaseRotation[i] = Aimings[i].Object.transform.rotation.eulerAngles;
             }
-            
+			if (GetComponent<LocationFollower> ()) {
+				locationFollower = GetComponent<LocationFollower> ();
+				locationFollower.initiateFields (GUIType.uGUIDragon);
+			}
         }
 
         void Update () {
@@ -95,13 +97,6 @@ namespace Rezero
                         obj.Object.transform.Rotate(new Vector3(0, 0, obj.MaxRotation / 1.5f * Time.deltaTime));
                 }
             }
-			if (isReaching) {
-				if (Vector3.Distance (transform.position, targetPos) > 0.1f) {
-					gameObject.transform.position = Vector3.MoveTowards (transform.position, targetPos, 3.0f * Time.deltaTime);
-				} else {
-					isReaching = false;
-				}
-			}
 			// Rotate aiming objects when aiming
 			if(isAimingEnemy)
 			{
@@ -318,11 +313,11 @@ namespace Rezero
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
 
-		public void ReachByRunning(Vector3 target)
+		public void ReachByRunning(GameObject _targetGO, GUIType _gUIType)
 		{
 			_anim.SetBool("isRunning", false);
-			targetPos = target;
-			isReaching = true;
+			locationFollower.setReachingGameobject (_targetGO, _gUIType);
+			locationFollower.startReachingGameobject ();
 		}
 
         void Die()

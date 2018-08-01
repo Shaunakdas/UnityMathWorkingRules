@@ -316,7 +316,7 @@ namespace Rezero
 		public void ReachByRunning(GameObject _targetGO, GUIType _gUIType)
 		{
 			_anim.SetBool("isRunning", false);
-			locationFollower.setReachingGameobject (_targetGO, _gUIType);
+			locationFollower.setReachingGameobject (_targetGO, _gUIType, true);
 			locationFollower.startReachingGameobject ();
 		}
 

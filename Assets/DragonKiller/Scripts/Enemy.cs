@@ -28,11 +28,10 @@ namespace Rezero
         private bool _IsAttack = false;
         private AudioSource audioS;
 
+		public LocationFollower locationFollower;
+
         private Character character;
         private EnemyAttack enemyAttack;
-
-		private bool isReaching = false;
-		private GameObject targetGO;
 
         void Start() {
             audioS = GetComponent<AudioSource>();
@@ -59,18 +58,14 @@ namespace Rezero
             {
                 Debug.LogError("Animator not found in child");
             }
+			if (GetComponent<LocationFollower> ()) {
+				locationFollower = GetComponent<LocationFollower> ();
+				locationFollower.initiateFields (GUIType.uGUIDragon);
+			}
             StartRunning();
         }
 
         void Update() {
-			if (isReaching) {
-				Vector3 targetPos = MathTrigger.Instance.convertNGUIToArrow (targetGO.transform.position);
-				if (Vector3.Distance (transform.position, targetPos) > 0.1f) {
-					gameObject.transform.position = Vector3.MoveTowards (transform.position, targetPos, 3.0f * Time.deltaTime);
-				} else {
-//					isReaching = false;
-				}
-			}
         }
 
         void Dead()
@@ -232,10 +227,10 @@ namespace Rezero
             CameraFollow.Instance.Zoomout();
         }
 
-		public void ReachByRunning(GameObject target)
+		public void ReachByRunning(GameObject target, GUIType _gUIType)
 		{
-			targetGO = target;
-			isReaching = true;
+			locationFollower.setReachingGameobject (target, _gUIType, true);
+			locationFollower.startReachingGameobject ();
 		}
     }
 }

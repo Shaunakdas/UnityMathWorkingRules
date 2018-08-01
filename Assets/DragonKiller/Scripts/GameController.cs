@@ -174,8 +174,8 @@ namespace Rezero
 			character.ReachByRunning (_targetGO,_gUIType);
 //			character.Shoot ();
 		}
-		public void enemyReachTarget(GameObject _targetGO){
-			Spawner [0].GameObjectList.ToArray () [0].GetComponent<Enemy> ().ReachByRunning (_targetGO);
+		public void enemyReachTarget(GameObject _targetGO, GUIType _gUIType){
+			Spawner [0].GameObjectList.ToArray () [0].GetComponent<Enemy> ().ReachByRunning (_targetGO, _gUIType);
 		}
 		//Changes for Math
     }

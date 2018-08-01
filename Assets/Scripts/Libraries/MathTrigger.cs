@@ -96,7 +96,7 @@ public class MathTrigger : Singleton<MathTrigger> {
 	}
 		
 	public void QuesActivTrigger(GameObject _elementGO){
-		Rezero.GameController.Instance.enemyReachTarget (_elementGO);
+		Rezero.GameController.Instance.enemyReachTarget (_elementGO, GUIType.NGUI);
 	}
 
 	IEnumerator MyCoroutine()

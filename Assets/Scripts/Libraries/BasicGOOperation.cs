@@ -9,8 +9,8 @@ public class BasicGOOperation : MonoBehaviour{
 		get { 
 			if (_scale != new Vector3(0f,0f,0f)) {
 				return _scale;
-			} else {
-				return new Vector3 (0.0015625f,0.0015625f,0.0015625f);
+            } else {
+                return new Vector3 (0.001302083f,0.001302083f,0.001302083f);
 			}
 		}
 		set { _scale = value; }

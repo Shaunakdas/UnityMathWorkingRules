@@ -59,12 +59,22 @@ public class LocationFollower : MonoBehaviour {
 		hasReachedGameobjectTriggered = false;
 	}
 
-	public void setReachingGameobject(GameObject _targetGo, GUIType _targetGUIType, bool _followAfterReaching){
-		isReachingGameobjectTarget = _targetGo;
-		targetGUIType = _targetGUIType;
-		followAfterReachingGameobject = _followAfterReaching;
-		hasReachedGameobjectTriggered = false;
-	}
+    public void setReachingGameobject(GameObject _targetGo, GUIType _targetGUIType, bool _followAfterReaching)
+    {
+        isReachingGameobjectTarget = _targetGo;
+        targetGUIType = _targetGUIType;
+        followAfterReachingGameobject = _followAfterReaching;
+        hasReachedGameobjectTriggered = false;
+    }
+
+    public void setReachingGameobject(GameObject _targetGo, GUIType _targetGUIType, bool _followAfterReaching, EventDelegate _nextEvent)
+    {
+        isReachingGameobjectTarget = _targetGo;
+        targetGUIType = _targetGUIType;
+        followAfterReachingGameobject = _followAfterReaching;
+        hasReachedGameobjectTriggered = false;
+        hasReachedGameobject = _nextEvent;
+    }
 	/// <summary>
 	/// Updates the field so that current gameobject stops reaching target gameobject
 	/// </summary>
@@ -90,12 +100,14 @@ public class LocationFollower : MonoBehaviour {
 			if (Vector3.Distance (transform.position, targetPos) > TARGET_DIFF) {
 				transform.position = Vector3.MoveTowards (transform.position, targetPos, SPEED * Time.deltaTime);
 			} else {
+                if ((hasReachedGameobject != null) && (!hasReachedGameobjectTriggered))
+                {
+                    Debug.Log("LocationFollower REached2");
+                    hasReachedGameobject.Execute();
+                    hasReachedGameobjectTriggered = true;
+                }
 				if (!followAfterReachingGameobject) {
 					isReachingGameobject = false;
-				}
-				if ((hasReachedGameobject != null)&&(!hasReachedGameobjectTriggered)) {
-					hasReachedGameobject.Execute ();
-					hasReachedGameobjectTriggered = true;
 				}
 			}
 		}

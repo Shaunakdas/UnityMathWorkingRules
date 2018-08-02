@@ -313,10 +313,10 @@ namespace Rezero
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
 
-		public void ReachByRunning(GameObject _targetGO, GUIType _gUIType)
+        public void ReachByRunning(GameObject _targetGO, GUIType _gUIType,EventDelegate _nextEvent)
 		{
 			_anim.SetBool("isRunning", false);
-			locationFollower.setReachingGameobject (_targetGO, _gUIType, true);
+            locationFollower.setReachingGameobject (_targetGO, _gUIType, true, _nextEvent);
 			locationFollower.startReachingGameobject ();
 		}
 

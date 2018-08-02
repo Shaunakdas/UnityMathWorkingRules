@@ -91,13 +91,17 @@ public class MathTrigger : Singleton<MathTrigger> {
 
 	}
 
-	public void DragCellTrigger(GameObject _elementGO){
-		Rezero.GameController.Instance.characterReachTarget (_elementGO, GUIType.NGUI);
+    public void DragCellTrigger(GameObject _elementGO, EventDelegate _nextEvent){
+        Rezero.GameController.Instance.characterReachTarget (_elementGO, GUIType.NGUI, _nextEvent);
 	}
 		
 	public void QuesActivTrigger(GameObject _elementGO){
 		Rezero.GameController.Instance.enemyReachTarget (_elementGO, GUIType.NGUI);
 	}
+
+    public void IncorrectAnswerTrigger(){
+        
+    }
 
 	IEnumerator MyCoroutine()
 	{

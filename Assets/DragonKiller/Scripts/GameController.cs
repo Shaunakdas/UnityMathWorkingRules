@@ -169,9 +169,9 @@ namespace Rezero
 			MathTrigger.Instance.NextPara();
 		}
 
-		public void characterReachTarget(GameObject _targetGO, GUIType _gUIType){
+        public void characterReachTarget(GameObject _targetGO, GUIType _gUIType, EventDelegate _nextEvent){
 			CamFollow.enabled = false;
-			character.ReachByRunning (_targetGO,_gUIType);
+            character.ReachByRunning (_targetGO,_gUIType, _nextEvent);
 //			character.Shoot ();
 		}
 		public void enemyReachTarget(GameObject _targetGO, GUIType _gUIType){

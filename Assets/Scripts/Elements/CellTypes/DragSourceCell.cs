@@ -57,7 +57,8 @@ public class DragSourceCell : Cell {
 			// If Cell is not a child of DragSource Row
 //			ElementGO.GetComponent<TEXDrawNGUI>().Redraw();
 		}
-		EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { MathTrigger.Instance.DragCellTrigger(ElementGO); });
+        EventDelegate dragDelegate = new EventDelegate(delegate () { dragToDropZone(MathTrigger.Instance.currentQuestion().ParentChecker.gameObject, null); });
+        EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { MathTrigger.Instance.DragCellTrigger(ElementGO,dragDelegate); });
 	}
 	public string generateStandardName(string text){
 		int number; string newText = text;

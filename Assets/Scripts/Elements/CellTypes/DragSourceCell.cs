@@ -81,28 +81,42 @@ public class DragSourceCell : Cell {
 		//Dragging ScrollView to put correct drag item just below dropzone
 		Vector3 ScrollPosDiff = new Vector3 ( posDiff.x, 0f,0f);
 		Vector3 DragPosDiff = new Vector3 ( 0f, posDiff.y,0f);
-		//Dragging DragItem to put correct drag item inside dropzone
-		SpringPanel.Begin (ScrollPanelGO (), ScrollPosDiff, 8f).onFinished += delegate{
-			
-			ElementGO.GetComponent<CustomDragDropItem>().StartDragging();
-			GameObject ElementCloneGO = ElementGO.GetComponent<CustomDragDropItem>().itemClone;
-			Vector3 newPos = ElementCloneGO.transform.localPosition;
-			newPos = BasicGOOperation.NGUIPosition (DropZoneHolderGO.transform) - BasicGOOperation.NGUIPosition (ElementCloneGO.transform) + newPos;
+        //Dragging DragItem to put correct drag item inside dropzone
+        if (true)
+        {
+            //If Option drag should be implemented in 2 stages.
+            SpringPanel.Begin(ScrollPanelGO(), ScrollPosDiff, 8f).onFinished += delegate
+            {
+                DragDirect(DropZoneHolderGO, ElementGO, _nextEvent);
+                //          verticalDragAnim(ElementGO,DropZoneHolderGO);
+            };
+        }else{
+            //If Option drag should be implemented in single stages.
+            DragDirect(DropZoneHolderGO, ElementGO, _nextEvent);
+        }
 
-
-			FastSpringPosition.Begin (ElementCloneGO, newPos, 8f).onFinished += delegate{
-				Debug.Log("SpringPosition finished");
-				Debug.Log("DroppedOnSurface finished"+(DroppedOnSurface != null));
-				ElementCloneGO.GetComponent<CustomDragDropItem>().StopDragging(DropZoneHolderGO);
-				if (DroppedOnSurface != null)
-					DroppedOnSurface();
-				if(_nextEvent != null)
-					_nextEvent.Execute();
-			};
-//			verticalDragAnim(ElementGO,DropZoneHolderGO);
-		};
 
 	}
+
+    void DragDirect(GameObject _dropZoneHolderGO, GameObject _optionGO, EventDelegate _nextEvent){
+        _optionGO.GetComponent<CustomDragDropItem>().StartDragging();
+        GameObject ElementCloneGO = ElementGO.GetComponent<CustomDragDropItem>().itemClone;
+        Vector3 newPos = ElementCloneGO.transform.localPosition;
+        newPos = BasicGOOperation.NGUIPosition(_dropZoneHolderGO.transform) - BasicGOOperation.NGUIPosition(ElementCloneGO.transform) + newPos;
+
+
+        FastSpringPosition.Begin(ElementCloneGO, newPos, 8f).onFinished += delegate {
+            Debug.Log("SpringPosition finished");
+            Debug.Log("DroppedOnSurface finished" + (DroppedOnSurface != null));
+            ElementCloneGO.GetComponent<CustomDragDropItem>().StopDragging(_dropZoneHolderGO);
+            if (DroppedOnSurface != null)
+                DroppedOnSurface();
+            if (_nextEvent != null)
+                _nextEvent.Execute();
+        };
+
+    }
+
 	public void verticalDragAnim(GameObject ElementGO, GameObject targetGO){
 		ElementGO.AddComponent<TweenPosition> ();
 //		ElementGO.AddComponent<TweenPosition>().

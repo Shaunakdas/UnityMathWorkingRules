@@ -122,8 +122,8 @@ namespace Rezero
                 GUIController.Instance.DisplayHitInfo("weak");
                 
                 // Run another method
-                character.Headshot();
-                Dead();
+                //character.Headshot();
+                //Dead();
             }
         }
 

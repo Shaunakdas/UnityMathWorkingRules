@@ -4,7 +4,21 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Item
+  - Destroyer
+  - Ground
+  - Weakpoint
+  - Normalpoint
+  - Projectile
+  - Parallax 1
+  - Parallax 2
+  - Parallax 3
+  - Enemy
+  - SkillPanel
+  - CutInImage
+  - Ads Manager
+  - Weapon
+  - Ultimate Projectile
+  - Ragdoll
   layers:
   - Default
   - TransparentFX
@@ -14,12 +28,12 @@ TagManager:
   - UI
   - 
   - 
-  - Item
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ragdoll
+  - Coin
+  - Enemy
+  - Ground
+  - Ultimate
+  - Projectile
   - 
   - 
   - 
@@ -39,9 +53,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1845620999
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: UI
-    uniqueID: 58496801
+  - name: Foreground
+    uniqueID: 447354165
     locked: 0

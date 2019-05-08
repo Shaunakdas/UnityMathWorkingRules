@@ -28,8 +28,8 @@ public static class QuestionImporter  {
 		inputChapter = -1;
 		questionArrIndex = -1;
 		//User Input Values
-		importMode = ImportSettings.Android;
-		inputStandard = -1;
+		importMode = ImportSettings.File;
+		inputStandard = 6;
 		inputChapter = -1;
 		questionArrIndex = -1;
 	}

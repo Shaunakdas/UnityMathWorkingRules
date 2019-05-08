@@ -58,7 +58,7 @@ public class DragSourceCell : Cell {
 //			ElementGO.GetComponent<TEXDrawNGUI>().Redraw();
 		}
         EventDelegate dragDelegate = new EventDelegate(delegate () { dragToDropZone(MathTrigger.Instance.currentQuestion().ParentChecker.gameObject, null); });
-        EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate() { MathTrigger.Instance.DragCellTrigger(ElementGO,dragDelegate); });
+        EventDelegate.Set(ElementGO.GetComponent<UIButton>().onClick, delegate () { MathTrigger.Instance.DragCellTrigger(ElementGO, dragDelegate); });
 	}
 	public string generateStandardName(string text){
 		int number; string newText = text;
@@ -82,7 +82,7 @@ public class DragSourceCell : Cell {
 		Vector3 ScrollPosDiff = new Vector3 ( posDiff.x, 0f,0f);
 		Vector3 DragPosDiff = new Vector3 ( 0f, posDiff.y,0f);
         //Dragging DragItem to put correct drag item inside dropzone
-        if (true)
+        if (false)
         {
             //If Option drag should be implemented in 2 stages.
             SpringPanel.Begin(ScrollPanelGO(), ScrollPosDiff, 8f).onFinished += delegate
@@ -103,7 +103,10 @@ public class DragSourceCell : Cell {
         GameObject ElementCloneGO = ElementGO.GetComponent<CustomDragDropItem>().itemClone;
         Vector3 newPos = ElementCloneGO.transform.localPosition;
         newPos = BasicGOOperation.NGUIPosition(_dropZoneHolderGO.transform) - BasicGOOperation.NGUIPosition(ElementCloneGO.transform) + newPos;
-
+        //newPos = _dropZoneHolderGO.transform.localPosition;
+        Debug.Log(BasicGOOperation.NGUIPosition(_dropZoneHolderGO.transform));
+        Debug.Log(BasicGOOperation.NGUIPosition(ElementCloneGO.transform));
+        Debug.Log(newPos);
 
         FastSpringPosition.Begin(ElementCloneGO, newPos, 8f).onFinished += delegate {
             Debug.Log("SpringPosition finished");

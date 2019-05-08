@@ -9,7 +9,7 @@ namespace Rezero
 
         [Tooltip("The power of projectile")]
         [Range(500, 5000)]
-        public float Power;
+        public float Power=500;
         [Tooltip("Particles when projectile hits")]
         public GameObject Impact;
         [Tooltip("True if you want the projectile not destroyed after hits")]

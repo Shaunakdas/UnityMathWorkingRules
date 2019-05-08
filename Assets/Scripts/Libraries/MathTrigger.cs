@@ -22,7 +22,7 @@ public class MathTrigger : Singleton<MathTrigger> {
 	public void StartMath(){
 		Debug.Log ("Math Started");
 		GameObject.Find ("GameObjectHolder").GetComponent<GameObjectHolder>().Dragon.SetActive (true);
-//		GameObject.Find ("UI Root").GetComponent<HTMLParserTest> ().comprehensionBody.nextParaTrigger ();
+		//GameObject.Find ("UI Root").GetComponent<HTMLParserTest> ().comprehensionBody.nextParaTrigger ();
 	}
 
 	public void sectionComplete(){

@@ -30,6 +30,11 @@ public class LocationFollower : MonoBehaviour {
 	//When current gameobject wants to follow another gameobject
 	bool followAfterReachingGameobject;
 
+    //When current gameobject wants to reset to starting location
+    bool isResetingLocation;
+    Vector3 startLocation;
+    EventDelegate hasResetLocation;
+
 	public void initiateFields(GUIType _gUIType, float _targetDiff, float _speed){
 		currentGUIType = _gUIType;
 		TARGET_DIFF = _targetDiff;
@@ -74,6 +79,7 @@ public class LocationFollower : MonoBehaviour {
         followAfterReachingGameobject = _followAfterReaching;
         hasReachedGameobjectTriggered = false;
         hasReachedGameobject = _nextEvent;
+        startLocation = transform.position;
     }
 	/// <summary>
 	/// Updates the field so that current gameobject stops reaching target gameobject
@@ -86,11 +92,16 @@ public class LocationFollower : MonoBehaviour {
 		hasReachedGameobjectTriggered = !hasReachedGameobjectTriggered;
 	}
 
+    public void startResetingLocation()
+    {
+        isResetingLocation = true;
+    }
 
 	//--------------------------------------------------- Lifecycle Methods ------------------------------------
 	// Use this for initialization
 	void Start () {
 		hasReachedGameobjectTriggered = false;
+        isResetingLocation = false;
 	}
 	
 	// Update is called once per frame
@@ -123,6 +134,21 @@ public class LocationFollower : MonoBehaviour {
 				}
 			}
 		}
+
+        if (isResetingLocation){
+            if (Vector3.Distance(transform.position, startLocation) > TARGET_DIFF)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, startLocation, SPEED * Time.deltaTime);
+            }
+            else
+            {
+                isResetingLocation = false;
+                if (hasResetLocation != null)
+                {
+                    hasResetLocation.Execute();
+                }
+            }
+        }
 	}
 	//--------------------------------------------------- Common Libraries Methods ------------------------------------
 	Vector3 calculateTargetPos(Vector3 _targetPosition){

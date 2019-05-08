@@ -241,12 +241,12 @@ namespace Rezero
                     attack.GetComponent<ProjectileMovement>().StartMove();
                 }
             }
-            isAiming = false;
-            ResetAimers();
-            StopAllCoroutines();
-            StartCoroutine(Reloading());
-            HideWeapon();
-            PlaySFX(ReleaseSFX);
+            //isAiming = false;
+            //ResetAimers();
+            //StopAllCoroutines();
+            //StartCoroutine(Reloading());
+            //HideWeapon();
+            //PlaySFX(ReleaseSFX);
         }
 
         IEnumerator Reloading()
@@ -316,7 +316,8 @@ namespace Rezero
         public void ReachByRunning(GameObject _targetGO, GUIType _gUIType,EventDelegate _nextEvent)
 		{
 			_anim.SetBool("isRunning", false);
-            locationFollower.setReachingGameobject (_targetGO, _gUIType, true, _nextEvent);
+            EventDelegate postDelegate = new EventDelegate(delegate () { _nextEvent.Execute(); Shoot(); locationFollower.startResetingLocation(); });
+            locationFollower.setReachingGameobject (_targetGO, _gUIType, true, postDelegate);
 			locationFollower.startReachingGameobject ();
 		}
 

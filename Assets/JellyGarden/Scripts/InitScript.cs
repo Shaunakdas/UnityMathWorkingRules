@@ -176,7 +176,7 @@ public class InitScript : MonoBehaviour
         DateOfExit = PlayerPrefs.GetString("DateOfExit", "");
         print(DateOfExit);
         Gems = PlayerPrefs.GetInt("Gems");
-        lifes = PlayerPrefs.GetInt("Lifes");
+        lifes = 50;
         if (PlayerPrefs.GetInt("Lauched") == 0)
         {    //First lauching
             lifes = CapOfLife;
@@ -510,7 +510,7 @@ public class InitScript : MonoBehaviour
 
     public void SpendLife(int count)
     {
-        if (lifes > 0)
+        if (lifes > -50)
         {
             lifes -= count;
             PlayerPrefs.SetInt("Lifes", lifes);

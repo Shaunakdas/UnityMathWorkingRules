@@ -10,7 +10,7 @@ public class LoginNEtworkController : MonoBehaviour {
 		UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequest.Get (getQuesListUrl);
 		yield return www.Send ();
 
-		if (www.isError) {
+		if (www.isNetworkError) {
 			Debug.Log (www.error);
 			//getQAListNetworkCallResponse = false;
 		} else {
